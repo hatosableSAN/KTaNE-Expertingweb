@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - setup/ci-cd
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run sshpass commands
+        uses: matheusvanzan/sshpass-action@v1
+        with:
+          host: garnet.u-gakugei.ac.jp
+          username: ${{ secrets.GARNET_USER }}
+          password: ${{ secrets.GARNET_PASSWORD }}
+          run: sh deploy_sh/se00g0.sh

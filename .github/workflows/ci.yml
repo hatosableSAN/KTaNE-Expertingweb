@@ -1,0 +1,33 @@
+name: Docker image build && push
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/ci.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to docker registry
+        run: docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD onyx.u-gakugei.ac.jp
+        env:
+          REGISTRY_USER: ${{ secrets.ONYX_REGISTRY_USER }}
+          REGISTRY_PASSWORD: ${{ secrets.ONYX_REGISTRY_PASSWORD }}
+
+      - name: Docker build cathe
+        env:
+          DOCKER_BUILDKIT: 1 # 必ず必要
+        run: |
+          docker build -t onyx.u-gakugei.ac.jp/se00g0_app:latest --cache-from=onyx.u-gakugei.ac.jp/se00g0_app:latest --build-arg BUILDKIT_INLINE_CACHE=1 -f docker/production/java/Dockerfile .
+          docker build -t onyx.u-gakugei.ac.jp/se00g0_db:latest --cache-from=onyx.u-gakugei.ac.jp/se00g0_db:latest --build-arg BUILDKIT_INLINE_CACHE=1 -f docker/production/mysql/Dockerfile .
+
+      - name: Push docker images
+        run: |
+          docker push onyx.u-gakugei.ac.jp/se00g0_app:latest # ここの名前を変更する
+          docker push onyx.u-gakugei.ac.jp/se00g0_db:latest # ここの名前を変更する
