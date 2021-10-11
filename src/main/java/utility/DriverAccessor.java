@@ -18,9 +18,9 @@ public class DriverAccessor {
         String JAVA_ENV = System.getenv("JAVA_ENV");
 
         if(JAVA_ENV.equals("development")){ // docker-composeで立ち上げるdevelop環境の場合
-            DRIVER_URL = "jdbc:mysql://local_se00g0_db:3306/db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+            DRIVER_URL = "jdbc:mysql://local_se21g1_db:3306/db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
         } else if (JAVA_ENV.equals("production")) { // docker-composeで立ち上げるproduction環境の場合
-            DRIVER_URL = "jdbc:mysql://se00g0_db/db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+            DRIVER_URL = "jdbc:mysql://se21g1_db/db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
         }
         try {
             Class.forName(DRIVER_NAME);

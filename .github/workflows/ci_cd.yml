@@ -24,13 +24,13 @@ jobs:
         env:
           DOCKER_BUILDKIT: 1 # 必ず必要
         run: |
-          docker build -t onyx.u-gakugei.ac.jp/se00g0_app:latest --cache-from=onyx.u-gakugei.ac.jp/se00g0_app:latest --build-arg BUILDKIT_INLINE_CACHE=1 -f docker/production/java/Dockerfile .
-          docker build -t onyx.u-gakugei.ac.jp/se00g0_db:latest --cache-from=onyx.u-gakugei.ac.jp/se00g0_db:latest --build-arg BUILDKIT_INLINE_CACHE=1 -f docker/production/mysql/Dockerfile .
+          docker build -t onyx.u-gakugei.ac.jp/se21g1_app:latest --cache-from=onyx.u-gakugei.ac.jp/se21g1_app:latest --build-arg BUILDKIT_INLINE_CACHE=1 -f docker/production/java/Dockerfile .
+          docker build -t onyx.u-gakugei.ac.jp/se21g1_db:latest --cache-from=onyx.u-gakugei.ac.jp/se21g1_db:latest --build-arg BUILDKIT_INLINE_CACHE=1 -f docker/production/mysql/Dockerfile .
 
       - name: Push docker images
         run: |
-          docker push onyx.u-gakugei.ac.jp/se00g0_app:latest # ここの名前を変更する
-          docker push onyx.u-gakugei.ac.jp/se00g0_db:latest # ここの名前を変更する
+          docker push onyx.u-gakugei.ac.jp/se21g1_app:latest # ここの名前を変更する
+          docker push onyx.u-gakugei.ac.jp/se21g1_db:latest # ここの名前を変更する
 
       - name: Run sshpass commands
         uses: matheusvanzan/sshpass-action@v1
@@ -38,4 +38,4 @@ jobs:
           host: garnet.u-gakugei.ac.jp
           username: ${{ secrets.GARNET_USER }}
           password: ${{ secrets.GARNET_PASSWORD }}
-          run: sh deploy_sh/se00g0.sh
+          run: sh deploy_sh/se21g1.sh

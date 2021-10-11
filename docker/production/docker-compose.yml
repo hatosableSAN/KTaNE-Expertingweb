@@ -1,19 +1,19 @@
 version: "3"
 services:
   app:
-    container_name: se00g0_app
+    container_name: se21g1_app
     build:
       context: ../../
       dockerfile: ./docker/production/java/Dockerfile
       cache_from:
-        - onyx.u-gakugei.ac.jp/se00g0_app:latest
-    image: onyx.u-gakugei.ac.jp/se00g0_app
+        - onyx.u-gakugei.ac.jp/se21g1_app:latest
+    image: onyx.u-gakugei.ac.jp/se21g1_app
 
   mysql:
-    container_name: se00g0_db
+    container_name: se21g1_db
     build:
       context: ../../
       dockerfile: ./docker/production/mysql/Dockerfile
       cache_from:
-        - onyx.u-gakugei.ac.jp/se00g0_db:latest
-    image: onyx.u-gakugei.ac.jp/se00g0_db
+        - onyx.u-gakugei.ac.jp/se21g1_db:latest
+    image: onyx.u-gakugei.ac.jp/se21g1_db

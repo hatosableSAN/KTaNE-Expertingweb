@@ -20,4 +20,4 @@ jobs:
           host: garnet.u-gakugei.ac.jp
           username: ${{ secrets.GARNET_USER }}
           password: ${{ secrets.GARNET_PASSWORD }}
-          run: sh deploy_sh/se00g0.sh
+          run: sh deploy_sh/se21g1.sh

@@ -1,4 +1,4 @@
-# SE00G0
+# SE021G1
 
 システムプログラミングのテンプレートリポジトリ
 
@@ -32,7 +32,7 @@
 ├── settings.gradle
 └──src
     └── main
-        ├── javai
+        ├── java
         └── webapp
 
 </pre>
@@ -75,4 +75,4 @@
    $ docker-compose up
    ```
 
-http://localhost:8080/se00g0 にアクセスし確認する．
+http://localhost:8080/se21g1 にアクセスし確認する．
