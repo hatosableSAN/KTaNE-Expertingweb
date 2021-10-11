@@ -1,13 +1,13 @@
 version: "3" # docker-composeのバージョンを指定
 services:
   gradle:
-    container_name: local_se00g0
+    container_name: local_se21g1
     build:
       context: ../../
       dockerfile: ./docker/local/java/Dockerfile
     working_dir: /app
     volumes:
-      - ../../../SE00G0:/app:cached
+      - ../../../SE21G1:/app:cached
     environment:
       JAVA_ENV: development
     ports:
@@ -17,13 +17,13 @@ services:
     command: >
       sh -c '
           ./gradlew 
-          wait-for-it.sh local_se00g0_db:3306 --timeout=30 -- ./gradlew tomcatRun
+          wait-for-it.sh local_se21g1_db:3306 --timeout=30 -- ./gradlew tomcatRun
       '
     networks:
-      - se00g0-network
+      - se21g1-network
 
   mysql:
-    container_name: local_se00g0_db
+    container_name: local_se21g1_db
     platform: linux/x86_64
     build:
       context: ../../
@@ -40,8 +40,8 @@ services:
     volumes:
       - "./mysql/init:/docker-entrypoint-initdb.d"
     networks:
-      - se00g0-network
+      - se21g1-network
 
 networks:
-  se00g0-network:
+  se21g1-network:
     driver: bridge
