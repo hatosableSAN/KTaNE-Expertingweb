@@ -11,4 +11,4 @@ FROM tomcat:jdk11-adoptopenjdk-hotspot
 ENV JAVA_ENV production
 EXPOSE 8080
 
-COPY --from=builder ./app/build/libs/se00g0.war /usr/local/tomcat/webapps
+COPY --from=builder ./app/build/libs/se21g1.war /usr/local/tomcat/webapps
