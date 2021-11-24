@@ -29,6 +29,7 @@ class 座席配置情報{
     int 座席配置情報ID
     int クラスID
     string ユーザーID
+    string 座席配置名
     date 開始期間
     date 終了期間
 }
