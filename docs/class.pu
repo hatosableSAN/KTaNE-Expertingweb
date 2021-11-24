@@ -4,55 +4,56 @@ skinparam shadowing false
 ' クラスを定義
 
 class ユーザー{
-    ID
-    パスワード
+    string ID
+    string パスワード
 }
 
 class 生徒{
-    生徒ID
-    ユーザーID
-    性別
-    名前
+    string 生徒ID
+    string ユーザーID
+    int 性別
+    string 名前
 }
 class クラス{
-    クラスID
-    クラス名
-    年度
-    ユーザーID
+    int クラスID
+    string クラス名
+    int 年度
+    string ユーザーID
 }
 class メンバー{
-    クラスID
-    生徒ID
+    int クラスID
+    string 生徒ID
 }
 class 座席配置情報{
-    座席配置ID
-    クラスID
-    ユーザーID
-    開始期間
-    終了期間
+    int 座席配置ID
+    int クラスID
+    string ユーザーID
+    date 開始期間
+    date 終了期間
 }
 class 生徒座席配置{
-    座席配置ID
-    生徒ID
-    座席
+    int 座席配置ID
+    string 生徒ID
+    int 座席
 }
 class 評価{
-    評価ID
-    生徒ID
-    授業ID
-    出欠
-    観点１
-    観点２
-    観点３
-    評価のコメント
-    座席
+    int 評価ID
+    string 生徒ID
+    int 授業ID
+    int 出欠
+    int 観点１
+    int 観点２
+    int 観点３
+    string 評価のコメント
+    int 座席
+    string ユーザーID
 }
 
 class 授業{
-    授業ID
-    作成日
-    授業日
-    授業コメント
+    int 授業ID
+    date 作成日
+    date 授業日
+    string 授業コメント
 }
 
 
@@ -69,6 +70,6 @@ class 授業{
 ユーザー"1" -- "0...*" クラス
 座席配置情報 "1" -- "1"クラス
 生徒座席配置 "1...*" -- "1" 生徒
-
+評価 "0...*" -- "1" ユーザー
 ' umlの終了を宣言
 @enduml
