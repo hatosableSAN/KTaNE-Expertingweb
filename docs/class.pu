@@ -10,7 +10,7 @@ class ユーザー{
 
 class 生徒{
     string 生徒ID
-    **string ユーザーID**
+    **string 管理教員ID**
     int 性別
     string 名前
 }
@@ -18,13 +18,13 @@ class クラス{
     int クラスID
     string クラス名
     int 年度
-    **string ユーザーID**
+    **string 管理教員ID**
 }
 
 class 座席配置{
     int 座席配置ID
     **int クラスID**
-    **string ユーザーID**
+    **string 管理教員ID**
     string 座席配置名
     date 開始期間
     date 終了期間
@@ -46,7 +46,7 @@ class 評価{
     int 観点３
     string 評価のコメント
     int 座席位置
-    **string ユーザーID**
+    **string 管理教員ID**
 }
 
 class 授業{
