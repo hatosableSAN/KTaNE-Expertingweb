@@ -46,12 +46,12 @@ class 評価{
     int 観点３
     string 評価のコメント
     int 座席位置
-    **string 管理教員ID**
 }
 
 class 授業{
     int 授業ID
     **int 座席配置ID**
+    **string 授業担当者ID**
     date 授業日
     int 時限
     string 授業コメント
