@@ -24,16 +24,16 @@ public class Login extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Login:Get");
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/login.jsp");
         dispatcher.forward(request, response);
     }
+    
     
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
