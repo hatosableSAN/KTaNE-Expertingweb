@@ -56,29 +56,32 @@ public class Login extends HttpServlet {
 
         // userオブジェクトに情報を格納
         User user = new User(id, password,password2);
-        User user2 = new User(null,null,null);
 
         //Record record2 = new Record(name, tournament, round,date,result);
 
         // RecordManagerオブジェクトの生成
         UserManager manager = new UserManager();
 
-        //boolean ok =false;
+        boolean ok =false;
 
         // ユーザ検索
-        user2= manager.searchUser(user);
+        ok= manager.searchUser(user);
+        System.out.println(ok);
 
         // ログイン
-        if(user2!=null) {
-
+        if(ok==true) {
+            System.out.println("ログイン成功");
         	// 完了画面を表示する
-        	//response.sendRedirect("/StuInfo/RegistInfo");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("../webapp/Users/LoginSuccess.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
             dispatcher.forward(request, response);
         }
         else {
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("../webapp/Users/LoginSuccess.jsp");
+            System.out.println("ログイン失敗");
+            response.sendRedirect("/se21g1/Login");
+            /*
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/se21g1/Login");
         	dispatcher.forward(request, response);
+            */
         }
 
     }

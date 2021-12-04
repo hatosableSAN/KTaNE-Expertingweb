@@ -36,8 +36,11 @@ public class UserManager {
         this.connection = null;
     }
 
-   // 検索
-   public User searchUser(User user) {
+   // ログイン
+   public boolean searchUser(User user) {
+
+    //あるかないか（仮）
+    boolean ans = false;
 
     // StudentDAOオブジェクト生成
     UserDAO userDAO = new UserDAO();
@@ -46,7 +49,7 @@ public class UserManager {
     this.connection = userDAO.createConnection();
 
     // 検索する
-    user = userDAO.searchUser(user, this.connection);
+    ans = userDAO.searchUser(user, this.connection);
 
     // DataBaseとの接続を切断する
     userDAO.closeConnection(this.connection);
@@ -54,7 +57,7 @@ public class UserManager {
     // コネクションオブジェクトを破棄する
     this.connection = null;
 
-    return user;
+    return ans;
 }
 
 }

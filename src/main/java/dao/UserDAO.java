@@ -86,7 +86,7 @@ public class UserDAO {
 
     // 検索する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public User searchUser(User user, Connection connection) {
+    public boolean searchUser(User user, Connection connection) {
 
         try {
 
@@ -101,27 +101,36 @@ public class UserDAO {
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            user.setPassword2(rs.getString("password2"));
+            user.setPassword2(null);
+
+            String passA = user.getId();//入力されたid
+            String passB = rs.getString("password");//入力されたid
+
+            System.out.println(passA);
+            System.out.println(passB);
+            
+            boolean ans = false;
 
             //パスワードが正しいかどうか
-            if(user.getPassword().equals(rs.getString("password2"))){
+            if(passA.equals(passB)){
+                ans=true;
             }
             else{
-                user=null;
+                ans=false;
             }
 
             // 終了処理
             stmt.close();
             rs.close();
 
-            // Studentオブジェクトを返す
-            return user;
+            // パスワードがあっているかどうかを返す
+            return ans;
 
         } catch (SQLException e) {
 
             // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
             e.printStackTrace();
-            return null;
+            return false;
 
         } finally {
         }
