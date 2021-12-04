@@ -12,6 +12,6 @@
         ユーザ登録に失敗しました<br/>
         再度登録しなおしてください</FONT>
     </p>
-    <p align="center"><a href="/se21g1/src/main/webapp/index.jsp" class="btn">スタート画面へ</a></p>
+    <p align="center"><a href="/se21g1/" class="btn">スタート画面へ</a></p>
   </body>
 </html>

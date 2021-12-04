@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
     <form action="./Login" method="post">
         <p align="center">
         ID 　<input type="text" name="id" /><br /><br/>
-        パスワード　 <input type="text" name="password" /><br /><br/>
+        パスワード　 <input type="password" name="password" /><br /><br/>
         <input type="submit" name="OK" value="ログイン" class="btn" />
         </p>
     </form>
