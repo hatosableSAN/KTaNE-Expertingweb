@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
         <br/>
       </FONT>
       <a href="Users/registUser.jsp" class="btn">ユーザ登録</a>　　　　　
-      <a href="WEB-INF/login.jsp" class="btn">ログイン</a>
+      <a href="Users/login.jsp" class="btn">ログイン</a>
     </p>
   </body>
 </html>
