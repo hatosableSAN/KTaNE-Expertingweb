@@ -5,7 +5,7 @@
     </head>
   <body>
     <br/><br/><br/>
-    <form action="./RegistUser" method="post">
+    <form action="./Login" method="post">
         <p align="center">
         ID <input type="text" name="id" /><br /><br/>
         パスワード　 <input type="text" name="password" /><br /><br/>
