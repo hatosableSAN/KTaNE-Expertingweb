@@ -32,7 +32,7 @@ public class RegistUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUser.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -66,16 +66,17 @@ public class RegistUser extends HttpServlet {
         //record2 = manager.searchRecord(record);
 
         // 登録
-        if(password==password2) {
-
+        if(password.equals(password2)) {
         	// 確認画面を表示する
         	//response.sendRedirect("/StuInfo/RegistInfo");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("../webapp/Users/checkRegistUser.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
+            request.setAttribute("User", user);
             dispatcher.forward(request, response);
         }
         else {
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUser.jsp");
-        	dispatcher.forward(request, response);
+            response.sendRedirect("/se21g1/RegistUser");
+        	//RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUser.jsp");
+        	//dispatcher.forward(request, response);
         }
 
     }

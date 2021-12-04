@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
         スタート画面<br />
         <br/>
       </FONT>
-      <a href="Users/registUser.jsp" class="btn">ユーザ登録</a>　　　　　
+      <a href="/se21g1/RegistUser" class="btn">ユーザ登録</a>　　　　　
       <a href="/se21g1/Login" class="btn">ログイン</a>
     </p>
   </body>
