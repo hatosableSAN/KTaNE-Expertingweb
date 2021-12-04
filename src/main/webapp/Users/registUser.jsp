@@ -6,9 +6,9 @@
   <body>
     <div class="darkgray"><h2 style="text-align:center"><br/>ユーザ登録画面</h2></div>
     <br/><br/><br/><br/>
-    <form action="../../java/servlet/RegistUser.java" method="post">
+    <form action="./RegistUser" method="post">
         <p align="center">
-        ID <input type="text" name="name" /><br /><br/>
+        ID <input type="text" name="id" /><br /><br/>
         パスワード　 <input type="text" name="password" /><br /><br/>
         パスワード確認（再入力）　 <input type="text" name="password2" /><br /><br/>
         <input type="submit" name="OK" value="確認画面へ" class="btn" />

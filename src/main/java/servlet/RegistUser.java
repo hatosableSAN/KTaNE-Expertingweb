@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import beans.Student;
-//import control.StudentManager;
 import beans.User;
 import control.UserManager;
 
@@ -30,17 +28,18 @@ public class RegistUser extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("RegistUser:Get");
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registRecordSuccess.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
         dispatcher.forward(request, response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("RegistUser:Post");
 
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
@@ -69,9 +68,9 @@ public class RegistUser extends HttpServlet {
         // 登録
         if(password==password2) {
 
-        	// 成功画面を表示する
+        	// 確認画面を表示する
         	//response.sendRedirect("/StuInfo/RegistInfo");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("../webapp/Users/checkRegistUser.jsp");
             dispatcher.forward(request, response);
         }
         else {

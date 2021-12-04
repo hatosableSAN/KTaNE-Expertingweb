@@ -13,6 +13,6 @@
         ID ${User.id}<br /><br/>
         パスワード　${User.password} <br /><br/>
     </p>
-    <a href="./index.jsp">試合情報登録に戻る</a>
+    
   </body>
 </html>
