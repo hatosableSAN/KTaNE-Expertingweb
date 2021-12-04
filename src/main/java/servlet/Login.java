@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.User;
 import control.UserManager;
@@ -76,7 +77,10 @@ public class Login extends HttpServlet {
         	// 完了画面を表示する
         	//RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/systemTop.jsp");
-            request.setAttribute("User", user);
+            //request.setAttribute("User", user);
+            //セッションの作成・取得
+            HttpSession session = request.getSession();
+            session.setAttribute("User", user);
             dispatcher.forward(request, response);
         }
         else {

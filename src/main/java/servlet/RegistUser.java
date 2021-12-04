@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.User;
 import control.UserManager;
@@ -70,7 +71,11 @@ public class RegistUser extends HttpServlet {
         	// 確認画面を表示する
         	//response.sendRedirect("/StuInfo/RegistInfo");
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
-            request.setAttribute("User", user);
+
+            //セッションの作成・取得
+            HttpSession session = request.getSession();
+            session.setAttribute("User", user);
+            //request.setAttribute("User", user);
             dispatcher.forward(request, response);
         }
         else {

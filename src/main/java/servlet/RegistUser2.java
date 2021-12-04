@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.User;
 import control.UserManager;
@@ -29,14 +30,24 @@ public class RegistUser2 extends HttpServlet {
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("登録するぜ");
+
+        //➀セッションの作成・取得
+        HttpSession session = request.getSession();
+
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
-        request.getAttribute("User");
+        User userS = new User();
 
-        String id = request.getParameter("id");
-        String password = request.getParameter("password");
-        String password2 = request.getParameter("password2");
+        userS=(User)session.getAttribute("User");
+
+        String id = userS.getId();
+        String password = userS.getPassword();
+        String password2 = userS.getPassword2();
+
+        //String id = request.getParameter("id");
+        //String password = request.getParameter("password");
+        //String password2 = request.getParameter("password2");
 
         // コンソールに確認するために出力
         System.out.println("取得した文字列は" + id + "です！");
