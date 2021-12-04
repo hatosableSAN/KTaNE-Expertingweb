@@ -4,18 +4,13 @@
         <h2 align="center">ログイン画面<br/></h2>
     </head>
   <body>
-    <p align="center">
-      <FONT size="10">
-        <br />
-        児童・生徒授業評価システム<br />
-        スタート画面<br />
-        <br/>
-      </FONT>
-      <button>
-        このボタンは<big><b><font color="red">サンプル</font></b></big>のため動作しません
-      </button>　　　　
-      <button>
-        このボタンは<big><b><font color="red">サンプル</font></b></big>のため動作しません
-      </button>
+    <br/><br/><br/>
+    <form action="./RegistUser" method="post">
+        <p align="center">
+        ID <input type="text" name="id" /><br /><br/>
+        パスワード　 <input type="text" name="password" /><br /><br/>
+        <input type="submit" name="OK" value="ログイン" class="btn" />
+        </p>
+    </form>
     </p>
 </html>
