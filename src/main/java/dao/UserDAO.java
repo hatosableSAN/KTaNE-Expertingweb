@@ -106,8 +106,8 @@ public class UserDAO {
             String passA = user.getId();//入力されたid
             String passB = rs.getString("password");//入力されたid
 
-            System.out.println(passA);
-            System.out.println(passB);
+            //System.out.println(passA);
+            //System.out.println(passB);
             
             boolean ans = false;
 

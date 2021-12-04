@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<!-- beans.Studentをimportする -->
+<!-- beans.Userをimportする -->
 <%@ page import= "beans.User" %>
 
 <html>

@@ -3,11 +3,12 @@
   <HEAD>
     <TITLE></TITLE>
   </HEAD>
-  <BODY >
+  <body>
     <P align="center">
         <FONT size="6"><BR />
         <BR />
         ログイン完了</FONT>
-        </P>
-  </BODY>
+    </P>
+    <p align="center"><a href="Users/systemTop.jsp" class="btn">システムトップへ</a></p>
+    </body>　
 </HTML>

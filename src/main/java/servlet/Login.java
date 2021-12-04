@@ -56,6 +56,8 @@ public class Login extends HttpServlet {
 
         // userオブジェクトに情報を格納
         User user = new User(id, password,password2);
+        // requestオブジェクトにオブジェクトを登録
+        //request.setAttribute("User", user);
 
         //Record record2 = new Record(name, tournament, round,date,result);
 
@@ -64,15 +66,17 @@ public class Login extends HttpServlet {
 
         boolean ok =false;
 
-        // ユーザ検索
+        // ログインの可否
+        // manager.searchUser(user)の修正を行うことで、ログインできない理由まで表示できそう
         ok= manager.searchUser(user);
-        System.out.println(ok);
 
         // ログイン
         if(ok==true) {
             System.out.println("ログイン成功");
         	// 完了画面を表示する
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
+        	//RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/systemTop.jsp");
+            request.setAttribute("User", user);
             dispatcher.forward(request, response);
         }
         else {
