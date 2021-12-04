@@ -1,6 +1,4 @@
-//--------------------------------
-//	RegistInfo.java
-//--------------------------------
+
 //　自分が格納されているフォルダ名
 package servlet;
 
@@ -26,15 +24,17 @@ public class Login extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Login:Get");
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
         dispatcher.forward(request, response);
     }
+    
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
@@ -68,8 +68,8 @@ public class Login extends HttpServlet {
         // ユーザ検索
         user2= manager.searchUser(user);
 
-        // 登録
-        if(unser2!=null) {
+        // ログイン
+        if(user2!=null) {
 
         	// 完了画面を表示する
         	//response.sendRedirect("/StuInfo/RegistInfo");

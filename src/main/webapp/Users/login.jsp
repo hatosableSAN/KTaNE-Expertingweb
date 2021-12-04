@@ -12,5 +12,4 @@
         <input type="submit" name="OK" value="ログイン" class="btn" />
         </p>
     </form>
-    </p>
 </html>

@@ -84,15 +84,14 @@ public class UserDAO {
     }
 
 
-/*
     // 検索する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public Record searchRecord(Record record, Connection connection) {
+    public User searchUser(User user, Connection connection) {
 
         try {
 
             // SQLコマンド
-            String sql = "select * from bRecord where name = '" + record.getName() + "' and tournament = '" + record.getTournament() + "'";
+            String sql = "select * from user where id = '" + user.getId() + "'";
 
             // SQLのコマンドを実行する
             // 実行結果はrsに格納される
@@ -102,17 +101,21 @@ public class UserDAO {
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            record.setTournament(rs.getString("tournament"));
-            record.setRound(rs.getString("round"));
-            record.setDate(rs.getString("date"));
-            record.setResult(rs.getString("result"));
+            user.setPassword2(rs.getString("password2"));
+
+            //パスワードが正しいかどうか
+            if(user.getPassword().equals(rs.getString("password2"))){
+            }
+            else{
+                user=null;
+            }
 
             // 終了処理
             stmt.close();
             rs.close();
 
             // Studentオブジェクトを返す
-            return record;
+            return user;
 
         } catch (SQLException e) {
 
@@ -123,6 +126,6 @@ public class UserDAO {
         } finally {
         }
     }
-*/
+
 
 }

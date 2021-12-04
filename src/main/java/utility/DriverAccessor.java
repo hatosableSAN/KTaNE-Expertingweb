@@ -9,12 +9,12 @@ public class DriverAccessor {
     //private final static String DRIVER_NAME = "com.mysql.jdbc.Driver"; // mysql5.7
     private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver"; // mysql8.0
     // 自分のユーザ名
-    private final static String USER_NAME = "test";
+    private final static String USER_NAME = "root";
     //自分のmysqlのパスワード
-    private final static String PASSWORD = "test";
+    private final static String PASSWORD = "";
 
     public Connection createConnection() {
-        String DRIVER_URL = "jdbc:mysql://localhost:3306/dbName?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+        String DRIVER_URL = "jdbc:mysql://localhost:3306/Schoolapp_db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
         String JAVA_ENV = System.getenv("JAVA_ENV");
 
         if(JAVA_ENV.equals("development")){ // docker-composeで立ち上げるdevelop環境の場合
