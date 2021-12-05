@@ -90,11 +90,9 @@ public class Login extends HttpServlet {
         }
         else {
             System.out.println("ログイン失敗");
-            response.sendRedirect("/se21g1/Login");
-            /*
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/se21g1/Login");
-        	dispatcher.forward(request, response);
-            */
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/loginFailure.jsp");
+            dispatcher.forward(request, response);
+            //response.sendRedirect("/se21g1/Login");
         }
 
     }
