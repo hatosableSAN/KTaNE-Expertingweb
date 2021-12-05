@@ -93,6 +93,10 @@ public class UserDAO {
             // SQLコマンド
             String sql = "select * from user where id = '" + user.getId() + "'";
 
+            System.out.println("（DAO）取得した文字列は" + user.getId() + "です！");
+            System.out.println("（DAO）取得した文字列は" + user.getPassword()+ "です！");
+            System.out.println("（DAO）取得した文字列は" + user.getPassword2() + "です！");
+
             // SQLのコマンドを実行する
             // 実行結果はrsに格納される
             Statement stmt = connection.createStatement();
@@ -103,11 +107,11 @@ public class UserDAO {
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
             user.setPassword2(null);
 
-            String passA = user.getId();//入力されたid
-            String passB = rs.getString("password");//入力されたid
+            String passA = user.getPassword();//入力されたpass
+            String passB = rs.getString("password");//入力されたidに対応するpass
 
-            //System.out.println(passA);
-            //System.out.println(passB);
+            System.out.println("A:"+passA);
+            System.out.println("B:"+passB);
             
             boolean ans = false;
 

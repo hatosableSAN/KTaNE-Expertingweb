@@ -51,12 +51,17 @@ public class Login extends HttpServlet {
         String password2 = null;
 
         // コンソールに確認するために出力
-        System.out.println("取得した文字列は" + id + "です！");
-        System.out.println("取得した文字列は" + password + "です！");
-        System.out.println("取得した文字列は" + password2 + "です！");
+        System.out.println("（Login）取得した文字列は" + id + "です！");
+        System.out.println("（Login）取得した文字列は" + password + "です！");
+        System.out.println("（Login）取得した文字列は" + password2 + "です！");
 
         // userオブジェクトに情報を格納
         User user = new User(id, password,password2);
+
+        System.out.println("（User）取得した文字列は" + user.getId() + "です！");
+        System.out.println("（User）取得した文字列は" + user.getPassword()+ "です！");
+        System.out.println("（User）取得した文字列は" + user.getPassword2() + "です！");
+
         // requestオブジェクトにオブジェクトを登録
         //request.setAttribute("User", user);
 
