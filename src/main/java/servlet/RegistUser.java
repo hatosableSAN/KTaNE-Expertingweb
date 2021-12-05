@@ -50,14 +50,24 @@ public class RegistUser extends HttpServlet {
         String password2 = request.getParameter("password2");
 
         // コンソールに確認するために出力
-        System.out.println("取得した文字列は" + id + "です！");
-        System.out.println("取得した文字列は" + password + "です！");
-        System.out.println("取得した文字列は" + password2 + "です！");
+        System.out.println("(RegistUser)取得した文字列は" + id + "です！");
+        System.out.println("(RegistUser)取得した文字列は" + password + "です！");
+        System.out.println("(RegistUser)取得した文字列は" + password2 + "です！");
 
         // userオブジェクトに情報を格納
         User user = new User(id, password,password2);
 
-        //Record record2 = new Record(name, tournament, round,date,result);
+        //IDが６～１５文字であるかどうか
+        if(checkID(id)==false){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserIdOK.jsp");
+        	dispatcher.forward(request, response);
+        }
+        
+        //パスワードが半角英数字を含み、８～１５文字であるかどうか
+        if(checkPass(password)==false){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserPassOK.jsp");
+        	dispatcher.forward(request, response);
+        }
 
         // 登録
         if(password.equals(password2)) {
@@ -76,6 +86,55 @@ public class RegistUser extends HttpServlet {
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserPass.jsp");
         	dispatcher.forward(request, response);
         }
+    }
+    public boolean checkID(String id){
+        int len = id.length();
+        if(len<6){
+            System.out.println("IDが短い");
+            return false;
+        }
+        return true;
+    }
 
+    public boolean checkPass(String pass){
+        char[] c = pass.toCharArray();
+        int len = pass.length();
+        //boolean s = false;
+        //boolean l = false;
+        boolean e= false;
+        boolean n= false;
+        boolean ok =false;
+
+        if(len<8){
+            return false;
+        }
+
+        for(int i=0;i<len;i=i+1) {
+        	int c2 =c[i] ;
+        	if(c2>=97&&c2<=122) {
+        		e=true;
+        		break;
+        	}
+        }
+        for(int i=0;i<len;i=i+1) {
+        	int c2 =c[i] ;
+        	if(c2>=65&&c2<=90) {
+        		e=true;
+        		break;
+        	}
+        }
+        for(int i=0;i<len;i=i+1) {
+        	int c2 =c[i] ;
+        	if(c2>=48&&c2<=57) {
+        		n=true;
+        		break;
+        	}
+        }
+        if(e==true&&n==true) {
+        	System.out.println("このパスワードは使ってよし");
+            ok=true;
+        }
+
+        return ok;
     }
 }

@@ -19,6 +19,7 @@ public class UserManager {
     // 追加
     // 引数はUserオブジェクト
     public void registUser(User user) {
+        System.out.println("Manager.registUser");
 
         // UserDAOオブジェクト生成
         UserDAO userDAO = new UserDAO();
@@ -39,6 +40,7 @@ public class UserManager {
 
     // 検索
    public boolean serchUser(User user) {
+    System.out.println("Manager.serchUser");
 
     //あるかないか（仮）
     boolean ans = false;
@@ -64,6 +66,7 @@ public class UserManager {
     
    // ログイン
    public boolean loginUser(User user) {
+    System.out.println("Manager.loginUser");
 
     //あるかないか（仮）
     boolean ans = false;

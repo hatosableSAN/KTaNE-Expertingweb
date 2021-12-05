@@ -61,7 +61,7 @@ public class UserDAO {
     public void registUser(User user, Connection connection) {
 
         try {
-
+                System.out.println("DAO.registUser");
             // SQLコマンド
             String sql = "insert into user values(?, ?)";
 
@@ -88,6 +88,8 @@ public class UserDAO {
     public boolean serchUser(User user, Connection connection) {
 
         try {
+            System.out.println("DAO.serchUser");
+            User testUser=new User();
 
             // SQLコマンド
             String sql = "select * from user where id = '" + user.getId() + "'";
@@ -100,13 +102,15 @@ public class UserDAO {
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            //user.setPassword2(null);
+            if(rs.getString("id")==null){
+                return false;
+            }
 
             // 終了処理
             stmt.close();
             rs.close();
 
-            // パスワードがあっているかどうかを返す
+            // Userデータがあるどうかを返す
             return true;
 
         } catch (SQLException e) {
@@ -125,7 +129,7 @@ public class UserDAO {
     public boolean loginUser(User user, Connection connection) {
 
         try {
-
+            System.out.println("DAO.loginUser");
             // SQLコマンド
             String sql = "select * from user where id = '" + user.getId() + "'";
 

@@ -26,7 +26,6 @@ public class RegistUser2 extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("登録するぜ");
 
         //➀セッションの作成・取得
         HttpSession session = request.getSession();
@@ -47,9 +46,9 @@ public class RegistUser2 extends HttpServlet {
         //String password2 = request.getParameter("password2");
 
         // コンソールに確認するために出力
-        System.out.println("取得した文字列は" + id + "です！");
-        System.out.println("取得した文字列は" + password + "です！");
-        System.out.println("取得した文字列は" + password2 + "です！");
+        System.out.println("(RegistUser2)取得した文字列は" + id + "です！");
+        System.out.println("(RegistUser2)取得した文字列は" + password + "です！");
+        System.out.println("(RegistUser2)取得した文字列は" + password2 + "です！");
 
         // userオブジェクトに情報を格納
         User user = new User(id, password,password2);
@@ -65,14 +64,17 @@ public class RegistUser2 extends HttpServlet {
 
             boolean ex = manager.serchUser(user);
 
-            //System.out.println(ex);
+            System.out.println("もう登録してある？");
+            System.out.println(ex);
 
             if(ex==true){
                 //response.sendRedirect("/se21g1/RegistUserRe");
+                System.out.println("ユーザ登録画面の再表示（すでにあるID入力のため）");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserRe.jsp");
                 dispatcher.forward(request, response);
             }
 
+            System.out.println("登録するぜ");
             manager.registUser(user);
 
 
