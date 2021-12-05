@@ -33,7 +33,7 @@ public class User {
     }
 
     public void setPassword2(String password2) {
-        this.password = password2;
+        this.password2 = password2;
     }
 
     // getメソッド

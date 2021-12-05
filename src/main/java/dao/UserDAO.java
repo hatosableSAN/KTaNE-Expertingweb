@@ -105,7 +105,7 @@ public class UserDAO {
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            user.setPassword2(null);
+            //user.setPassword2(null);
 
             String passA = user.getPassword();//入力されたpass
             String passB = rs.getString("password");//入力されたidに対応するpass
