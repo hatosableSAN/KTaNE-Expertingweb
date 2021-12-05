@@ -72,9 +72,9 @@ public class RegistUser extends HttpServlet {
             dispatcher.forward(request, response);
         }
         else {
-            response.sendRedirect("/se21g1/RegistUser");
-        	//RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUser.jsp");
-        	//dispatcher.forward(request, response);
+            //response.sendRedirect("/se21g1/RegistUser");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserPass.jsp");
+        	dispatcher.forward(request, response);
         }
 
     }
