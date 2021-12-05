@@ -83,10 +83,46 @@ public class UserDAO {
         }
     }
 
-
-    // 検索する
+    // ログインする
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public boolean searchUser(User user, Connection connection) {
+    public boolean serchUser(User user, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            String sql = "select * from user where id = '" + user.getId() + "'";
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            rs.first();
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+            //user.setPassword2(null);
+
+            // 終了処理
+            stmt.close();
+            rs.close();
+
+            // パスワードがあっているかどうかを返す
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return false;
+
+        } finally {
+        }
+    }
+
+
+    // ログインする
+    // 引数はStudentオブジェクトと、Connectionオブジェクト
+    public boolean loginUser(User user, Connection connection) {
 
         try {
 

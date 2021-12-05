@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
-import control.UserManager;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -59,12 +58,6 @@ public class RegistUser extends HttpServlet {
         User user = new User(id, password,password2);
 
         //Record record2 = new Record(name, tournament, round,date,result);
-
-        // RecordManagerオブジェクトの生成
-        UserManager manager = new UserManager();
-
-        // 戦績の検索
-        //record2 = manager.searchRecord(record);
 
         // 登録
         if(password.equals(password2)) {

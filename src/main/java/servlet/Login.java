@@ -74,7 +74,7 @@ public class Login extends HttpServlet {
 
         // ログインの可否
         // manager.searchUser(user)の修正を行うことで、ログインできない理由まで表示できそう
-        ok= manager.searchUser(user);
+        ok= manager.loginUser(user);
 
         // ログイン
         if(ok==true) {
