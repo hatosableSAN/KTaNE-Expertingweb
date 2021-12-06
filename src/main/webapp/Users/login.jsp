@@ -4,9 +4,10 @@ pageEncoding="UTF-8"%>
 <html>
     <head>
         <link rel="stylesheet" href="../style.css">
-        <h2 align="center">ログイン画面<br/></h2>
     </head>
   <body>
+    <div class="darkgray"><p align="left"><a href="/se21g1/" class="btn">スタート画面へ</a></p>
+        <h2 style="text-align:center">ログイン画面</h2></div><br/>
     <br/><br/><br/><br/>
     <form action="./Login" method="post">
         <p align="center">
