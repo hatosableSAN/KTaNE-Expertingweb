@@ -4,7 +4,8 @@
         <link rel="stylesheet" href="../style.css">
     </head>
   <body>
-    <div class="darkgray"><h2 style="text-align:center">ユーザ登録画面</h2></div><br/>
+    <div class="darkgray"><p align="left"><a href="/se21g1/" class="btn">スタート画面へ</a></p>
+        <h2 style="text-align:center">ユーザ登録画面</h2></div><br/>
     <br/><br/><br/><br/>
     <form action="./RegistUser" method="post">
         <p align="center">
