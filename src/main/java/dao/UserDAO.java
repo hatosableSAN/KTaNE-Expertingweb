@@ -89,7 +89,7 @@ public class UserDAO {
 
         try {
             System.out.println("DAO.serchUser");
-            User testUser=new User();
+
 
             // SQLコマンド
             String sql = "select * from user where id = '" + user.getId() + "'";
