@@ -1,0 +1,77 @@
+@startuml class_diagram
+skinparam monochrome true
+skinparam shadowing false
+' クラスを定義
+
+class ユーザー{
+    string ユーザーID
+    string パスワード
+}
+
+class 生徒{
+    string 生徒ID
+    **string 管理教員ID**
+    int 性別
+    string 名前
+}
+class クラス{
+    int クラスID
+    string クラス名
+    int 年度
+    **string 管理教員ID**
+}
+
+class 座席配置{
+    int 座席配置ID
+    **int クラスID**
+    **string 管理教員ID**
+    string 座席配置名
+    date 開始期間
+    date 終了期間
+    date 作成日
+}
+class 座席{
+    int 座席ID
+    **int 座席配置ID**
+    **string 生徒ID**
+    int 座席位置
+}
+class 評価{
+    int 評価ID
+    **string 生徒ID**
+    **int 授業ID**
+    boolean 出欠
+    int 観点１
+    int 観点２
+    int 観点３
+    string 評価のコメント
+    int 座席位置
+}
+
+class 授業{
+    int 授業ID
+    **int 座席配置ID**
+    **string 授業担当者ID**
+    date 授業日
+    int 時限
+    string 授業コメント
+}
+
+
+' 関係を定義
+'left to right direction
+
+座席配置 "1"--"1...*" 座席 : ▼配置されている
+評価 "1...*" -- "1"  授業:▼評価対象
+生徒 "1...*" -- "1...*" クラス :▼所属する
+生徒"1" -- "0...*" 評価:▼評価される
+ユーザー"1" - "0...*" 生徒 :▼登録する
+座席 "1...*" - "1" 生徒:◀座る
+ユーザー"1" -- "0...*" 座席配置 :▼登録する
+ユーザー"1" - "0...*" クラス :▼登録する
+座席配置 "0...*" -- "1"クラス:▲追加する
+評価 "0...*" -- "1" ユーザー :▼登録する
+授業 "0...*"- "1"クラス:▲実施される
+授業 "1"-- "1" 座席配置:▶所有している
+' umlの終了を宣言
+@enduml
