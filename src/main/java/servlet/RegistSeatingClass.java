@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import beans.ClassDef; //beansに入れた方がいいのかしら
 import beans.Student;
+import beans.User;
 import service.StudentService;
 import service.ClassService;
 
@@ -56,6 +57,22 @@ public class RegistSeatingClass extends HttpServlet {
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // requestオブジェクトの文字エンコーディングの設定
+        request.setCharacterEncoding("UTF-8");
+        System.out.println("いまPost");
+        ClassService ClassService = new ClassService();
+        HttpSession session = request.getSession();
+        // User User = (User) session.getAttribute("User");
+        int classId = Integer.parseInt(request.getParameter("classId"));
+        System.out.println("いまPost1");
+        ClassDef Classdef = new ClassDef(classId);
+        ClassDef ClassDef = ClassService.idGetClass(Classdef);
+        System.out.println(ClassDef);
+        request.setAttribute("ClassDef", ClassDef);
+        System.out.println("いまPost3");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/seating/registSeating.jsp");
+        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+        dispatcher.forward(request, response);
     }
 
 }

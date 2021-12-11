@@ -9,20 +9,20 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <body>
-  <p align="right">ID: ${User.id}</p>
+  <%-- <p align="right">ID: ${User.id}</p> --%>
     <h1 align="center">座席配置新規作成</h1>
     <br>
-    <form action="../RegistSeatingClass" method="post">
+    <form action="./RegistSeatingClass" method="post">
     クラスを選択してください。<br>
-        クラス：<select name="class">
+        クラス：<select name="classId">
             <% if(ClassDefList.size() > 0) {
               for(ClassDef ClassDef : ClassDefList ){ %>
               <option value="<%=ClassDef.getClass_id() %>">
-              <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>
+              <%=ClassDef.getClass_id() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>
               </option>
             <% } }%></select><br />
         <br />
-        <input type="submit" value="座席配置新規作成" name="registSeatingClass" />
+        <input type="submit" value="座席配置新規作成" />
       </form>
       <br />
       <a href="./seatingTop.jsp"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>

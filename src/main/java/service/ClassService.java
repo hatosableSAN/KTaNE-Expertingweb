@@ -92,6 +92,17 @@ public class ClassService {
         return ClassDefList;
     }
 
+    public ClassDef idGetClass(ClassDef classdef) {// クラスの情報をidから持ってくる
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        ClassDef ClassDef = classDAO.searchClass(classdef, connection);
+        // DataBaseとの接続を切断する
+        classDAO.closeConnection(this.connection);
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+        return ClassDef;
+    }
+
     /*
      * public List<ClassDef> getClassDef() {
      *

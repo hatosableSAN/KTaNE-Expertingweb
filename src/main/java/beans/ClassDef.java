@@ -26,6 +26,10 @@ public class ClassDef {
         this.class_user = class_user;
     }
 
+    public ClassDef(int class_id) {
+        this.class_id = class_id;
+    }
+
     // 初期値を引数に持たないコンストラクタ
     // Java beansは初期値を持たないコンストラクタが必ず必要
     public ClassDef() {
