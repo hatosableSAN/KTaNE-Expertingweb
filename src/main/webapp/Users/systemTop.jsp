@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
       <a href="../classes/classTop.jsp"><button>
         クラス管理
       </button><br/><br/><br/><br/>
-      <a href="../seating/seatingTop.jsp"><button>
+      <a href="./RegistSeatingClass"><button>
         座席配置管理
       </button></a>
       <button>
