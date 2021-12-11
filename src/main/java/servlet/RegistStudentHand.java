@@ -72,11 +72,11 @@ public class RegistStudentHand extends HttpServlet {
           }else {
         	 // studentオブジェクトに情報を格納
              switch(stu_gender){
-                case "0": stu_gender="男";
+                case "1": stu_gender="男";
                           break;
-                case "1": stu_gender="女";
+                case "2": stu_gender="女";
                           break;
-                case "2": stu_gender="その他";
+                case "3": stu_gender="その他";
                           break;
              }
 

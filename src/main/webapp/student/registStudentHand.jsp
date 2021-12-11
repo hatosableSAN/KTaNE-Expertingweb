@@ -14,9 +14,9 @@ pageEncoding="UTF-8"%>
         <input type="text" name="stu_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
         
         性別：<select name="stu_gender">
-            <option value="0">男</option>
-            <option value="1">女</option>
-            <option value="2">その他</option>
+            <option value="1">男</option>
+            <option value="2">女</option>
+            <option value="3">その他</option>
             </select><br />
         <br />
         <input type="submit" value="確認" name="hand" />
