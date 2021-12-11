@@ -84,11 +84,11 @@ public class RegistStudentHandConfirm extends HttpServlet {
             //session.setAttribute("Student", student);
             //Student student_confirm = (Student)session.getAttribute("Student");
             switch(stu_gender){
-                case "男": stu_gender="0";
+                case "男": stu_gender="1";
                           break;
-                case "女": stu_gender="1";
+                case "女": stu_gender="2";
                           break;
-                case "その他": stu_gender="2";
+                case "その他": stu_gender="3";
                           break;
             }
             Student student = new Student(stu_id, stu_name, stu_gender,stu_user);

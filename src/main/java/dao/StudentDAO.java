@@ -143,11 +143,11 @@ public class StudentDAO extends DriverAccessor {
             //student.setStudent_gender(rs.getString("gender"));
             String gender = String.valueOf(rs.getInt("gender"));
                 switch(gender){
-                 case "0": gender="男";
+                 case "1": gender="男";
                           break;
-                 case "1": gender="女";
+                 case "2": gender="女";
                           break;
-                 case "2": gender="その他";
+                 case "3": gender="その他";
                           break;
                 }
             student.setStudent_gender(gender);
@@ -214,11 +214,11 @@ public class StudentDAO extends DriverAccessor {
                 student.setStudent_name(resultSet.getString("name"));
                 String gender = String.valueOf(resultSet.getInt("gender"));
                 switch(gender){
-                 case "0": gender="男";
+                 case "1": gender="男";
                           break;
-                 case "1": gender="女";
+                 case "2": gender="女";
                           break;
-                 case "2": gender="その他";
+                 case "3": gender="その他";
                           break;
                 }
                 student.setStudent_gender(gender);
