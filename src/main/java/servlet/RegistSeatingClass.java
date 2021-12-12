@@ -48,7 +48,7 @@ public class RegistSeatingClass extends HttpServlet {
         ClassService ClassService = new ClassService();
         List<ClassDef> ClassDefList = ClassService.getAllClass();
         request.setAttribute("ClassDefList", ClassDefList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/seating/registSeatingClass.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingClass.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }
@@ -77,7 +77,7 @@ public class RegistSeatingClass extends HttpServlet {
         System.out.println(studentList);
         request.setAttribute("StudentList", studentList);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/seating/registSeating.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeating.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }

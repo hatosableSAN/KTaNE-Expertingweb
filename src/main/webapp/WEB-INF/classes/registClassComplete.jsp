@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
           <td><div class="student">
             <table>
                 <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
-                
+
                 <% for(Student s:student){ %>
                     <tr>
                     <td><!--lavel--><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %>></td>
@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
                     <!--/label-->
                     </tr>
                 <%} %>
-                
+
             </table>
             </div></td>
         </tr>
@@ -57,11 +57,11 @@ pageEncoding="UTF-8"%>
         <!--form action="../RegistStudentGet" method="post">
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
-        
+
         <!--div class="student">
         <table>
             <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
-            
+
             <% for(Student s:student){ %>
                 <tr>
                 <td><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td>
@@ -71,12 +71,12 @@ pageEncoding="UTF-8"%>
                 <td><%=s.getStudent_user() %></td>
                 </tr>
             <%} %>
-            
+
         </table>
         </div-->
         <!--input type="submit" value="確定" name="hand" /-->
       <!--/form-->
       <br />
-      <a href="./classes/classTop.jsp"><button align="center" name="class_top">クラストップへ戻る</button></a>
+      <a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">クラストップへ戻る</button></a>
   </body>
 </html>

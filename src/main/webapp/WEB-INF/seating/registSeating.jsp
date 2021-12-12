@@ -78,6 +78,6 @@ pageEncoding="UTF-8"%>
         <a id="modal-close" class="button-link"><button align="center">座席を確定する</button></a></p>
       </div>
       <br />
-      <a href="./seatingTop.jsp"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+      <a href="./WEB-INF/seatingTop.jsp"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>
