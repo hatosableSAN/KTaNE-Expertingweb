@@ -61,15 +61,22 @@ public class RegistSeatingClass extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまPost");
         ClassService ClassService = new ClassService();
+
         HttpSession session = request.getSession();
         // User User = (User) session.getAttribute("User");
+
+        // クラスIDからクラスの情報を取得
         int classId = Integer.parseInt(request.getParameter("classId"));
-        System.out.println("いまPost1");
         ClassDef Classdef = new ClassDef(classId);
-        ClassDef ClassDef = ClassService.idGetClass(Classdef);
+        ClassDef ClassDef = ClassService.findClass(Classdef);
         System.out.println(ClassDef);
         request.setAttribute("ClassDef", ClassDef);
-        System.out.println("いまPost3");
+
+        // クラスIDから全ての生徒情報を取得
+        List<Student> studentList = ClassService.getAllClassmember(Classdef);
+        System.out.println(studentList);
+        request.setAttribute("StudentList", studentList);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/seating/registSeating.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);

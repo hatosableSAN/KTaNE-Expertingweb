@@ -85,22 +85,27 @@ public class ClassService {
         ClassDAO classDAO = new ClassDAO();
         this.connection = classDAO.createConnection();
         List<ClassDef> ClassDefList = classDAO.findAll(connection);
-        // DataBaseとの接続を切断する
-        classDAO.closeConnection(this.connection);
-        // コネクションオブジェクトを破棄する
-        this.connection = null;
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null; // コネクションオブジェクトを破棄する
         return ClassDefList;
     }
 
-    public ClassDef idGetClass(ClassDef classdef) {// クラスの情報をidから持ってくる
+    public ClassDef findClass(ClassDef classdef) {// クラスの情報をidから持ってくる
         ClassDAO classDAO = new ClassDAO();
         this.connection = classDAO.createConnection();
         ClassDef ClassDef = classDAO.searchClass(classdef, connection);
-        // DataBaseとの接続を切断する
-        classDAO.closeConnection(this.connection);
-        // コネクションオブジェクトを破棄する
-        this.connection = null;
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
         return ClassDef;
+    }
+
+    public List<Student> getAllClassmember(ClassDef classDef) {// クラスのidからメンバーの生徒リスト持ってくる
+        MemberDAO memberDAO = new MemberDAO();
+        this.connection = memberDAO.createConnection();
+        List<Student> StudentList = memberDAO.searchClass(classDef, connection);
+        memberDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
+        return StudentList;
     }
 
     /*
