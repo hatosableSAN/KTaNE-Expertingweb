@@ -11,17 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/")
+@WebServlet("/index")
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
 public class Index extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      System.out.println("index");
-      request.setCharacterEncoding("UTF-8");
-      RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-      dispatcher.forward(request, response);
-    }
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    System.out.println("index");
+    request.setCharacterEncoding("UTF-8");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+    dispatcher.forward(request, response);
+  }
 }
