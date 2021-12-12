@@ -24,7 +24,13 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:#cccccf;
         text-align:center;
-
+      }
+      .setseat {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:red;
+        text-align:center;
       }
       .left{
         padding-left:40px;
@@ -47,14 +53,15 @@ pageEncoding="UTF-8"%>
     <br>
 
     ・座席を選択し、児童・生徒の座席を作成してください。<br>
-
+      <form action="./RegistSeatingInfo" method="post">
         <table>
           <%
+          int j = 0;
           for(int k = 0;k<7;k++) {%>
           <tr>
           <%for(int i = 0;i<3;i++) {%>
-            <td class="left"><div class="seat">空座席</div></td>
-            <td><div class="seat">空座席</div></td>
+            <td class="left"><div class="seat" id="<%=j++%>">空座席</div></td>
+            <td><div class="seat" id="<%=j++%>">空座席</div></td>
             <%}%>
           </tr>
           <%}%>
@@ -64,14 +71,16 @@ pageEncoding="UTF-8"%>
         </table>
         <br />
         クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        <input type="submit" value="座席配置を確定する" name="registSeatingClass" />
+        <input type="submit" value="座席配置を確定する" name="registSeatingInfo" />
+      </form>
 
 
-      <form action="./RegistSeatingStudent" method="post">
         <div id="modal-content">
+          <form action="./RegistSeatingStudent" method="post">
             <p class="red">「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
             生徒選択画面<br>
             生徒：<select name="StudentId">
+                <option value="">なし</option>
                 <% if(StudentList.size() > 0) {
                   for(Student student : StudentList ){ %>
                   <option value="<%=student.getStudent_id() %>">
@@ -81,16 +90,24 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <textarea class="textarea"></textarea>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a>
-            <a id="modal-close" class="button-link"><input type="submit" value="座席を確定する" align="center" /></a></p>
+            <p><input type="submit" value="座席を確定する" align="center" /></p>
+            <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
+          </form>
+            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
         </div>
-      </form>
+
       <br />
 
       <% if(studentSeatingArrList!=null && studentSeatingArrList.size() > 0) {
                   for(StudentSeatingArr studentSeatingArr : studentSeatingArrList ){ %>
                   <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br>
                   </option>
+                  <script>
+                  $(function () {
+                    $("#<%=studentSeatingArr.getSeat() %>").addClass('setseat');
+                    //alert("addclass");
+                  });
+                  </script>
                 <% } }%>
       <a href="./WEB-INF/seatingTop.jsp"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>

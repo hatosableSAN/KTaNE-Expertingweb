@@ -50,6 +50,9 @@ public class RegistSeatingClass extends HttpServlet {
         List<ClassDef> ClassDefList = ClassService.getAllClass();
         request.setAttribute("ClassDefList", ClassDefList);
         session.setAttribute("ClassDefList", ClassDefList);
+
+        // TODO:セッションの初期化処理を入れる？（作りかけで戻った場合にはリセットされたほうが良いので
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingClass.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
