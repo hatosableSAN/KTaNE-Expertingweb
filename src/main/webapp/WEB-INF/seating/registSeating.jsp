@@ -11,8 +11,8 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
-  <script type="text/javascript" src="<%=request.getContextPath() %>/seating/modal.js"></script>
-  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style.css">
+  <script type="text/javascript" src="/seating/modal.js"></script>
+  <link rel="stylesheet" type="text/css" href="/seating/modal.css">
   <style type="text/css">
     .seat {
         width: 80px;
@@ -34,32 +34,7 @@ pageEncoding="UTF-8"%>
         margin-left: auto;
         margin-right: auto;
       }
-#modal-content{
-	width:50%;
-	margin:1.5em auto 0;
-	padding:10px 20px;
-	border:2px solid #aaa;
-	background:#fff;
-	z-index:2;
-}
 
-.modal-p{
-	margin-top:1em;
-}
-
-.modal-p:first-child{
-	margin-top:0;
-}
-
-.button-link{
-	color:#00f;
-	text-decoration:underline;
-}
-
-.button-link:hover{
-	cursor:pointer;
-	color:#f00;
-}
     </style>
  </head>
   <body>
