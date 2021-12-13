@@ -55,7 +55,7 @@ public class RegistUser2 extends HttpServlet {
 
         if(id==null){
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserFailure.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserFailure.jsp");
             dispatcher.forward(request, response);
         }
         else{
@@ -70,7 +70,7 @@ public class RegistUser2 extends HttpServlet {
             if(ex==true){
                 //response.sendRedirect("/se21g1/RegistUserRe");
                 System.out.println("ユーザ登録画面の再表示（すでにあるID入力のため）");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserRe.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserRe.jsp");
                 dispatcher.forward(request, response);
             }
 
@@ -79,7 +79,7 @@ public class RegistUser2 extends HttpServlet {
 
 
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserSuccess.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserSuccess.jsp");
             dispatcher.forward(request, response);
         }
     }
