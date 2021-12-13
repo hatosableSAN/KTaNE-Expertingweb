@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <!--%@ page import= "beans.User" %-->
 <html>
     <head>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
     <p align="right">ID ${User.id}</p>
