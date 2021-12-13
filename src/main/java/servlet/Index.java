@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/")
+@WebServlet("/index")
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
 public class Index extends HttpServlet {
 

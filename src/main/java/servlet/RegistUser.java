@@ -32,7 +32,7 @@ public class RegistUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUser.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -59,13 +59,13 @@ public class RegistUser extends HttpServlet {
 
         //IDが６～１５文字であるかどうか
         if(checkID(id)==false){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserIdOK.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserIdOK.jsp");
         	dispatcher.forward(request, response);
         }
         
         //パスワードが半角英数字を含み、８～１５文字であるかどうか
         if(checkPass(password)==false){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserPassOK.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserPassOK.jsp");
         	dispatcher.forward(request, response);
         }
 
@@ -73,7 +73,7 @@ public class RegistUser extends HttpServlet {
         if(password.equals(password2)) {
         	// 確認画面を表示する
         	//response.sendRedirect("/StuInfo/RegistInfo");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/checkRegistUser.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/checkRegistUser.jsp");
 
             //セッションの作成・取得
             HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class RegistUser extends HttpServlet {
         }
         else {
             //response.sendRedirect("/se21g1/RegistUser");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUserPass.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserPass.jsp");
         	dispatcher.forward(request, response);
         }
     }
