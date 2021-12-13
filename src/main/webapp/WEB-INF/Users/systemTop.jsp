@@ -23,7 +23,15 @@ pageEncoding="UTF-8"%>
       </button>　　　　
       <button>
         このボタンは<big><b><font color="red">サンプル</font></b></big>のため動作しません
-      </button>
+      </button><br/><br/><br/><br/><br/>
+
+
+      <button>
+        <big><b>システムマニュアル</b></big>
+      </button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+      <a href="/se21g1/Login" class="btn">ログイン</a>
     </p>
+
+
   </body>
 </html>
