@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
     </style>
  </head>
   <body>
-  <%-- <p align="right">ID: ${User.id}</p> --%>
+  <p align="right">ID: ${User.id}</p>
     <h1 align="center">座席配置新規作成</h1>
     <br>
 
@@ -141,7 +141,7 @@ pageEncoding="UTF-8"%>
                     <%
                     }
                     %>
-                    <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br>
+                    <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
       <a href="./RegistSeatingStudent"><button align="center" name="regist_top">座席配置画面へ戻る</button></a>
   </body>

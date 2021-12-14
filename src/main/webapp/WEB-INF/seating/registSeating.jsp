@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
     </style>
  </head>
   <body>
-  <%-- <p align="right">ID: ${User.id}</p> --%>
+  <p align="right">ID: ${User.id}</p>
     <h1 align="center">座席配置新規作成</h1>
     <br>
 
@@ -103,7 +103,7 @@ pageEncoding="UTF-8"%>
                   </option>
                 <% } }%>
                 </select><br /><br />
-            <textarea class="textarea"></textarea>
+            <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
             <p><input type="submit" value="座席を確定する" align="center" /></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
@@ -156,7 +156,7 @@ pageEncoding="UTF-8"%>
                     <%
                     }
                     %>
-                  <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br>
+                  <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
       <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>

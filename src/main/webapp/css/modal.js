@@ -6,7 +6,7 @@ $(function () {
         //alert(index);
         //alert("クリックされました");
 
-        $('textarea').val(index);
+        // $('textarea').val(index);
         $("#seatnum").val(index);
         $(this).blur();	//ボタンからフォーカスを外す
         if ($("#modal-overlay")[0]) return false;		//新しくモーダルウィンドウを起動しない (防止策1)

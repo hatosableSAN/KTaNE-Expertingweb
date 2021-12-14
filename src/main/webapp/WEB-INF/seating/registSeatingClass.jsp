@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <body>
-  <%-- <p align="right">ID: ${User.id}</p> --%>
+  <p align="right">ID: ${User.id}</p>
     <h1 align="center">座席配置新規作成</h1>
     <br>
     <form action="./RegistSeatingClass" method="post">
