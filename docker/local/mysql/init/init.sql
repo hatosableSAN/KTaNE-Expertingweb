@@ -83,7 +83,7 @@ CREATE TABLE `seating_arrangements` (
   `created_date` DATETIME NOT NULL DEFAULT '2020-01-01 00:00',
   `start_date` DATETIME NOT NULL DEFAULT '2020-01-01 00:00',
   `end_date` DATETIME DEFAULT '2020-01-01 00:00',
-  `name` varchar(20) NOT NULL DEFAULT '',
+  `name` varchar(20) DEFAULT '',
   `user_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
