@@ -188,7 +188,9 @@ public class MemberDAO extends DriverAccessor {
                 student.setStudent_id(rs.getString("student_id"));
                 studentList.add(student);
             }
-            System.out.println(studentList.get(0).getStudent_id() + ":" + studentList.get(0).getStudent_name());
+            if (studentList.size() > 0) {// メンバーが0人の時エラーが出るため
+                System.out.println(studentList.get(0).getStudent_id() + ":" + studentList.get(0).getStudent_name());
+            }
             statement.close();
             rs.close();
 

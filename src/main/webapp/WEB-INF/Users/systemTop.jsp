@@ -12,10 +12,10 @@ pageEncoding="UTF-8"%>
     <div class="darkgray"><h2 style="text-align:center">児童・生徒評価システムトップ</h2></div>
     <br/><br/><br/><br/>
     <p align="center">
-    <a href="./WEB-INF/student/studentTop.jsp"><button>
+    <a href="./StudentTop"><button>
         児童生徒管理
       </button></a>
-      <a href="./WEB-INF/classes/classTop.jsp"><button>
+      <a href="./ClassTop"><button>
         クラス管理
       </button><br/><br/><br/><br/>
       <a href="./SeatingTop"><button>
