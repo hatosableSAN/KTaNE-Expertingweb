@@ -25,6 +25,6 @@ pageEncoding="UTF-8"%>
         <input type="submit" value="座席配置新規作成" />
       </form>
       <br />
-      <a href="./WEB-INF/seatingTop.jsp"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>

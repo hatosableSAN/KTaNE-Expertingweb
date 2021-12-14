@@ -37,7 +37,7 @@ public class RegistSeatingClass extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // 座席配置新規登録ボタンを押した時
         System.out.println("いまdoGet");
         // RequestDispatcher dispatcher =
         // request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
@@ -51,7 +51,11 @@ public class RegistSeatingClass extends HttpServlet {
         request.setAttribute("ClassDefList", ClassDefList);
         session.setAttribute("ClassDefList", ClassDefList);
 
-        // TODO:セッションの初期化処理を入れる？（作りかけで戻った場合にはリセットされたほうが良いので
+        // セッションの初期化処理を入れる(作りかけで戻った場合にはリセットされたほうが良いので
+        // 「配置されている生徒一覧セッション」に初期化した情報を入れる
+        session.setAttribute("StudentList", null);
+        session.setAttribute("setStudentList", null);
+        session.setAttribute("StudentSeatingArrList", null);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingClass.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
@@ -61,7 +65,7 @@ public class RegistSeatingClass extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまPost");

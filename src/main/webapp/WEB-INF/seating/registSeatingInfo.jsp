@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
+  <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
   <style type="text/css">
     .seat {
@@ -52,8 +52,8 @@ pageEncoding="UTF-8"%>
     <h1 align="center">座席配置新規作成</h1>
     <br>
 
-    ・座席を選択し、児童・生徒の座席を作成してください。<br>
-      <form action="./RegistSeatingInfo" method="get">
+    ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
+      <form action="./RegistSeatingInfo" method="post">
         <table>
           <%
           int j = 0;
@@ -71,30 +71,14 @@ pageEncoding="UTF-8"%>
         </table>
         <br />
         クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        <input type="submit" value="座席配置を確定する" />
-      </form>
+        期間：<input type="date" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
+        ～
+        <input type="date" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
+        <Br>
+        席名：<input type="text" name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
 
-
-        <div id="modal-content">
-          <form action="./RegistSeatingStudent" method="post">
-            <p class="red">「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
-            生徒選択画面<br>
-            生徒：<select name="StudentId">
-                <option value="">なし</option>
-                <% if(StudentList.size() > 0) {
-                  for(Student student : StudentList ){ %>
-                  <option value="<%=student.getStudent_id() %>">
-                  <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%=student.getStudent_gender()%><%=student.getStudent_user()%>
-                  </option>
-                <% } }%>
-                </select><br /><br />
-            <textarea class="textarea"></textarea>
-            <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" value="座席を確定する" align="center" /></p>
-            <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
-          </form>
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
-        </div>
+        <input type="submit" value="座席配置登録" name="registSeatingClass" />
+        </form>
 
       <br />
 
@@ -105,10 +89,9 @@ pageEncoding="UTF-8"%>
                   <script>
                   $(function () {
                     $("#<%=studentSeatingArr.getSeat() %>").addClass('setseat');
-                    //alert("addclass");
                   });
                   </script>
                 <% } }%>
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+      <a href="./RegistSeatingStudent"><button align="center" name="regist_top">座席配置画面へ戻る</button></a>
   </body>
 </html>
