@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `seating_arrangements`;
 CREATE TABLE `seating_arrangements` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `class_id` INT NOT NULL,
-  `create_date` DATETIME NOT NULL DEFAULT '2020-01-01 00:00',
+  `created_date` DATETIME NOT NULL DEFAULT '2020-01-01 00:00',
   `start_date` DATETIME NOT NULL DEFAULT '2020-01-01 00:00',
   `end_date` DATETIME DEFAULT '2020-01-01 00:00',
   `name` varchar(20) NOT NULL DEFAULT '',
