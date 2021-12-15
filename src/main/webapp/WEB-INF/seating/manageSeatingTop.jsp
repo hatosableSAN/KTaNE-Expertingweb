@@ -5,6 +5,8 @@ pageEncoding="UTF-8"%>
 <%@ page import= "beans.User" %>
 <%@ page import= "beans.SeatingArrangements" %>
 <%@ page import= "service.ClassService" %>
+
+<% User User = (User)session.getAttribute("User"); %>
 <%
     List<SeatingArrangements> mySeatingArrangementsList=(List<SeatingArrangements>) request.getAttribute("mySeatingArrangementsList");
     List<SeatingArrangements> otherSeatingArrangementsList=(List<SeatingArrangements>) request.getAttribute("otherSeatingArrangementsList");
@@ -26,11 +28,21 @@ pageEncoding="UTF-8"%>
 </head>
   <body>
     <a href="./SeatingTop"><button align-items="center" name="regist_stu">座席配置メニュートップへ戻る</button></a>
+     <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">座席配置一覧</h1>
     <%-- <form action="./RegistStudentGet" method="post">
       <button text-align="center" name="regist_class">検索実行</button>
     </form> --%>
     <br>
+    <font size="2px">検索：</font>
+        <form action="./Search_seatingArr" method="post">
+            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
+            <input type="radio" name="radiobutton" value="class"> <font size="2px">クラス</font>
+            <input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font>
+            <input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>
+            <button text-align="center" name="search_seatingArr">検索実行</button>
+        </form>
+      <br />
     自身の作成した座席配置情報<br>
     <table>
       <tr>
@@ -44,13 +56,17 @@ pageEncoding="UTF-8"%>
             for(SeatingArrangements SeatingArrangements : mySeatingArrangementsList){ %>
             <tr>
               <td>
+              <%-- IDじゃなくてクラス名で表示する --%>
               <% ClassService ClassService = new ClassService();
                     ClassDef classdef = new ClassDef();
                     classdef.setClass_id(SeatingArrangements.getClassId());
                     classdef = ClassService.searchClass(classdef); %>
               <%=classdef.getClass_name()%></td>
-              <%-- TODO:IDじゃなくてクラス名で表示する --%>
-              <td><%=SeatingArrangements.getStartDate()%>~<%=SeatingArrangements.getEndDate()%></td>
+              <td><%=SeatingArrangements.getStartDate()%>~
+              <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate(""); } %>
+              <%=SeatingArrangements.getEndDate()%></td>
+              <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>
               <td>
               <form action="./ClassTop" method="post">
@@ -76,7 +92,10 @@ pageEncoding="UTF-8"%>
 
               <td><%=SeatingArrangements.getClassId()%></td>
               <%-- TODO:IDじゃなくてクラス名で表示する --%>
-              <td><%=SeatingArrangements.getStartDate()%>~<%=SeatingArrangements.getEndDate()%></td>
+              <td><%=SeatingArrangements.getStartDate()%>~
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate(""); } %>
+              <%=SeatingArrangements.getEndDate()%></td>
+              <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>
               <td>
               <form action="./manageSeatingTop" method="post">
