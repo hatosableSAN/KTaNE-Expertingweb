@@ -70,8 +70,6 @@ public class RegistSeatingStudent extends HttpServlet {
         System.out.println("いまPost");
 
         HttpSession session = request.getSession();
-        // User User = (User) session.getAttribute("User");
-        // session.setAttribute("User", user);
 
         // postされた座席と生徒の対応関係を取得
         int seatNum = Integer.parseInt(request.getParameter("seatNum"));
@@ -120,7 +118,7 @@ public class RegistSeatingStudent extends HttpServlet {
             session.setAttribute("StudentSeatingArrList", studentSeatingArrList);
         } else {
             System.out.println("「なし」が選ばれた");
-            // TODO:「なし」の時
+            // 「なし」の時
             // 生徒座席一覧セッションから「なし」にした席の生徒の情報を削除する（もともと「なし」の場合も場合分け)
 
             // 選択された席に座っている生徒がいるかどうかを確かめる
@@ -175,8 +173,8 @@ public class RegistSeatingStudent extends HttpServlet {
                 studentList.add(existStudent);
                 session.setAttribute("StudentList", studentList);
 
-                // 座席情報セッションから削除
-                System.out.println("座席情報セッションから削除");
+                // 生徒座席情報セッションから削除
+                System.out.println("生徒座席情報セッションから削除");
                 studentSeatingArrList.remove(i);
             }
         }
