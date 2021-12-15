@@ -23,6 +23,7 @@ pageEncoding="UTF-8"%>
 </head>
   <body>
     <!--h1 align="center">Hello SE21G1!</h1-->
+    <p align="right">ユーザーID: ${User.id}</p>
     <h1 align="center">クラスメニュートップ</h1>
     <form action="./RegistStudentGet" method="post">
       <button text-align="center" name="regist_class">クラス新規登録</button>
