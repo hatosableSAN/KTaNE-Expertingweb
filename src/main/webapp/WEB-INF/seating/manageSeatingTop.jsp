@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <%@ page import= "beans.ClassDef" %>
 <%@ page import= "beans.User" %>
 <%@ page import= "beans.SeatingArrangements" %>
-
+<%@ page import= "service.ClassService" %>
 <%
     List<SeatingArrangements> mySeatingArrangementsList=(List<SeatingArrangements>) request.getAttribute("mySeatingArrangementsList");
     List<SeatingArrangements> otherSeatingArrangementsList=(List<SeatingArrangements>) request.getAttribute("otherSeatingArrangementsList");
@@ -43,7 +43,12 @@ pageEncoding="UTF-8"%>
           <% if(mySeatingArrangementsList.size() > 0) {
             for(SeatingArrangements SeatingArrangements : mySeatingArrangementsList){ %>
             <tr>
-              <td><%=SeatingArrangements.getClassId()%></td>
+              <td>
+              <% ClassService ClassService = new ClassService();
+                    ClassDef classdef = new ClassDef();
+                    classdef.setClass_id(SeatingArrangements.getClassId());
+                    classdef = ClassService.searchClass(classdef); %>
+              <%=classdef.getClass_name()%></td>
               <%-- TODO:IDじゃなくてクラス名で表示する --%>
               <td><%=SeatingArrangements.getStartDate()%>~<%=SeatingArrangements.getEndDate()%></td>
               <td><%=SeatingArrangements.getName()%></td>
@@ -53,7 +58,9 @@ pageEncoding="UTF-8"%>
                 <input type="submit" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>
-          <% } }%>
+          <% } }else{%>
+            <tr><td>なし</td></tr>
+          <% }%>
     </table>
     座席配置一覧<br>
     <table>
@@ -77,7 +84,9 @@ pageEncoding="UTF-8"%>
                 <input type="submit" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>
-          <% } }%>
+          <% } }else{%>
+            <tr><td>なし</td></tr>
+          <% }%>
     </table>
   </body>
 </html>
