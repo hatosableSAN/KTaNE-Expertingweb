@@ -38,7 +38,7 @@ public class SeatingDAO extends DriverAccessor {
 
     public SeatingArrangements registSeatingArrangements(SeatingArrangements SeatingArrangements,
             Connection connection) {
-        // 座席を1つ登録する
+        // 座席配置を1つ登録する
         try {
             // SQLコマンド
             String sql = "insert into seating_arrangements (class_id,created_date,start_date,end_date,name,user_id) values(?, ?, ?,?,?,?)";
@@ -88,6 +88,66 @@ public class SeatingDAO extends DriverAccessor {
             e.printStackTrace();
             return SeatingArrangements;
         } finally {
+        }
+    }
+
+    public List<SeatingArrangements> getAllMySeatingArr(String user_id, Connection connection) {
+        // 特定userIdの作成した全座席配置情報を取得
+        String sql = "select * from seating_arrangements where user_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, user_id);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<SeatingArrangements> SeatingArrangementsList = new ArrayList<SeatingArrangements>();
+            while (rs.next()) {
+                SeatingArrangements SeatingArrangements = new SeatingArrangements();
+                SeatingArrangements.setId(rs.getInt("id"));
+                SeatingArrangements.setClassId(rs.getInt("class_id"));
+                SeatingArrangements.setCreatedDate(rs.getString("created_date"));
+                SeatingArrangements.setStartDate(rs.getString("start_date"));
+                SeatingArrangements.setEndDate(rs.getString("end_date"));
+                SeatingArrangements.setName(rs.getString("name"));
+                SeatingArrangements.setUserId(rs.getString("user_id"));
+                SeatingArrangementsList.add(SeatingArrangements);
+            }
+            statement.close();
+            rs.close();
+
+            return SeatingArrangementsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<SeatingArrangements> getAllOtherSeatingArr(String user_id, Connection connection) {
+        // 特定userIdの"以外"の作成した全座席配置情報を取得
+        String sql = "select * from seating_arrangements where user_id != ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, user_id);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<SeatingArrangements> SeatingArrangementsList = new ArrayList<SeatingArrangements>();
+            while (rs.next()) {
+                SeatingArrangements SeatingArrangements = new SeatingArrangements();
+                SeatingArrangements.setId(rs.getInt("id"));
+                SeatingArrangements.setClassId(rs.getInt("class_id"));
+                SeatingArrangements.setCreatedDate(rs.getString("created_date"));
+                SeatingArrangements.setStartDate(rs.getString("start_date"));
+                SeatingArrangements.setEndDate(rs.getString("end_date"));
+                SeatingArrangements.setName(rs.getString("name"));
+                SeatingArrangements.setUserId(rs.getString("user_id"));
+                SeatingArrangementsList.add(SeatingArrangements);
+            }
+            statement.close();
+            rs.close();
+
+            return SeatingArrangementsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
