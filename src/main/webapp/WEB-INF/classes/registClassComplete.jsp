@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
       }
     </style>
   <body>
-    <p align="right">ユーザーID　${Student.student_user}</p>
+    <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">クラス登録完了</h1>
     <h2>クラス登録完了　以下の内容を登録しました</h2>
     <!--form action="./RegistClassConfirm" method="post"-->
