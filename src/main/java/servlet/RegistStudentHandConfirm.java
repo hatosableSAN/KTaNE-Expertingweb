@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.*;
 
 import beans.Student; //beansに入れた方がいいのかしら
+import beans.User;
 import service.StudentService;
 
 //アノテーションの記述
@@ -46,51 +47,31 @@ public class RegistStudentHandConfirm extends HttpServlet {
         //session.setAttribute("名前", 式);               // セッション変数への オブジェクト の格納
         //型 変数 = (型)session.getAttribute("名前");     // セッション変数の オブジェクト の参照
 
-        // requestオブジェクトから登録情報の取り出し
-        /*String stu_id = request.getParameter("stu_id");
-        String stu_name = request.getParameter("stu_name");
-        //int stu_gender = request.getParameter("stu_gender");
-        String gender = request.getParameter("stu_gender");
-        int stu_gender = Integer.parseInt(gender);
-        String stu_user = "ABC"; //今ログインしている教員ユーザ*/
-        //String taikai_l = request.getParameter("taikai_l");
-        //String taikai_k = request.getParameter("taikai_k");
-        //session.setAttribute("stu_id",stu_id);
-        //session.setAttribute("stu_id",stu_name);
-        //session.setAttribute("stu_id",stu_gender);
-        //session.setAttribute("stu_id",stu_user);
-
-        // コンソールに確認するために出力
-        //System.out.println("取得した文字列は" + stu_id + "です！");
-        //System.out.println("取得した文字列は" + stu_name + "です！");
-        //System.out.println("取得した文字列は" + stu_gender + "です！");
-        //System.out.println("取得した文字列は" + taikai_l + "です！");
-        //System.out.println("取得した文字列は" + taikai_k + "です！");
-
         String tourl = null;
         
         	//studentオブジェクトに情報を格納
             //Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
             Student student_confirm = (Student)session.getAttribute("Student");
-            String stu_id = student_confirm.getStudent_id();
+            String stu_id = student_confirm.getStudent_id();//null
             String stu_name = student_confirm.getStudent_name();
             //int stu_gender = request.getParameter("stu_gender");
-            String stu_gender = student_confirm.getStudent_gender();
-            String stu_user = "櫨山";
+            int stu_gender = student_confirm.getStudent_gender();
+            User user = (User)session.getAttribute("User");
+            String stu_user = user.getId(); //今ログインしている教員ユーザ
 
             //StudentManagerオブジェクトの生成
             StudentService service = new StudentService();
             //HttpSession session = request.getSession(true);
             //session.setAttribute("Student", student);
             //Student student_confirm = (Student)session.getAttribute("Student");
-            switch(stu_gender){
+            /*switch(stu_gender){
                 case "男": stu_gender="1";
                           break;
                 case "女": stu_gender="2";
                           break;
                 case "その他": stu_gender="3";
                           break;
-            }
+            }*/
             Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
 
             // 登録

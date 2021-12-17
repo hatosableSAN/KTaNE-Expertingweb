@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Student; //beansに入れた方がいいのかしら
-//import beans.StudentMemo;
+import beans.User;
 import service.StudentService;
 
 //アノテーションの記述
@@ -32,8 +32,9 @@ public class RegistStudentHand extends HttpServlet {
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
         //dispatcher.forward(request, response);
-        System.out.println("いまdoGet");
-    	doPost(request,response);
+        getServletContext().getRequestDispatcher("/WEB-INF/student/registStudentHand.jsp").forward(request,response);//上のdoGetをまとめて書いている
+        System.out.println("doGet now hand");
+    	//doPost(request,response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
@@ -48,15 +49,11 @@ public class RegistStudentHand extends HttpServlet {
           // requestオブジェクトから登録情報の取り出し
           String stu_id = request.getParameter("stu_id");
           String stu_name = request.getParameter("stu_name");
-          String stu_gender = request.getParameter("stu_gender");
+          String stu_gender = request.getParameter("stu_gender");//これは文字列
           //int stu_gender = Integer.parseInt(gender);
-          String stu_user = "櫨山"; //今ログインしている教員ユーザ
-          //String taikai_l = request.getParameter("taikai_l");
-          //String taikai_k = request.getParameter("taikai_k");
-          //session.setAttribute("stu_id",stu_id);
-          //session.setAttribute("stu_id",stu_name);
-          //session.setAttribute("stu_id",stu_gender);
-          //session.setAttribute("stu_id",stu_user);
+          User user = (User)session.getAttribute("User");
+          String stu_user = user.getId(); //今ログインしている教員ユーザ
+          
 
           // コンソールに確認するために出力
           System.out.println("取得した文字列は" + stu_id + "です！");
@@ -67,23 +64,25 @@ public class RegistStudentHand extends HttpServlet {
 
           String tourl = null;
           if(stu_id.isEmpty() || stu_name.isEmpty() || stu_gender.isEmpty()) {
-        	 tourl = "/student/registStudentHandError.jsp";
+        	 tourl = "/WEB-INF/student/registStudentHandError.jsp";
         	 System.out.println("Please full all");
           }else {
         	 // studentオブジェクトに情報を格納
+             int gender = 0;
              switch(stu_gender){
-                case "1": stu_gender="男";
+                case "1": gender=1;
                           break;
-                case "2": stu_gender="女";
+                case "2": gender=2;
                           break;
-                case "3": stu_gender="その他";
+                case "3": gender=3;
                           break;
              }
 
-             Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
+             Student student = new Student(stu_id, stu_name, gender,stu_user);
              //StudentMemo studentmemo = new StudentMemo(stu_id, stu_name, stu_gender,stu_user);
              //HttpSession session = request.getSession();
              //session.setAttribute("StudentMemo",studentmemo);
+             request.setAttribute("Student", student);
              session.setAttribute("Student", student);
 
              // StudentManagerオブジェクトの生成
@@ -95,7 +94,7 @@ public class RegistStudentHand extends HttpServlet {
              // 成功画面を表示する
              // System.out.println("OK牧場");
              //response.sendRedirect("/TableTennis/RegistInfo");
-             tourl = "/student/registStudentHandConfirm.jsp"; //パスは、webappにいるところから考えないといけない！
+             tourl = "/WEB-INF/student/registStudentHandConfirm.jsp"; //パスは、webappにいるところから考えないといけない！
           }
 
          getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
