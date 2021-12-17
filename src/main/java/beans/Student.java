@@ -5,12 +5,12 @@ public class Student {
     // 属性
 	private String student_id = null; // 生徒番号
     private String student_name = null; // 生徒名
-    private String student_gender = null; // 生徒の性別
+    private int student_gender = 0; // 生徒の性別
     private String student_user = null; // 生徒を登録した教員ユーザ
     //private String taikai_kekka = null; // 対戦結果
 
     // 初期値を引数に持ったコンストラクタ
-    public Student(String student_id, String student_name, String student_gender, String student_user) {
+    public Student(String student_id, String student_name, int student_gender, String student_user) {
 
         this.student_id = student_id;
         this.student_name = student_name;
@@ -35,7 +35,7 @@ public class Student {
         this.student_name = student_name;
     }
 
-    public void setStudent_gender(String student_gender) {
+    public void setStudent_gender(int student_gender) {
         this.student_gender = student_gender;
     }
 
@@ -57,7 +57,7 @@ public class Student {
         return this.student_name;
     }
 
-    public String getStudent_gender() {
+    public int getStudent_gender() {
         return this.student_gender;
     }
 

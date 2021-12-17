@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/login.jsp");
         dispatcher.forward(request, response);
     }
     
@@ -80,8 +80,8 @@ public class Login extends HttpServlet {
         if(ok==true) {
             System.out.println("ログイン成功");
         	// 完了画面を表示する
-        	//RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/LoginSuccess.jsp");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/systemTop.jsp");
+        	//RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/LoginSuccess.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/systemTop.jsp");
             //request.setAttribute("User", user);
             //セッションの作成・取得
             HttpSession session = request.getSession();
@@ -90,7 +90,7 @@ public class Login extends HttpServlet {
         }
         else {
             System.out.println("ログイン失敗");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/loginFailure.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/loginFailure.jsp");
             dispatcher.forward(request, response);
             //response.sendRedirect("/se21g1/Login");
         }
