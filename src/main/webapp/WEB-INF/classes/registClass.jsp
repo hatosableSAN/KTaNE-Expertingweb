@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
       }
     </style>
   <body>
-    <p align="right">ユーザーID　${Student.student_user}</p>
+    <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">クラス登録</h1>
     <form action="./RegistClass" method="post">
         年度　
