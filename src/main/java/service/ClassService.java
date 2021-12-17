@@ -90,7 +90,25 @@ public class ClassService {
         return ClassDefList;
     }
 
-    public ClassDef findClass(ClassDef classdef) {// クラスの情報をidから持ってくる
+    public List<ClassDef> getAllMyClass(String UserId) {// 自身のクラスの情報をすべて持ってくる
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        List<ClassDef> ClassDefList = classDAO.findMyAll(UserId, connection);
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null; // コネクションオブジェクトを破棄する
+        return ClassDefList;
+    }
+
+    public List<ClassDef> getAllOtherClass(String UserId) {// 他人のクラスの情報をすべて持ってくる
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        List<ClassDef> ClassDefList = classDAO.findOtherAll(UserId, connection);
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null; // コネクションオブジェクトを破棄する
+        return ClassDefList;
+    }
+
+    public ClassDef findClass(ClassDef classdef) {// クラスの情報をidから持ってくる //これsearchClassと被ってる？
         ClassDAO classDAO = new ClassDAO();
         this.connection = classDAO.createConnection();
         ClassDef ClassDef = classDAO.searchClass(classdef, connection);

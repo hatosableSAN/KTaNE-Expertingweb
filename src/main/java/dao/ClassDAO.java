@@ -225,6 +225,60 @@ public class ClassDAO extends DriverAccessor {
         }
     }
 
+    public List<ClassDef> findMyAll(String user_id, Connection connection) {
+        // 特定userIdの作成した全クラスの情報を取得
+        String sql = "select * from classes where user_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, user_id);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<ClassDef> classList = new ArrayList<ClassDef>();
+            while (rs.next()) {
+                ClassDef classdef = new ClassDef();
+                classdef.setClass_id(rs.getInt("id"));
+                classdef.setClass_name(rs.getString("name"));
+                classdef.setClass_year(rs.getInt("year"));
+                classdef.setClass_user(rs.getString("user_id"));
+                classList.add(classdef);
+            }
+            statement.close();
+            rs.close();
+
+            return classList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<ClassDef> findOtherAll(String user_id, Connection connection) {
+        // 特定userIdの"以外"の作成した全クラスの情報を取得
+        String sql = "select * from classes where user_id != ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, user_id);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<ClassDef> classList = new ArrayList<ClassDef>();
+            while (rs.next()) {
+                ClassDef classdef = new ClassDef();
+                classdef.setClass_id(rs.getInt("id"));
+                classdef.setClass_name(rs.getString("name"));
+                classdef.setClass_year(rs.getInt("year"));
+                classdef.setClass_user(rs.getString("user_id"));
+                classList.add(classdef);
+            }
+            statement.close();
+            rs.close();
+
+            return classList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // }
 
 }
