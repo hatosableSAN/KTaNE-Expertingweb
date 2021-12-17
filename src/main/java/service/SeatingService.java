@@ -53,4 +53,13 @@ public class SeatingService {
         closeConnection(dao);
         return seatingArrangements;
     }
+
+    public List<SeatingArrangements> getSeatList() {
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<SeatingArrangements> List = dao.getSeatingList(connection);
+        // dao に反映
+        closeConnection(dao);
+        return List;
+    }
 }

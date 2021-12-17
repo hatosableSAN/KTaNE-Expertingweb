@@ -95,7 +95,7 @@ pageEncoding="UTF-8"%>
           <form action="./RegistSeatingStudent" method="post">
             閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。<br/>
             個人評価入力画面<br>
-            <ul style="ddmenu">
+            <ul style:"ddmenu">
 
               <li><a href="#">製品・技術</a>
                  <ul>

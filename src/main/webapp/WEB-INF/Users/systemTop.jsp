@@ -21,8 +21,8 @@ pageEncoding="UTF-8"%>
       <a href="./SeatingTop"><button>
         座席配置管理
       </button></a>
-      <button>
-        このボタンは<big><b><font color="red">サンプル</font></b></big>のため動作しません
+        <a href="./GradeTop"><button>
+          評価管理
       </button>
     </p>
   </body>

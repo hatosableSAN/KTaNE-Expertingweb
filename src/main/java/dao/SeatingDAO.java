@@ -91,4 +91,57 @@ public class SeatingDAO extends DriverAccessor {
         }
     }
 
+    public List<SeatingArrangements> getSeatingList(Connection connection) {
+        String sql = "select * from seating_arrangements";
+        try {
+
+            // SQLコマンド
+
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            List<SeatingArrangements> List = new ArrayList<SeatingArrangements>();
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            // Statement stmt = connection.createStatement();
+            // ResultSet rs = stmt.executeQuery(sql);
+            // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
+
+
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+
+            //
+            // classdef.setClass_id(rs.getString("id"));
+            
+             while (rs.next()) {
+             SeatingArrangements returnSb = new SeatingArrangements();
+             returnSb.setId(rs.getInt("id"));
+             returnSb.setClassId(rs.getInt("class_id"));
+             returnSb.setCreatedDate(rs.getString("created_date"));
+             returnSb.setStartDate(rs.getString("start_date"));
+             returnSb.setEndDate(rs.getString("end_date"));
+             returnSb.setName(rs.getString("name"));
+             returnSb.setUserId(rs.getString("user_id"));
+             System.out.println(returnSb.getClassId());
+             List.add(returnSb);
+             System.out.println("リスト追加したよ");
+             }
+             statement.close();
+             rs.close();
+
+            // Studentオブジェクトを返す
+            return List;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
+
 }
