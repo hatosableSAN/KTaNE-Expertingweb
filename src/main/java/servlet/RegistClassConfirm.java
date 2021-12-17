@@ -59,7 +59,7 @@ public class RegistClassConfirm extends HttpServlet {
         String class_name = request.getParameter("class_name");
         String class_user = "ABC"; // 今ログインしている教員ユーザ
 
-        Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
+        //Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
 
         String tourl = null;
 
@@ -74,7 +74,7 @@ public class RegistClassConfirm extends HttpServlet {
         for (int i = 0; i < checkedStudents.length; i++) {
             String stu_id = checkedStudents[i];
             String stu_name = null;
-            String stu_gender = null;
+            int stu_gender = 0;
             String stu_user = null;
             Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
             student = stu_service.searchStudent(student);
@@ -97,7 +97,7 @@ public class RegistClassConfirm extends HttpServlet {
         // service.registClass(classdef);
         request.setAttribute("ClassDef", classdef);
         request.setAttribute("List", list);
-        request.setAttribute("Student", studentinfo);
+        //request.setAttribute("Student", studentinfo);
         // System.out.println(list);
 
         // StudentManagerオブジェクトの生成

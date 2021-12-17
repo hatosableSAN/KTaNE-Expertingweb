@@ -84,15 +84,12 @@ public class RegistUser extends HttpServlet {
             // response.sendRedirect("/se21g1/RegistUser");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/registUserPass.jsp");
             dispatcher.forward(request, response);
-<<<<<<< HEAD
         }
-        else {
+        /*else {
             //response.sendRedirect("/se21g1/RegistUser");
         	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserPass.jsp");
         	dispatcher.forward(request, response);
-=======
->>>>>>> 04f9aa699ff96c1f165bc2cb12f4f574062e0d78
-        }
+        }*/
     }
 
     public boolean checkID(String id) {

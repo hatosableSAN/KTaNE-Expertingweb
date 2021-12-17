@@ -202,7 +202,7 @@ public class MemberDAO extends DriverAccessor {
                 Student student = new Student();
                 student.setStudent_id(rs.getString("id"));
                 student.setStudent_name(rs.getString("name"));
-                student.setStudent_gender(rs.getString("gender"));
+                student.setStudent_gender(rs.getInt("gender"));
                 student.setStudent_user(rs.getString("user_id"));
                 studentList.set(i, student);
             }

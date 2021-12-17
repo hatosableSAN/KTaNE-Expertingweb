@@ -77,30 +77,18 @@ public class Login extends HttpServlet {
         // ログイン
         if (ok == true) {
             System.out.println("ログイン成功");
-<<<<<<< HEAD
-        	// 完了画面を表示する
-        	//RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/LoginSuccess.jsp");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/systemTop.jsp");
-            //request.setAttribute("User", user);
-            //セッションの作成・取得
-=======
             // 完了画面を表示する
             // RequestDispatcher dispatcher =
             // request.getRequestDispatcher("/Users/LoginSuccess.jsp");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/systemTop.jsp");
             // request.setAttribute("User", user);
             // セッションの作成・取得
->>>>>>> 04f9aa699ff96c1f165bc2cb12f4f574062e0d78
             HttpSession session = request.getSession();
             session.setAttribute("User", user);
             dispatcher.forward(request, response);
         } else {
             System.out.println("ログイン失敗");
-<<<<<<< HEAD
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/loginFailure.jsp");
-=======
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/loginFailure.jsp");
->>>>>>> 04f9aa699ff96c1f165bc2cb12f4f574062e0d78
             dispatcher.forward(request, response);
             // response.sendRedirect("/se21g1/Login");
         }
