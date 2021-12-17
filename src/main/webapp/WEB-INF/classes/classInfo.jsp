@@ -45,11 +45,11 @@ pageEncoding="UTF-8"%>
                 <%-- <td><!--lavel--><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td> --%>
                 <td><%=s.getStudent_id() %></td>
                 <td><%=s.getStudent_name() %></td>
-                <td><% if(s.getStudent_gender().equals("1")){ %>
+                <td><% if(s.getStudent_gender()==1){ %>
                     男
-                    <% }else if(s.getStudent_gender().equals("2")){ %>
+                    <% }else if(s.getStudent_gender()==2){ %>
                     女
-                    <% }else if(s.getStudent_gender().equals("3")){ %>
+                    <% }else if(s.getStudent_gender()==3){ %>
                     その他
                     <%} %>
                 </td>
