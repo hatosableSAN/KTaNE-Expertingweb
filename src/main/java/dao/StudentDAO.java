@@ -85,8 +85,8 @@ public class StudentDAO extends DriverAccessor {
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setString(1, student.getStudent_id());
-            int stu_gender = Integer.parseInt(student.getStudent_gender());
-            stmt.setInt(2, stu_gender);
+            //int stu_gender = Integer.parseInt(student.getStudent_gender());
+            stmt.setInt(2, student.getStudent_gender());
             stmt.setString(3, student.getStudent_name());
             stmt.setString(4, student.getStudent_user());
             //stmt.setString(5, result.getTaikai_kekka());
@@ -141,7 +141,7 @@ public class StudentDAO extends DriverAccessor {
             student.setStudent_id(rs.getString("id"));
             student.setStudent_name(rs.getString("name"));
             //student.setStudent_gender(rs.getString("gender"));
-            String gender = String.valueOf(rs.getInt("gender"));
+            /*String gender = String.valueOf(rs.getInt("gender"));
                 switch(gender){
                  case "1": gender="男";
                           break;
@@ -149,8 +149,9 @@ public class StudentDAO extends DriverAccessor {
                           break;
                  case "3": gender="その他";
                           break;
-                }
-            student.setStudent_gender(gender);
+                }*/
+                //gender、intにしました
+            student.setStudent_gender(rs.getInt("gender"));
             student.setStudent_user(rs.getString("user_id"));
 
             // 終了処理
@@ -165,6 +166,79 @@ public class StudentDAO extends DriverAccessor {
             // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
             e.printStackTrace();
             return null;
+
+        } finally {
+        }
+    }
+
+    public boolean deleteStudent(Student student, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            System.out.println(student.getStudent_id());
+            String sql = "delete from students where id = '"+student.getStudent_id()+"'" ;
+
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);//nullになる…
+
+            
+
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            //stmt.setString(1, student.getStudent_id());
+            //int stu_gender = Integer.parseInt(student.getStudent_gender());
+            //stmt.setInt(2, student.getStudent_gender());
+            //stmt.setString(3, student.getStudent_name());
+            //stmt.setString(4, student.getStudent_user());
+            //stmt.setString(5, result.getTaikai_kekka());
+            System.out.println("delete complete");
+            //boolean result = true;
+
+
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;//失敗したらbooleanでfalseを返す
+
+        } finally {
+        }
+    }
+
+    public boolean updateStudent(Student student, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            System.out.println(student.getStudent_id());
+            System.out.println("in updateDAO");
+            String sql = "update students set name=?,gender=? where id = '"+student.getStudent_id()+"'";
+
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);//nullになる…
+
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setString(1, student.getStudent_name());
+            //int stu_gender = Integer.parseInt(student.getStudent_gender());
+            stmt.setInt(2, student.getStudent_gender());
+            //stmt.setString(3, student.getStudent_name());
+            //stmt.setString(4, student.getStudent_user());
+            //stmt.setString(5, result.getTaikai_kekka());
+            System.out.println("update complete");
+
+
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            System.out.println("update error");
+            return false;
 
         } finally {
         }
@@ -212,7 +286,7 @@ public class StudentDAO extends DriverAccessor {
                 Student student = new Student();
                 student.setStudent_id(resultSet.getString("id"));
                 student.setStudent_name(resultSet.getString("name"));
-                String gender = String.valueOf(resultSet.getInt("gender"));
+                /*String gender = String.valueOf(resultSet.getInt("gender"));
                 switch(gender){
                  case "1": gender="男";
                           break;
@@ -220,8 +294,8 @@ public class StudentDAO extends DriverAccessor {
                           break;
                  case "3": gender="その他";
                           break;
-                }
-                student.setStudent_gender(gender);
+                }*/
+                student.setStudent_gender(resultSet.getInt("gender"));
                 student.setStudent_user(resultSet.getString("user_id"));
                 studentList.add(student);
             }
