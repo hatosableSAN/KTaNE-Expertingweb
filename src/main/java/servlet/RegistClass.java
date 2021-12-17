@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import beans.ClassDef; //beansに入れた方がいいのかしら
 import beans.Student;
+import beans.User;
 import service.StudentService;
 import service.ClassService;
 
@@ -55,7 +56,8 @@ public class RegistClass extends HttpServlet {
         // int class_id = request.getParameter("class_id");
         String class_name = request.getParameter("class_name");
         String classyear = request.getParameter("class_year");
-        String class_user = "ABC"; // 今ログインしている教員ユーザ
+        User user = (User)session.getAttribute("User");
+        String class_user = user.getId(); // 今ログインしている教員ユーザ
 
         //Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
 
