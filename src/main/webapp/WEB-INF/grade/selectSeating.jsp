@@ -30,6 +30,7 @@ pageEncoding="UTF-8"%>
             <td><%=Seating.getEndDate()%></td>
             <td><%=Seating.getName() %></td>
             <td><form action="./RegistGradeInfo" method="post">
+              <input type="hidden" name="id" value=<%=Seating.getId() %> >
             <input type="submit" value="選択" ></form></td>
       <% } }%>
     </table>
