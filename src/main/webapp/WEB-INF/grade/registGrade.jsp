@@ -93,15 +93,37 @@ pageEncoding="UTF-8"%>
 <!-- モーダルはここから -->
         <div id="modal-content">
           <form action="./RegistSeatingStudent" method="post">
-            閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。<br/>
+            「閉じる」か「背景」をクリックするとウィンドウを終了します。<br/>
             個人評価入力画面<br>
-            <ul style:"ddmenu">
+            <ul class="ddmenu1">
 
-              <li><a href="#">製品・技術</a>
+              <li><a href="#">知識・技能</a>
                  <ul>
-                    <li><a href="#">ハードウェア</a></li>
-                    <li><a href="#">ソフトウェア</a></li>
-                    <li><a href="#">ウェブサービス</a></li>
+                    <li><a href="#">A</a></li>
+                    <li><a href="#">B</a></li>
+                    <li><a href="#">C</a></li>
+                 </ul>
+              </li>
+            </ul>
+            <br/>
+            <ul class="ddmenu2">
+
+              <li><a href="#">思考・判断・表現</a>
+                 <ul>
+                    <li><a href="#">A</a></li>
+                    <li><a href="#">B</a></li>
+                    <li><a href="#">C</a></li>
+                 </ul>
+              </li>
+            </ul>
+              <br/>
+            <ul class="ddmenu3">
+
+              <li><a href="#">学びに向かう人間性</a>
+                 <ul>
+                    <li><a href="#">A</a></li>
+                    <li><a href="#">B</a></li>
+                    <li><a href="#">C</a></li>
                  </ul>
               </li>
             </ul>
