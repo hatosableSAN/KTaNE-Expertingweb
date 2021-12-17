@@ -80,7 +80,7 @@ public class RegistStudentHandConfirm extends HttpServlet {
             // 成功画面を表示する
             // System.out.println("OK牧場");
             //response.sendRedirect("/TableTennis/RegistInfo");
-            tourl = "/student/registStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
+            tourl = "/WEB-INF/student/registStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
         
 
         getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
