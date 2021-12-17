@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
         <table>
             <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
             <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
-            
+
             <% for(Student s:list){ %>
                 <tr>
                 <td><!--lavel--><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td>
@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
                 <!--/label-->
                 </tr>
                 <%} %>
-            
+
         </table>
         </div>
         <input type="submit" value="登録" name="hand" />
@@ -59,6 +59,6 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form>
       <br />
-      <a href="./classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a>
+      <a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a>
   </body>
 </html>

@@ -28,90 +28,95 @@ public class RegistStudentHand extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // requestオブジェクトの文字エンコーディングの設定
-        //request.setCharacterEncoding("UTF-8");
+        // request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
-        //dispatcher.forward(request, response);
+        // RequestDispatcher dispatcher =
+        // request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
+        // dispatcher.forward(request, response);
         System.out.println("いまdoGet");
-    	doPost(request,response);
+        doPost(request, response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-            HttpSession session = request.getSession(true);
-           // requestオブジェクトの文字エンコーディングの設定
-          request.setCharacterEncoding("UTF-8");
-          System.out.println("いまHandのPost");
 
-          // requestオブジェクトから登録情報の取り出し
-          String stu_id = request.getParameter("stu_id");
-          String stu_name = request.getParameter("stu_name");
-          String stu_gender = request.getParameter("stu_gender");
-          //int stu_gender = Integer.parseInt(gender);
-          String stu_user = "櫨山"; //今ログインしている教員ユーザ
-          //String taikai_l = request.getParameter("taikai_l");
-          //String taikai_k = request.getParameter("taikai_k");
-          //session.setAttribute("stu_id",stu_id);
-          //session.setAttribute("stu_id",stu_name);
-          //session.setAttribute("stu_id",stu_gender);
-          //session.setAttribute("stu_id",stu_user);
+        HttpSession session = request.getSession(true);
+        // requestオブジェクトの文字エンコーディングの設定
+        request.setCharacterEncoding("UTF-8");
+        System.out.println("いまHandのPost");
 
-          // コンソールに確認するために出力
-          System.out.println("取得した文字列は" + stu_id + "です！");
-          System.out.println("取得した文字列は" + stu_name + "です！");
-          System.out.println("取得した文字列は" + stu_gender + "です！");
-          //System.out.println("取得した文字列は" + taikai_l + "です！");
-          //System.out.println("取得した文字列は" + taikai_k + "です！");
+        // requestオブジェクトから登録情報の取り出し
+        String stu_id = request.getParameter("stu_id");
+        String stu_name = request.getParameter("stu_name");
+        String stu_gender = request.getParameter("stu_gender");
+        // int stu_gender = Integer.parseInt(gender);
+        String stu_user = "櫨山"; // 今ログインしている教員ユーザ
+        // String taikai_l = request.getParameter("taikai_l");
+        // String taikai_k = request.getParameter("taikai_k");
+        // session.setAttribute("stu_id",stu_id);
+        // session.setAttribute("stu_id",stu_name);
+        // session.setAttribute("stu_id",stu_gender);
+        // session.setAttribute("stu_id",stu_user);
 
-          String tourl = null;
-          if(stu_id.isEmpty() || stu_name.isEmpty() || stu_gender.isEmpty()) {
-        	 tourl = "/student/registStudentHandError.jsp";
-        	 System.out.println("Please full all");
-          }else {
-        	 // studentオブジェクトに情報を格納
-             switch(stu_gender){
-                case "0": stu_gender="男";
-                          break;
-                case "1": stu_gender="女";
-                          break;
-                case "2": stu_gender="その他";
-                          break;
-             }
+        // コンソールに確認するために出力
+        System.out.println("取得した文字列は" + stu_id + "です！");
+        System.out.println("取得した文字列は" + stu_name + "です！");
+        System.out.println("取得した文字列は" + stu_gender + "です！");
+        // System.out.println("取得した文字列は" + taikai_l + "です！");
+        // System.out.println("取得した文字列は" + taikai_k + "です！");
 
-             Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
-             //StudentMemo studentmemo = new StudentMemo(stu_id, stu_name, stu_gender,stu_user);
-             //HttpSession session = request.getSession();
-             //session.setAttribute("StudentMemo",studentmemo);
-             session.setAttribute("Student", student);
+        String tourl = null;
+        if (stu_id.isEmpty() || stu_name.isEmpty() || stu_gender.isEmpty()) {
+            tourl = "/WEB-INF/student/registStudentHandError.jsp";
+            System.out.println("Please full all");
+        } else {
+            // studentオブジェクトに情報を格納
+            switch (stu_gender) {
+                case "0":
+                    stu_gender = "男";
+                    break;
+                case "1":
+                    stu_gender = "女";
+                    break;
+                case "2":
+                    stu_gender = "その他";
+                    break;
+            }
 
-             // StudentManagerオブジェクトの生成
-             //StudentService service = new StudentService();
+            Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+            // StudentMemo studentmemo = new StudentMemo(stu_id, stu_name,
+            // stu_gender,stu_user);
+            // HttpSession session = request.getSession();
+            // session.setAttribute("StudentMemo",studentmemo);
+            session.setAttribute("Student", student);
 
-             // 登録
-             //service.registStudent(student);
+            // StudentManagerオブジェクトの生成
+            // StudentService service = new StudentService();
 
-             // 成功画面を表示する
-             // System.out.println("OK牧場");
-             //response.sendRedirect("/TableTennis/RegistInfo");
-             tourl = "/student/registStudentHandConfirm.jsp"; //パスは、webappにいるところから考えないといけない！
-          }
+            // 登録
+            // service.registStudent(student);
 
-         getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
+            // 成功画面を表示する
+            // System.out.println("OK牧場");
+            // response.sendRedirect("/TableTennis/RegistInfo");
+            tourl = "/WEB-INF/student/registStudentHandConfirm.jsp"; // パスは、webappにいるところから考えないといけない！
+        }
 
-         // studentオブジェクトに情報を格納
-         //Student student = new Student(player_n, taikai_n, taikai_l, taikai_k);
+        getServletContext().getRequestDispatcher(tourl).forward(request, response);// 上のdoGetをまとめて書いている
 
-         // StudentManagerオブジェクトの生成
-         //StudentManager manager = new StudentManager();
+        // studentオブジェクトに情報を格納
+        // Student student = new Student(player_n, taikai_n, taikai_l, taikai_k);
 
-         // 登録
-         //manager.registStudent(student);
+        // StudentManagerオブジェクトの生成
+        // StudentManager manager = new StudentManager();
 
-         // 成功画面を表示する
-         // System.out.println("OK牧場");
-         //response.sendRedirect("/TableTennis/RegistInfo");
+        // 登録
+        // manager.registStudent(student);
+
+        // 成功画面を表示する
+        // System.out.println("OK牧場");
+        // response.sendRedirect("/TableTennis/RegistInfo");
     }
-        
+
 }

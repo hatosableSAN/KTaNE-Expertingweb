@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
     </form>
     <!--a href="./manageStudentTop.jsp"><button align="center" name="manage_stu">登録済みの児童・生徒の一覧・管理</button></a-->
     <br>
-    <a href="../Users/systemTop.jsp"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
+    <a href="../WEB-INF/Users/systemTop.jsp"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
     <!--input type="button" value="新規登録" align="center" name="regist_stu"-->
   </body>
 </html>
