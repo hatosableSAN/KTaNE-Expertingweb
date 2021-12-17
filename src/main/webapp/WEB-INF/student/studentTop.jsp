@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
     </form>
     <!--a href="/se21g1/student/registStudentTop.jsp"><button text-align="center" name="regist_stu">新規登録</button></a-->
     <br><br>
-    <a href="/se21g1/Users/systemTop.jsp"><button align-items="center" name="go_top">トップへ戻る</button></a>
+    <a href="./SystemTop"><button align-items="center" name="go_top">トップへ戻る</button></a>
     <!--input type="button" value="新規登録" align="center" name="regist_stu"-->
   </body>
 </html>

@@ -12,6 +12,6 @@ pageEncoding="UTF-8"%>
     <a href="./manageSeatingTop.jsp"><button align="center" name="manage_sea">登録済みの座席配置の閲覧・管理</button></a><br><Br>
     <a href="./RegistSeatingClass"><button text-align="center" name="regist_seating">座席配置新規登録</button></a>
     <br><Br>
-    <a href="../WEB-INF/Users/systemTop.jsp"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
+    <a href="./SystemTop"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
   </body>
 </html>

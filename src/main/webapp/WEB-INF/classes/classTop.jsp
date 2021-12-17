@@ -72,7 +72,7 @@ pageEncoding="UTF-8"%>
     </table>
 
 
-    <a href="../WEB-INF/Users/systemTop.jsp"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
+    <a href="./SystemTop"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
     <!--input type="button" value="新規登録" align="center" name="regist_stu"-->
   </body>
 </html>
