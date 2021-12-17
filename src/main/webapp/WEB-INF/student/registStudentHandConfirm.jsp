@@ -35,9 +35,13 @@
       <input type="submit" value="登録" class="button-red">
     </div>
   </form>
+<<<<<<< HEAD
   <form action="./GoRegistStudentTop" method="get">
     <input type="submit" value="キャンセル" class="button-red">
   </form>
   <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->
+=======
+  <a href=".webapp/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a>
+>>>>>>> 04f9aa699ff96c1f165bc2cb12f4f574062e0d78
     </body>
 </html>

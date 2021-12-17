@@ -32,97 +32,100 @@ public class RegistClassConfirm extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // requestオブジェクトの文字エンコーディングの設定
-        //request.setCharacterEncoding("UTF-8");
+        // request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
-        //dispatcher.forward(request, response);
+        // RequestDispatcher dispatcher =
+        // request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
+        // dispatcher.forward(request, response);
         System.out.println("いまdoGet");
-    	doPost(request,response);
+        doPost(request, response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-            HttpSession session = request.getSession(true);
-           // requestオブジェクトの文字エンコーディングの設定
-          request.setCharacterEncoding("UTF-8");
-          System.out.println("いまHandのPost");
-          List<Student> list = new ArrayList<Student>();
-          StudentService stu_service = new StudentService();
-          ClassService class_service = new ClassService();
-          // requestオブジェクトから登録情報の取り出し
-          //int class_id = request.getParameter("class_id");
-          String classyear = request.getParameter("class_year");
-          System.out.println(classyear);
-          String class_name = request.getParameter("class_name");
-          String class_user = "ABC"; //今ログインしている教員ユーザ
 
-          Student studentinfo = new Student("E195407","キムソクジン","男","ABC");
+        HttpSession session = request.getSession(true);
+        // requestオブジェクトの文字エンコーディングの設定
+        request.setCharacterEncoding("UTF-8");
+        System.out.println("いまHandのPost");
+        List<Student> list = new ArrayList<Student>();
+        StudentService stu_service = new StudentService();
+        ClassService class_service = new ClassService();
+        // requestオブジェクトから登録情報の取り出し
+        // int class_id = request.getParameter("class_id");
+        String classyear = request.getParameter("class_year");
+        System.out.println(classyear);
+        String class_name = request.getParameter("class_name");
+        String class_user = "ABC"; // 今ログインしている教員ユーザ
 
-          String tourl = null;
-          
-        	 // studentオブジェクトに情報を格納
-             int class_year = Integer.parseInt(classyear); //null
-             String[] checkedStudents = request.getParameterValues("student_member");
-             System.out.println(Arrays.toString(checkedStudents));
-             System.out.println("right here");
+        Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
 
-             ClassDef classdef = new ClassDef(class_name,class_year,class_user);
-             class_service.registClass(classdef,checkedStudents);
-             for(int i=0;i<checkedStudents.length;i++){
-                 String stu_id = checkedStudents[i];
-                 String stu_name = null;
-                 String stu_gender = null;
-                 String stu_user = null;
-                 Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
-                 student = stu_service.searchStudent(student);
-                 list.add(student);
-             }
-             //これには、valueが全部入ってるから、あーメンバーに登録するときに使える　これを突っ込めばよい
-             //int i = 0;
-             /*while(!checkedStudents[i].isEmpty()){
-                 list = 
-             }*/
-             //for(int i=0;i<checkedStudents.length;i++){ //このfor文はDAOでやろう
-                 //String student_num = checkedStudents[i];
-                 //list = service.getStudentNumber(checkedStudents); //やめます！上手くいかない
-             //}
-             //list = service.getStudent(); //一回コメントアウト
+        String tourl = null;
 
-             //ClassDef classdef = new ClassDef(class_name,class_year,class_user);
-             //service.registClass(classdef);
-             request.setAttribute("ClassDef", classdef);
-             request.setAttribute("List",list);
-             request.setAttribute("Student",studentinfo);
-             //System.out.println(list);
+        // studentオブジェクトに情報を格納
+        int class_year = Integer.parseInt(classyear); // null
+        String[] checkedStudents = request.getParameterValues("student_member");
+        System.out.println(Arrays.toString(checkedStudents));
+        System.out.println("right here");
 
-             // StudentManagerオブジェクトの生成
-             //StudentService service = new StudentService();
+        ClassDef classdef = new ClassDef(class_name, class_year, class_user);
+        class_service.registClass(classdef, checkedStudents);
+        for (int i = 0; i < checkedStudents.length; i++) {
+            String stu_id = checkedStudents[i];
+            String stu_name = null;
+            String stu_gender = null;
+            String stu_user = null;
+            Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+            student = stu_service.searchStudent(student);
+            list.add(student);
+        }
+        // これには、valueが全部入ってるから、あーメンバーに登録するときに使える これを突っ込めばよい
+        // int i = 0;
+        /*
+         * while(!checkedStudents[i].isEmpty()){
+         * list =
+         * }
+         */
+        // for(int i=0;i<checkedStudents.length;i++){ //このfor文はDAOでやろう
+        // String student_num = checkedStudents[i];
+        // list = service.getStudentNumber(checkedStudents); //やめます！上手くいかない
+        // }
+        // list = service.getStudent(); //一回コメントアウト
 
-             // 登録
-             //service.registStudent(student);
+        // ClassDef classdef = new ClassDef(class_name,class_year,class_user);
+        // service.registClass(classdef);
+        request.setAttribute("ClassDef", classdef);
+        request.setAttribute("List", list);
+        request.setAttribute("Student", studentinfo);
+        // System.out.println(list);
 
-             // 成功画面を表示する
-             // System.out.println("OK牧場");
-             //response.sendRedirect("/TableTennis/RegistInfo");
-             tourl = "/classes/registClassComplete.jsp"; //パスは、webappにいるところから考えないといけない！
-          //}
+        // StudentManagerオブジェクトの生成
+        // StudentService service = new StudentService();
 
-         getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
+        // 登録
+        // service.registStudent(student);
 
-         // studentオブジェクトに情報を格納
-         //Student student = new Student(player_n, taikai_n, taikai_l, taikai_k);
+        // 成功画面を表示する
+        // System.out.println("OK牧場");
+        // response.sendRedirect("/TableTennis/RegistInfo");
+        tourl = "/WEB-INF/classes/registClassComplete.jsp"; // パスは、webappにいるところから考えないといけない！
+        // }
 
-         // StudentManagerオブジェクトの生成
-         //StudentManager manager = new StudentManager();
+        getServletContext().getRequestDispatcher(tourl).forward(request, response);// 上のdoGetをまとめて書いている
 
-         // 登録
-         //manager.registStudent(student);
+        // studentオブジェクトに情報を格納
+        // Student student = new Student(player_n, taikai_n, taikai_l, taikai_k);
 
-         // 成功画面を表示する
-         // System.out.println("OK牧場");
-         //response.sendRedirect("/TableTennis/RegistInfo");
+        // StudentManagerオブジェクトの生成
+        // StudentManager manager = new StudentManager();
+
+        // 登録
+        // manager.registStudent(student);
+
+        // 成功画面を表示する
+        // System.out.println("OK牧場");
+        // response.sendRedirect("/TableTennis/RegistInfo");
     }
-        
+
 }

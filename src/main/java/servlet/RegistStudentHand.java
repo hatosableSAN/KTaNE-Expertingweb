@@ -28,7 +28,7 @@ public class RegistStudentHand extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // requestオブジェクトの文字エンコーディングの設定
-        //request.setCharacterEncoding("UTF-8");
+        // request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
         //dispatcher.forward(request, response);
@@ -112,5 +112,5 @@ public class RegistStudentHand extends HttpServlet {
          // System.out.println("OK牧場");
          //response.sendRedirect("/TableTennis/RegistInfo");
     }
-        
+
 }

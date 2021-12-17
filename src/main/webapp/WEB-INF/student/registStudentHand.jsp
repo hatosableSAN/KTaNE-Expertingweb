@@ -24,9 +24,13 @@ pageEncoding="UTF-8"%>
         <input type="submit" value="確認" name="hand" />
       </form>
       <br />
+<<<<<<< HEAD
       <form action="./GoRegistStudentTop" method="get">
         <input type="submit" value="児童・生徒登録へ戻る" class="button-red">
       </form>
       <!--a href="./registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録画面へ戻る</button></a-->
+=======
+      <a href="./registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録画面へ戻る</button></a>
+>>>>>>> 04f9aa699ff96c1f165bc2cb12f4f574062e0d78
   </body>
 </html>
