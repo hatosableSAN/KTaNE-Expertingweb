@@ -1,8 +1,9 @@
 
 $(function () {
     //alert("test");
-    $('.seat').on('click', function () {
-        var index = $('.seat').index(this);
+    $(document).on('click', '.seat',function () {
+        var index = $('.seat').index(this);//前から順番に0.1.2...と数字がつけられる
+        window.sessionStorage.setItem('Selected', index);
         //alert(index);
         //alert("クリックされました");
 
@@ -16,17 +17,18 @@ $(function () {
         $("body").append('<div id="modal-overlay"></div>');
         $("#modal-overlay").fadeIn("slow");
         
+
         //コンテンツをセンタリングする
         centeringModalSyncer();
 
         //コンテンツをフェードインする
-        $("#modal-content").fadeIn("slow");
+        $("#modal-content-grade").fadeIn("slow");
 
         //[#modal-overlay]、または[#modal-close]をクリックしたら…
         $("#modal-overlay,#modal-close").unbind().click(function () {
 
-            //[#modal-content]と[#modal-overlay]をフェードアウトした後に…
-            $("#modal-content,#modal-overlay").fadeOut("slow", function () {
+            //[#modal-content-grade]と[#modal-overlay]をフェードアウトした後に…
+            $("#modal-content-grade,#modal-overlay").fadeOut("slow", function () {
 
                 //[#modal-overlay]を削除する
                 $('#modal-overlay').remove();
@@ -43,15 +45,15 @@ $(function () {
         var w = $(window).width();
         var h = $(window).height();
 
-        // コンテンツ(#modal-content)の幅、高さを取得
+        // コンテンツ(#modal-content-grade)の幅、高さを取得
         // jQueryのバージョンによっては、引数[{margin:true}]を指定した時、不具合を起こします。
-        //		var cw = $( "#modal-content" ).outerWidth( {margin:true} );
-        //		var ch = $( "#modal-content" ).outerHeight( {margin:true} );
-        var cw = $("#modal-content").outerWidth();
-        var ch = $("#modal-content").outerHeight();
+        //		var cw = $( "#modal-content-grade" ).outerWidth( {margin:true} );
+        //		var ch = $( "#modal-content-grade" ).outerHeight( {margin:true} );
+        var cw = $("#modal-content-grade").outerWidth();
+        var ch = $("#modal-content-grade").outerHeight();
 
         //センタリングを実行する
-        $("#modal-content").css({ "left": ((w - cw) / 2) + "px", "top": ((h - ch) / 2) + "px" });
+        $("#modal-content-grade").css({ "left": ((w - cw) / 2) + "px", "top": ((h - ch) / 2) + "px" });
 
     }
     $("#modal-open").click(

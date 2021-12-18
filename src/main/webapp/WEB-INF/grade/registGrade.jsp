@@ -16,11 +16,11 @@ pageEncoding="UTF-8"%>
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal_grade.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
   <style type="text/css">
-    .seat {
+    .seatblank {
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
@@ -66,19 +66,19 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <h1 align="center">評価新規作成</h1>
     <br>
 
     ・評価を登録する座席を選択してください。<br>
-      <form action="./RegistSeatingInfo" method="get">
+      <form action="./RegistSeatingInfo" method="get" class="form-grade">
         <table>
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>
           <tr>
           <%for(int i = 0;i<3;i++) {%>
-            <td class="left"><div class="seat" id="<%=j++%>">空座席</div></td>
-            <td><div class="seat" id="<%=j++%>">空座席</div></td>
+            <td class="left"><div class="seatblank" id="<%=j++%>">空座席</div></td>
+            <td><div class="seatblank" id="<%=j++%>">空座席</div></td>
             <%}%>
           </tr>
           <%}%>
@@ -91,49 +91,85 @@ pageEncoding="UTF-8"%>
       </form>
 
 <!-- モーダルはここから -->
-        <div id="modal-content">
+        <div id="modal-content-grade">
           <form action="./RegistSeatingStudent" method="post">
             「閉じる」か「背景」をクリックするとウィンドウを終了します。<br/>
             個人評価入力画面<br>
-            <ul class="ddmenu1">
+          
+            <script type="text/javascript">
+              function ShowHideDiv() {
+              var attend = document.getElementById("attend");
+              var dvPassport = document.getElementById("dvPassport");
+              dvPassport.style.display = attend.checked ? "block" : "none";
+              }
+             </script>
+             <span>出席・欠席を選択してください。</span>
+             <label for="attend">
+              <input type="radio" id="attend" name="chkPassPort" onclick="ShowHideDiv()" />
+              出席
+             </label>
+             <label for="absent">
+              <input type="radio" id="absent" name="chkPassPort" onclick="ShowHideDiv()" checked/>
+              欠席
+             </label>
+             <div id="dvPassport" style="display: none">
+              <ul class="ddmenu1">
 
-              <li><a href="#">知識・技能</a>
-                 <ul>
-                    <li><a href="#">A</a></li>
-                    <li><a href="#">B</a></li>
-                    <li><a href="#">C</a></li>
-                 </ul>
-              </li>
-            </ul>
-            <br/>
-            <ul class="ddmenu2">
-
-              <li><a href="#">思考・判断・表現</a>
-                 <ul>
-                    <li><a href="#">A</a></li>
-                    <li><a href="#">B</a></li>
-                    <li><a href="#">C</a></li>
-                 </ul>
-              </li>
-            </ul>
+                <li><a href="#">知識・技能</a>
+                   <ul>
+                     <li>
+                    <select name="red">
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                    </select>
+                  </li>
+                   </ul>
+                </li>
+              </ul>
               <br/>
-            <ul class="ddmenu3">
-
-              <li><a href="#">学びに向かう人間性</a>
-                 <ul>
-                    <li><a href="#">A</a></li>
-                    <li><a href="#">B</a></li>
-                    <li><a href="#">C</a></li>
-                 </ul>
-              </li>
-            </ul>
-
-            
-            <%-- <textarea class="textarea"></textarea> --%>
-            <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" value="座席を確定する" align="center" /></p>
-            <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
+              <ul class="ddmenu2">
+  
+                <li><a href="#">思考・判断・表現</a>
+                   <ul>
+                    <select name="blue">
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                    </select>
+                   </ul>
+                </li>
+              </ul>
+                <br/>
+              <ul class="ddmenu3">
+  
+                <li><a href="#">学びに向かう人間性</a>
+                   <ul>
+                    <select name="green">
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                    </select>
+                   </ul>
+                </li>
+              </ul>
+  
+              個人コメント(100文字まで)
+              <textarea class="textarea-grade" rows="6" cols="20" maxlength="100"></textarea>
+              <input type="hidden" value="-1" align="center" id="seatnum"/>
+              <script>
+                $(function () {
+             
+                  var id=window.sessionStorage.getItem("Selected");
+                  $('#seatnum').val(id);//hiddenパラメータを座席のidに置き換え
+                      
+                });
+            </script>
+                        
+             </div><br/>
+             <input type="submit" value="評価を確定する" align="center" />
           </form>
+          
             <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
         </div>
 
@@ -159,6 +195,8 @@ pageEncoding="UTF-8"%>
                     <script>
                       $(function () {
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseatm');
+                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
+                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
                     </script>
@@ -166,7 +204,10 @@ pageEncoding="UTF-8"%>
                     %>
                   <script>
                       $(function () {
+                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
+                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseatf');
+ 
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
                   </script>
@@ -176,12 +217,23 @@ pageEncoding="UTF-8"%>
                     <script>
                       $(function () {
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseato');
+                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
+                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
                   </script>
                     <%
                     }
                     %>
+                    <script>
+                      $(function () {
+                        if (window.sessionStorage.getItem("Selected")) {     // 選択の初期化
+                   
+                        window.sessionStorage.removeItem("Selected");
+                            }
+                      });
+                  </script>
+                    
                   <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
       <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>

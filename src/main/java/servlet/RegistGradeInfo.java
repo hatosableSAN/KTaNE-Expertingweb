@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Student; //beansに入れた方がいいのかしら
+import beans.StudentSeatingArr;
+import service.SeatingService;
 import service.StudentService;
 
 //アノテーションの記述
@@ -32,7 +34,11 @@ public class RegistGradeInfo extends HttpServlet {
         HttpSession session = request.getSession(true);
         System.out.println("教室風評価登録");
         String idnumber=request.getParameter("id");
+        int id=Integer.parseInt(idnumber);
         session.setAttribute("Seatnum", idnumber);
+        SeatingService Service = new SeatingService();
+        List<StudentSeatingArr> StudentList=Service.getStudentSeatingArrList(id);
+        session.setAttribute("StudentSeatingArrList", StudentList);//ゲットした座席リストをセッションに入れるよ      
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGrade.jsp");
         dispatcher.forward(request, response);
 

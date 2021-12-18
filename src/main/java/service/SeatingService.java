@@ -62,4 +62,15 @@ public class SeatingService {
         closeConnection(dao);
         return List;
     }
+
+    public List<StudentSeatingArr> getStudentSeatingArrList(int seatid) {// 座席配置IDに含まれる全ての座席要素を取得
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<StudentSeatingArr> List=dao.getStudentSeatingArrList(seatid,connection);
+        // dao に反映
+        closeConnection(dao);
+
+        return List;
+    }
 }
