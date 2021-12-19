@@ -91,6 +91,64 @@ public class SeatingDAO extends DriverAccessor {
         }
     }
 
+    public List<StudentSeatingArr> findStudentSeatingArrList(SeatingArrangements SeatingArrangements,
+            Connection connection) {
+        // 特定座席配置Idの全座席情報を取得して返す
+        String sql = "select * from students_seating_arrangements where seating_arrangement_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, SeatingArrangements.getId());
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<StudentSeatingArr> StudentSeatingArrList = new ArrayList<StudentSeatingArr>();
+            while (rs.next()) {
+                StudentSeatingArr StudentSeatingArr = new StudentSeatingArr();
+                StudentSeatingArr.setId(rs.getInt("id"));
+                StudentSeatingArr.setSeatingArrangementId(rs.getInt("seating_arrangement_id"));
+                StudentSeatingArr.setStudentId(rs.getString("student_id"));
+                StudentSeatingArr.setSeat(rs.getInt("seat"));
+                StudentSeatingArrList.add(StudentSeatingArr);
+            }
+
+            statement.close();
+            rs.close();
+
+            return StudentSeatingArrList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public SeatingArrangements findSeatingArrangements(SeatingArrangements SeatingArrangements, Connection connection) {
+        // 特定Idの座席配置情報を取得して返す
+        String sql = "select * from seating_arrangements where id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, SeatingArrangements.getId());
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            // SeatingArrangements getSeatingArrangements = new SeatingArrangements();
+            rs.first();
+            SeatingArrangements getSeatingArrangements = new SeatingArrangements();
+            getSeatingArrangements.setId(rs.getInt("id"));
+            getSeatingArrangements.setClassId(rs.getInt("class_id"));
+            getSeatingArrangements.setCreatedDate(rs.getString("created_date"));
+            getSeatingArrangements.setStartDate(rs.getString("start_date"));
+            getSeatingArrangements.setEndDate(rs.getString("end_date"));
+            getSeatingArrangements.setName(rs.getString("name"));
+            getSeatingArrangements.setUserId(rs.getString("user_id"));
+
+            statement.close();
+            rs.close();
+
+            return getSeatingArrangements;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public List<SeatingArrangements> getAllMySeatingArr(String user_id, Connection connection) {
         // 特定userIdの作成した全座席配置情報を取得
         String sql = "select * from seating_arrangements where user_id = ?";

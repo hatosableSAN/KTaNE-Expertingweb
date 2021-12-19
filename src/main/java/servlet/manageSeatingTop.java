@@ -64,24 +64,36 @@ public class manageSeatingTop extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //座席日配置詳細閲覧のためのPOSt
+        // 座席日配置詳細閲覧のためのPOST
+        // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("User");
 
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        // // Classserviceobjectの作成
-        // ClassService ClassService = new ClassService();
-        // ClassDef ClassDef = new ClassDef();
-        // ClassDef.setClass_id(Integer.parseInt(request.getParameter("ClassId")));
-        // List<Student> StudentList = ClassService.getAllClassmember(ClassDef);
-        // ClassDef = ClassService.searchClass(ClassDef);
-        // request.setAttribute("ClassDef", ClassDef);
-        // request.setAttribute("List", StudentList);
+        // 送信された座席配置Idを取得
+        int seatingId = Integer.parseInt(request.getParameter("SeatingId"));
+        SeatingArrangements seatingArrangements = new SeatingArrangements();
+        seatingArrangements.setId(seatingId);
 
+        // SServiceオブジェクトの生成(座席配置情報、クラス、生徒の取得)
+        SeatingService seatingService = new SeatingService();
+        ClassService ClassService = new ClassService();
+        StudentService StudentService = new StudentService();
+
+        // 座席配置情報・クラス情報を取得
+        seatingArrangements = seatingService.getSeatingArrangements(seatingArrangements);
+        ClassDef ClassDef = new ClassDef();
+        ClassDef.setClass_id(seatingArrangements.getClassId());
+        ClassDef = ClassService.searchClass(ClassDef);
+        List<Student> StudentList = ClassService.getAllClassmember(ClassDef);
+        List<StudentSeatingArr> StudentSeatingArrList = seatingService.getStudentSeatingArrList(seatingArrangements);
+
+        request.setAttribute("SeatingArrangements", seatingArrangements);
+        request.setAttribute("StudentList", StudentList);
+        request.setAttribute("ClassDef", ClassDef);
+        request.setAttribute("StudentSeatingArrList", StudentSeatingArrList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingInfo.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);

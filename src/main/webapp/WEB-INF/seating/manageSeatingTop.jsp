@@ -37,10 +37,10 @@ pageEncoding="UTF-8"%>
     <font size="2px">検索：</font>
         <form action="./Search_seatingArr" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
-            <input type="radio" name="radiobutton" value="class"> <font size="2px">クラス</font>
-            <input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font>
-            <input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>
-            <button text-align="center" name="search_seatingArr">検索実行</button>
+            <label><input type="radio" name="radiobutton" value="class"> <font size="2px">クラス</font></label>
+            <label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
+            <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>
+            <button text-align="center" name="search_seatingArr">検索実行</button></label>
         </form>
       <br />
     自身の作成した座席配置情報<br>
@@ -69,8 +69,8 @@ pageEncoding="UTF-8"%>
               <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>
               <td>
-              <form action="./ClassTop" method="post">
-                <input type="hidden" name="ClassId" value="<%=SeatingArrangements.getClassId()%>">
+              <form action="./manageSeatingTop" method="post">
+                <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
                 <input type="submit" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>
@@ -99,7 +99,7 @@ pageEncoding="UTF-8"%>
               <td><%=SeatingArrangements.getName()%></td>
               <td>
               <form action="./manageSeatingTop" method="post">
-                <input type="hidden" name="ClassId" value="<%=SeatingArrangements.getClassId()%>">
+                <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
                 <input type="submit" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>
