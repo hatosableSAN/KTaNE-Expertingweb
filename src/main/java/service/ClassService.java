@@ -33,7 +33,8 @@ public class ClassService {
         this.connection = classDAO.createConnection();
 
         // StudentオブジェクトをDataBaseに登録する
-        classDAO.registClass(classdef, this.connection); // エラー
+        int class_id = 0;
+        class_id = classDAO.registClass(classdef, this.connection); // エラー
 
         // DataBaseとの接続を切断する
         classDAO.closeConnection(this.connection);
@@ -45,7 +46,7 @@ public class ClassService {
         this.connection = memberDAO.createConnection();
 
         for (int i = 0; i < student_member.length; i++) {
-            memberDAO.registMember(student_member[i], this.connection);
+            memberDAO.registMember(student_member[i], class_id, this.connection);
         }
 
         // StudentオブジェクトをDataBaseに登録する

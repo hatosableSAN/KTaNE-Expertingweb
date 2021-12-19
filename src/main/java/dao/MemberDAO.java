@@ -77,35 +77,35 @@ public class MemberDAO extends DriverAccessor {
      */
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void registMember(String student_id, Connection connection) {
+    public void registMember(String student_id, int class_id, Connection connection) {
 
         try {
 
             // SQLコマンド
-            String sql1 = "select count(*) from classes";
-            String sql2 = "insert into members (class_id,student_id) values(?, ?)";
+            //String sql1 = "select count(*) from classes";
+            String sql = "insert into members (class_id,student_id) values(?, ?)";
 
             // SQLコマンドの実行
             // PreparedStatement stmt1 = connection.prepareStatement(sql1);
-            Statement stmt1 = connection.createStatement();
-            ResultSet rs = stmt1.executeQuery(sql1);// rsに結果が入っている
-            PreparedStatement stmt2 = connection.prepareStatement(sql2);
+            //Statement stmt1 = connection.createStatement();
+            //ResultSet rs = stmt1.executeQuery(sql1);// rsに結果が入っている
+            PreparedStatement stmt = connection.prepareStatement(sql);
             // System.out.println(rs);
-            rs.first();
-            int count = rs.getInt(1);// 分からんけど1でcount値取得できた
+            //rs.first();
+            //int count = rs.getInt(1);// 分からんけど1でcount値取得できた
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
-            stmt2.setInt(1, count);
+            stmt.setInt(1, class_id);
             // int stu_gender = Integer.parseInt(student.getStudent_gender());
-            stmt2.setString(2, student_id);
+            stmt.setString(2, student_id);
             // stmt.setString(3, classdef.getClass_user());
             // stmt.setString(4, student.getStudent_user());
             // stmt.setString(5, result.getTaikai_kekka());
 
             // stmt.executeUpdate();
-            stmt1.close();
-            rs.close();
-            stmt2.executeUpdate();
+            //stmt1.close();
+            //rs.close();
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
 

@@ -75,7 +75,7 @@ public class ClassDAO extends DriverAccessor {
      */
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void registClass(ClassDef classdef, Connection connection) {
+    public int registClass(ClassDef classdef, Connection connection) {
 
         try {
 
@@ -83,7 +83,8 @@ public class ClassDAO extends DriverAccessor {
             String sql = "insert into classes (name,year,user_id) values(?, ?, ?)";
 
             // SQLコマンドの実行
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql,java.sql.Statement.RETURN_GENERATED_KEYS);
+            //PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setString(1, classdef.getClass_name());
@@ -92,13 +93,27 @@ public class ClassDAO extends DriverAccessor {
             stmt.setString(3, classdef.getClass_user());
             // stmt.setString(4, student.getStudent_user());
             // stmt.setString(5, result.getTaikai_kekka());
+            //ResultSet rs = statement.executeQuery();
+            stmt.executeUpdate();//この場所
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.first();
+            int class_id = 0;
+            class_id = rs.getInt(1);//怒られた
 
-            stmt.executeUpdate();
+            /*if (rs.next()) {
+                class_id = rs.getInt(1);//ここで怒られる emptyなのに置けないよって
+            }*/
+            rs.close();
+
+            //stmt.executeUpdate();
+            System.out.println("class_id"+class_id);
+            return class_id;
 
         } catch (SQLException e) {
 
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
+            return 0; //class_idにしたら怒られた
 
         } finally {
         }
