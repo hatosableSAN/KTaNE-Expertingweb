@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
       <input type="date" name="ClassDate">
       <input type="text" name="PeriodNum">限<br/>
 授業コメント(400文字以内)
-      <textarea class="textarea-grade" rows="40" cols="10" maxlength="100" name="comment" style="  width:500px;
+      <textarea class="textarea-grade" rows="40" cols="10" maxlength="100" name="Comment" style="  width:500px;
       height:300px;"></textarea>
 
         <input type="submit" value="確認画面へ">

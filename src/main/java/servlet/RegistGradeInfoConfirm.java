@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Grade;
+import beans.Lessons;
 import beans.Student; //beansに入れた方がいいのかしら
 import beans.StudentSeatingArr;
 import service.SeatingService;
@@ -33,7 +34,8 @@ public class RegistGradeInfoConfirm extends HttpServlet {
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Classes
+
+        
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGradeInfoConfirm.jsp");
         dispatcher.forward(request, response);
