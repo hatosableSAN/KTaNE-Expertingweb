@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
 <% List<Student> StudentList = (ArrayList<Student>) session.getAttribute("StudentList"); %>
 <% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
 <% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList"); %>
-  <% List<Grade> GradeList = (List<Grade>) session.getAttribute("Grade"); %>
+<% List<Grade> GradeList = (List<Grade>) session.getAttribute("Grade"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -79,7 +79,7 @@ pageEncoding="UTF-8"%>
     <br>
 
     ・評価を登録する座席を選択してください。<br>
-      <form action="./RegistSeatingInfo" method="get" class="form-grade">
+      <form action="./RegistClassesInfo" method="post" class="form-grade">
         <table>
           <%
           int j = 0;
@@ -204,6 +204,7 @@ pageEncoding="UTF-8"%>
                     <script>
                       $(function () {
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseatm');
+                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
                         $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
@@ -214,6 +215,7 @@ pageEncoding="UTF-8"%>
                   <script>
                       $(function () {
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
+                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
                         $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseatf');
  
@@ -227,6 +229,7 @@ pageEncoding="UTF-8"%>
                       $(function () {
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseato');
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
+                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
                         $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
@@ -238,6 +241,8 @@ pageEncoding="UTF-8"%>
                       $(function () {
                         
                         $("#<%=Grade.getSeat() %>").addClass('registed');
+                        $("#<%=Grade.getSeat() %>").removeClass('seat');
+                        
           
                       });
                   </script>

@@ -2,7 +2,7 @@
 $(function () {
     //alert("test");
     $(document).on('click', '.seat',function () {
-        var index = $('.seat').index(this);//前から順番に0.1.2...と数字がつけられる
+        var index = $('.seatall').index(this);//前から順番に0.1.2...と数字がつけられる
         window.sessionStorage.setItem('Selected', index);
         //alert(index);
         //alert("クリックされました");

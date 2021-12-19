@@ -112,6 +112,8 @@ public class RegistSeatingStudent extends HttpServlet {
         GradeList.add(Grade);
         System.out.println(gradeseatnum+"の評価を作成してセッションにいれました");
         session.setAttribute("Grade", GradeList);
+
+          
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGrade.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
