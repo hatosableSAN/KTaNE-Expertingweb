@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Grade;
 import beans.Student; //beansに入れた方がいいのかしら
 import beans.StudentSeatingArr;
 import service.SeatingService;
@@ -38,7 +39,17 @@ public class RegistGradeInfo extends HttpServlet {
         session.setAttribute("Seatnum", idnumber);
         SeatingService Service = new SeatingService();
         List<StudentSeatingArr> StudentList=Service.getStudentSeatingArrList(id);
-        session.setAttribute("StudentSeatingArrList", StudentList);//ゲットした座席リストをセッションに入れるよ      
+        session.setAttribute("StudentSeatingArrList", StudentList);//ゲットした座席リストをセッションに入れるよ
+
+        List<StudentSeatingArr> NoGradeStudentList=Service.getStudentSeatingArrList(id);
+        session.setAttribute("NoGradeStudentList", NoGradeStudentList);//ゲットした座席リストをセッションに入れるよ
+
+        List<StudentSeatingArr> GradeStudentList=new ArrayList<StudentSeatingArr>();
+        session.setAttribute("GradeStudentList", GradeStudentList);//ゲットした座席リストをセッションに入れるよ
+
+        List<Grade> Grade=new ArrayList<Grade>();
+        session.setAttribute("Grade", Grade);//ゲットした座席リストをセッションに入れるよ
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGrade.jsp");
         dispatcher.forward(request, response);
 

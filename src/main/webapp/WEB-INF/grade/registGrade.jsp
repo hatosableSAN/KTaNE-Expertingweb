@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
 <% List<Student> StudentList = (ArrayList<Student>) session.getAttribute("StudentList"); %>
 <% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
 <% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList"); %>
+  <% List<Grade> GradeList = (List<Grade>) session.getAttribute("Grade"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -46,6 +47,14 @@ pageEncoding="UTF-8"%>
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:gray;
+        text-align:center;
+      }
+
+      .registed {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:rgb(71, 255, 101);
         text-align:center;
       }
       .left{
@@ -105,11 +114,11 @@ pageEncoding="UTF-8"%>
              </script>
              <span>出席・欠席を選択してください。</span>
              <label for="attend">
-              <input type="radio" id="attend" name="chkPassPort" onclick="ShowHideDiv()" />
+              <input type="radio" id="attend" name="attendance" onclick="ShowHideDiv()" value="true"/>
               出席
              </label>
              <label for="absent">
-              <input type="radio" id="absent" name="chkPassPort" onclick="ShowHideDiv()" checked/>
+              <input type="radio" id="absent" name="attendance" onclick="ShowHideDiv()"value="false" checked="checked"/>
               欠席
              </label>
              <div id="dvPassport" style="display: none">
@@ -119,9 +128,9 @@ pageEncoding="UTF-8"%>
                    <ul>
                      <li>
                     <select name="red">
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
+                      <option value="1">A</option>
+                      <option value="2">B</option>
+                      <option value="3">C</option>
                     </select>
                   </li>
                    </ul>
@@ -133,9 +142,9 @@ pageEncoding="UTF-8"%>
                 <li><a href="#">思考・判断・表現</a>
                    <ul>
                     <select name="blue">
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
+                      <option value="1">A</option>
+                      <option value="2">B</option>
+                      <option value="3">C</option>
                     </select>
                    </ul>
                 </li>
@@ -146,17 +155,17 @@ pageEncoding="UTF-8"%>
                 <li><a href="#">学びに向かう人間性</a>
                    <ul>
                     <select name="green">
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
+                      <option value="1">A</option>
+                      <option value="2">B</option>
+                      <option value="3">C</option>
                     </select>
                    </ul>
                 </li>
               </ul>
   
               個人コメント(100文字まで)
-              <textarea class="textarea-grade" rows="6" cols="20" maxlength="100"></textarea>
-              <input type="hidden" value="-1" align="center" id="seatnum"/>
+              <textarea class="textarea-grade" rows="6" cols="20" maxlength="100" name="comment"></textarea>
+              <input type="hidden" value="-1" align="center" name="seatnum" id="seatnum"/>
               <script>
                 $(function () {
              
@@ -224,18 +233,17 @@ pageEncoding="UTF-8"%>
                   </script>
                     <%
                     }
-                    %>
+                    for(Grade Grade : GradeList ){%>
                     <script>
                       $(function () {
-                        if (window.sessionStorage.getItem("Selected")) {     // 選択の初期化
-                   
-                        window.sessionStorage.removeItem("Selected");
-                            }
+                        
+                        $("#<%=Grade.getSeat() %>").addClass('registed');
+          
                       });
                   </script>
                     
                   <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
-                <% } }%>
+                <% }} }%>
       <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>

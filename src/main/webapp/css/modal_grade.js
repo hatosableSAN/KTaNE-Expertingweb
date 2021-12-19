@@ -6,7 +6,7 @@ $(function () {
         window.sessionStorage.setItem('Selected', index);
         //alert(index);
         //alert("クリックされました");
-
+        $(this.form).find("textarea, :text, select, radio, checkbox").val("").end().find(":checked").prop("checked", false);
         // $('textarea').val(index);
         $("#seatnum").val(index);
         $(this).blur();	//ボタンからフォーカスを外す

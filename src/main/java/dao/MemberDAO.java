@@ -20,13 +20,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+//import beans.Student;
 //import model.*;
 import beans.*;
 
 import utility.DriverAccessor;
-
-//import beans.Student;
-import beans.ClassDef;
 
 public class MemberDAO extends DriverAccessor {
 
@@ -275,6 +274,10 @@ public class MemberDAO extends DriverAccessor {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Student> searchGrade(Grade classDef, Connection connection) {
+        return null;
     }
 
     // }
