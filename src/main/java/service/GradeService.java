@@ -25,7 +25,7 @@ public class GradeService {
     // 追加
     // 引数はStudentオブジェクト
     // なんか間違えてる気がする、この引数とか、メソッド名が…
-    public void registGrade(Grade grade, String student_member[]) {
+    public void registGrade(Grade grade) {
 
         // StudentDAOオブジェクト生成
         GradeDAO dao = new GradeDAO();
@@ -38,25 +38,6 @@ public class GradeService {
 
         // DataBaseとの接続を切断する
         dao.closeConnection(this.connection);
-
-        // ここからメンバー登録
-        MemberDAO memberDAO = new MemberDAO();
-
-        // DataBaseへ接続し、コネクションオブジェクトを生成する
-        this.connection = memberDAO.createConnection();
-
-        for (int i = 0; i < student_member.length; i++) {
-            memberDAO.registMember(student_member[i], this.connection);
-        }
-
-        // StudentオブジェクトをDataBaseに登録する
-        // memberDAO.registMember(grade, this.connection);
-
-        // DataBaseとの接続を切断する
-        memberDAO.closeConnection(this.connection);
-
-        // コネクションオブジェクトを破棄する
-        this.connection = null;
 
     }
 

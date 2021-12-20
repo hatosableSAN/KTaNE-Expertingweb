@@ -110,7 +110,8 @@ public class RegistGradeAll extends HttpServlet {
         String PeriodNum=(String)request.getParameter("PeriodNum");
         int period_num=Integer.parseInt(PeriodNum);
         String Comment=(String)request.getParameter("Comment");
-        int idnumber=Integer.parseInt((String) session.getAttribute("Seatnum"));
+       String SeatNum= (String) session.getAttribute("Seatnum");
+        int idnumber=Integer.parseInt(SeatNum);
         Lessons.setSeating_arrangements_id(idnumber);
         Lessons.setLessonDate(ClassDate);
         Lessons.setPeriodnum(period_num);
@@ -121,34 +122,25 @@ public class RegistGradeAll extends HttpServlet {
         service.registLessons(Lessons);
         // 授業を登録します
         //登録した授業のIDを取得します
-        int lessonid=service.getLessonId();
-    
+        
+    int lessonid=service.getLessonId();
  
         //次に評価を登録します
        List<Grade> GradeList= (List<Grade>) session.getAttribute("Grade");
+       User User = (User)session.getAttribute("User");
+       String UserId=User.getId();
         for(Grade Grade : GradeList ){
-            String StudentId=Grade.getStudentId();
-            String LessonId=Grade.getStudentId();
+            Grade.setLessonId(lessonid);
+            Grade.setUserId(UserId);
+
+            service.registGrade(Grade);
+
+            System.out.println(UserId+"さんの評価を登録しました");
+        }
             
-        // List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
-        // if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
-        //     studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
-        // }
-        // // 座席配置IDをすべての座席に登録
-        // for (int i = 0; i < studentSeatingArrList.size(); i++) {
-        //     studentSeatingArrList.get(i).setSeatingArrangementId(setseatingArrangements.getId());
-        // }
-        // // 座席を登録
-        // seatingService.registStudentSeatingArr(studentSeatingArrList);
-        // System.out.println("座席（生徒）登録完了");
-
-        // // // request,sessionで座席配置情報を送る
-        // // request.setAttribute("SeatingArrangements", seatingArrangements);
-        // // session.setAttribute("SeatingArrangements", seatingArrangements);
-
+        System.out.println("全ての評価が登録されました");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGradecomplete.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }
-
-}
+    }

@@ -31,15 +31,6 @@ CREATE TABLE `classes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-create table grades(id int primary key auto_increment not null,student_id varchar(15) not null,
-     lesson_id integer not null,
-     attendance boolean not null,
-     red integer,
-     blue integer,
-     green integer,
-     comment varchar(400),
-     seat integer not null,
-     user_id varchar(15) not null);
 --
 -- Dumping data for table `classes`
 --
@@ -49,6 +40,34 @@ LOCK TABLES `classes` WRITE;
 INSERT INTO `classes` VALUES (1,'test1',2020,'happy1'),(2,'test2',2021,'happy1');
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `grades`
+--
+
+DROP TABLE IF EXISTS `grades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `grades` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(15) NOT NULL,
+  `lesson_id` int NOT NULL,
+  `attendance` tinyint(1) NOT NULL,
+  `red` int DEFAULT NULL,
+  `blue` int DEFAULT NULL,
+  `green` int DEFAULT NULL,
+  `comment` varchar(400) DEFAULT NULL,
+  `seat` int NOT NULL,
+  `user_id` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `grades`
+--
+
+
 
 --
 -- Table structure for table `lessons`
@@ -64,7 +83,7 @@ CREATE TABLE `lessons` (
   `period_num` int NOT NULL,
   `comment` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +92,7 @@ CREATE TABLE `lessons` (
 
 LOCK TABLES `lessons` WRITE;
 /*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
+INSERT INTO `lessons` VALUES (1,1,'2021-12-15',1,'kokokoko'),(2,1,'2021-12-15',1,'kokokoko'),(3,1,'2021-12-15',1,'kokokoko'),(4,1,'2021-12-15',1,'kokokoko'),(5,1,'2021-12-21',1,'testclass'),(6,1,'2021-12-02',1,''),(7,1,'2021-12-09',1,'aaaa'),(8,1,'2021-12-15',1,'nnnn'),(9,1,'2021-12-17',1,'y8i'),(10,1,'2021-12-10',2,'hxbhjbxjanxlanaskl'),(11,1,'2021-12-10',2,'hxbhjbxjanxlanaskl'),(12,1,'2021-12-10',2,'hxbhjbxjanxlanaskl'),(13,1,'2021-12-09',12,'sakhjkshkasd'),(14,1,'2021-12-09',1,'sakhjkshkasd'),(15,1,'2021-12-23',1,'asasaa'),(16,1,'2021-12-09',1,'88888888'),(17,1,'2021-12-03',2,'5656756758');
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +146,7 @@ CREATE TABLE `seating_arrangements` (
 
 LOCK TABLES `seating_arrangements` WRITE;
 /*!40000 ALTER TABLE `seating_arrangements` DISABLE KEYS */;
-INSERT INTO `seating_arrangements` VALUES (1,1,'2021-12-17 00:00:00','2020-04-01 00:00:00','2021-01-01 00:00:00','てきとうざせき','happy1');
+INSERT INTO `seating_arrangements` VALUES (1,1,'2021-12-17 00:00:00','2020-04-01 00:00:00','2021-01-01 00:00:00','','happy1');
 /*!40000 ALTER TABLE `seating_arrangements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,4 +235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-20  9:39:56
+-- Dump completed on 2021-12-20 16:44:14
