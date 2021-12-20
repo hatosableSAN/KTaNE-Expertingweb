@@ -31,13 +31,22 @@ CREATE TABLE `classes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+create table grades(id int primary key auto_increment not null,student_id varchar(15) not null,
+     lesson_id integer not null,
+     attendance boolean not null,
+     red integer,
+     blue integer,
+     green integer,
+     comment varchar(400),
+     seat integer not null,
+     user_id varchar(15) not null);
 --
 -- Dumping data for table `classes`
 --
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (1,'',2020,'happy1'),(2,'',2021,'happy1');
+INSERT INTO `classes` VALUES (1,'test1',2020,'happy1'),(2,'test2',2021,'happy1');
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 

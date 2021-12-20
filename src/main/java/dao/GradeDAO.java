@@ -77,33 +77,37 @@ public class GradeDAO extends DriverAccessor {
      */
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void registGrade(Grade classdef, Connection connection) {
+    public void registGrade(Grade Grade, Connection connection) {
 
-        // try {
+        try {
 
-        //     // SQLコマンド
-        //     String sql = "insert into classes (name,year,user_id) values(?, ?, ?)";
+            // SQLコマンド
+            String sql = "insert into grades (student_id,lesson_id,attendance,red,green,blue,comment,seat,user_id) values(?, ?, ?, ?, ?, ?, ?, ?,?)";
 
-        //     // SQLコマンドの実行
-        //     PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
 
-        //     // SQLコマンドのクエッションマークに値を、1番目から代入する
-        //     stmt.setString(1, classdef.getClass_name());
-        //     // int stu_gender = Integer.parseInt(student.getStudent_gender());
-        //     stmt.setInt(2, classdef.getClass_year());
-        //     stmt.setString(3, classdef.getClass_user());
-        //     // stmt.setString(4, student.getStudent_user());
-        //     // stmt.setString(5, result.getTaikai_kekka());
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setString(1, Grade.getStudentId());
+            // int stu_gender = Integer.parseInt(student.getStudent_gender());
+            stmt.setInt(2, Grade.getLessonId());
+            stmt.setBoolean(3, Grade.isAttendance());
+            stmt.setInt(4, Grade.getRed());
+            stmt.setInt(5, Grade.getGreen());
+            stmt.setInt(6, Grade.getBlue());
+            stmt.setString(7, Grade.getComment());
+            stmt.setInt(8, Grade.getSeat());
+            stmt.setString(9, Grade.getUserId());
 
-        //     stmt.executeUpdate();
+            stmt.executeUpdate();
 
-        // } catch (SQLException e) {
+        } catch (SQLException e) {
 
-        //     // エラーが発生した場合、エラーの原因を出力する
-        //     e.printStackTrace();
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
 
-        // } finally {
-        // }
+        } finally {
+        }
     }
 
     // 検索する
@@ -234,7 +238,7 @@ public class GradeDAO extends DriverAccessor {
     public void registLessons(Lessons lessons, Connection connection) {
         try{
         String sql = "insert into lessons (seating_arrangements_id,lesson_date,period_num,comment) values(?, ?, ?,?)";
-            // SQLコマンドの実行 登録した時のAUTO＿INCREMENTの番号（ID)を取得
+            
             PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setInt(1, lessons.getSeating_arrangements_id());
@@ -257,9 +261,31 @@ public class GradeDAO extends DriverAccessor {
     }
 
     public int getLessonId(Connection connection) {
+        try{
+            String sql = " select max(id) as selected_id from lessons";
+                // 最新のID取得
+                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+                // SQLコマンドのクエッションマークに値を、1番目から代入する
+    
+    
+                ResultSet rs = stmt.executeQuery();
+                rs.first();
+                int id=rs.getInt("selected_id");
+                
+                stmt.close();
+                return id;
+         }catch (SQLException e) {
+    
+                    // エラーが発生した場合、エラーの原因を出力する
+                    e.printStackTrace();
+        
+                } finally {
+                }
         return 0;
+     
     }
+}
 
     // }
 
-}
+
