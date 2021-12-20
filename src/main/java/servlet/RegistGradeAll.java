@@ -121,9 +121,10 @@ public class RegistGradeAll extends HttpServlet {
         service.registLessons(Lessons);
         // 授業を登録します
  
-        // System.out.println("座席配置情報登録完了");
-
-        // // 「生徒座席一覧(studentSeatingArrList)」の情報を取得
+        //次に評価を登録します
+       List<Grade> GradeList= (List<Grade>) session.getAttribute("Grade");
+        for(Grade Grade : GradeList ){
+            String ClassDate=Grade.getSeat();
         // List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
         // if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
         //     studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
