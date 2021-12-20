@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Grade;
+import beans.Lessons;
 import beans.Student;
 import dao.StudentDAO;
 import dao.GradeDAO;
@@ -89,6 +90,15 @@ public class GradeService {
         dao.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
         return Grade;
+    }
+
+    public void registLessons(Lessons lessons) {
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        dao.registLessons(lessons, connection);
+        dao.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
+        
     }
 
 

@@ -22,11 +22,14 @@ pageEncoding="UTF-8"%>
     <br>
     以下の内容で登録します。<br/><br/>
 
-    <form action="./RegistGradeComplete" method="post">
+    <form action="./RegistGradeAll" method="post">
     <p>授業日</p>
       <%=ClassDate%>
+      <input type="hidden" value="<%=ClassDate%>" name="ClassDate">
       <%=PeriodNum%>限<br/>
+      <input type="hidden" value="<%=PeriodNum%>" name="PeriodNum">
 <p>授業コメント(400文字以内)</p>
+<input type="hidden" value="<%=Comment%>" name="Comment">
 <p> <%=Comment%></p>
       </textarea>
 

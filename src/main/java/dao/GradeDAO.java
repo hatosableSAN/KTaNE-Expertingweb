@@ -27,6 +27,7 @@ import utility.DriverAccessor;
 //import beans.Student;
 import beans.ClassDef;
 import beans.Grade;
+import beans.Lessons;
 
 public class GradeDAO extends DriverAccessor {
     /*
@@ -229,6 +230,31 @@ public class GradeDAO extends DriverAccessor {
 	public Grade searchGrade(Grade classdef, Connection connection) {
 		return null;
 	}
+
+    public void registLessons(Lessons lessons, Connection connection) {
+        try{
+        String sql = "insert into lessons (seating_arrangements_id,lesson_date,period_num,comment) values(?, ?, ?,?)";
+            // SQLコマンドの実行 登録した時のAUTO＿INCREMENTの番号（ID)を取得
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, lessons.getSeating_arrangements_id());
+            stmt.setString(2, lessons.getLessonDate());
+            stmt.setInt(3, lessons.getPeriodnum());
+            stmt.setString(4, lessons.getComment());
+
+
+            stmt.executeUpdate();
+
+
+            stmt.close();}
+            catch (SQLException e) {
+
+                // エラーが発生した場合、エラーの原因を出力する
+                e.printStackTrace();
+    
+            } finally {
+            }
+    }
 
     // }
 
