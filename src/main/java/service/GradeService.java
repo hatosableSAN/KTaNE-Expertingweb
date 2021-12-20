@@ -98,7 +98,6 @@ public class GradeService {
         dao.registLessons(lessons, connection);
         dao.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
-        
     }
 
 
