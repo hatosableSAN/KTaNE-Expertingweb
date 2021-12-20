@@ -120,11 +120,16 @@ public class RegistGradeAll extends HttpServlet {
         GradeService service=new GradeService();
         service.registLessons(Lessons);
         // 授業を登録します
+        //登録した授業のIDを取得します
+        int lessonid=service.getLessonId();
+    
  
         //次に評価を登録します
        List<Grade> GradeList= (List<Grade>) session.getAttribute("Grade");
         for(Grade Grade : GradeList ){
-            String ClassDate=Grade.getSeat();
+            String StudentId=Grade.getStudentId();
+            String LessonId=Grade.getStudentId();
+            
         // List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
         // if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
         //     studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");

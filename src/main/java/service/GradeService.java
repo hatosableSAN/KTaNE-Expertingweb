@@ -100,6 +100,16 @@ public class GradeService {
         this.connection = null;// コネクションオブジェクトを破棄する
     }
 
+    public int getLessonId() {
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        int id=dao.getLessonId(connection);
+        dao.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
+        return id;
+    }
+
+ 
 
     /*
      * public List<Grade> getGrade() {
