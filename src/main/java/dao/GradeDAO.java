@@ -256,6 +256,10 @@ public class GradeDAO extends DriverAccessor {
             }
     }
 
+    public int getLessonId(Connection connection) {
+        return 0;
+    }
+
     // }
 
 }
