@@ -66,7 +66,7 @@ public class RegistClass extends HttpServlet {
             list = service.getStudent();
             request.setAttribute("List", list);
             //request.setAttribute("Student", studentinfo);
-            tourl = "/classes/registClassError.jsp";
+            tourl = "/WEB-INF/classes/registClassError.jsp";
             System.out.println("Please full all class information");
         } else {
             // studentオブジェクトに情報を格納
