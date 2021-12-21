@@ -91,9 +91,7 @@ CREATE TABLE `lessons` (
 --
 
 LOCK TABLES `lessons` WRITE;
-/*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
-INSERT INTO `lessons` VALUES (1,1,'2021-12-15',1,'kokokoko'),(2,1,'2021-12-15',1,'kokokoko'),(3,1,'2021-12-15',1,'kokokoko'),(4,1,'2021-12-15',1,'kokokoko'),(5,1,'2021-12-21',1,'testclass'),(6,1,'2021-12-02',1,''),(7,1,'2021-12-09',1,'aaaa'),(8,1,'2021-12-15',1,'nnnn'),(9,1,'2021-12-17',1,'y8i'),(10,1,'2021-12-10',2,'hxbhjbxjanxlanaskl'),(11,1,'2021-12-10',2,'hxbhjbxjanxlanaskl'),(12,1,'2021-12-10',2,'hxbhjbxjanxlanaskl'),(13,1,'2021-12-09',12,'sakhjkshkasd'),(14,1,'2021-12-09',1,'sakhjkshkasd'),(15,1,'2021-12-23',1,'asasaa'),(16,1,'2021-12-09',1,'88888888'),(17,1,'2021-12-03',2,'5656756758');
-/*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 --
@@ -172,7 +170,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('11111',2,'','happy1'),('11112',1,'','happy1'),('11113',2,'','happy1'),('11114',2,'','happy1'),('11115',1,'','happy1'),('11116',2,'','happy1');
+INSERT INTO `students` VALUES ('11111',2,'yamada','happy1'),('11112',1,'tanaka','happy1'),('11113',2,'suzuki','happy1'),('11114',2,'ueda','happy1'),('11115',1,'mochizuki','happy1'),('11116',2,'yamaguchi','happy1');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 

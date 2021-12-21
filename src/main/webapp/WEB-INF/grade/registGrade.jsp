@@ -49,12 +49,29 @@ pageEncoding="UTF-8"%>
         background-color:gray;
         text-align:center;
       }
-
+      .selectable{
+      border-radius: 5px;
+      background-color: rgb(255, 218, 0);
+      padding: 10px;
+      font-size: 20px;
+      color: black;
+      font:bold;
+      }
+      .no-selectable{
+      border-radius: 5px;
+      background-color: rgb(240, 240, 240);
+      padding: 10px;
+      text-decoration: none;
+      color: rgb(172, 172, 172);
+      font-size: 20px;
+      font:bold;
+      }
       .registed {
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:rgb(71, 255, 101);
+        
         text-align:center;
       }
       .left{
@@ -69,6 +86,9 @@ pageEncoding="UTF-8"%>
         margin-left: auto;
         margin-right: auto;
       }
+      .h1-bottom {
+              color: rgb(255, 0, 0);
+            }
     </style>
     <!--  ここまでスタイル  -->
 
@@ -77,6 +97,7 @@ pageEncoding="UTF-8"%>
   <p align="right">ID: ${User.id}</p>
     <h1 align="center">評価新規作成</h1>
     <br>
+
 
     ・評価を登録する座席を選択してください。<br>
       <form action="./RegistClassesInfo" method="post" class="form-grade">
@@ -96,7 +117,7 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
-        <input type="submit" value="座席配置を確定する" />
+        <input type="button" value="座席配置を確定する" id="submitbtn" class="selectable">
       </form>
 
 <!-- モーダルはここから -->
@@ -230,7 +251,7 @@ pageEncoding="UTF-8"%>
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseato');
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
-                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
+                        $("#<%=studentSeatingArr.getSeat() %>").removeCglass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
                   </script>
@@ -247,8 +268,27 @@ pageEncoding="UTF-8"%>
                       });
                   </script>
                     
-                  <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
-                <% }} }%>
+               
+                <% } %>
+
+              
+              
+              <%} }%>
+
+              <% if(GradeList.size()!=studentSeatingArrList.size()) { %>
+                <script>
+                  $(function () {
+            
+                    $("h2").text('全ての座席に評価を登録してください');
+                      $("#submitbtn").get(0).type = 'button';
+                      $("#submitbtn").addClass('no-selectable');
+                      $("#submitbtn").removeClass('selectable');
+                    
+                  });
+              </script>
+            <h2 class="h1-bottom"></h2>
+
+            <%}%>
       <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>

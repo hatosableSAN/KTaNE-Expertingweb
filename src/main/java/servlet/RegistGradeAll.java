@@ -134,7 +134,7 @@ public class RegistGradeAll extends HttpServlet {
             Grade.setUserId(UserId);
 
             service.registGrade(Grade);
-
+            
             System.out.println(UserId+"さんの評価を登録しました");
         }
             
