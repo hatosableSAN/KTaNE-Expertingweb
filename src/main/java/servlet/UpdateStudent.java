@@ -87,7 +87,7 @@ public class UpdateStudent extends HttpServlet {
             out.print(student.getStudent_id());
             out.print("<input type='hidden' name='stu_id' value=");
             out.print(student.getStudent_id());
-            out.print("></td><td><input type='text' name='stu_name' maxlength='20' minlength='1' pattern='^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]' placeholder=");
+            out.print("></td><td><input type='text' name='stu_name' maxlength='20' minlength='1' pattern='^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]' value=");
             out.print(student.getStudent_name());
             out.print("></td><td>");
             //out.print("></td><td><input type='text' name='stu_gender' placeholder=");
@@ -115,7 +115,7 @@ public class UpdateStudent extends HttpServlet {
             out.print(student.getStudent_user());
             out.print("</td><input type='hidden' name='stu_user' value=");
             out.print(student.getStudent_user());
-            out.print("</td></table>");
+            out.print("></td></table>");
             out.println("<input type='submit' name='student_update' value='変更'>");
             //out.println("</div></form>");
             out.println("</form>");
