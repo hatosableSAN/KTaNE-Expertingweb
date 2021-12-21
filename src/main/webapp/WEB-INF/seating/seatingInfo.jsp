@@ -93,11 +93,11 @@ pageEncoding="UTF-8"%>
         <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
         <%=seatingArrangements.getName()%>
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
-        <form action="./DeleteSeating" method="post">
-        <input type="submit" value="座席配置削除" name="deleteSeating" />
-        </form>
-        <form action="./UpdateSeating" method="post">
-        <input type="submit" value="座席配置変更" name="updateSeating" />
+
+        <form formmethod="POST" method="post">
+          <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
+          <input type="submit"  name="deleteSeating" value="座席配置削除" formaction="./DeleteSeating" />
+          <input type="submit" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>
         </form>
         <% } %>
         <form action="./ResistGrade" method="post">
