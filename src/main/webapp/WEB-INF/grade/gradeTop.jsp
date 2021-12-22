@@ -9,8 +9,9 @@ pageEncoding="UTF-8"%>
     <div class="darkgray"><h2 style="text-align:center">評価メニュートップ</h2></div>
     <br/><br/><br/><br/>
     <p align="center">
-    <a href="./SelectGradeSeating"><button align="center" name="manage_sea">新規作成</button></a><br><Br>
-    <a href="./RegistSeatingClass"><button text-align="center" name="regist_seating">座席配置新規登録</button></a>
+    <a href="./SelectGradeSeating"><button align="center" >新規作成</button></a>
+    <a href="./SelectGradeLessons"><button text-align="center" >授業評価一覧</button>
+    <a href="./SelectGradeStudent"><button text-align="center" >児童生徒個人評価一覧</button>
     <br><Br>
     <a href="../WEB-INF/Users/systemTop.jsp"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
   </body>
