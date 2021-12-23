@@ -36,16 +36,19 @@ pageEncoding="UTF-8"%>
         <div class="student">
         <table>
             <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
-            <% for(Student s:stu_list){ %>
+            <% for(Student s:stu_list){
+              int flag=0; %>
                 <tr>
                 <td><lavel>
                   <% for(int i=0; i < stu_classlist.size(); i++ ) { 
                     Student sc = stu_classlist.get(i);
                     if(s.getStudent_id().equals(sc.getStudent_id())){ %>
                       <input type="checkbox"/ name="student_member" checked value=<%=s.getStudent_id() %>>
-                    <% break;}%>
+                    <% flag=1;} } %>
+                      <!--input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>-->
+                    <% if(flag==0){ %>
                       <input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>>
-                    <% }%>
+                    <% } %>
                   <!--input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>-->
                 </td></label>
                 <td><label><%=s.getStudent_id() %></label></td>
