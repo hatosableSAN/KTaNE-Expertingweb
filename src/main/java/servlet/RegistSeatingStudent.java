@@ -106,7 +106,7 @@ public class RegistSeatingStudent extends HttpServlet {
         Grade.setComment(comment);
         Grade.setAttendance(attendance_b);
         Grade.setComment(comment);
-        Grade.setStudentId(Name);
+        Grade.setStudentId(GradeStudentId);
         Grade.setSeat(gradeseatnum);
 
         GradeList.add(Grade);

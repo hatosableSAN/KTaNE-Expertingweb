@@ -9,6 +9,7 @@ import java.util.List;
 import beans.Grade;
 import beans.Lessons;
 import beans.Student;
+import beans.StudentSeatingArr;
 import dao.StudentDAO;
 import dao.GradeDAO;
 import dao.MemberDAO;
@@ -88,6 +89,25 @@ public class GradeService {
         dao.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
         return id;
+    }
+
+	public List<Lessons> getLessonList() {
+        GradeDAO dao = new GradeDAO();
+        this.connection=dao.createConnection();
+        List<Lessons> List = dao.getLessonList(connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return List;
+	}
+
+    public List<Grade> getGradeList(int id) {
+        GradeDAO dao = new GradeDAO();
+        this.connection=dao.createConnection();
+        System.out.println(id);
+        List<Grade> List = dao.getGradeList(id,connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return List;
     }
 
  

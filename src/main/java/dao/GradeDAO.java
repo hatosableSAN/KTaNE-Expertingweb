@@ -284,6 +284,112 @@ public class GradeDAO extends DriverAccessor {
         return 0;
      
     }
+
+    public List<Lessons> getLessonList(Connection connection) {
+        String sql = "select * from lessons";
+        try {
+
+            // SQLコマンド
+
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            List<Lessons> List = new ArrayList<Lessons>();
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            // Statement stmt = connection.createStatement();
+            // ResultSet rs = stmt.executeQuery(sql);
+            // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
+
+
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+
+            //
+            // classdef.setClass_id(rs.getString("id"));
+            
+             while (rs.next()) {
+             Lessons returnSb = new Lessons();
+             returnSb.setId(rs.getInt("id"));
+             returnSb.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
+             returnSb.setLessonDate(rs.getString("lesson_date"));
+             returnSb.setPeriodnum(rs.getInt("period_num"));
+             returnSb.setComment(rs.getString("comment"));
+             List.add(returnSb);
+            // System.out.println("リスト追加したよ");
+             }
+             statement.close();
+             rs.close();
+
+            // Studentオブジェクトを返す
+            return List;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
+
+    public List<Grade> getGradeList(int id,Connection connection) {
+
+        String sql = "select * from grades where lesson_id = ?";
+
+        
+        try {
+
+            // SQLコマンド
+            PreparedStatement statement = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            statement.setInt(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            
+
+
+            List<Grade> List = new ArrayList<Grade>();
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            // Statement stmt = connection.createStatement();
+            // ResultSet rs = stmt.executeQuery(sql);
+            // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
+
+
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+
+            //
+            // classdef.setClass_id(rs.getString("id"));
+            
+             while (rs.next()) {
+        Grade returnSb = new Grade();
+        returnSb.setId(rs.getInt("id"));
+        returnSb.setStudentId(rs.getString("student_id"));
+        returnSb.setLessonId(rs.getInt("lesson_id"));
+        returnSb.setAttendance(rs.getBoolean("attendance"));
+        returnSb.setRed(rs.getInt("red"));
+        returnSb.setBlue(rs.getInt("blue"));
+        returnSb.setRed(rs.getInt("green"));
+        returnSb.setComment(rs.getString("comment"));
+        returnSb.setSeat(rs.getInt("seat"));
+        returnSb.setUserId(rs.getString("user_id"));
+        List.add(returnSb);
+             }
+             return List;
+    }catch (SQLException e) {
+
+        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+        e.printStackTrace();
+        return null;
+
+    } 
+    
+}
 }
 
     // }

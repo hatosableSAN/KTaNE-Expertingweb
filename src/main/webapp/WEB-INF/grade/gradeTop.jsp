@@ -10,8 +10,8 @@ pageEncoding="UTF-8"%>
     <br/><br/><br/><br/>
     <p align="center">
     <a href="./SelectGradeSeating"><button align="center" >新規作成</button></a>
-    <a href="./SelectGradeLessons"><button text-align="center" >授業評価一覧</button>
-    <a href="./SelectGradeStudent"><button text-align="center" >児童生徒個人評価一覧</button>
+    <a href="./SelectGradeLessons"><button text-align="center" >授業評価一覧</button></a>
+    <a href="./SelectGradeStudent"><button text-align="center" >児童生徒個人評価一覧</button></a>
     <br><Br>
     <a href="../WEB-INF/Users/systemTop.jsp"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
   </body>

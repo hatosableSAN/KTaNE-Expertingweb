@@ -47,7 +47,7 @@ public class SelectGradeLessons extends HttpServlet {
 
         GradeService Service = new GradeService();
 
-        List<Lessons> LessonList=Service.getLessonList(id);
+        List<Lessons> LessonList=Service.getLessonList();
 
 
         request.setAttribute("LessonList", LessonList);

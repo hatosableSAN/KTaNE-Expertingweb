@@ -26,10 +26,12 @@ pageEncoding="UTF-8"%>
         <tr>
             
             <td><%=Lesson.getLessonDate() %></td>
-            <td><%=Lesson.getperiodnum%></td>
-            <td><%=Lesson.getComment%></td>
-            <td><form action="./RegistGradeInfo" method="post">
-              <input type="hidden" name="id" value=<%=Lessoning.getId() %> >
+            <td><%=Lesson.getPeriodnum()%></td>
+            <td><%=Lesson.getComment()%></td>
+            <td><form action="./ShowLessonGrades" method="post">
+              <input type="hidden" name="id" value=<%=Lesson.getId() %> >
+              <input type="hidden" name="LessonDate" value=<%=Lesson.getLessonDate() %> >
+              <input type="hidden" name="Comment" value=<%=Lesson.getComment() %> >
             <input type="submit" value="評価閲覧" ></form></td>
       <% } }%>
     </table>

@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:red;
+        background-color:rgb(240, 134, 134);
         text-align:center;
       }
       .setseato {
@@ -117,7 +117,7 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
-        <input type="button" value="座席配置を確定する" id="submitbtn" class="selectable">
+        <input type="submit" value="座席配置を確定する" id="submitbtn" class="selectable">
       </form>
 
 <!-- モーダルはここから -->
@@ -251,7 +251,7 @@ pageEncoding="UTF-8"%>
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('setseato');
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
                         $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
-                        $("#<%=studentSeatingArr.getSeat() %>").removeCglass("seatblank");
+                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
                   </script>
