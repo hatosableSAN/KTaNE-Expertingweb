@@ -82,5 +82,23 @@ public class SeatingService {
         // dao に反映
         closeConnection(dao);
         return seatingArrangements;
+    public List<SeatingArrangements> getAllMySeatingArr(String UserId) {// 自身の作成した全ての座席配置を取得
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<SeatingArrangements> seatingArrangementsList = dao.getAllMySeatingArr(UserId, connection);
+        // dao に反映
+        closeConnection(dao);
+        return seatingArrangementsList;
+    }
+
+    public List<SeatingArrangements> getAllOtherSeatingArr(String UserId) {// 自身の作成した”以外”全ての座席配置を取得
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<SeatingArrangements> seatingArrangementsList = dao.getAllOtherSeatingArr(UserId, connection);
+        // dao に反映
+        closeConnection(dao);
+        return seatingArrangementsList;
     }
 }
