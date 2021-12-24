@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
+import control.UserManager;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -31,6 +32,12 @@ public class UpdateUser extends HttpServlet {
         System.out.println("UpdateUser:Get");
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
+
+        //セッションの作成・取得
+        HttpSession session = request.getSession();
+        User user = new User();
+         user=(User)session.getAttribute("User");
+
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUser.jsp");
         dispatcher.forward(request, response);
@@ -44,46 +51,58 @@ public class UpdateUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
+         //➀セッションの作成・取得
+         HttpSession session = request.getSession();
+
+         User userU = new User();
+ 
+         userU=(User)session.getAttribute("User");
+ 
+         String id = userU.getId();
+         String password = userU.getPassword();
+
         // requestオブジェクトから登録情報の取り出し
-        String id = request.getParameter("id");
-        String password = request.getParameter("password");
-        String password2 = request.getParameter("password2");
+        String passwordP = request.getParameter("passwordP");
+        String passwordU = request.getParameter("passwordU");
+        String passwordU2 = request.getParameter("passwordU2");
 
         // コンソールに確認するために出力
-        System.out.println("(RegistUser)取得した文字列は" + id + "です！");
-        System.out.println("(RegistUser)取得した文字列は" + password + "です！");
-        System.out.println("(RegistUser)取得した文字列は" + password2 + "です！");
+        System.out.println("(UpdateUser)取得した文字列は" + passwordP + "です！");
+        System.out.println("(UpdateUser)取得した文字列は" + passwordU + "です！");
+        System.out.println("(UpdateUser)取得した文字列は" + passwordU2 + "です！");
 
-        // userオブジェクトに情報を格納
-        User user = new User(id, password,password2);
-
-        //IDが６～１５文字であるかどうか
-        if(checkID(id)==false){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserIdOK.jsp");
-        	dispatcher.forward(request, response);
-        }
+        //
+        UserManager manager = new UserManager();
         
         //パスワードが半角英数字を含み、８～１５文字であるかどうか
-        if(checkPass(password)==false){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserPassOK.jsp");
+        if(checkPass(passwordU)==false){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserPassOK.jsp");
         	dispatcher.forward(request, response);
         }
 
-        // 登録
-        if(password.equals(password2)) {
+        //現在のパスワード確認
+        if(manager.checkPassword(id,passwordP)==false){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserPassNot.jsp");
+        	dispatcher.forward(request, response);
+        }
+
+
+        // パスワード変更
+        if(passwordU.equals(passwordU2)) {
         	// 確認画面を表示する
         	//response.sendRedirect("/StuInfo/RegistInfo");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/checkRegistUser.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserSuccess.jsp");
 
-            //セッションの作成・取得
-            HttpSession session = request.getSession();
-            session.setAttribute("User", user);
-            //request.setAttribute("User", user);
+            //DBに更新内容を反映させる
+            manager.updatePassword(id,passwordU);
+
+            User user = new User(id, passwordU,passwordU2);
+            request.setAttribute("User", user);
             dispatcher.forward(request, response);
         }
         else {
             //response.sendRedirect("/se21g1/RegistUser");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserPass.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserPass.jsp");
         	dispatcher.forward(request, response);
         }
     }

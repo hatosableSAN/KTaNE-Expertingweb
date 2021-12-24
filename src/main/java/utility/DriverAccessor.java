@@ -11,7 +11,7 @@ public class DriverAccessor {
     // 自分のユーザ名
     private final static String USER_NAME = "root";
     //自分のmysqlのパスワード
-    private final static String PASSWORD = "root";
+    private final static String PASSWORD = "";
 
     public Connection createConnection() {
         String DRIVER_URL = "jdbc:mysql://localhost:3306/db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";

@@ -8,8 +8,7 @@ pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <p align="right">ID ${User.id}</p>
-    <div class="darkgray"><h2 style="text-align:center">児童・生徒評価システムトップ</h2></div>
+    <div class="darkgray"><p align="right">ID ${User.id}</p><h2 style="text-align:center">児童・生徒評価システムトップ</h2></div>
     <br/><br/><br/><br/>
     <p align="center">
     <button>
@@ -29,7 +28,7 @@ pageEncoding="UTF-8"%>
       <button>
         <big><b>システムマニュアル</b></big>
       </button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-      <a href="/se21g1/Login" class="btn">ログイン</a>
+      <a href="/se21g1/UpdateUser" class="btn">パスワード変更</a>
     </p>
 
 

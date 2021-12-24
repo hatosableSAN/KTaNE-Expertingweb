@@ -89,4 +89,50 @@ public class UserManager {
     return ans;
     }
 
+    // パスワード変更時のパスワードチェック
+   public boolean checkPassword(String id,String password) {
+    System.out.println("Manager.checkPassword");
+
+    //あっているかないか（仮）
+    boolean ans = false;
+
+    // StudentDAOオブジェクト生成
+    UserDAO userDAO = new UserDAO();
+
+    // DataBaseへ接続し、コネクションオブジェクトを生成する
+    this.connection = userDAO.createConnection();
+
+    // 検索する
+    ans = userDAO.checkPassword(id,password, this.connection);
+
+    // DataBaseとの接続を切断する
+    userDAO.closeConnection(this.connection);
+
+    // コネクションオブジェクトを破棄する
+    this.connection = null;
+
+    return ans;
+    }
+
+    // パスワード変更
+   public void updatePassword(String id,String passwordU) {
+    System.out.println("Manager.updatePassword");
+
+    // StudentDAOオブジェクト生成
+    UserDAO userDAO = new UserDAO();
+
+    // DataBaseへ接続し、コネクションオブジェクトを生成する
+    this.connection = userDAO.createConnection();
+
+    // 変更する
+    userDAO.updatePassword(id,passwordU, this.connection);
+
+    // DataBaseとの接続を切断する
+    userDAO.closeConnection(this.connection);
+
+    // コネクションオブジェクトを破棄する
+    this.connection = null;
+
+    }
+
 }

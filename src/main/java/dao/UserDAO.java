@@ -138,5 +138,79 @@ public class UserDAO extends DriverAccessor{
         }
     }
 
+    // 入力された現在のパスワードがあっているか
+    // 引数はStudentオブジェクトと、Connectionオブジェクト
+    public boolean checkPassword(String id,String passwordU, Connection connection) {
+
+        try {
+            System.out.println("DAO.checkPassword");
+            // SQLコマンド
+            String sql = "select * from user where id = '" + id + "'";
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            rs.first();
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+            //user.setPassword2(null);
+
+            String pass = rs.getString("password");//入力されたidに対応するpass
+
+            System.out.println("password:"+pass);
+            System.out.println("passU:"+passwordU);
+            
+            boolean ans = false;
+
+            //パスワードが正しいかどうか
+            if(passwordU.equals(pass)){
+                ans=true;
+            }
+            else{
+                ans=false;
+            }
+
+            // 終了処理
+            stmt.close();
+            rs.close();
+
+            // パスワードがあっているかどうかを返す
+            return ans;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return false;
+
+        } finally {
+        }
+    }
+
+    // 入力された現在のパスワードがあっているか
+    // 引数はStudentオブジェクトと、Connectionオブジェクト
+    public void updatePassword(String id,String passwordU, Connection connection) {
+        try {
+            System.out.println("DAO.updateUser");
+        // SQLコマンド
+        //String sql = "insert into user values(?, ?)";
+        String sql ="update user set password='"+ passwordU +"' where id='"+ id +"'";
+
+        // SQLコマンドの実行
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        stmt.executeUpdate();
+
+    } catch (SQLException e) {
+
+        // エラーが発生した場合、エラーの原因を出力する
+        e.printStackTrace();
+
+    } finally {
+    }
+    }
+
 
 }
