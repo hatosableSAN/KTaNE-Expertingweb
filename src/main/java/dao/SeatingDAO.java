@@ -195,5 +195,66 @@ public class SeatingDAO extends DriverAccessor {
         }
     }
 
+    public SeatingArrangements searchSeatingArrangements(int id, Connection connection) {
+        try {
+            SeatingArrangements SeatArr=new SeatingArrangements();
+            // SQLコマンド
+            // String sql = "select * from classes where id = '" + classdef.getClass_name()
+            // + "'";
+            String sql = "select * from classes where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            // Statement stmt = connection.createStatement();
+            // ResultSet rs = stmt.executeQuery(sql);
+            // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
+
+            rs.first();
+
+            /*
+             * if(rs.getString("taikai_name") == null) {
+             * result.setPlayer_name("0");
+             * result.setTaikai_name("0");
+             * result.setTaikai_level("0");
+             * result.setTaikai_kekka("0");
+             *
+             * }else {
+             * result.setTaikai_name(rs.getString("taikai_name"));
+             * result.setTaikai_level(rs.getString("taikai_level"));
+             * result.setTaikai_kekka(rs.getString("taikai_kekka"));
+             * }
+             */
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+
+            //
+            // classdef.setClass_id(rs.getString("id"));
+            SeatArr.setClassId(rs.getInt("class_id"));
+            SeatArr.setCreatedDate(rs.getString("created_date"));
+            SeatArr.setStartDate(rs.getString("start_date"));
+            SeatArr.setEndDate(rs.getString("end_date"));
+            SeatArr.setName(rs.getString("name"));
+            SeatArr.setUserId(rs.getString("user_id"));
+            // 終了処理
+            statement.close();
+            rs.close();
+
+            // Studentオブジェクトを返す
+            return SeatArr;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
+
 
 }

@@ -390,6 +390,38 @@ public class GradeDAO extends DriverAccessor {
     } 
     
 }
+
+    public Lessons searchLesson(int id, Connection connection) {
+        String sql = "select * from lessons where id = ?";
+
+        
+        try {
+
+            // SQLコマンド
+            PreparedStatement statement = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            statement.setInt(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            
+            rs.first();
+
+        Lessons lesson = new Lessons();
+        lesson.setId(rs.getInt("id"));
+        lesson.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
+        lesson.setPeriodnum(rs.getInt("period_num"));
+        lesson.setComment(rs.getString("comment"));
+        lesson.setLessonDate(rs.getString("lesson_date"));
+        
+             return lesson;
+    }catch (SQLException e) {
+
+        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+        e.printStackTrace();
+        return null;
+
+    } 
+    }
 }
 
     // }

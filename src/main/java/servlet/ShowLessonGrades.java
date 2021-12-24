@@ -14,9 +14,13 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.ClassDef;
 import beans.Grade;
+import beans.Lessons;
+import beans.SeatingArrangements;
 import beans.Student; //beansに入れた方がいいのかしら
 import beans.StudentSeatingArr;
+import service.ClassService;
 import service.GradeService;
 import service.SeatingService;
 import service.StudentService;
@@ -36,15 +40,30 @@ public class ShowLessonGrades extends HttpServlet {
         HttpSession session = request.getSession(true);
         System.out.println("教室風評価登録");
         String idnumber=request.getParameter("id");
-        int id=Integer.parseInt(idnumber);
+        int id=Integer.parseInt(idnumber);//授業ID
         session.setAttribute("Lessonnum", idnumber);
-        GradeService Service = new GradeService();
-        List<Grade> GradeList=Service.getGradeList(id);
+        GradeService gService = new GradeService();
+        
+        List<Grade> GradeList=gService.getGradeList(id);//ひょうかりすと
+        Lessons lesson=gService.searchLesson(id);//じゅぎょう(コメント、授業名、授業日が必要)
+        SeatingService sService=new SeatingService();
+        SeatingArrangements SeatingArrangements = sService.searchSeatingArrangements(lesson.getSeating_arrangements_id());
+        //得た授業に対応する座席配置(開始期間、終了期間)
+        ClassService cService=new ClassService();
+        ClassDef ClassDef=cService.searchClass(id);
+        
+
         session.setAttribute("GradeList", GradeList);//ゲットした座席リストをセッションに入れるよ
+        session.setAttribute("Lesson", lesson);//ゲットした授業をセッションに入れるよ
+        session.setAttribute("SeatingArrangements", SeatingArrangements);//ゲットした座席配置をセッションに入れるよ
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/showLessonGrades.jsp");
         dispatcher.forward(request, response);
 
+    }
+
+    private ClassDef searchClass(int id) {
+        return null;
     }
 
   

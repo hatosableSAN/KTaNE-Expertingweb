@@ -73,4 +73,14 @@ public class SeatingService {
 
         return List;
     }
+
+    public SeatingArrangements searchSeatingArrangements(int id) {// 座席配置を登録・登録した座席配置を返す
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        SeatingArrangements seatingArrangements = dao.searchSeatingArrangements(id, connection);
+        // dao に反映
+        closeConnection(dao);
+        return seatingArrangements;
+    }
 }

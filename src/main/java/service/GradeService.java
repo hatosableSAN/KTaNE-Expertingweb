@@ -8,6 +8,7 @@ import java.util.List;
 
 import beans.Grade;
 import beans.Lessons;
+import beans.SeatingArrangements;
 import beans.Student;
 import beans.StudentSeatingArr;
 import dao.StudentDAO;
@@ -109,6 +110,22 @@ public class GradeService {
         dao.closeConnection(this.connection);
         return List;
     }
+
+    public Lessons searchLesson(int id) {
+        Lessons lesson=new Lessons();
+        GradeDAO dao = new GradeDAO();
+        this.connection=dao.createConnection();
+         lesson = dao.searchLesson(id,connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return lesson;
+	}
+
+    public SeatingArrangements searchSeatingArrangements(int seating_arrangements_id) {
+        return null;
+    }
+
+
 
  
 

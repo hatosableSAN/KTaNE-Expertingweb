@@ -39,23 +39,23 @@ public class RegistSeatingClass extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 座席配置新規登録ボタンを押した時
         System.out.println("いまdoGet");
-        // RequestDispatcher dispatcher =
-        // request.getRequestDispatcher("/WEB-INF/registStudentSuccess.jsp");
-        // dispatcher.forward(request, response);
+
         // セッション
         HttpSession session = request.getSession();
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         ClassService ClassService = new ClassService();
         List<ClassDef> ClassDefList = ClassService.getAllClass();
+        // 全クラスの情報をrequestにいれる
         request.setAttribute("ClassDefList", ClassDefList);
-        session.setAttribute("ClassDefList", ClassDefList);
+        session.setAttribute("ClassDefList", ClassDefList);// TODO:いらないかも？
 
         // セッションの初期化処理を入れる(作りかけで戻った場合にはリセットされたほうが良いので
         // 「配置されている生徒一覧セッション」に初期化した情報を入れる
-        session.setAttribute("StudentList", null);
-        session.setAttribute("setStudentList", null);
-        session.setAttribute("StudentSeatingArrList", null);
+        session.setAttribute("StudentList", null); // 座席に配置されていない生徒一覧
+        session.setAttribute("setStudentList", null);// 座席に配置している生徒一覧
+        session.setAttribute("StudentSeatingArrList", null);// 座席一覧（座席番号と生徒）
+        session.setAttribute("ClassDef", null); // クラスの情報を初期かTODO
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingClass.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
@@ -79,13 +79,13 @@ public class RegistSeatingClass extends HttpServlet {
         ClassDef Classdef = new ClassDef(classId);
         ClassDef ClassDef = ClassService.findClass(Classdef);
         System.out.println(ClassDef);
-        request.setAttribute("ClassDef", ClassDef);
+        request.setAttribute("ClassDef", ClassDef);// いらないかも？
         session.setAttribute("ClassDef", ClassDef);
 
         // クラスIDから全ての生徒情報を取得
         List<Student> studentList = ClassService.getAllClassmember(Classdef);
         System.out.println(studentList);
-        request.setAttribute("StudentList", studentList);
+        request.setAttribute("StudentList", studentList);// いらないかも？
         session.setAttribute("StudentList", studentList);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeating.jsp");

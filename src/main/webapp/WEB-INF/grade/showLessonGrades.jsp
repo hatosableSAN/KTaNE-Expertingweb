@@ -5,13 +5,15 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.User" %>
 <%@ page import="beans.ClassDef" %>
 <%@ page import="beans.Student" %>
+<%@ page import="beans.Student" %>
 <%@ page import="beans.*" %>
 <%@ page import="service.StudentService" %>
 <% User User = (User)session.getAttribute("User"); %>
 <% List<Student> StudentList = (ArrayList<Student>) session.getAttribute("StudentList"); %>
 <% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
 <% List<Grade> GradeList = (List<Grade>) session.getAttribute("GradeList"); %>
-
+<% Lessons Lesson = (Lessons)session.getAttribute("Lesson"); %>
+<% Lessons Lesson = (Lessons)session.getAttribute("Lesson"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -120,7 +122,8 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
-      <p style="display: block;text-align: center;border-color: #000;"><%=></p>
+      <p style="border-style: solid;width:80px;height:60px;display: block;text-align: center;border-color: #000;"><%=Lesson.getComment()%></p>
+      <p style="border-style: solid;width:80px;height:60px;display: block;text-align: center;border-color: #000;"><%=Lesson.getComment()%></p>
       
 
 <!-- モーダルはここから -->
