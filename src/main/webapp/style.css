@@ -1,11 +1,11 @@
-.btn {
+.btn {/*決定などの操作ボタン？*/
     border-radius: 5px;
     background-color: rgb(255, 218, 0);
     padding: 10px;
     text-decoration: none;
     color: black;
   }
-  .backbtn {
+  .backbtn {/*戻るボタン？*/
     background-color: rgb(255, 218, 0);
     padding: 10px;
     position: relative;
@@ -14,6 +14,12 @@
     text-decoration: none;
     color: black;
   }
+
+.id{/*ユーザーIDの表示場所*/
+  right:1000px;
+  top:30px;
+  margin:0em;
+}
 
   header {
     display: flex;
@@ -55,4 +61,53 @@ div.right {
 .darkgray {
 	height: 100px;
 	background-color: darkgray;
+  margin: auto;
+}
+
+.button{/*システムトップのボタン　色と影*/
+  background: #B6D8FF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  /*width: 321px;
+  height: 113px;
+  left: 255px;
+  top: 307px;*/
+}
+
+#btn_stu {/*システムトップのボタン*/
+  /*position: absolute;*/
+width: 250px;
+height: 80px;
+left: 255px;
+top: 200px;
+font-size: 30px;
+}
+
+#btn_class {/*システムトップのボタン*/
+  /*position: absolute;*/
+width: 250px;
+height: 80px;
+left: 860px;
+top: 307px;
+font-size: 33px;
+}
+
+#btn_seat {/*システムトップのボタン*/
+  /*position: absolute;*/
+  width: 250px;
+height: 80px;
+left: 255px;
+top: 523px;
+font-size: 30px;
+}
+
+#btn_grade{/*システムトップのボタン*/
+  /*position: absolute;*/
+  width: 250px;
+height: 80px;
+left: 864px;
+top: 527px;
+/*font-size: 25px;*/
 }
