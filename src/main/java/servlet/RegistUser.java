@@ -32,7 +32,7 @@ public class RegistUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Users/registUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUser.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -85,6 +85,11 @@ public class RegistUser extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/registUserPass.jsp");
             dispatcher.forward(request, response);
         }
+        /*else {
+            //response.sendRedirect("/se21g1/RegistUser");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserPass.jsp");
+        	dispatcher.forward(request, response);
+        }*/
     }
 
     public boolean checkID(String id) {

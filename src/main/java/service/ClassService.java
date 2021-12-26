@@ -33,7 +33,8 @@ public class ClassService {
         this.connection = classDAO.createConnection();
 
         // StudentオブジェクトをDataBaseに登録する
-        classDAO.registClass(classdef, this.connection); // エラー
+        int class_id = 0;
+        class_id = classDAO.registClass(classdef, this.connection); // エラー
 
         // DataBaseとの接続を切断する
         classDAO.closeConnection(this.connection);
@@ -45,7 +46,7 @@ public class ClassService {
         this.connection = memberDAO.createConnection();
 
         for (int i = 0; i < student_member.length; i++) {
-            memberDAO.registMember(student_member[i], this.connection);
+            memberDAO.registMember(student_member[i], class_id, this.connection);
         }
 
         // StudentオブジェクトをDataBaseに登録する
@@ -90,7 +91,25 @@ public class ClassService {
         return ClassDefList;
     }
 
-    public ClassDef findClass(ClassDef classdef) {// クラスの情報をidから持ってくる
+    public List<ClassDef> getAllMyClass(String UserId) {// 自身のクラスの情報をすべて持ってくる
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        List<ClassDef> ClassDefList = classDAO.findMyAll(UserId, connection);
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null; // コネクションオブジェクトを破棄する
+        return ClassDefList;
+    }
+
+    public List<ClassDef> getAllOtherClass(String UserId) {// 他人のクラスの情報をすべて持ってくる
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        List<ClassDef> ClassDefList = classDAO.findOtherAll(UserId, connection);
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null; // コネクションオブジェクトを破棄する
+        return ClassDefList;
+    }
+
+    public ClassDef findClass(ClassDef classdef) {// クラスの情報をidから持ってくる //これsearchClassと被ってる？
         ClassDAO classDAO = new ClassDAO();
         this.connection = classDAO.createConnection();
         ClassDef ClassDef = classDAO.searchClass(classdef, connection);

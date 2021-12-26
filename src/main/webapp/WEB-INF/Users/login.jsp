@@ -3,10 +3,10 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"><a href="/se21g1/" class="btn">スタート画面へ</a></p>
+    <div class="darkgray"><p align="left"><a href="/se21g1/" class="backbtn">スタート画面へ</a></p>
         <h2 style="text-align:center">ログイン画面</h2></div><br/>
     <br/><br/><br/><br/>
     <form action="./Login" method="post">

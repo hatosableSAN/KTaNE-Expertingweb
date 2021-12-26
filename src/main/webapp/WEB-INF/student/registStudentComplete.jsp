@@ -6,6 +6,9 @@ pageEncoding="UTF-8"%>
   <body>
     <p align="right">ユーザーID　${Student.student_user}</p>
     <h1 align="center">児童・生徒の登録が完了しました</h1>
-    <a href="./student/registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録へ戻る</button></a>
+    <form action="./GoRegistStudentTop" method="get">
+      <input type="submit" value="児童・生徒登録へ戻る" class="button-red">
+    </form>
+    <!--a href="./student/registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録へ戻る</button></a-->
   </body>
 </html>

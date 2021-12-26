@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
       }
     </style>
   <body>
-    <p align="right">ユーザーID　${Student.student_user}</p>
+    <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">クラス登録</h1>
     <form action="./RegistClass" method="post">
         年度　
@@ -40,7 +40,14 @@ pageEncoding="UTF-8"%>
                 <td><!--lavel--><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td>
                 <td><%=s.getStudent_id() %></td>
                 <td><%=s.getStudent_name() %></td>
-                <td><%=s.getStudent_gender() %></td>
+                <td><!--%=s.getStudent_gender() %-->
+                  <% if(s.getStudent_gender() == 1){ %>
+                    男
+                  <% }else if(s.getStudent_gender() == 2){ %>
+                      女
+                  <% }else{ %>
+                    その他
+                  <% } %></td>
                 <td><%=s.getStudent_user() %></td>
                 <!--/label-->
                 </tr>
@@ -59,6 +66,9 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form>
       <br />
-      <a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a>
+      <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
+      <form action='./ClassTop' method='get'>
+        <input type='submit' value='キャンセル'>
+      </form>
   </body>
 </html>

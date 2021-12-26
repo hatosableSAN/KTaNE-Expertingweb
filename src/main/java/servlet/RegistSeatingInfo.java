@@ -46,7 +46,7 @@ public class RegistSeatingInfo extends HttpServlet {
         System.out.println("いまdoGet");
         HttpSession session = request.getSession();
 
-        // 「生徒座席一覧(studentSeatingArrList)」に座らせた生徒と座席の情報を入れる
+        // 「生徒座席一覧(studentSeatingArrList)」に座らせた生徒と座席の情報を入れる //いらないかも
         List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
         if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
             studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
@@ -92,8 +92,8 @@ public class RegistSeatingInfo extends HttpServlet {
                 + seatingArrangements.getEndDate() + seatingArrangements.getClassId() + ":"
                 + seatingArrangements.getUserId() + ":" + seatingArrangements.getCreatedDate());
 
-        request.setAttribute("SeatingArrangements", seatingArrangements);
-        session.setAttribute("SeatingArrangements", seatingArrangements);
+        request.setAttribute("SeatingArrangements", seatingArrangements);// いる...けど、registSeatingconfirm.jsp次第
+        session.setAttribute("SeatingArrangements", seatingArrangements);// いる
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingconfirm.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる

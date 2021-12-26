@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
       }
     </style>
   <body>
-    <p align="right">ユーザーID　${Student.student_user}</p>
+    <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">クラス登録確認</h1>
     <h2 align="center">以下の内容を登録します</h2>
     <form action="./RegistClassConfirm" method="post">
@@ -42,7 +42,15 @@ pageEncoding="UTF-8"%>
                     <td><!--lavel--><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %>></td>
                     <td><%=s.getStudent_id() %></td>
                     <td><%=s.getStudent_name() %></td>
-                    <td><%=s.getStudent_gender() %></td>
+                    <td><!--%=s.getStudent_gender() %-->
+                      <% if(s.getStudent_gender() == 1){ %>
+                        男
+                      <% }else if(s.getStudent_gender() == 2){ %>
+                          女
+                      <% }else{ %>
+                        その他
+                      <% } %>
+                    </td>
                     <td><%=s.getStudent_user() %></td>
                     <!--/label-->
                     </tr>
@@ -55,6 +63,9 @@ pageEncoding="UTF-8"%>
         <input type="submit" value="確定" name="hand" />
       </form>
       <br />
-      <a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a>
+      <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
+      <form action='./ClassTop' method='get'>
+        <input type='submit' value='キャンセル'>
+      </form>
   </body>
 </html>

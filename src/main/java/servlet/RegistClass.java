@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import beans.ClassDef; //beansに入れた方がいいのかしら
 import beans.Student;
+import beans.User;
 import service.StudentService;
 import service.ClassService;
 
@@ -55,16 +56,17 @@ public class RegistClass extends HttpServlet {
         // int class_id = request.getParameter("class_id");
         String class_name = request.getParameter("class_name");
         String classyear = request.getParameter("class_year");
-        String class_user = "ABC"; // 今ログインしている教員ユーザ
+        User user = (User)session.getAttribute("User");
+        String class_user = user.getId(); // 今ログインしている教員ユーザ
 
-        Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
+        //Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
 
         String tourl = null;
         if (class_name.isEmpty() || classyear.isEmpty()) {
             list = service.getStudent();
             request.setAttribute("List", list);
-            request.setAttribute("Student", studentinfo);
-            tourl = "/classes/registClassError.jsp";
+            //request.setAttribute("Student", studentinfo);
+            tourl = "/WEB-INF/classes/registClassError.jsp";
             System.out.println("Please full all class information");
         } else {
             // studentオブジェクトに情報を格納
@@ -76,7 +78,7 @@ public class RegistClass extends HttpServlet {
             for (int i = 0; i < checkedStudents.length; i++) {
                 String stu_id = checkedStudents[i];
                 String stu_name = null;
-                String stu_gender = null;
+                int stu_gender = 0;
                 String stu_user = null;
                 Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
                 student = service.searchStudent(student);
@@ -98,7 +100,7 @@ public class RegistClass extends HttpServlet {
             ClassDef classdef = new ClassDef(class_name, class_year, class_user);
             request.setAttribute("ClassDef", classdef);
             session.setAttribute("List", list);
-            session.setAttribute("Student", studentinfo);
+            //session.setAttribute("Student", studentinfo);
             System.out.println(list);
             System.out.println(session.getAttribute("Student"));
             System.out.println(request.getAttribute("ClassDef"));

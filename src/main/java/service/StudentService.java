@@ -108,4 +108,47 @@ public class StudentService {
         return student;
     }*/
 
+    public boolean deleteStudent(Student student) {
+        boolean result = false;
+
+        // StudentDAOオブジェクト生成
+        StudentDAO studentDAO = new StudentDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = studentDAO.createConnection();
+
+        // StudentオブジェクトをDataBaseに登録する
+        result = studentDAO.deleteStudent(student, this.connection); //エラー
+
+        // DataBaseとの接続を切断する
+        studentDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+        return result;
+
+    }
+
+    public boolean updateStudent(Student student) {
+        boolean result = false;
+
+        // StudentDAOオブジェクト生成
+        StudentDAO studentDAO = new StudentDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = studentDAO.createConnection();
+
+        // StudentオブジェクトをDataBaseに登録する
+        result = studentDAO.updateStudent(student, this.connection); //エラー
+
+        // DataBaseとの接続を切断する
+        studentDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return result;
+
+    }
+
 }

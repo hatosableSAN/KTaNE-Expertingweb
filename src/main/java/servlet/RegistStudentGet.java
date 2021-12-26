@@ -55,11 +55,11 @@ public class RegistStudentGet extends HttpServlet {
         // findAll
         list = service.getStudent(); // 一回コメントアウト
         // String gender = list.get();
-        Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
+        //Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
         // list.add(studentinfo);
         // session.setAttribute("Student",studentinfo);
         request.setAttribute("List", list);
-        request.setAttribute("Student", studentinfo);
+        //request.setAttribute("Student", studentinfo);
         // System.out.println(session.getAttribute("Student"));
 
         // 成功画面を表示する
