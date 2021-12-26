@@ -6,17 +6,19 @@
 <%@ page import= "beans.Student" %>
 
 <html>
-    <head>
-       <title></title>
-    </head>
+      <head>
+        <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+      </head>
     <body>
+      <div class="green">
       <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">児童・生徒登録確認</h1>
-    <h3 align="center">以下の内容で児童・生徒を登録しますか？</h3>
+      <h1 align="center">児童・生徒登録確認</h1>
+    </div>
+    <h2 align="center">以下の内容で児童・生徒を登録しますか？</h2><br><br>
     <form action="./RegistStudentHandConfirm" method="post">
     <table align="center">
       <tr>
-        <th>番号　　　　　　　</th><th>名前　　　　　　　　　　</th><th>性別　　　　</th><th>登録者　　　　　　　</th></tr>
+        <th>番号　　　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　　　　</th></tr>
       </tr>
       <tr>
         <td>${Student.student_id}</td>
@@ -31,12 +33,13 @@
         <td>${Student.student_user}</td>
       </tr>
     </table>
-    <div>
-      <input type="submit" value="登録" class="button-red">
+    <br><br><br>
+    <div class="right">
+      <input type="submit" value="登録" class="btn"  style="position:absolute; right:40;bottom: 50px;">
     </div>
   </form>
   <form action="./GoRegistStudentTop" method="get">
-    <input type="submit" value="キャンセル" class="button-red">
+    <input type="submit" value="キャンセル" class="button_grey" style="position:absolute; left:40px; bottom: 50px;">
   </form>
   <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->
     </body>
