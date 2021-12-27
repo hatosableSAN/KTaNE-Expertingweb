@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.ClassDef" %>
 <%@ page import="beans.Student" %>
 <%@ page import="beans.Student" %>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="beans.*" %>
 <%@ page import="service.StudentService" %>
 <% User User = (User)session.getAttribute("User"); %>
@@ -13,7 +14,13 @@ pageEncoding="UTF-8"%>
 <% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
 <% List<Grade> GradeList = (List<Grade>) session.getAttribute("GradeList"); %>
 <% Lessons Lesson = (Lessons)session.getAttribute("Lesson"); %>
-<% Lessons Lesson = (Lessons)session.getAttribute("Lesson"); %>
+<% SeatingArrangements SeatingArrangement = (SeatingArrangements)session.getAttribute("SeatingArrangements"); %>
+<% ClassDef Class = (ClassDef)session.getAttribute("Class"); %>
+<% SimpleDateFormat inputdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
+<% SimpleDateFormat outputdf = new SimpleDateFormat("MM月dd日");%>
+<% SimpleDateFormat outputlessondf = new SimpleDateFormat("yyyy年MM月dd日");%>
+<% SimpleDateFormat inputlessondf = new SimpleDateFormat("yyyy-MM-dd");%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -104,7 +111,10 @@ pageEncoding="UTF-8"%>
     <br>
 
 
-    評価を変更したい座席がある場合は、座席をクリックして評価情報を変更できます。<br>
+    評価を変更したい座席がある場合は、座席をクリックして評価情報を変更できます。
+    <a href="./UpdateLessonInfo"><button align="center" name="regist_top">授業情報変更</button></a>
+    <a href="./DeleteLessonInfo"><button align="center" name="regist_top">削除</button></a>
+    <br>
       
         <table>
           <%
@@ -117,41 +127,33 @@ pageEncoding="UTF-8"%>
             <%}%>
           </tr>
           <%}%>
-          <tr>
-            <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
-          </tr>
         </table>
+        <p style=" vertical-align: top;margin:20px;border-style:solid;width:240px;height:100px;display: inline-block;text-align: center;border-color: #000;">授業コメント</br><%=Lesson.getComment()%></p>
+        <div style="display: inline-block;"class="kyoutaku">教卓</div>
+        <p style=" vertical-align: top;margin:20px;border-style:solid;width:240px;height:100px;display: inline-block;text-align: center;border-color: #000;">年度：<%=Class.getClass_year()%>　クラス：<%=Class.getClass_name()%></br>
+          期間：<%=outputdf.format(inputdf.parse(SeatingArrangement.getStartDate()))%>～<%=outputdf.format(inputdf.parse(SeatingArrangement.getEndDate()))%></br>
+          授業日：<%=outputlessondf.format(inputlessondf.parse(Lesson.getLessonDate()))%></p>
+        
         <br />
-      <p style="border-style: solid;width:80px;height:60px;display: block;text-align: center;border-color: #000;"><%=Lesson.getComment()%></p>
-      <p style="border-style: solid;width:80px;height:60px;display: block;text-align: center;border-color: #000;"><%=Lesson.getComment()%></p>
+      
+      
       
 
 <!-- モーダルはここから -->
         <div id="modal-content-grade">
           <form action="./UpdateStudentGrade" method="get"></form>
             「閉じる」か「背景」をクリックするとウィンドウを終了します。<br/>
-            個人評価変更<br>
-          
-            <script type="text/javascript">
-              function ShowHideDiv() {
-              var attend = document.getElementById("attend");
-              var dvPassport = document.getElementById("dvPassport");
-              dvPassport.style.display = attend.checked ? "block" : "none";
-              }
-             </script>
-             <span>出席・欠席を選択してください。</span>
-             <label for="attend">
-              <input type="radio" id="attend" name="attendance" onclick="ShowHideDiv()" value="true"/>
-              出席
-             </label>
-             <label for="absent">
-              <input type="radio" id="absent" name="attendance" onclick="ShowHideDiv()"value="false" checked="checked"/>
-              欠席
-             </label>
-             <div id="dvPassport" style="display: none">
+            <h1 align="center">個人評価変更</h1>
+            
+            出欠状態：<span id="attendance"></span>
+            
+
+            <script>
+            </script>
+              
               <ul class="ddmenu1">
 
-                <li><a href="#">知識・技能</a>
+                <li><a href="#" id="red">知識・技能 <%=></a>
                    <ul>
                      <li>
                     <select name="red">
@@ -192,18 +194,12 @@ pageEncoding="UTF-8"%>
   
               個人コメント(100文字まで)
               <textarea class="textarea-grade" rows="6" cols="20" maxlength="100" name="comment"></textarea>
-              <input type="hidden" value="-1" align="center" name="seatnum" id="seatnum"/>
-              <script>
-                $(function () {
-             
-                  var id=window.sessionStorage.getItem("Selected");
-                  $('#seatnum').val(id);//hiddenパラメータを座席のidに置き換え
-                      
-                });
-            </script>
+              <input type="button" value="-1" align="center" name="seatnum" id="seatnum"/>
+              
                         
-             </div><br/>
+             <br/>
              <input type="submit" value="評価を確定する" align="center" />
+             
           </form>
           
             <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
@@ -212,11 +208,11 @@ pageEncoding="UTF-8"%>
       <br />
 
       <% if(GradeList!=null && GradeList.size() > 0) {
-                  for(Grade studentSeatingArr : GradeList ){ //座席に登録されている生徒。
+                  for(Grade Grade : GradeList ){ //座席に登録されている生徒。
                     //座席配置されている生徒IDから生徒情報を取得
                     StudentService StudentService = new StudentService();
                     Student student = new Student();
-                    student.setStudent_id(studentSeatingArr.getStudentId());
+                    student.setStudent_id(Grade.getStudentId());
                     Student setStudent = StudentService.searchStudent(student);
                     //TODO : 数値じゃないので応急措置(今後変える)
                     if(setStudent.getStudent_gender().equals("男")){
@@ -230,24 +226,24 @@ pageEncoding="UTF-8"%>
                     String Blue=new String();
                     String Green=new String();
                     
-                    if(studentSeatingArr.getRed()==1){
+                    if(Grade.getRed()==1){
                       Red="A";
-                  }else if(studentSeatingArr.getRed()==2){
+                  }else if(Grade.getRed()==2){
                     Red="B";
                   }else{
                     Red="C";
                   }
 
-                  if(studentSeatingArr.getBlue()==1){
+                  if(Grade.getBlue()==1){
                     Blue="A";
-                }else if(studentSeatingArr.getBlue()==2){
+                }else if(Grade.getBlue()==2){
                   Blue="B";
                 }else{
                   Blue="C";
                 }
-                if(studentSeatingArr.getGreen()==1){
+                if(Grade.getGreen()==1){
                   Green="A";
-              }else if(studentSeatingArr.getGreen()==2){
+              }else if(Grade.getGreen()==2){
                 Green="B";
               }else{
                 Green="C";
@@ -259,23 +255,37 @@ pageEncoding="UTF-8"%>
                     %>
                     <script>
                       $(function () {
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('setseatm');
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
-                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
-                        $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
+                        $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
+
+                        if(<%=Grade.isAttendance() %>){
+                        $("#<%=Grade.getSeat() %>").attr('attendance',1);
+                        }else{
+                        $("#<%=Grade.getSeat() %>").attr('attendance',0);
+                        }
+                        
+                        $("#<%=Grade.getSeat() %>").addClass('setseatm');
+                        $("#<%=Grade.getSeat() %>").addClass('seatall');
+                        $("#<%=Grade.getSeat() %>").addClass('seat');
+                        $("#<%=Grade.getSeat() %>").removeClass("seatblank");
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                       });
                     </script>
                     <% }else if(Integer.parseInt(setStudent.getStudent_gender()) == 2){//女
                     %>
                   <script>
                       $(function () {
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
-                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('setseatf');
+                        if(<%=Grade.isAttendance() %>){
+                        $("#<%=Grade.getSeat() %>").attr('attendance',1);
+                        }else{
+                        $("#<%=Grade.getSeat() %>").attr('attendance',0);
+                        }
+                        $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
+                        $("#<%=Grade.getSeat() %>").addClass('seat');
+                        $("#<%=Grade.getSeat() %>").addClass('seatall');
+                        $("#<%=Grade.getSeat() %>").removeClass("seatblank");
+                        $("#<%=Grade.getSeat() %>").addClass('setseatf');
  
-                        $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                       });
                   </script>
                     <%
@@ -283,11 +293,17 @@ pageEncoding="UTF-8"%>
                     %>
                     <script>
                       $(function () {
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('setseato');
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seat');
-                        $("#<%=studentSeatingArr.getSeat() %>").addClass('seatall');
-                        $("#<%=studentSeatingArr.getSeat() %>").removeClass("seatblank");
-                        $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
+                        if(<%=Grade.isAttendance() %>){
+                        $("#<%=Grade.getSeat() %>").attr('attendance',1);
+                        }else{
+                        $("#<%=Grade.getSeat() %>").attr('attendance',0);
+                        }
+                        $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
+                        $("#<%=Grade.getSeat() %>").addClass('setseato');
+                        $("#<%=Grade.getSeat() %>").addClass('seat');
+                        $("#<%=Grade.getSeat() %>").addClass('seatall');
+                        $("#<%=Grade.getSeat() %>").removeClass("seatblank");
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                       });
                   </script>
                     
@@ -314,7 +330,7 @@ pageEncoding="UTF-8"%>
             <h2 class="h1-bottom"></h2>
 
             <%}%>
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+      <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>
 

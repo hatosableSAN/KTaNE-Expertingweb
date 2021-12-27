@@ -82,6 +82,7 @@ public class SeatingService {
         // dao に反映
         closeConnection(dao);
         return seatingArrangements;
+    }
     public List<SeatingArrangements> getAllMySeatingArr(String UserId) {// 自身の作成した全ての座席配置を取得
         // DAOオブジェクト生成
         SeatingDAO dao = new SeatingDAO();

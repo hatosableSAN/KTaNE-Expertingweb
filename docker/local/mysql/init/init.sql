@@ -144,7 +144,7 @@ CREATE TABLE `seating_arrangements` (
 
 LOCK TABLES `seating_arrangements` WRITE;
 /*!40000 ALTER TABLE `seating_arrangements` DISABLE KEYS */;
-INSERT INTO `seating_arrangements` VALUES (1,1,'2021-12-17 00:00:00','2020-04-01 00:00:00','2021-01-01 00:00:00','','happy1');
+INSERT INTO `seating_arrangements` VALUES (1,1,'2021-12-17 00:00:00','2020-04-01 00:00:00','2021-01-01 00:00:00','test_seat','happy1');
 /*!40000 ALTER TABLE `seating_arrangements` ENABLE KEYS */;
 UNLOCK TABLES;
 

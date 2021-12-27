@@ -201,7 +201,7 @@ public class SeatingDAO extends DriverAccessor {
             // SQLコマンド
             // String sql = "select * from classes where id = '" + classdef.getClass_name()
             // + "'";
-            String sql = "select * from classes where id = ?";
+            String sql = "select * from seating_arrangements where id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             System.out.println(statement);

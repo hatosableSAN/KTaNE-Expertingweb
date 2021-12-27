@@ -50,21 +50,21 @@ public class ShowLessonGrades extends HttpServlet {
         SeatingArrangements SeatingArrangements = sService.searchSeatingArrangements(lesson.getSeating_arrangements_id());
         //得た授業に対応する座席配置(開始期間、終了期間)
         ClassService cService=new ClassService();
-        ClassDef ClassDef=cService.searchClass(id);
+        ClassDef Class=new ClassDef();
+        Class.setClass_id(SeatingArrangements.getClassId());
+        Class=cService.findClass(Class);
         
 
         session.setAttribute("GradeList", GradeList);//ゲットした座席リストをセッションに入れるよ
         session.setAttribute("Lesson", lesson);//ゲットした授業をセッションに入れるよ
         session.setAttribute("SeatingArrangements", SeatingArrangements);//ゲットした座席配置をセッションに入れるよ
+        session.setAttribute("Class", Class);//ゲットした座席配置をセッションに入れるよ
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/showLessonGrades.jsp");
         dispatcher.forward(request, response);
 
     }
 
-    private ClassDef searchClass(int id) {
-        return null;
-    }
 
   
 }

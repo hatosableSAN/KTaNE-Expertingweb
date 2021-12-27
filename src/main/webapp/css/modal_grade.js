@@ -2,13 +2,27 @@
 $(function () {
     //alert("test");
     $(document).on('click', '.seat',function () {
+        var seatid= $(this).attr('id');
+        var attendance= $(this).attr('attendance');
         var index = $('.seatall').index(this);//前から順番に0.1.2...と数字がつけられる
+        window.sessionStorage.clear();
         window.sessionStorage.setItem('Selected', index);
+        window.sessionStorage.setItem('SeatNum', seatid);
+        window.sessionStorage.setItem('attendance', attendance);
+        if(attendance==1){
+        $('#attendance').text("出席");
+        }else{
+         $('#attendance').text("欠席");  
+        }
+
+        var id=window.sessionStorage.getItem("Selected");
+        $('#seatnum').val(id);//hiddenパラメータを座席のidに置き換え
+
         //alert(index);
         //alert("クリックされました");
         $(this.form).find("textarea, :text, select, radio, checkbox").val("").end().find(":checked").prop("checked", false);
         // $('textarea').val(index);
-        $("#seatnum").val(index);
+        
         $(this).blur();	//ボタンからフォーカスを外す
         if ($("#modal-overlay")[0]) return false;		//新しくモーダルウィンドウを起動しない (防止策1)
         //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;		//現在のモーダルウィンドウを削除して新しく起動する (防止策2)
