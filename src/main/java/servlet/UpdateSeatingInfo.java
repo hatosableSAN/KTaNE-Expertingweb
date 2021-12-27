@@ -69,51 +69,17 @@ public class UpdateSeatingInfo extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/updateSeatingconfirm.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
-
-        // // 座席配置変更の更新
-        // System.out.println("いまdoGet");
-        // // セッション
-        // HttpSession session = request.getSession();
-        // // requestオブジェクトの文字エンコーディングの設定
-        // request.setCharacterEncoding("UTF-8");
-        // ClassService ClassService = new ClassService();
-        // List<ClassDef> ClassDefList = ClassService.getAllClass();
-        // request.setAttribute("ClassDefList", ClassDefList);
-        // session.setAttribute("ClassDefList", ClassDefList);
-
-        // // セッションの初期化処理を入れる(作りかけで戻った場合にはリセットされたほうが良いので
-        // // 「配置されている生徒一覧セッション」に初期化した情報を入れる
-        // session.setAttribute("StudentList", null);
-        // session.setAttribute("setStudentList", null);
-        // session.setAttribute("StudentSeatingArrList", null);
-
-        // RequestDispatcher dispatcher =
-        // request.getRequestDispatcher("/WEB-INF/seating/registSeatingClass.jsp");
-        // // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        // dispatcher.forward(request, response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 座席配置変更確定ボタンを押す
-        System.out.println("いまdoGet");
+        System.out.println("いまdoPost");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         // User User = (User) session.getAttribute("User");
         // session.setAttribute("User", user);
-
-        // 「配置されている生徒一覧セッション」に座らせた生徒を入れる
-        List<Student> setstudentList = new ArrayList<Student>();
-        if ((List<Student>) session.getAttribute("setStudentList") != null) {
-            setstudentList = (List<Student>) session.getAttribute("setStudentList");
-        }
-        session.setAttribute("setStudentList", setstudentList);
-
-        List<Student> studentList = new ArrayList<Student>();
-        if ((List<Student>) session.getAttribute("StudentList") != null) {
-            studentList = (List<Student>) session.getAttribute("StudentList");
-        }
 
         // requestから更新された座席配置情報を取得
         String startdate = request.getParameter("startdate");// + " 00:00:00";
@@ -122,22 +88,40 @@ public class UpdateSeatingInfo extends HttpServlet {
         System.out.println(enddate);
         String seatname = request.getParameter("seatname");
 
-        // 座席配置情報に追加し、セッションに追加
-        SeatingArrangements seatingArrangements = (SeatingArrangements) session.getAttribute("SeatingArrangements");
-        seatingArrangements.setStartDate(startdate);
-        seatingArrangements.setEndDate(enddate);
-        seatingArrangements.setName(seatname);
-        session.setAttribute("SeatingArrangements", seatingArrangements);
-        System.out.println(seatingArrangements.getStartDate());
-        System.out.println(seatingArrangements.getEndDate());
+        String tourl = null;
+        if (startdate.isEmpty()) {// 開始日時がnullの時（未入力)
 
-        // 「生徒座席一覧(studentSeatingArrList)」の情報を取得
-        List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
-        if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
-            studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
+            tourl = "/WEB-INF/seating/updateSeatingError.jsp";
+            System.out.println("Please full all seatinarrangements information");
+        } else {
+            // 「配置されている生徒一覧セッション」に座らせた生徒を入れる
+            List<Student> setstudentList = new ArrayList<Student>();
+            if ((List<Student>) session.getAttribute("setStudentList") != null) {
+                setstudentList = (List<Student>) session.getAttribute("setStudentList");
+            }
+            session.setAttribute("setStudentList", setstudentList);
+            List<Student> studentList = new ArrayList<Student>();
+            if ((List<Student>) session.getAttribute("StudentList") != null) {
+                studentList = (List<Student>) session.getAttribute("StudentList");
+            }
+
+            // 座席配置情報に追加し、セッションに追加
+            SeatingArrangements seatingArrangements = (SeatingArrangements) session.getAttribute("SeatingArrangements");
+            seatingArrangements.setStartDate(startdate);
+            seatingArrangements.setEndDate(enddate);
+            seatingArrangements.setName(seatname);
+            session.setAttribute("SeatingArrangements", seatingArrangements);
+            System.out.println(seatingArrangements.getStartDate());
+            System.out.println(seatingArrangements.getEndDate());
+
+            // 「生徒座席一覧(studentSeatingArrList)」の情報を取得
+            List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
+            if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
+                studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
+            }
+            tourl = "/WEB-INF/seating/updateSeatingconfirm.jsp";
         }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/updateSeatingconfirm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }
