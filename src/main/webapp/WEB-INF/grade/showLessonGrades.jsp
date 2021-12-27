@@ -116,7 +116,7 @@ pageEncoding="UTF-8"%>
     <a href="./DeleteLessonInfo"><button align="center" name="regist_top">削除</button></a>
     <br>
       
-        <table>
+        <table style="">
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>
@@ -153,7 +153,7 @@ pageEncoding="UTF-8"%>
               
               <ul class="ddmenu1">
 
-                <li><a href="#" id="red">知識・技能 <%=></a>
+                <li><a href="#" id="red">知識・技能 </a>
                    <ul>
                      <li>
                     <select name="red">
