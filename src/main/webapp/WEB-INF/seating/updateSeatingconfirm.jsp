@@ -8,10 +8,10 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.*" %>
 <%@ page import="service.StudentService" %>
 <% User User = (User)session.getAttribute("User"); %>
-<% SeatingArrangements seatingArrangements = (SeatingArrangements)request.getAttribute("SeatingArrangements"); %>
-<% List<Student> StudentList = (ArrayList<Student>) request.getAttribute("StudentList"); %>
-<% ClassDef ClassDef = (ClassDef)request.getAttribute("ClassDef"); %>
-<% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) request.getAttribute("StudentSeatingArrList"); %>
+<% SeatingArrangements seatingArrangements = (SeatingArrangements)session.getAttribute("SeatingArrangements"); %>
+<% List<Student> StudentList = (ArrayList<Student>) session.getAttribute("StudentList"); %>
+<% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
+<% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -64,9 +64,11 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-      <a href="./manageSeatingTop"><button align="center" name="regist_top">座席配置一覧へ戻る</button></a>
-    <h1 align="center">座席配詳細閲覧</h1>
+    <h1 align="center">座席配置変更</h1>
     <br>
+
+    ・以下の情報で更新します<br>
+      <form action="./UpdateSeatingAll" method="post">
         <table>
           <%
           int j = 0;
@@ -83,25 +85,11 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br>
-        クラス：<%=seatingArrangements.getClassId() %>: <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        期間：<%=seatingArrangements.getStartDate() %>～
-        <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate(""); } %>
-        <%=seatingArrangements.getEndDate() %>
+        クラス：<%=seatingArrangements.getClassId() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
+        期間：<%=seatingArrangements.getStartDate() %>～<%=seatingArrangements.getEndDate() %>
         <Br>
-        席名：
-        <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
-        <%=seatingArrangements.getName()%>
-        <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
-
-        <form formmethod="POST" method="post">
-          <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  name="deleteSeating" value="座席配置削除" formaction="./DeleteSeating" />
-          <input type="submit" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>
-        </form>
-        <% } %>
-        <form action="./ResistGrade" method="post">
-        <input type="submit" value="授業評価作成" name="registGrade" />
+        席名：<%=seatingArrangements.getName()%>
+        <input type="submit" value="座席配置を登録" name="updateSeatingClass" />
         </form>
 
       <br />
@@ -116,11 +104,12 @@ pageEncoding="UTF-8"%>
                     Student setStudent = StudentService.searchStudent(student);
                     //TODO : 数値じゃないので応急措置(今後変える)
                     //if(setStudent.getStudent_gender().equals("男")){
-                    //  setStudent.setStudent_gender("1");
+                     // setStudent.setStudent_gender("1");
                     //}else if(setStudent.getStudent_gender().equals("その他")){
                     //  setStudent.setStudent_gender("3");
                     //}else if(setStudent.getStudent_gender().equals("女")){
-                    //  setStudent.setStudent_gender("2");}
+                    //  setStudent.setStudent_gender("2");
+                    //}
                     if(setStudent.getStudent_gender() == 1){//男
                     %>
                     <script>
@@ -151,5 +140,6 @@ pageEncoding="UTF-8"%>
                     %>
                     <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
+      <a href="./UpdateSeatingStudent"><button align="center" name="regist_top">入力画面へ戻る</button></a>
   </body>
 </html>

@@ -95,4 +95,30 @@ public class SeatingService {
         closeConnection(dao);
         return seatingArrangementsList;
     }
+
+    public SeatingArrangements updateSeatingArrangements(SeatingArrangements seatingArrangements) {
+        // 座席配置情報を更新・取得
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        SeatingArrangements SeatingArrangements = dao.updateSeatingArr(seatingArrangements, connection);
+        // dao に反映
+        closeConnection(dao);
+        return SeatingArrangements;
+    }
+
+    public void updateStudentSeatingArr(int SeatingArrangementsId, List<StudentSeatingArr> studentSeatingArrList) {
+        // 座席リストを更新（更新する座席配置IDの座席を削除した後、登録）
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        // 削除
+        dao.deleteStudentSeatingArr(SeatingArrangementsId, studentSeatingArrList, connection);
+        // 登録
+        for (int i = 0; i < studentSeatingArrList.size(); i++) {
+            dao.registStudentSeatingArr(studentSeatingArrList.get(i), connection);
+        }
+        // dao に反映
+        closeConnection(dao);
+    }
 }
