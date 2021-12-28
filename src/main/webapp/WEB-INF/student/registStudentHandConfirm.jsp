@@ -35,11 +35,11 @@
     </table>
     <br><br><br>
     <div class="right">
-      <input type="submit" value="登録" class="btn"  style="position:absolute; right:40;bottom: 50px;">
+      <input type="submit" value="登録" class="btn" id="btn_right">
     </div>
   </form>
   <form action="./GoRegistStudentTop" method="get">
-    <input type="submit" value="キャンセル" class="button_grey" style="position:absolute; left:40px; bottom: 50px;">
+    <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
   </form>
   <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->
     </body>

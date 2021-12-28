@@ -1,4 +1,4 @@
-.btn {/*決定などの操作ボタン？*/
+.btn {/*登録、確認など実行系のボタン*/
     border-radius: 5px;
     background-color: rgb(255, 218, 0);
     padding: 10px;
@@ -8,7 +8,7 @@
     width: 120px;
     height: 50px;
   }
-  .backbtn {/*戻るボタン？左上についている戻るボタン*/
+  .backbtn {/*戻るボタン 左上についている戻るボタン*/
     border-radius: 5px;
     background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
     padding: 10px;
@@ -20,16 +20,18 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
 
-  .backbtn2 {/*戻るボタン？完了画面の戻るボタン*/
+  .backbtn_middle {/*戻るボタン 完了画面の戻るボタン*/
     border-radius: 5px;
     background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
     padding: 10px;
-    position: absolute;/*relativeだったけどabsoluteにしました*/
+    /*position: absolute;/*relativeだったけどabsoluteにしました*/
     /*top: auto;
     left: 10px;*/
     text-decoration: none;
     color: black; /*周りが黒くならない*/
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-size: 20px;
+    margin: 20px;
   }
 
 .id{/*ユーザーIDの表示場所*/
@@ -81,9 +83,27 @@ div.right {
   margin: auto;
 }
 
-.green {/*ヘッダー緑*/
+.green {/*ヘッダー児童生徒*/
 	height: 100px;
 	background-color: #C1F6CD;
+  margin: auto;
+}
+
+.rightblue {/*ヘッダークラス*/
+	height: 100px;
+	background-color: #C1EAF6;
+  margin: auto;
+}
+
+.blue {/*ヘッダー座席配置*/
+	height: 100px;
+	background-color: #98D4E7;
+  margin: auto;
+}
+
+.darkblue {/*ヘッダー評価*/
+	height: 100px;
+	background-color: #0AA6D8;
   margin: auto;
 }
 
@@ -119,79 +139,87 @@ div.right {
   text-align: center;
 }
 
-#btn_stu {/*システムトップのボタン 使ってない*/
-  /*position: absolute;*/
+/*#btn_stu {/*システムトップのボタン 使ってない
+  position: absolute;
 width: 250px;
 height: 80px;
 left: 255px;
 top: 200px;
 font-size: 30px;
 margin: 20px;
-}
+}*/
 
-#btn_class {/*システムトップのボタン　使ってない*/
-  /*position: absolute;*/
+/*#btn_class {/*システムトップのボタン　使ってない
+  /*position: absolute;
 width: 250px;
 height: 80px;
 left: 860px;
 top: 307px;
 font-size: 33px;
-}
+}*/
 
-#btn_seat {/*システムトップのボタン 使ってない*/
-  /*position: absolute;*/
+/*#btn_seat {/*システムトップのボタン 使ってない
+  /*position: absolute;
   width: 250px;
 height: 80px;
 left: 255px;
 top: 523px;
 font-size: 30px;
-}
+}*/
 
-#btn_grade{/*システムトップのボタン　使ってない*/
-  /*position: absolute;*/
+/*#btn_grade{/*システムトップのボタン　使ってない
+  /*position: absolute;
   width: 250px;
 height: 80px;
 left: 864px;
 top: 527px;
-/*font-size: 25px;*/
-}
+/*font-size: 25px;
+}*/
 
-#btn_manastu {/*児童閲覧のボタン　使ってない*/
-  /*position: absolute;*/
-  /*display: inline-block;*/
+/*#btn_manastu {/*児童閲覧のボタン　使ってない
+  /*position: absolute;
+  /*display: inline-block;
   width: 700px;
 height: 100px;
 left: 130px;
 top: 180px;
 font-size: 30px;
-}
+}*/
 
-#btn_registu {/*児童登録のボタン 使ってない*/
-  /*position: absolute;*/
+/*#btn_registu {/*児童登録のボタン 使ってない
+  /*position: absolute;
   width: 400px;
 height: 100px;
 left: 400px;
 top: 700px;
 font-size: 30px;
-}
+}*/
 
-#btn_regihand {/*児童登録のボタン 使ってない*/
-  /*position: absolute;*/
-  
-font-size: 20px;
-}
-
-#btn_check {/*確認ボタン　複数のボタンに使用予定*/
+#btn_check {/*確認ボタン　複数のボタンに使用予定？*/
   /*position: absolute;*/
   width: 100px;
   height: 50px;
   font-size: 20px;
 }
 
-#btn_regi {/*登録ボタン　右下に置く　複数のボタンに使用予定*/
+#btn_regi {/*登録ボタン　右下に置く　複数のボタンに使用予定？*/
   position: absolute;
   width: 120px;
   height: 50px;
   right: 40px;
+  font-size: 20px;
+}
+
+#btn_left{ /*左下のキャンセル系ボタン*/
+  position:absolute; 
+  left:40px; 
+  bottom: 50px; 
+  font-size: 20px;
+}
+
+#btn_right{ /*右下の確定系ボタン*/
+  position:absolute; 
+  right:40px; 
+  bottom: 50px; 
   font-size: 20px;
 }
