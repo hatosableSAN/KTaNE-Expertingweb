@@ -16,6 +16,5 @@ pageEncoding="UTF-8"%>
       <input type="submit" value="児童・生徒登録へ戻る" class="backbtn_middle">
       </div>
     </form>
-    <!--a href="./student/registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録へ戻る</button></a-->
   </body>
 </html>
