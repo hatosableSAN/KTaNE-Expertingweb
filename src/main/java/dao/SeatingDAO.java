@@ -250,17 +250,39 @@ public class SeatingDAO extends DriverAccessor {
         }
     }
 
-    public void deleteStudentSeatingArr(int SeatingArrangementsId, List<StudentSeatingArr> studentSeatingArrList,
+    public void deleteStudentSeatingArr(int SeatingArrangementsId, int studentSeatingArrListsize,
             Connection connection) {
         // 座席から特定の座席配置IDのものを削除
         try {
             // SQLコマンド
-            String sql = "delete FROM students_seating_arrangements where seating_arrangement_id=? LIMIt ?";
+            String sql = "delete FROM students_seating_arrangements where seating_arrangement_id=? LIMIT ?";
             // SQLコマンドの実行
             PreparedStatement stmt = connection.prepareStatement(sql);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setInt(1, SeatingArrangementsId);
-            stmt.setInt(2, studentSeatingArrList.size());
+            stmt.setInt(2, studentSeatingArrListsize);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+
+        } catch (
+
+        SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+        } finally {
+        }
+    }
+
+    public void deleteSeatingArrangement(int SeatingArrangementsId, Connection connection) {
+        // 座席から特定の座席配置IDのものを削除
+        try {
+            // SQLコマンド
+            String sql = "delete FROM seating_arrangements where id=? LIMIT 1";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, SeatingArrangementsId);
             System.out.println(stmt);
             stmt.executeUpdate();
             stmt.close();

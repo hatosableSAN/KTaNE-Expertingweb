@@ -113,11 +113,24 @@ public class SeatingService {
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
         // 削除
-        dao.deleteStudentSeatingArr(SeatingArrangementsId, studentSeatingArrList, connection);
+        dao.deleteStudentSeatingArr(SeatingArrangementsId, studentSeatingArrList.size(), connection);
         // 登録
         for (int i = 0; i < studentSeatingArrList.size(); i++) {
             dao.registStudentSeatingArr(studentSeatingArrList.get(i), connection);
         }
+        // dao に反映
+        closeConnection(dao);
+    }
+
+    public void deleteseating(int SeatingArrangementsId, int maxsize) {
+        // 座席配置削除
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        // 座席削除
+        dao.deleteStudentSeatingArr(SeatingArrangementsId, maxsize, connection);
+        // 座席配置削除
+        dao.deleteSeatingArrangement(SeatingArrangementsId, connection);
         // dao に反映
         closeConnection(dao);
     }

@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置更新</h1>
+    <h1 align="center">座席配置変更</h1>
     <br>
 
     ・座席を選択し、児童・生徒の座席を作成してください。<br>

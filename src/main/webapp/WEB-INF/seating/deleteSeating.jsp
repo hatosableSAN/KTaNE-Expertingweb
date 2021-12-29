@@ -64,8 +64,9 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-      <a href="./manageSeatingTop"><button align="center" name="regist_top">座席配置一覧へ戻る</button></a>
-    <h1 align="center">座席配詳細閲覧</h1>
+      <%-- <a href="./manageSeatingTop"><button align="center" name="regist_top">座席配置一覧へ戻る</button></a> --%>
+    <h1 align="center">座席配置削除</h1>
+    <font color="red">以下の座席配置を削除します</font>
     <br>
         <table>
           <%
@@ -94,15 +95,12 @@ pageEncoding="UTF-8"%>
         <%=seatingArrangements.getName()%>
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
 
-        <form formmethod="POST" method="post">
+        <form>
           <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" />
-          <input type="submit" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>
+          <input type="submit"  name="deleteSeating" value="削除" formaction="./DeleteSeating"  formmethod="POST" />
+          <input type="submit" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="GET" />
         </form>
         <% } %>
-        <form action="./ResistGrade" method="post">
-        <input type="submit" value="授業評価作成" name="registGrade" />
-        </form>
 
       <br />
 

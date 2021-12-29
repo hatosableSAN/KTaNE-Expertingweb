@@ -64,7 +64,7 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置変更</h1>
+    <h1 align="center">座席配置変更確認</h1>
     <br>
 
     ・以下の情報で更新します<br>

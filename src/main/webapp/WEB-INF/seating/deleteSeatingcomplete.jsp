@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <html>
   <body>
     <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">座席配置の変更が完了しました</h1>
+    <h1 align="center">座席配置を削除しました</h1>
     <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>
