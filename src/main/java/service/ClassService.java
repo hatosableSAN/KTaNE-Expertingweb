@@ -181,13 +181,15 @@ public class ClassService {
         memberDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
 
-        this.connection = classDAO.createConnection();
-        // クラス削除
-        result = classDAO.deleteClass(classDef, connection);
-        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
-        this.connection = null;// コネクションオブジェクトを破棄する
-        return result;
+        if (result) {
+            this.connection = classDAO.createConnection();
+            // クラス削除
+            result = classDAO.deleteClass(classDef, connection);
+            classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+            this.connection = null;// コネクションオブジェクトを破棄する
 
+        }
+        return result;
     }
 
     /*

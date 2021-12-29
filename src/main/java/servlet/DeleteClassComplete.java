@@ -81,11 +81,14 @@ public class DeleteClassComplete extends HttpServlet {
         ClassDef = ClassService.searchClass(ClassDef);
 
         // クラスを削除する
-        ClassService.deleteClass(ClassDef);
-
-        request.setAttribute("ClassDef", ClassDef);
-        request.setAttribute("List", StudentList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/deleteClassComplete.jsp");
+        boolean result = ClassService.deleteClass(ClassDef);
+        String tourl = null;
+        if (result) {
+            tourl = "/WEB-INF/classes/deleteClassComplete.jsp";
+        } else {
+            tourl = "/WEB-INF/classes/deleteClassError.jsp";
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }
