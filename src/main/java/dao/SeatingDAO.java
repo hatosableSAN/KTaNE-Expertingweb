@@ -16,7 +16,7 @@ public class SeatingDAO extends DriverAccessor {
         // 座席を1つ登録する
         try {
             // SQLコマンド
-            String sql = "insert into students_seating_arrangements (seating_arrangement_id,student_id,seat) values(?, ?, ?)";
+            String sql = "insert into students_seating_arrangements (seating_arrangements_id,student_id,seat) values(?, ?, ?)";
             // SQLコマンドの実行
             PreparedStatement stmt = connection.prepareStatement(sql);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
@@ -94,7 +94,7 @@ public class SeatingDAO extends DriverAccessor {
     public List<StudentSeatingArr> findStudentSeatingArrList(SeatingArrangements SeatingArrangements,
             Connection connection) {
         // 特定座席配置Idの全座席情報を取得して返す
-        String sql = "select * from students_seating_arrangements where seating_arrangement_id = ?";
+        String sql = "select * from students_seating_arrangements where seating_arrangements_id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, SeatingArrangements.getId());
@@ -104,7 +104,7 @@ public class SeatingDAO extends DriverAccessor {
             while (rs.next()) {
                 StudentSeatingArr StudentSeatingArr = new StudentSeatingArr();
                 StudentSeatingArr.setId(rs.getInt("id"));
-                StudentSeatingArr.setSeatingArrangementId(rs.getInt("seating_arrangement_id"));
+                StudentSeatingArr.setSeatingArrangementId(rs.getInt("seating_arrangements_id"));
                 StudentSeatingArr.setStudentId(rs.getString("student_id"));
                 StudentSeatingArr.setSeat(rs.getInt("seat"));
                 StudentSeatingArrList.add(StudentSeatingArr);
@@ -255,7 +255,7 @@ public class SeatingDAO extends DriverAccessor {
         // 座席から特定の座席配置IDのものを削除
         try {
             // SQLコマンド
-            String sql = "delete FROM students_seating_arrangements where seating_arrangement_id=? LIMIT ?";
+            String sql = "delete FROM students_seating_arrangements where seating_arrangements_id=? LIMIT ?";
             // SQLコマンドの実行
             PreparedStatement stmt = connection.prepareStatement(sql);
             // SQLコマンドのクエッションマークに値を、1番目から代入する

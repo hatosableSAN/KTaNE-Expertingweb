@@ -89,8 +89,12 @@ pageEncoding="UTF-8"%>
         <% if(otherSeatingArrangementsList.size() > 0) {
             for(SeatingArrangements SeatingArrangements : otherSeatingArrangementsList ){ %>
             <tr>
-
-              <td><%=SeatingArrangements.getClassId()%></td>
+              <td>
+              <% ClassService ClassService = new ClassService();
+                    ClassDef classdef = new ClassDef();
+                    classdef.setClass_id(SeatingArrangements.getClassId());
+                    classdef = ClassService.searchClass(classdef); %>
+              <%=classdef.getClass_name()%></td>
               <%-- TODO:IDじゃなくてクラス名で表示する --%>
               <td><%=SeatingArrangements.getStartDate()%>~
               <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate(""); } %>
