@@ -63,25 +63,46 @@ public class ManageStudent extends HttpServlet {
             response.setContentType("text/html; charset=UTF-8");
             System.out.println("here");
             PrintWriter out = response.getWriter();
-            out.println("<html><head></head>");
-            //ここにstyleあった
+            out.print("<html><head><link rel='stylesheet' href='${pagecontext.request.contextpath}/se21g1/style.css' type='text/css'></head>");
+            //out.print(pagecontext.request.contextpath);
+            //out.print("/se21g1/style.css type='text/css'></head>");
+            //cssファイル見つからないと言われてしまう
             out.println("<style>");
             out.println(".student{");
             out.println("width:900px;");
-            out.println("height:230px;");
+            out.println("height:350px;");
             out.println("border:1px solid #000;");
             out.println("overflow-y:scroll;");
             out.println("text-align:center;");
+            out.println("margin:0 auto; }");
+            out.println("#bar{");
+            out.println("background-color:#F8AB74;}"); //表の上のオレンジ部分
+            out.println(".green{");
+            out.println("background-color:#C1F6CD;}"); //ヘッダーの緑
+            out.println("height:100px;");
+            out.println("margin:auto;}");
+            out.println(".button{");
+            //out.println("box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);");
+            out.println("padding: 10px;");
+            out.println("border-radius: 0px;");
+            out.println("text-decoration: none;}");
+            out.println("#blue{");
+            out.println("background: #B6D8FF;}");
+            out.println("#grey{");
+            out.println("background: #C4C4C4;");
+            out.println("color:red;");
             out.println("}</style><body>");
-            out.print("<p align='right'>ユーザーID ");
+            out.println("<div class='green'>");
+            out.print("<p align='right'>ユーザーID　");
             out.print(user_id);
             out.print("</p>");
             //out.println("<p align='right'>ID ${User.id}</p>");
             out.println("<h1 align='center'>児童・生徒一覧</h1>");
+            out.println("</div>");
             //out.println("<form action='./ManageStudentDetail' method='post'>");
             out.println("<div class='student'>");
             out.println("<table align='center'>");
-            out.println("<tr><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
+            out.println("<tr id='bar'><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
             for(int i=0;i<list.size();i++){
                 //System.out.println("in for");
                 Student studentinfo = list.get(i);
@@ -100,16 +121,15 @@ public class ManageStudent extends HttpServlet {
                 }else{
                     out.print("その他");
                 }
-                //out.print(studentinfo.getStudent_gender());
                 out.println("</td>");
                 out.print("<td>");
                 out.print(studentinfo.getStudent_user());
                 out.print("</td>");
-                if(studentinfo.getStudent_user().equals(user_id)){//本当はセッションで持ってきたかったけど無理だった→できそう
+                if(studentinfo.getStudent_user().equals(user_id)){
                 //System.out.println("in if");
                     out.println("<form action='./UpdateStudent' method='post'>");
                     out.print("<td>");
-                    out.print("<input type='submit' name='student_update' value='変更'>");
+                    out.print("<input type='submit' name='student_update' value='変更' class='button' id='blue'>");
                     out.print("<input type='hidden' name='update_hidden' value=");
                     out.print(studentinfo.getStudent_id());
                     out.print(">");
@@ -117,7 +137,7 @@ public class ManageStudent extends HttpServlet {
                     out.print("</td>");
                     out.println("<form action='./DeleteStudent' method='post'>");
                     out.print("<td>");
-                    out.print("<input type='submit'/ name='student_delete' value='削除'>");
+                    out.print("<input type='submit'/ name='student_delete' value='削除' class='button' id='grey'>");
                     out.print("<input type='hidden'/ name='delete_hidden' value=");
                     out.print(studentinfo.getStudent_id());
                     out.print(">");
@@ -132,7 +152,7 @@ public class ManageStudent extends HttpServlet {
             out.println("</table>");
             out.println("</div></form><br>");
             out.println("<form action='./GoStudentTop' method='get'>");
-            out.println("<input type='submit' value='児童・生徒メニュートップへ戻る' class='button-red'></form>");
+            out.println("<input type='submit' value='児童・生徒メニュートップへ戻る' class='backbtn'></form>");
             //out.println()</form>"
             out.println("</body>");
             out.println("</html>");
