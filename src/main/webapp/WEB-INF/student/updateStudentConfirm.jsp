@@ -36,7 +36,7 @@
       </tr>
     </table>
     <div>
-      <input type="submit" value="変更を確定" class="button" id="btn_right">
+      <input type="submit" value="変更を確定" class="btn" id="btn_right">
     </div>
   </form>
   <form action="./ManageStudent" method="post">
