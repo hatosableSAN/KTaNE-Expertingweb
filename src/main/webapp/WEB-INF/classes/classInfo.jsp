@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 <%
     List<Student> list=(List<Student>) request.getAttribute("List");
     ClassDef ClassDef =(ClassDef) request.getAttribute("ClassDef");
-
+    boolean Candelete = (boolean)request.getAttribute("Candelete");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -61,15 +61,16 @@ pageEncoding="UTF-8"%>
         </table>
         </div>
         <% if(ClassDef.getClass_user().equals(User.getId())){ %>
-        <form action="./UpdateClass" method="post">
-          <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-          <input type="submit" value="クラス変更" name="hand" />
-        </form>
-        <form action="./DeleteClass" method="post">
-          <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-          <input type="submit" value="クラス削除" name="hand" />
-        </form>
-         <% } %>
+          <form action="./UpdateClass" method="post">
+            <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+            <input type="submit" value="クラス変更" name="hand" />
+          </form>
+          <% if(Candelete){ %>
+          <form action="./DeleteClass" method="post">
+            <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+            <input type="submit" value="クラス削除" name="hand" />
+          </form>
+        <% } } %>
       <br />
   </body>
 </html>

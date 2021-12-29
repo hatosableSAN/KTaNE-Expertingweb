@@ -80,6 +80,18 @@ public class ClassTop extends HttpServlet {
         ClassDef = ClassService.searchClass(ClassDef);
         request.setAttribute("ClassDef", ClassDef);
         request.setAttribute("List", StudentList);
+
+        // seatingsserviceobjectの作成
+        SeatingService seatingService = new SeatingService();
+        List<SeatingArrangements> seatingArrangementsList = seatingService.getSeatingArrangements(ClassDef);
+
+        // クラスに座席配置情報が登録されているかどうか調べ、していたらCandeleteにtrue
+        boolean Candelete = false;
+        if (seatingArrangementsList.size() == 0) {
+            Candelete = true;
+        }
+        request.setAttribute("Candelete", Candelete);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/classInfo.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
