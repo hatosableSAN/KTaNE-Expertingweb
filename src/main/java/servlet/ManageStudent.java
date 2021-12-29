@@ -88,6 +88,16 @@ public class ManageStudent extends HttpServlet {
             out.println("text-decoration: none;}");
             out.println("#blue{");
             out.println("background: #B6D8FF;}");
+            out.println(".backbtn{");//一覧に戻るボタン
+            out.println("border-radius: 5px;");
+            out.println("background: #FFF4CB;");
+            out.println("padding: 10px;");
+            out.println("position: absolute;");
+            out.println("top:20px;");
+            out.println("left:10px");
+            out.println("text-decoration: none;");
+            out.println("color: black;");
+            out.println("filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));}");
             out.println("#grey{");
             out.println("background: #C4C4C4;");
             out.println("color:red;");
