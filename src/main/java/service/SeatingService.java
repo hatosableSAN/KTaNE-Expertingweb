@@ -122,16 +122,20 @@ public class SeatingService {
         closeConnection(dao);
     }
 
-    public void deleteseating(int SeatingArrangementsId, int maxsize) {
+    public boolean deleteseating(int SeatingArrangementsId, int maxsize) {
         // 座席配置削除
+        boolean result = false;
         // DAOオブジェクト生成
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
         // 座席削除
-        dao.deleteStudentSeatingArr(SeatingArrangementsId, maxsize, connection);
+        result = dao.deleteStudentSeatingArr(SeatingArrangementsId, maxsize, connection);
         // 座席配置削除
-        dao.deleteSeatingArrangement(SeatingArrangementsId, connection);
+        if (result) {
+            result = dao.deleteSeatingArrangement(SeatingArrangementsId, connection);
+        }
         // dao に反映
         closeConnection(dao);
+        return result;
     }
 }

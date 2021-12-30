@@ -91,14 +91,17 @@ public class DeleteSeating extends HttpServlet {
         List<StudentSeatingArr> StudentSeatingArrList = seatingService.getStudentSeatingArrList(seatingArrangements);
 
         // 座席配置の削除
-        seatingService.deleteseating(seatingId, StudentList.size());
+        boolean result = seatingService.deleteseating(seatingId, StudentList.size());
+        System.out.println(result);
+        String tourl = null;
+        if (result) {
+            tourl = "/WEB-INF/seating/deleteSeatingcomplete.jsp";
+        } else {
+            tourl = "/WEB-INF/seating/deleteSeatingError.jsp";
 
-        // request.setAttribute("SeatingArrangements", seatingArrangements);
-        // request.setAttribute("StudentList", StudentList);
-        // request.setAttribute("ClassDef", ClassDef);
-        // request.setAttribute("StudentSeatingArrList", StudentSeatingArrList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/deleteSeatingcomplete.jsp");
+        }
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+        RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
         dispatcher.forward(request, response);
     }
 

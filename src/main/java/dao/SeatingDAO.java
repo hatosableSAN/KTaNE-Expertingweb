@@ -250,7 +250,7 @@ public class SeatingDAO extends DriverAccessor {
         }
     }
 
-    public void deleteStudentSeatingArr(int SeatingArrangementsId, int studentSeatingArrListsize,
+    public boolean deleteStudentSeatingArr(int SeatingArrangementsId, int studentSeatingArrListsize,
             Connection connection) {
         // 座席から特定の座席配置IDのものを削除
         try {
@@ -264,17 +264,19 @@ public class SeatingDAO extends DriverAccessor {
             System.out.println(stmt);
             stmt.executeUpdate();
             stmt.close();
+            return true;
 
         } catch (
 
         SQLException e) {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
+            return false;
         } finally {
         }
     }
 
-    public void deleteSeatingArrangement(int SeatingArrangementsId, Connection connection) {
+    public boolean deleteSeatingArrangement(int SeatingArrangementsId, Connection connection) {
         // 座席から特定の座席配置IDのものを削除
         try {
             // SQLコマンド
@@ -286,12 +288,12 @@ public class SeatingDAO extends DriverAccessor {
             System.out.println(stmt);
             stmt.executeUpdate();
             stmt.close();
+            return true;
 
-        } catch (
-
-        SQLException e) {
+        } catch (SQLException e) {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
+            return false;
         } finally {
         }
     }
