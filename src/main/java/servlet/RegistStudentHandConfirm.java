@@ -73,15 +73,21 @@ public class RegistStudentHandConfirm extends HttpServlet {
                           break;
             }*/
             Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
+            boolean result = service.checkStudent(stu_id);
+            System.out.println("after boolean checkstudent and "+result);
+            if(result==false){ //そのidで登録できない
+                System.out.println("already used this stuid");
+                tourl = "/WEB-INF/student/registStudentFail.jsp";
+            }else{
 
-            // 登録
-            service.registStudent(student);
+             // trueだったのでそのidで登録出来る
+             service.registStudent(student);
 
-            // 成功画面を表示する
-            // System.out.println("OK牧場");
-            //response.sendRedirect("/TableTennis/RegistInfo");
-            tourl = "/WEB-INF/student/registStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
-        
+             // 成功画面を表示する
+             // System.out.println("OK牧場");
+             //response.sendRedirect("/TableTennis/RegistInfo");
+             tourl = "/WEB-INF/student/registStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
+            }
 
         getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
 
