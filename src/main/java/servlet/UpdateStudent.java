@@ -65,14 +65,13 @@ public class UpdateStudent extends HttpServlet {
             User user = (User)session.getAttribute("User");
             PrintWriter out = response.getWriter();
             out.println("<html><head></head>");
-
             out.println("<style>");
             out.println(".green{");
-            out.println("background-color:#C1F6CD;}"); //ヘッダーの緑
+            out.println("background-color:#C1F6CD;"); //ヘッダーの緑
             out.println("height:100px;");
             out.println("margin:auto;}");
             out.println(".btn{");//変更ボタン
-            out.println("background-color:rgb(255, 218, 0);");
+            out.println("background-color:#FFC700;");
             out.println("width:120px;");
             out.println("height:50px;");
             out.println("padding: 10px;");
@@ -89,8 +88,8 @@ public class UpdateStudent extends HttpServlet {
             out.println("top:20px;");
             out.println("left:10px");
             out.println("text-decoration: none;");
-            out.println("color: black;");
-            out.println("filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));}");
+            out.println("filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));");
+            out.println("color: black;}");
             out.println("</style><body>");
             //out.println("<body>");
             out.println("<div class='green'>");
@@ -100,7 +99,7 @@ public class UpdateStudent extends HttpServlet {
             out.println("<h1 align='center'>児童・生徒情報変更</h1></div>");
             out.println("<form action='./UpdateStudentCheck' method='post'>");
             out.println("<table align='center'>");
-            out.println("<tr><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
+            out.println("<tr><th>番号　　　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　　　　　</th><th>性別　　　　　　　　</th><th>登録者　　　　　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
             out.print("<tr><td>");
             out.print(student.getStudent_id());
             out.print("<input type='hidden' name='stu_id' value=");
@@ -133,7 +132,7 @@ public class UpdateStudent extends HttpServlet {
             out.print("</td><input type='hidden' name='stu_user' value=");
             out.print(student.getStudent_user());
             out.print("></td></table>");
-            out.println("<div class='center'><input type='submit' name='student_update' value='変更' class='btn'></div>");
+            out.println("<div class='center'><input type='submit' name='student_update' value='変更' class='btn' style='font-size:20px;'></div>");
             //out.println("</div></form>");
             out.println("</form>");
             out.println("<form action='./ManageStudent' method='post'>");
