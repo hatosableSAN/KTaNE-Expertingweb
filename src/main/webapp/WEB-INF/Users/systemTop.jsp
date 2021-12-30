@@ -8,7 +8,9 @@ pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="right">ID ${User.id}</p><h2 style="text-align:center">児童・生徒評価システムトップ</h2></div>
+    <div class="darkgray"><p align="left"><a href="/se21g1/CheckLogout" class="backbtn">ログアウト</a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+      ユーザーID ${User.id}</p>
+    <h2 style="text-align:center">システムトップ</h2></div><br/>
     <br/><br/><br/><br/>
     <p align="center">
     <button>
