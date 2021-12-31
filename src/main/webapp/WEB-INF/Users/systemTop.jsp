@@ -27,9 +27,7 @@ pageEncoding="UTF-8"%>
       </button><br/><br/><br/><br/><br/>
 
 
-      <button>
-        <big><b>システムマニュアル</b></big>
-      </button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+      <a href="/se21g1/Manual" class="btn">システムマニュアル</a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
       <a href="/se21g1/UpdateUser" class="btn">パスワード変更</a>
     </p>
 
