@@ -5,7 +5,7 @@
     text-decoration: none;
     /*color: black;*/
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    width: 120px;
+    /*width: 120px;*/
     height: 50px;
   }
   .backbtn {/*戻るボタン？左上についている戻るボタン*/
@@ -30,6 +30,31 @@
     text-decoration: none;
     color: black; /*周りが黒くならない*/
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  .backbtn3 {/*戻るボタン？完了画面の戻るボタン　位置が固定されていない*/
+    border-radius: 5px;
+    background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
+    padding: 10px;
+    /*position: relative;/*relativeだったけどabsoluteにしました*/
+    /*top: auto;
+    left: 10px;*/
+    text-decoration: none;
+    color: black; /*周りが黒くならない*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  .backbutton{/*システムトップのボタン　色と影*/
+    background: #FFF4CB;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    /*margin: 20px;*/
+    /*width: 321px;
+    height: 113px;
+    left: 255px;
+    top: 307px;*/
   }
 
 .id{/*ユーザーIDの表示場所*/
@@ -84,6 +109,12 @@ div.right {
 .green {/*ヘッダー緑*/
 	height: 100px;
 	background-color: #C1F6CD;
+  margin: auto;
+}
+
+.skyblue {/*ヘッダー水色*/
+	height: 100px;
+	background-color: #92e2f7;
   margin: auto;
 }
 

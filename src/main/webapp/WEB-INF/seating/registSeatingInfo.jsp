@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -54,22 +54,28 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
       }
 
     </style>
+
+<link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <div class="skyblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置新規作成</h1>
+    </div>
+    <a href="./RegistSeatingStudent"><button align="center" class="backbtn" name="regist_top">座席配置画面へ戻る</button></a>
     <br>
 
     ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
       <form action="./RegistSeatingInfo" method="post">
-        <table>
+        <table align="center">
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>
@@ -85,14 +91,15 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
+        <p align="right">
         クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<input type="date" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
         ～
         <input type="date" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
-        席名：<input type="text" name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
+        席名：<input type="text" name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>　　　　　　　 <br/>
 
-        <input type="submit" value="座席配置登録" name="registSeatingClass" />
+        <input type="submit" value="座席配置登録" class="btn" name="registSeatingClass" />　　　</p>
         </form>
 
       <br />
@@ -143,6 +150,5 @@ pageEncoding="UTF-8"%>
                     %>
                     <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
-      <a href="./RegistSeatingStudent"><button align="center" name="regist_top">座席配置画面へ戻る</button></a>
   </body>
 </html>

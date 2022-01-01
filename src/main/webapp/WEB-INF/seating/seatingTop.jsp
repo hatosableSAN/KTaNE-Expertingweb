@@ -5,13 +5,19 @@ pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <p align="right">ID: ${User.id}</p>
-    <div class="darkgray"><h2 style="text-align:center">座席配置メニュートップ</h2></div>
+  <head>
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+  </head>
+  <body>
+    <div class="skyblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置メニュートップ</h1>
+    </div>
+    <a href="./SystemTop" class="backbtn">トップへ戻る</a>
     <br/><br/><br/><br/>
     <p align="center">
-    <a href="./manageSeatingTop.jsp"><button align="center" name="manage_sea">登録済みの座席配置の閲覧・管理</button></a><br><Br>
-    <a href="./RegistSeatingClass"><button text-align="center" name="regist_seating">座席配置新規登録</button></a>
+    <a href="./manageSeatingTop.jsp"><button align="center" class = "button" name="manage_sea" style=" width:500px; height:80px; font-size: 30px;">登録済みの座席配置の閲覧・管理</button></a><br><Br>
+    <a href="./RegistSeatingClass"><button text-align="center" class = "button" name="regist_seating" style=" width:500px; height:80px; font-size: 30px;">座席配置新規登録</button></a>
     <br><Br>
-    <a href="./SystemTop"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
   </body>
 </html>

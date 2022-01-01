@@ -61,15 +61,20 @@ pageEncoding="UTF-8"%>
       }
 
     </style>
+<link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <div class="skyblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置新規作成</h1>
+    </div>
+    <a href="./RegistSeatingInfo"><button align="center" class="backbtn" name="regist_top">入力画面へ戻る</button></a>
     <br>
 
     ・以下の情報で登録します<br>
       <form action="./RegistSeatingAll" method="post">
-        <table>
+        <table align="center">
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>
@@ -85,12 +90,12 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br>
+        <p align="right">
         クラス：<%=seatingArrangements.getClassId() %>: <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～<%=seatingArrangements.getEndDate() %>
         <Br>
-        席名：<%=seatingArrangements.getName()%>
-        <input type="submit" value="座席配置を登録" name="registSeatingClass" />
-        </form>
+        席名：<%=seatingArrangements.getName()%><br/>
+        <input type="submit" class = "btn" value="座席配置を登録"
 
       <br />
 
@@ -140,6 +145,5 @@ pageEncoding="UTF-8"%>
                     %>
                     <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
-      <a href="./RegistSeatingInfo"><button align="center" name="regist_top">入力画面へ戻る</button></a>
   </body>
 </html>
