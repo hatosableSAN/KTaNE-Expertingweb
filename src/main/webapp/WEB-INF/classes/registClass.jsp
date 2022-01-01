@@ -62,8 +62,8 @@ pageEncoding="UTF-8"%>
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
-            <button text-align="center" name="regist_class">検索実行</button>
-            <button text-align="center" name="regist_class">一覧表示</button>
+            <button text-align="center" name="search_stu" value="search">検索実行</button>
+            <button text-align="center" name="search_stu" value="all">一覧表示</button>
         </form>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
