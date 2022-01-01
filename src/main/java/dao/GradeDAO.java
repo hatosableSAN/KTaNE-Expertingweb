@@ -422,6 +422,27 @@ public class GradeDAO extends DriverAccessor {
 
     } 
     }
+
+    public void deleteLessonInfo(int id, Connection connection) {
+        try{
+            String sql = " delete from lessons where id = ?";
+                // 最新のID取得
+                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+                // SQLコマンドのクエッションマークに値を、1番目から代入する
+    
+                stmt.setInt(1, id);
+                stmt.executeUpdate();
+            
+                stmt.close();
+                
+         }catch (SQLException e) {
+    
+                    // エラーが発生した場合、エラーの原因を出力する
+                    e.printStackTrace();
+        
+                } finally {
+                }
+    }
 }
 
     // }

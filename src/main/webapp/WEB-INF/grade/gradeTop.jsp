@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <p align="right">ID: ${User.id}</p>
+  <p align="right">ユーザーID ${User.id}</p>
     <div class="darkgray"><h2 style="text-align:center">評価メニュートップ</h2></div>
     <br/><br/><br/><br/>
     <p align="center">
