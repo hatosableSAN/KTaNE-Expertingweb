@@ -133,6 +133,14 @@ public class GradeService {
         dao.closeConnection(this.connection);
     }
 
+    public void UpdateLessonInfo(int id, String date, int periodnum, String comment) {
+        GradeDAO dao = new GradeDAO();
+        this.connection=dao.createConnection();
+        dao.updateLessonInfo(id,date,periodnum,comment,connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+    }
+
 
 
  

@@ -443,6 +443,30 @@ public class GradeDAO extends DriverAccessor {
                 } finally {
                 }
     }
+
+    public void updateLessonInfo(int id, String date, int periodnum, String comment, Connection connection) {
+        try{
+            String sql = " update lessons SET lesson_date=?,period_num=?,comment=? where id = ?";
+                // 最新のID取得
+                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+                // SQLコマンドのクエッションマークに値を、1番目から代入する
+    
+                stmt.setString(1, date);
+                stmt.setInt(2, periodnum);
+                stmt.setString(3, comment);
+                stmt.setInt(4, id);
+                stmt.executeUpdate();
+            
+                stmt.close();
+                
+         }catch (SQLException e) {
+    
+                    // エラーが発生した場合、エラーの原因を出力する
+                    e.printStackTrace();
+        
+                } finally {
+                }
+    }
 }
 
     // }
