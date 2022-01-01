@@ -13,9 +13,8 @@ pageEncoding="UTF-8"%>
     <h2 align="center">児童・生徒の登録が完了しました</h2>
     <form action="./GoRegistStudentTop" method="get">
       <div class="center">
-      <input type="submit" value="児童・生徒登録へ戻る" class="backbtn2">
+      <input type="submit" value="児童・生徒登録へ戻る" class="backbtn_middle">
       </div>
     </form>
-    <!--a href="./student/registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録へ戻る</button></a-->
   </body>
 </html>

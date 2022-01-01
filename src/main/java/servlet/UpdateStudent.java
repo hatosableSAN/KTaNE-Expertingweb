@@ -65,24 +65,41 @@ public class UpdateStudent extends HttpServlet {
             User user = (User)session.getAttribute("User");
             PrintWriter out = response.getWriter();
             out.println("<html><head></head>");
-            //ここにstyleあった
-            //out.println("<style>");
-            //out.println(".student{");
-            //out.println("width:900px;");
-            //out.println("height:230px;");
-            //out.println("border:1px solid #000;");
-            //out.println("overflow-y:scroll;");        
-            //out.println("}</style><body>");
-            out.println("<body>");
+            out.println("<style>");
+            out.println(".green{");
+            out.println("background-color:#C1F6CD;"); //ヘッダーの緑
+            out.println("height:100px;");
+            out.println("margin:auto;}");
+            out.println(".btn{");//変更ボタン
+            out.println("background-color:#FFC700;");
+            out.println("width:120px;");
+            out.println("height:50px;");
+            out.println("padding: 10px;");
+            out.println("border-radius: 5px;");
+            out.println("text-decoration: none;");
+            out.println("filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));}");
+            out.println("div.center{");//中心に置くclass
+            out.println("text-align: center;}");
+            out.println(".backbtn{");//一覧に戻るボタン
+            out.println("border-radius: 5px;");
+            out.println("background: #FFF4CB;");
+            out.println("padding: 10px;");
+            out.println("position: absolute;");
+            out.println("top:20px;");
+            out.println("left:10px");
+            out.println("text-decoration: none;");
+            out.println("filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));");
+            out.println("color: black;}");
+            out.println("</style><body>");
+            //out.println("<body>");
+            out.println("<div class='green'>");
             out.print("<p align='right'>ユーザーID　");
             out.print(user.getId());
             out.println("</p>");
-            //out.println("<p align='right'>ID ${User.id}</p>");
-            out.println("<h1 align='center'>児童・生徒情報変更</h1>");
+            out.println("<h1 align='center'>児童・生徒情報変更</h1></div>");
             out.println("<form action='./UpdateStudentCheck' method='post'>");
-            //out.println("<div class='student'>");
             out.println("<table align='center'>");
-            out.println("<tr><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
+            out.println("<tr><th>番号　　　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　　　　　</th><th>性別　　　　　　　　</th><th>登録者　　　　　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
             out.print("<tr><td>");
             out.print(student.getStudent_id());
             out.print("<input type='hidden' name='stu_id' value=");
@@ -90,7 +107,6 @@ public class UpdateStudent extends HttpServlet {
             out.print("></td><td><input type='text' name='stu_name' maxlength='20' minlength='1' pattern='^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]' value=");
             out.print(student.getStudent_name());
             out.print("></td><td>");
-            //out.print("></td><td><input type='text' name='stu_gender' placeholder=");
             switch(student.getStudent_gender()){
                 case 1: out.println("<select name='stu_gender'>");
                         out.println("<option value='1' selected>男</option>");
@@ -116,11 +132,11 @@ public class UpdateStudent extends HttpServlet {
             out.print("</td><input type='hidden' name='stu_user' value=");
             out.print(student.getStudent_user());
             out.print("></td></table>");
-            out.println("<input type='submit' name='student_update' value='変更'>");
+            out.println("<div class='center'><input type='submit' name='student_update' value='変更' class='btn' style='font-size:20px;'></div>");
             //out.println("</div></form>");
             out.println("</form>");
             out.println("<form action='./ManageStudent' method='post'>");
-            out.println("<input type='submit' value='キャンセル'></form>");
+            out.println("<input type='submit' value='キャンセル' class='backbtn'></form>");
             out.println("</body>");
             out.println("</html>");
             

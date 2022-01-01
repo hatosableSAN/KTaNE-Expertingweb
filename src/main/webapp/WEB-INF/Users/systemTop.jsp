@@ -12,19 +12,19 @@ pageEncoding="UTF-8"%>
       <p align="right" class="id">ユーザーID　${User.id}</p>
       <h1 style="text-align:center">児童・生徒評価システムトップ</h1>
     </div>
-    <br/><br/><br/><br/>
+    <br/><br/><br/>
     <p align="center">
-    <a href="./StudentTop"><button class="button" id="btn_stu">
+    <a href="./StudentTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
         児童生徒管理
       </button></a>
-      <a href="./ClassTop"><button class="button" id="btn_class">
+      <a href="./ClassTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
         クラス管理
       </button><!--br/><br/--><br/><br/>
-      <a href="./SeatingTop"><button class="button" id="btn_seat">
+      <a href="./SeatingTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
         座席配置管理
       </button></a>
-      <button class="button" id="btn_grade">
-        このボタンは<b><font color="red">サンプル</font></b>のため動作しません
+      <button class="button" style=" width:250px; height:80px; margin: 20px;">
+        このボタンは<font color="red">サンプル</font>のため動作しません
       </button>
     </p>
   </body>
