@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
                   その他
                 <% } %></td>
                 <td><%=s.getStudent_user() %></td>
-                <td><form action="./ShowStudentGrade" method="get">
+                <td><form action="./ShowStudentGrades" method="get">
                   <input type="hidden" name="studentid" value="<%=s.getStudent_id() %>">
                   <input type="submit" value="選択">
                   </form>
