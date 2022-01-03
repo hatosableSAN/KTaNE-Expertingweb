@@ -41,6 +41,7 @@ pageEncoding="UTF-8"%>
             <label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
             <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>
             <button text-align="center" name="search_seatingArr">検索実行</button></label>
+
         </form>
       <br />
     自身の作成した座席配置情報<br>
@@ -71,6 +72,7 @@ pageEncoding="UTF-8"%>
               <td>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
+
                 <input type="submit" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>
@@ -104,6 +106,7 @@ pageEncoding="UTF-8"%>
               <td>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
+
                 <input type="submit" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>

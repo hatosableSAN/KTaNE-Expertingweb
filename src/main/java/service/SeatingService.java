@@ -53,7 +53,6 @@ public class SeatingService {
         closeConnection(dao);
         return seatingArrangements;
     }
-
     public SeatingArrangements getSeatingArrangements(SeatingArrangements SeatingArrangements) {
         // 座席配置IDから座席配置を返す
         // DAOオブジェクト生成
@@ -75,6 +74,17 @@ public class SeatingService {
         closeConnection(dao);
         return StudentSeatingArrList;
     }
+  
+      public List<StudentSeatingArr> getStudentSeatingArrList(int seatid) {// 座席配置IDに含まれる全ての座席要素を取得
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<StudentSeatingArr> List=dao.getStudentSeatingArrList(seatid,connection);
+        // dao に反映
+        closeConnection(dao);
+
+        return List;
+    }
 
     public List<SeatingArrangements> getAllMySeatingArr(String UserId) {// 自身の作成した全ての座席配置を取得
         // DAOオブジェクト生成
@@ -95,6 +105,7 @@ public class SeatingService {
         closeConnection(dao);
         return seatingArrangementsList;
     }
+  
 
     public SeatingArrangements updateSeatingArrangements(SeatingArrangements seatingArrangements) {
         // 座席配置情報を更新・取得
@@ -137,5 +148,25 @@ public class SeatingService {
         // dao に反映
         closeConnection(dao);
         return result;
+    }
+    public List<SeatingArrangements> getSeatList() {
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<SeatingArrangements> List = dao.getSeatingList(connection);
+        // dao に反映
+        closeConnection(dao);
+        return List;
+    }
+
+    public SeatingArrangements searchSeatingArrangements(int id) {// 座席配置を登録・登録した座席配置を返す
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        SeatingArrangements seatingArrangements = dao.searchSeatingArrangements(id, connection);
+        // dao に反映
+        closeConnection(dao);
+        return seatingArrangements;
+    }
+
     }
 }

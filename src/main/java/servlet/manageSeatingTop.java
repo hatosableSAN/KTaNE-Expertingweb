@@ -66,12 +66,12 @@ public class manageSeatingTop extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 座席日配置詳細閲覧のためのPOST
         // requestオブジェクトの文字エンコーディングの設定
+
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("User");
-
         // 送信された座席配置Idを取得
         int seatingId = Integer.parseInt(request.getParameter("SeatingId"));
         SeatingArrangements seatingArrangements = new SeatingArrangements();
