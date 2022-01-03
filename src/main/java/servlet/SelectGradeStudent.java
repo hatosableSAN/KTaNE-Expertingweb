@@ -45,14 +45,13 @@ public class SelectGradeStudent extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
-        SeatingService Service = new SeatingService();
+        StudentService Service = new StudentService();
 
-        List<SeatingArrangements> SeatList=Service.getSeatList();
+        List<Student> StudentList=Service.getStudent();
 
-
-        request.setAttribute("SeatList", SeatList);
-        System.out.println(SeatList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectSeating.jsp");
+        request.setAttribute("StudentList", StudentList);
+        System.out.println(StudentList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectStudent.jsp");
 
         dispatcher.forward(request, response);
     }
@@ -60,16 +59,6 @@ public class SelectGradeStudent extends HttpServlet {
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまPost");
 
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
-    }
 
 }
