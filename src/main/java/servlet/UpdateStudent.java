@@ -136,7 +136,7 @@ public class UpdateStudent extends HttpServlet {
             //out.println("</div></form>");
             out.println("</form>");
             out.println("<form action='./ManageStudent' method='post'>");
-            out.println("<input type='submit' value='キャンセル' class='backbtn'></form>");
+            out.println("<input type='submit' value='児童生徒一覧へ戻る' class='backbtn'></form>");
             out.println("</body>");
             out.println("</html>");
             

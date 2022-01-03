@@ -51,8 +51,7 @@
     </div>
   </form>
   <form action="./ManageStudent" method="post">
-    <input type="submit" value="キャンセル" class="backbtn_middle">
+   <input type="submit" value="児童生徒一覧へ戻る" class="backbtn_middle">
   </form>
-  <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->
     </body>
 </html>

@@ -23,9 +23,9 @@ pageEncoding="UTF-8"%>
       <a href="./SeatingTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
         座席配置管理
       </button></a>
-      <button class="button" style=" width:250px; height:80px; margin: 20px;">
-        このボタンは<font color="red">サンプル</font>のため動作しません
-      </button>
+        <a href="./GradeTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
+        評価管理
+      </button></a>
     </p>
   </body>
 </html>

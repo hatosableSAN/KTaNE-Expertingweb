@@ -15,16 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-import beans.ClassDef; //beansに入れた方がいいのかしら
-import beans.Student;
-import beans.User;
 import service.StudentService;
 import service.ClassService;
+import service.GradeService;
 
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import utility.*;
+//beansに入れた方がいいのかしら
 import beans.*;
 
 //アノテーションの記述

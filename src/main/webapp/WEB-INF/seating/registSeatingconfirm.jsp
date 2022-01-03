@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.*" %>
 <%@ page import="service.StudentService" %>
 <% User User = (User)session.getAttribute("User"); %>
-<% SeatingArrangements seatingArrangements = (SeatingArrangements)request.getAttribute("SeatingArrangements"); %>
+<% SeatingArrangements seatingArrangements = (SeatingArrangements)session.getAttribute("SeatingArrangements"); %>
 <% List<Student> StudentList = (ArrayList<Student>) session.getAttribute("StudentList"); %>
 <% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
 <% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList"); %>
@@ -37,7 +37,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:red;
+        background-color:rgb(240, 134, 134);
         text-align:center;
       }
       .setseato {

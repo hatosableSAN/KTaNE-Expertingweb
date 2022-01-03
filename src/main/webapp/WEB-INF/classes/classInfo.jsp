@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 <%
     List<Student> list=(List<Student>) request.getAttribute("List");
     ClassDef ClassDef =(ClassDef) request.getAttribute("ClassDef");
-
+    boolean Candelete = (boolean)request.getAttribute("Candelete");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -67,15 +67,17 @@ pageEncoding="UTF-8"%>
 
         </table>
         </div>
-      </td></tr></table>
-        <form action="./UpdateClass" method="post">
-          <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-          <input type="submit" value="クラス変更" name="hand" class="button" style="position:absolute; bottom: 40px; right: 200px; font-size: 20px; width: 120px; height: 50px;">
-        </form>
-        <form action="./DeleteClass" method="post">
-          <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-          <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right">
-        </form>
+        <% if(ClassDef.getClass_user().equals(User.getId())){ %>
+          <form action="./UpdateClass" method="post">
+            <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+            <input type="submit" value="クラス変更" name="hand" class="button" style="position:absolute; bottom: 40px; right: 200px; font-size: 20px; width: 120px; height: 50px;"/>
+          </form>
+          <% if(Candelete){ %>
+          <form action="./DeleteClass" method="post">
+            <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+            <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right"/>
+          </form>
+        <% } } %>
       <br />
   </body>
 </html>

@@ -27,6 +27,7 @@ pageEncoding="UTF-8"%>
      <h1 align="center">クラス登録</h1>
     </div>
     <form action="./RegistClass" method="post">
+
       <table align="center">
         <tr><th>年度　</th><!--p align="right"--><!--/p-->
         <td><input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊　　　　　　　　　　　　　　　　</font><font color="red" align="right">＊は必須項目です。</font></td></tr>
@@ -62,7 +63,7 @@ pageEncoding="UTF-8"%>
 
         </table>
         </div>
-        </td></tr>
+        <h4><font color="red">クラス、年度は必須項目です</font></h4>
         <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
       </form>
       <tr><th>　</th>

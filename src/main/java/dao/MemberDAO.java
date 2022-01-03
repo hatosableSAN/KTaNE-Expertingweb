@@ -20,13 +20,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+//import beans.Student;
 //import model.*;
 import beans.*;
 
 import utility.DriverAccessor;
-
-//import beans.Student;
-import beans.ClassDef;
 
 public class MemberDAO extends DriverAccessor {
 
@@ -82,17 +81,17 @@ public class MemberDAO extends DriverAccessor {
         try {
 
             // SQLコマンド
-            //String sql1 = "select count(*) from classes";
+            // String sql1 = "select count(*) from classes";
             String sql = "insert into members (class_id,student_id) values(?, ?)";
 
             // SQLコマンドの実行
             // PreparedStatement stmt1 = connection.prepareStatement(sql1);
-            //Statement stmt1 = connection.createStatement();
-            //ResultSet rs = stmt1.executeQuery(sql1);// rsに結果が入っている
+            // Statement stmt1 = connection.createStatement();
+            // ResultSet rs = stmt1.executeQuery(sql1);// rsに結果が入っている
             PreparedStatement stmt = connection.prepareStatement(sql);
             // System.out.println(rs);
-            //rs.first();
-            //int count = rs.getInt(1);// 分からんけど1でcount値取得できた
+            // rs.first();
+            // int count = rs.getInt(1);// 分からんけど1でcount値取得できた
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setInt(1, class_id);
@@ -103,8 +102,8 @@ public class MemberDAO extends DriverAccessor {
             // stmt.setString(5, result.getTaikai_kekka());
 
             // stmt.executeUpdate();
-            //stmt1.close();
-            //rs.close();
+            // stmt1.close();
+            // rs.close();
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -279,6 +278,88 @@ public class MemberDAO extends DriverAccessor {
         }
     }
 
+    public List<Student> searchGrade(Grade classDef, Connection connection) {
+        return null;
+    }
+
     // }
+    public boolean updateMember(String student_member[], ClassDef classdef, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            String sql1 = "delete from members where class_id =" + classdef.getClass_id();
+            String sql2 = "insert into members (class_id,student_id) values(?, ?)";
+
+            // SQLコマンドの実行
+            PreparedStatement stmt1 = connection.prepareStatement(sql1);
+            System.out.println(stmt1);
+            stmt1.executeUpdate();// delete文実行？この方法でいいのかな～
+            // Statement stmt1 = connection.createStatement();
+            // ResultSet rs = stmt1.executeQuery(sql1);// rsに結果が入っている
+            for (int i = 0; i < student_member.length; i++) {
+                PreparedStatement stmt2 = connection.prepareStatement(sql2);
+                System.out.println(stmt2);
+                stmt2.setInt(1, classdef.getClass_id());
+                // int stu_gender = Integer.parseInt(student.getStudent_gender());
+                stmt2.setString(2, student_member[i]);
+                stmt2.executeUpdate();
+                stmt2.close();
+            }
+            // PreparedStatement stmt2 = connection.prepareStatement(sql2);
+            // System.out.println(stmt2);
+            // rs.first();
+            // int count = rs.getInt(1);// 分からんけど1でcount値取得できた
+
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            // stmt2.setInt(1, classdef.getClass_id());
+            // int stu_gender = Integer.parseInt(student.getStudent_gender());
+            // stmt2.setString(2, student_id);
+            // stmt.setString(3, classdef.getClass_user());
+            // stmt.setString(4, student.getStudent_user());
+            // stmt.setString(5, result.getTaikai_kekka());
+
+            // stmt.executeUpdate();
+            // stmt1.close();
+            // rs.close();
+            // stmt2.executeUpdate();
+            stmt1.close();
+            // stmt2.close();
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;
+
+        } finally {
+        }
+    }
+
+    public boolean deleteMember(ClassDef classdef, int maxsize, Connection connection) {
+        // クラスのメンバー削除
+        try {
+            // SQLコマンド
+            String sql = "delete from members where class_id=? LIMIT ?";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, classdef.getClass_id());
+            stmt.setInt(2, maxsize);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;
+
+        } finally {
+        }
+    }
 
 }
