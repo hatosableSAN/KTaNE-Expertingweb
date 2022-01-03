@@ -34,7 +34,7 @@ public class RegistGradeInfoConfirm extends HttpServlet {
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        request.setCharacterEncoding("UTF-8");
         
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGradeInfoConfirm.jsp");
