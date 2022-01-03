@@ -225,7 +225,7 @@ public class SeatingDAO extends DriverAccessor {
             while (rs.next()) {
                 StudentSeatingArr returnSb = new StudentSeatingArr();
                 returnSb.setId(rs.getInt("id"));
-                returnSb.setSeatingArrangementId(rs.getInt("seating_arrangements_id"))
+                returnSb.setSeatingArrangementId(rs.getInt("seating_arrangements_id"));
                 returnSb.setStudentId(rs.getString("student_id"));
                 returnSb.setSeat(rs.getInt("seat"));
                 List.add(returnSb);
