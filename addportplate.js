@@ -1,5 +1,5 @@
 $(document).on("click", ".add", function() {
-    $(this).parent().clone(false).insertAfter($(this).parent());
+    $("#originalport").insertAfter($(this).parent());
 });
 $(document).on("click", ".del", function() {
     var target = $(this).parent();
