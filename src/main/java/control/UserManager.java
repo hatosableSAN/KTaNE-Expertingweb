@@ -1,6 +1,7 @@
 //　自分が格納されているフォルダ名
 package control;
 
+import java.security.NoSuchAlgorithmException;
 //  自分が格納されているフォルダの外にある必要なクラス
 import java.sql.Connection;
 
@@ -18,7 +19,7 @@ public class UserManager {
 
     // 追加
     // 引数はUserオブジェクト
-    public void registUser(User user) {
+    public void registUser(User user) throws NoSuchAlgorithmException {
         System.out.println("Manager.registUser");
 
         // UserDAOオブジェクト生成

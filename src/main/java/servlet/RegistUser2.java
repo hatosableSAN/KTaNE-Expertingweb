@@ -3,6 +3,7 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -75,7 +76,12 @@ public class RegistUser2 extends HttpServlet {
             }
 
             System.out.println("登録するぜ");
-            manager.registUser(user);
+            try {
+                manager.registUser(user);
+            } catch (NoSuchAlgorithmException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
 
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる

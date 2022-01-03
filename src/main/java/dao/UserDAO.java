@@ -9,6 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
+//import dao.ReservingInfoDAO;
+//import dao.UserInfoDAO;
+//import model.ReservingInfo;
+//import model.User;
+
 import beans.User;
 import utility.DriverAccessor;
 
@@ -16,10 +26,14 @@ public class UserDAO extends DriverAccessor{
 
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void registUser(User user, Connection connection) {
+    public void registUser(User user, Connection connection) throws NoSuchAlgorithmException {
 
         try {
-                System.out.println("DAO.registUser");
+            System.out.println("DAO.registUser");
+
+            String password = user.getPassword();
+            String hashedpassword =  hash(password);
+
             // SQLコマンド
             String sql = "insert into user values(?, ?)";
 
@@ -28,7 +42,7 @@ public class UserDAO extends DriverAccessor{
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setString(1, user.getId());
-            stmt.setString(2, user.getPassword());
+            stmt.setString(2, hashedpassword);
 
             stmt.executeUpdate();
 
@@ -210,6 +224,15 @@ public class UserDAO extends DriverAccessor{
 
     } finally {
     }
+    }
+
+    public String  hash(String password) throws NoSuchAlgorithmException {
+        // SHA-256（SHA-2）ハッシュ化制御
+        MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+        byte[] sha256_result = sha256.digest(password.getBytes());//ここでハッシュ化している
+        String hashedpassword=String.format("%040x", new BigInteger(1, sha256_result));
+        System.out.println("SHA-256：" + hashedpassword);
+        return hashedpassword;
     }
 
 
