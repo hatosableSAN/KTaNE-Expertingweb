@@ -3,10 +3,15 @@ pageEncoding="UTF-8"%>
 <%@ page import= "beans.Student" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+  <head>
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+  </head>
   <body>
-    <p align="right">ID ${User.id}</p>
+    <div class="green">
+    <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">児童・生徒登録</h1>
-    <br>
+    </div>
+    <br><br><br><br><br>
     <form action="./RegistStudentHand" method="post">
       <table align="center">
         <tr><td>番号　<font color="red">＊</font>　　　　　　　　　　　　　</td><td>名前　<font color="red">＊</font>　　　　　　　　　　　　　　　　　</td><td>性別　　　　　　　　　</td></tr>
@@ -21,13 +26,15 @@ pageEncoding="UTF-8"%>
         </td></tr>
       </table>
         <br />
-        <h5 align="center"><font color="red">＊は必須項目です。すべて入力し、確認を押してください</font></h5>
-        <input type="submit" value="確認" name="OK" />
+        <h4 align="center"><font color="red">＊は必須項目です。すべて入力し、確認を押してください</font></h4>
+        <div class="center">
+          <input type="submit" value="確認" name="OK" class="btn" id="btn_check">
+        </div>
       </form>
       <br>
       <!--a href="./student/registStudentTop.jsp"><button align="center" name="return_regist">児童・生徒登録へ戻る</button></a-->
       <form action="./GoRegistStudentTop" method="get">
-        <input type="submit" value="児童・生徒登録へ戻る" class="button-red">
+        <input type="submit" value="児童・生徒登録へ戻る" class="backbtn">
       </form>
       <br />
   </body>
