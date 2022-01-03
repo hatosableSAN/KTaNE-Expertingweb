@@ -60,7 +60,6 @@ pageEncoding="UTF-8"%>
 
         </table>
         </div>
-        <% if(ClassDef.getClass_user().equals(User.getId())){ %>
         <form action="./UpdateClass" method="post">
           <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
           <input type="submit" value="クラス変更" name="hand" />
@@ -69,7 +68,6 @@ pageEncoding="UTF-8"%>
           <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
           <input type="submit" value="クラス削除" name="hand" />
         </form>
-         <% } %>
       <br />
   </body>
 </html>
