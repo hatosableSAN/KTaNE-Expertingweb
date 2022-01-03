@@ -33,40 +33,23 @@ pageEncoding="UTF-8"%>
         <div class="student">
         <table>
             <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
-            <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
-
-            <% for(Student s:list){ %>
-                <tr>
-                <td><!--lavel--><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td>
-                <td><%=s.getStudent_id() %></td>
-                <td><%=s.getStudent_name() %></td>
-                <td><!--%=s.getStudent_gender() %-->
-                  <% if(s.getStudent_gender() == 1){ %>
-                    男
-                  <% }else if(s.getStudent_gender() == 2){ %>
-                      女
-                  <% }else{ %>
-                    その他
-                  <% } %></td>
-                <td><%=s.getStudent_user() %></td>
-                <!--/label-->
-                </tr>
-                <%} %>
-
+            <tr><td>検索結果に当てはまる児童がいませんでした</tr></tr>
         </table>
+        <!--p align="center">検索結果に当てはまる児童がいませんでした</p-->
+
+        <!--/table-->
         </div>
         <input type="submit" value="登録" name="hand" />
       </form>
       <font size="2px">検索：</font>
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
-            <input type="radio" name="radiobutton" value="number" required> <font size="2px">番号</font>
+            <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <button text-align="center" name="search_stu" value="search">検索実行</button>
             <button text-align="center" name="search_stu" value="all">一覧表示</button>
         </form>
       <br />
-      <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル'>
       </form>
