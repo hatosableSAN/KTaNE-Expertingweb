@@ -36,6 +36,6 @@ pageEncoding="UTF-8"%>
       <% } }%>
     </table>
       <br/>
-      <a href="./LessoningTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+      <a href="./LessoningTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

@@ -30,6 +30,6 @@ pageEncoding="UTF-8"%>
 
     </form>
     
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+    <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

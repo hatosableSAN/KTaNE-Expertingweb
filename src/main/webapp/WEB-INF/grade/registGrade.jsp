@@ -282,7 +282,7 @@ pageEncoding="UTF-8"%>
             <h2 class="h1-bottom"></h2>
 
             <%}%>
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
+            <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>
 
