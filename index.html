@@ -16,8 +16,9 @@
   <button type="button" class="reset">RESET</button>
 SERIAL：<input type="text" name="name" size="10">
 </p>
-<p>
+
     <h2>INDICATORS</h2>
+    <p>
 LIT:
   <input type="checkbox">BOB
   <input type="checkbox">CAR
@@ -45,14 +46,16 @@ UNLIT:
   <input type="checkbox">SND
   <input type="checkbox">TRN  
 </p>
-<p>
+
     <h2>BATTERYS</h2>
+    <p>
 D BATTERY(単1):<input type="text" name="name" size="3">
 AA BATTERY(単3):<input type="text" name="name" size="3">
 HOLDER:<input type="text" name="name" size="3">
 </p>
     
     <h2>PORTS</h2>
+    
     <div id="portbox">
     <div id="portplate">
 DVI-D:<input type="text" name="name" size="3">
@@ -77,3 +80,58 @@ Stereo RCA:<input type="text" name="name" size="3">
 </form>
 </body>
 </html>
+
+
+<style>
+.reset{
+  color: #fff;
+  font-size: 100%;
+  background-color: #eb6100;
+  border-style: none;
+}
+.reset:hover{
+  font-size: 100%;
+  color: #fff;
+  background: #f56500;
+  border-style: none;
+}
+
+h1 {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem 1rem 4rem;
+  color: #fff;
+  border-radius: 100vh 0 0 100vh;
+  background: #fa4141;
+}
+
+h1:before {
+  position: absolute;
+  top: calc(50% - 7px);
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  content: '';
+  border-radius: 50%;
+  background: #fff;
+}
+
+  h2 {
+    width: 30%;
+  padding: 1rem 2rem;
+  color: #fff;
+  border-radius: 10px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0478a5), to(#17d1f1));
+  background-image: -webkit-linear-gradient(left, #0478a5 0%, #17d1f1 100%);
+  background-image: linear-gradient(to right, #0478a5 0%, #17d1f1 100%);
+}
+p{
+  font-size: large;
+  font-weight:bold;
+}
+div{
+  font-size: large;
+  font-weight:bold;
+}
+
+  </style>
