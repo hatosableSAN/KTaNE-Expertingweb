@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
      <h1 align="center">クラスメニュートップ</h1>
     </div>
     <form action="./RegistStudentGet" method="post">
-      <button text-align="center" name="regist_class" class="btn" style="font-size: 15px; position:absolute; top:125px; right:30px; width:130px;">クラス新規登録</button>
+      <button text-align="center" name="regist_class" class="btn" style="font-size: 15px; position:absolute; top:110px; right:30px; width:130px;">クラス新規登録</button>
     </form>
     <br>
     自身の作成したクラス<br><br>
