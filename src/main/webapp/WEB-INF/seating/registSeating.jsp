@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -54,22 +54,28 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
       }
-
     </style>
- </head>
+    
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
+  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <div class="skyblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置新規作成</h1>
+    </div>
+  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left" style="position: fixed;">キャンセル</button></a>  
     <br>
 
-    ・座席を選択し、児童・生徒の座席を作成してください。<br>
+    <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div>
+    
       <form action="./RegistSeatingInfo" method="get">
-        <table>
+        <table align="center">
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>
@@ -84,15 +90,16 @@ pageEncoding="UTF-8"%>
             <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
           </tr>
         </table>
-        <br />
-        クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        <input type="submit" value="座席配置を確定する" />
+        <div class="right">
+        クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　　　　　　　　　　</div>
+        <p align="right"><input type="submit" value="座席配置を確定する" class = "btn" id="btn_right" style="position:fixed;">　　　</p>
       </form>
+    
 
 
         <div id="modal-content">
           <form action="./RegistSeatingStudent" method="post">
-            <p class="red">「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+            <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
             生徒選択画面<br>
             生徒：<select name="StudentId">
                 <option value="">なし</option>
@@ -105,10 +112,9 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" value="座席を確定する" align="center" /></p>
+            <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　<input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
           </form>
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
         </div>
 
       <br />
@@ -158,6 +164,5 @@ pageEncoding="UTF-8"%>
                     %>
                   <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>
