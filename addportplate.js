@@ -8,7 +8,7 @@
 //     }
 // });
     $(document).on("click", ".add", function() {
-      $(this).parent().clone(true).insertAfter($(this).parent());
+      $(this).parent().clone(true).insertAfter($(this).parent()).addClass('cloned');
       $(this).parent().next().find('input[type="text"]').val("");
     });
   
@@ -19,4 +19,9 @@
         }
       
     });
-  
+
+
+      $(document).on("click", ".reset", function(){
+        document.sheet.reset();
+        $('.cloned').remove();
+      });
