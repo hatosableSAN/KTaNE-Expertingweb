@@ -20,10 +20,10 @@ pageEncoding="UTF-8"%>
     <h1 align="center">クラス登録</h1>
     <form action="./RegistClass" method="post">
         年度　<!--p align="right"--><!--/p-->
-        <input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊　　　　　　　　　　　　　　　　</font><font color="red" align="right">＊は必須項目です。</font>
+        <input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red" align="right">　　　　　　　　　　　　　　　　　＊必須項目です</font>
         <br>
         クラス名　
-        <input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">＊</font>
+        <input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">　　　　　　　　　　　　＊必須項目です</font>
         <br>
         メンバー　　
         <!--form action="../RegistStudentGet" method="post">
@@ -55,6 +55,7 @@ pageEncoding="UTF-8"%>
 
         </table>
         </div>
+        <h4><font color="red">クラス、年度は必須項目です</font></h4>
         <input type="submit" value="登録" name="hand" />
       </form>
       <font size="2px">メンバー検索：</font>
