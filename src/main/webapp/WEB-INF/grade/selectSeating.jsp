@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 <html>
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <h1 align="center"> 授業評価新規作成</h1>
     <br>
     座席配置を選択してください。<br>
     <table border="1">

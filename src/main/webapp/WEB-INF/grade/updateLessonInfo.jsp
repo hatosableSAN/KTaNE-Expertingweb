@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
 
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価作成</h1>
+    <h1 align="center">授業評価変更</h1>
     <br>
     変更後の授業日および授業全体のコメントを入力してください。<br>
 

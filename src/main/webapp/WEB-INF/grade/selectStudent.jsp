@@ -52,6 +52,7 @@ pageEncoding="UTF-8"%>
                 <td><form action="./ShowStudentGrade" method="get">
                   <input type="hidden" name="studentid" value="<%=s.getStudent_id() %>">
                   <input type="submit" value="選択">
+                  </form>
                   </td>
                 <!--/label-->
                 </tr>
@@ -62,6 +63,6 @@ pageEncoding="UTF-8"%>
       
 
       <br />
-      <a href="./WEB-INF/grade/gradeTop.jsp"><button align="center" name="class_top">キャンセル</button></a>
+      <a href="./GradeTop"><button align="center">キャンセル</button></a>
   </body>
 </html>

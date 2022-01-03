@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価作成</h1>
+    <h1 align="center">評価新規作成</h1>
     <br>
     以下の内容で登録します。<br/><br/>
 
