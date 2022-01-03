@@ -67,12 +67,12 @@ pageEncoding="UTF-8"%>
   <body>
     <div class="skyblue">
       <p align="right">ユーザーID　${User.id}</p>
-      <h1 align="center">座席配置メニュートップ</h1>
+      <h1 align="center">座席配置新規作成</h1>
     </div>
-  <a href="./SeatingTop"><button align="center" name="regist_top" class = "backbtn">座席配置メニュー<br/>トップへ戻る</button></a>  
+  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left" style="position: fixed;">キャンセル</button></a>  
     <br>
 
-    ・座席を選択し、児童・生徒の座席を作成してください。<br>
+    <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div>
     
       <form action="./RegistSeatingInfo" method="get">
         <table align="center">
@@ -90,17 +90,16 @@ pageEncoding="UTF-8"%>
             <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
           </tr>
         </table>
-        <br />
-        <p align="right">
-        クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>　　　　　　　　　　　　　　　　　　　　<br></p>
-        <p align="right"><input type="submit" value="座席配置を確定する" class = "btn"/>　　　</p>
+        <div class="right">
+        クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　　　　　　　　　　</div>
+        <p align="right"><input type="submit" value="座席配置を確定する" class = "btn" id="btn_right" style="position:fixed;">　　　</p>
       </form>
     
 
 
         <div id="modal-content">
           <form action="./RegistSeatingStudent" method="post">
-            <p class="red">「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+            <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
             生徒選択画面<br>
             生徒：<select name="StudentId">
                 <option value="">なし</option>
@@ -113,7 +112,7 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p align="center"><a id="modal-close" class="button-link"><button align="center">閉じる</button></a>　　　<input type="submit" value="座席を確定する" align="center" /></p>
+            <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　<input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
           </form>
         </div>

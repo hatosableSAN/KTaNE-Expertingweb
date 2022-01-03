@@ -59,6 +59,14 @@ pageEncoding="UTF-8"%>
         margin-left: auto;
         margin-right: auto;
       }
+      .right_div{/*座席配置情報を教卓の横に置くクラス*/
+        width: 450px;                /* 横幅を900pxに指定 */
+        height: 100px;               /* 横幅を230pxに指定 */
+        right: 90px;
+        bottom: 0px;
+        position: fixed;
+        align-items: flex-end;
+      }
 
     </style>
 
@@ -70,10 +78,9 @@ pageEncoding="UTF-8"%>
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成</h1>
     </div>
-    <a href="./RegistSeatingStudent"><button align="center" class="backbtn" name="regist_top">座席配置画面へ戻る</button></a>
-    <br>
+    <a href="./RegistSeatingStudent"><button class="backbtn" id="btn_left" name="regist_top" style="top:auto; position: fixed;">座席配置画面へ戻る</button></a>
 
-    ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
+    <div class="center">児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。</div>
       <form action="./RegistSeatingInfo" method="post">
         <table align="center">
           <%
@@ -90,16 +97,15 @@ pageEncoding="UTF-8"%>
             <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
           </tr>
         </table>
-        <br />
-        <p align="right">
-        クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
+        <div class="right_div"><br>
+        クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　<br>
         期間：<input type="date" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
         ～
         <input type="date" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
-        席名：<input type="text" name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>　　　　　　　 <br/>
+        席名：<input type="text" name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>　　　　　　　 <br/></div>
 
-        <input type="submit" value="座席配置登録" class="btn" name="registSeatingClass" />　　　</p>
+        <input type="submit" value="座席配置登録" class="btn" id="btn_right" style="position: fixed;" name="registSeatingClass" />　　　
         </form>
 
       <br />

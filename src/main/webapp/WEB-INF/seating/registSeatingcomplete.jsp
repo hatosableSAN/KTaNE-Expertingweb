@@ -10,7 +10,8 @@ pageEncoding="UTF-8"%>
     <div class="skyblue">
       <p align="right">ユーザーID　${User.id}</p>
     </div>
-    <h1 align="center">座席配置の登録が完了しました</h1>
+    <h2 align="center">座席配置の登録が完了しました</h2>
+    <br><br><br>
     <p align = "center"><a href="./SeatingTop" class="backbtn3">座席配置メニュートップへ戻る</a></p>
   </body>
 </html>
