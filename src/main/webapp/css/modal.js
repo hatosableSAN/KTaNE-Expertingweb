@@ -5,7 +5,7 @@ $(function () {
         var index = $('.seat').index(this);
         //alert(index);
         //alert("クリックされました");
-
+       
         // $('textarea').val(index);
         $("#seatnum").val(index);
         $(this).blur();	//ボタンからフォーカスを外す
@@ -15,7 +15,7 @@ $(function () {
         //オーバーレイを出現させる
         $("body").append('<div id="modal-overlay"></div>');
         $("#modal-overlay").fadeIn("slow");
-
+        
         //コンテンツをセンタリングする
         centeringModalSyncer();
 

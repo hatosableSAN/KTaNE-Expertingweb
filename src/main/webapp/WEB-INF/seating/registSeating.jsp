@@ -37,7 +37,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:red;
+        background-color:rgb(240, 134, 134);
         text-align:center;
       }
       .setseato {
