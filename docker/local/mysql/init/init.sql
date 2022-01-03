@@ -18,6 +18,9 @@
 --
 -- Table structure for table `classes`
 --
+DROP DATABASE IF EXISTS schoolapp_db;
+CREATE DATABASE schoolapp_db;
+USE schoolapp_db;
 
 DROP TABLE IF EXISTS `classes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
