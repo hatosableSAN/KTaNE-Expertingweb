@@ -127,6 +127,7 @@ public class ClassService {
         return StudentList;
     }
 
+
     public boolean updateClass(ClassDef classdef, String student_member[]) { //クラス変更
         boolean result = false;
 
@@ -167,6 +168,15 @@ public class ClassService {
         return result;
 
     }
+
+
+    /*public ClassDef searchClass(int id) {
+        ClassDef ClassDef=new ClassDef();
+        
+        return ClassDef;
+    }*/
+
+
 
     /*
      * public List<ClassDef> getClassDef() {
