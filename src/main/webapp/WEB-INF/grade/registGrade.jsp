@@ -122,7 +122,7 @@ pageEncoding="UTF-8"%>
 
 <!-- モーダルはここから -->
         <div id="modal-content-grade">
-          <form action="./RegistSeatingStudent" method="post">
+          <form action="./RegistSeatingStudentGrade" method="post">
             「閉じる」か「背景」をクリックするとウィンドウを終了します。<br/>
             個人評価入力画面<br>
           
