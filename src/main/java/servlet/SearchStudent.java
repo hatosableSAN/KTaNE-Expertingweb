@@ -73,7 +73,7 @@ public class SearchStudent extends HttpServlet {
             // studentオブジェクトに情報を格納
             String stu_id = null;
             String stu_name = null;
-            String stu_gender = null;
+            int stu_gender = 0;
             String stu_user = null;
             Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
             // StudentMemo studentmemo = new StudentMemo(stu_id, stu_name,

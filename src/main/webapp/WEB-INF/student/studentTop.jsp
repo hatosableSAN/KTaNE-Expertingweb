@@ -10,11 +10,13 @@ pageEncoding="UTF-8"%>
     <form action="./ManageStudent" method="post">
       <input type="submit" value="登録済みの児童・生徒の一覧・管理" class="button-red">
     </form>
-    <!--a href="./manageStudentTop.jsp"><button align="center" name="manage_stu">登録済みの児童・生徒の一覧・管理</button></a-->
     <br>
-    <a href="./registStudentTop.jsp"><button text-align="center" name="regist_stu">新規登録</button></a>
+    <form action="./GoRegistStudentTop" method="get">
+      <input type="submit" value="新規登録" class="button-red">
+    </form>
+    <!--a href="/se21g1/student/registStudentTop.jsp"><button text-align="center" name="regist_stu">新規登録</button></a-->
     <br><br>
-    <a href="../Users/systemTop.jsp"><button align-items="center" name="go_top">トップへ戻る</button></a>
+    <a href="./SystemTop"><button align-items="center" name="go_top">トップへ戻る</button></a>
     <!--input type="button" value="新規登録" align="center" name="regist_stu"-->
   </body>
 </html>

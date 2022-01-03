@@ -106,14 +106,14 @@ pageEncoding="UTF-8"%>
                     student.setStudent_id(studentSeatingArr.getStudentId());
                     Student setStudent = StudentService.searchStudent(student);
                     //TODO : 数値じゃないので応急措置(今後変える)
-                    if(setStudent.getStudent_gender().equals("男")){
-                      setStudent.setStudent_gender("1");
-                    }else if(setStudent.getStudent_gender().equals("その他")){
-                      setStudent.setStudent_gender("3");
-                    }else if(setStudent.getStudent_gender().equals("女")){
-                      setStudent.setStudent_gender("2");
-                    }
-                    if(Integer.parseInt(setStudent.getStudent_gender()) == 1){//男
+                    //if(setStudent.getStudent_gender().equals("男")){
+                    //  setStudent.setStudent_gender("1");
+                    //}else if(setStudent.getStudent_gender().equals("その他")){
+                    //  setStudent.setStudent_gender("3");
+                    //}else if(setStudent.getStudent_gender().equals("女")){
+                    //  setStudent.setStudent_gender("2");
+                    //}
+                    if(setStudent.getStudent_gender() == 1){//男
                     %>
                     <script>
                       $(function () {
@@ -121,7 +121,7 @@ pageEncoding="UTF-8"%>
                         $("#<%=studentSeatingArr.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %>");
                       });
                     </script>
-                    <% }else if(Integer.parseInt(setStudent.getStudent_gender()) == 2){//女
+                    <% }else if(setStudent.getStudent_gender() == 2){//女
                     %>
                   <script>
                       $(function () {
@@ -130,7 +130,7 @@ pageEncoding="UTF-8"%>
                       });
                   </script>
                     <%
-                    }else if(Integer.parseInt(setStudent.getStudent_gender()) == 3){//その他
+                    }else if(setStudent.getStudent_gender() == 3){//その他
                     %>
                     <script>
                       $(function () {

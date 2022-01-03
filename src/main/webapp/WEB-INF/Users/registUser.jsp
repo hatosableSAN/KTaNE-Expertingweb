@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <html>
     <head>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"><a href="/se21g1/" class="btn">スタート画面へ</a></p>
+    <div class="darkgray"><p align="left"><a href="/se21g1/" class="backbtn">スタート画面へ</a></p>
       <h2 style="text-align:center">ユーザ登録画面</h2></div><br/>
     <br/><br/><br/><br/>
     <form action="./RegistUser" method="post">
