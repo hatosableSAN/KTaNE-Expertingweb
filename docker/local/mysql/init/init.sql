@@ -183,7 +183,7 @@ DROP TABLE IF EXISTS `students_seating_arrangements`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `students_seating_arrangements` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `seating_arrangement_id` int NOT NULL,
+  `seating_arrangements_id` int NOT NULL,
   `student_id` varchar(15) NOT NULL,
   `seat` int NOT NULL,
   PRIMARY KEY (`id`)
