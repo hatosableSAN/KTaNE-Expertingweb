@@ -171,6 +171,53 @@ public class StudentDAO extends DriverAccessor {
         }
     }
 
+    public boolean checkStudent(String stu_id, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            //if(!student.getStudent_id().isEmpty()){
+                String sql = "select * from students where id = '" + stu_id +"'";
+            //}
+            //String sql = "select * from students where id = '" + student.getStudent_id()+ "'";
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            //System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
+
+            rs.first();
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+            
+            if(rs.getString("id") != null){
+                return false;//使ってはいけない。もう使用されているから
+            }
+            //student.setStudent_id(rs.getString("id"));
+            //student.setStudent_name(rs.getString("name"));
+            //student.setStudent_gender(rs.getString("gender"));
+            //student.setStudent_gender(rs.getInt("gender"));
+            //student.setStudent_user(rs.getString("user_id"));
+
+            // 終了処理
+            stmt.close();
+            rs.close();
+            return true;//まだ使用されていないので使える
+
+            // Studentオブジェクトを返す
+            //return student;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return false;//エラー
+
+        } finally {
+        }
+    }
+
     public boolean deleteStudent(Student student, Connection connection) {
 
         try {
