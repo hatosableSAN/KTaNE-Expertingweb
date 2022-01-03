@@ -144,33 +144,6 @@ CREATE TABLE `lessons` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('11111','0'),('1234','1234'),('12345','12345'),('123456','o1234567'),('abcdef','1234abcd'),('aiueo','happy'),('e195403','abc12345'),('e195412g','L9uiEp7g'),('happy1','happyhappy1'),('happy2','happyhappy2'),('happy3','happyhappy3'),('happy4','happyhappy4'),('happy5','happyhappy5');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-LOCK TABLES `students` WRITE;
-/*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('11111',2,'学芸花子','happy1'),('11112',1,'学芸太郎','happy1'),('11113',2,'学芸花子1','happy1'),('11114',2,'学芸花子2','happy1'),('11115',1,'学芸太郎2','happy1'),('11116',2,'学芸花子4','happy1');
-/*!40000 ALTER TABLE `students` ENABLE KEYS */;
-UNLOCK TABLES;
-
-LOCK TABLES `classes` WRITE;
-/*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (1,'テストクラス1-1',2020,'happy1'),(2,'テストクラス1-2',2021,'happy1');
-/*!40000 ALTER TABLE `classes` ENABLE KEYS */;
-UNLOCK TABLES;
-
-LOCK TABLES `members` WRITE;
-/*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (1,1,'11111'),(2,1,'11112'),(3,1,'11113'),(4,1,'11115');
-/*!40000 ALTER TABLE `members` ENABLE KEYS */;
-UNLOCK TABLES;
-
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
