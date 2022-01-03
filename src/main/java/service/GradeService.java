@@ -141,6 +141,16 @@ public class GradeService {
         dao.closeConnection(this.connection);
     }
 
+    public List<Grade> getStudentGradeList(int id) {
+        GradeDAO dao = new GradeDAO();
+        this.connection=dao.createConnection();
+        System.out.println(id);
+        List<Grade> List = dao.getStudentGradeList(id,connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return List;
+    }
+
 
 
  

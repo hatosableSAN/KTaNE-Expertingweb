@@ -467,6 +467,61 @@ public class GradeDAO extends DriverAccessor {
                 } finally {
                 }
     }
+
+    public List<Grade> getStudentGradeList(int id, Connection connection) {
+        String sql = "select * from grades where lesson_id = ?";
+
+        
+        try {
+
+            // SQLコマンド
+            PreparedStatement statement = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            statement.setInt(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            
+
+
+            List<Grade> List = new ArrayList<Grade>();
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            // Statement stmt = connection.createStatement();
+            // ResultSet rs = stmt.executeQuery(sql);
+            // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
+
+
+
+            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
+
+            //
+            // classdef.setClass_id(rs.getString("id"));
+            
+             while (rs.next()) {
+        Grade returnSb = new Grade();
+        returnSb.setId(rs.getInt("id"));
+        returnSb.setStudentId(rs.getString("student_id"));
+        returnSb.setLessonId(rs.getInt("lesson_id"));
+        returnSb.setAttendance(rs.getBoolean("attendance"));
+        returnSb.setRed(rs.getInt("red"));
+        returnSb.setBlue(rs.getInt("blue"));
+        returnSb.setRed(rs.getInt("green"));
+        returnSb.setComment(rs.getString("comment"));
+        returnSb.setSeat(rs.getInt("seat"));
+        returnSb.setUserId(rs.getString("user_id"));
+        List.add(returnSb);
+             }
+             return List;
+    }catch (SQLException e) {
+
+        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+        e.printStackTrace();
+        return null;
+
+    } 
+    
+    }
 }
 
     // }
