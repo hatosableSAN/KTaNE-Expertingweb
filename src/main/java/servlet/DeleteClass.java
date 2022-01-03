@@ -32,10 +32,10 @@ import java.util.Date;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/ClassTop")
+@WebServlet("/DeleteClass")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class ClassTop extends HttpServlet {
+public class DeleteClass extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -64,6 +64,7 @@ public class ClassTop extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 詳細画面から削除を押下し、クラス削除確認画面へ飛ぶ
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
@@ -80,19 +81,7 @@ public class ClassTop extends HttpServlet {
         ClassDef = ClassService.searchClass(ClassDef);
         request.setAttribute("ClassDef", ClassDef);
         request.setAttribute("List", StudentList);
-
-        // seatingsserviceobjectの作成
-        SeatingService seatingService = new SeatingService();
-        List<SeatingArrangements> seatingArrangementsList = seatingService.getSeatingArrangements(ClassDef);
-
-        // クラスに座席配置情報が登録されているかどうか調べ、していたらCandeleteにtrue
-        boolean Candelete = false;
-        if (seatingArrangementsList.size() == 0) {
-            Candelete = true;
-        }
-        request.setAttribute("Candelete", Candelete);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/classInfo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/deleteClassConfirm.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }

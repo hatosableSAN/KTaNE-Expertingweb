@@ -32,10 +32,10 @@ import java.util.Date;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/ClassTop")
+@WebServlet("/DeleteClassComplete")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class ClassTop extends HttpServlet {
+public class DeleteClassComplete extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -64,6 +64,7 @@ public class ClassTop extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // クラス削除確認画面から削除ボタンを押す
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
@@ -78,21 +79,16 @@ public class ClassTop extends HttpServlet {
         ClassDef.setClass_id(Integer.parseInt(request.getParameter("ClassId")));
         List<Student> StudentList = ClassService.getAllClassmember(ClassDef);
         ClassDef = ClassService.searchClass(ClassDef);
-        request.setAttribute("ClassDef", ClassDef);
-        request.setAttribute("List", StudentList);
 
-        // seatingsserviceobjectの作成
-        SeatingService seatingService = new SeatingService();
-        List<SeatingArrangements> seatingArrangementsList = seatingService.getSeatingArrangements(ClassDef);
-
-        // クラスに座席配置情報が登録されているかどうか調べ、していたらCandeleteにtrue
-        boolean Candelete = false;
-        if (seatingArrangementsList.size() == 0) {
-            Candelete = true;
+        // クラスを削除する
+        boolean result = ClassService.deleteClass(ClassDef);
+        String tourl = null;
+        if (result) {
+            tourl = "/WEB-INF/classes/deleteClassComplete.jsp";
+        } else {
+            tourl = "/WEB-INF/classes/deleteClassError.jsp";
         }
-        request.setAttribute("Candelete", Candelete);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/classInfo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }

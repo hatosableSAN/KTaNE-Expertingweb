@@ -148,6 +148,38 @@ public class SeatingDAO extends DriverAccessor {
             return null;
         }
     }
+  public List<SeatingArrangements> findSeatingArrangements(ClassDef classDef, Connection connection) {
+        // 特定クラスの全座席情報を取得して返す
+        String sql = "select * from seating_arrangements where class_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, classDef.getClass_id());
+
+
+System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<SeatingArrangements> SeatingArrangementsList = new ArrayList<SeatingArrangements>();
+            while (rs.next()) {
+
+
+ SeatingArrangements getSeatingArrangements = new SeatingArrangements();
+                getSeatingArrangements.setId(rs.getInt("id"));
+                getSeatingArrangements.setClassId(rs.getInt("class_id"));
+                getSeatingArrangements.setCreatedDate(rs.getString("created_date"));
+                getSeatingArrangements.setStartDate(rs.getString("start_date"));
+                getSeatingArrangements.setEndDate(rs.getString("end_date"));
+                getSeatingArrangements.setName(rs.getString("name"));
+                getSeatingArrangements.setUserId(rs.getString("user_id"));
+                SeatingArrangementsList.add(getSeatingArrangements);
+ statement.close();
+            rs.close();
+
+            return SeatingArrangementsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public List<SeatingArrangements> getSeatingList(Connection connection) {
         String sql = "select * from seating_arrangements";
@@ -367,7 +399,6 @@ public class SeatingDAO extends DriverAccessor {
             return null;
         }
     }
-
     public SeatingArrangements updateSeatingArr(SeatingArrangements seatingArrangements, Connection connection) {
         // idをもとに1つの座席配置情報（開始日時、終了日時、座席配置名）を更新し、更新した結果を返す
         String sql = "UPDATE seating_arrangements SET start_date= ? ,end_date=? ,name=? WHERE id= ? LIMIT 1";
