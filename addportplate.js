@@ -7,4 +7,4 @@ $(document).on("click", ".del", function() {
         target.remove();
     }
 });
-</script>
+
