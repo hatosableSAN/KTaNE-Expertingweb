@@ -191,19 +191,14 @@ public class StudentDAO extends DriverAccessor {
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
             
-            if(rs.getString("id") != null){
-                return false;//使ってはいけない。もう使用されているから
+            if(rs.getString("id").isEmpty()){
+                return false;//使ってよい。まだ使用していないから
             }
-            //student.setStudent_id(rs.getString("id"));
-            //student.setStudent_name(rs.getString("name"));
-            //student.setStudent_gender(rs.getString("gender"));
-            //student.setStudent_gender(rs.getInt("gender"));
-            //student.setStudent_user(rs.getString("user_id"));
 
             // 終了処理
             stmt.close();
             rs.close();
-            return true;//まだ使用されていないので使える
+            return true;//もう使用されているので使えない
 
             // Studentオブジェクトを返す
             //return student;
@@ -212,7 +207,7 @@ public class StudentDAO extends DriverAccessor {
 
             // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
             e.printStackTrace();
-            return false;//エラー
+            return true;//エラー 登録失敗画面に飛ばす
 
         } finally {
         }

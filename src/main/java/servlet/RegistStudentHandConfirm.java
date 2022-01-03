@@ -75,7 +75,7 @@ public class RegistStudentHandConfirm extends HttpServlet {
             Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
             boolean result = service.checkStudent(stu_id);
             System.out.println("after boolean checkstudent and "+result);
-            if(result==false){ //そのidで登録できない
+            if(result==true){ //そのidで登録できないor登録失敗
                 System.out.println("already used this stuid");
                 tourl = "/WEB-INF/student/registStudentFail.jsp";
             }else{
