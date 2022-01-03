@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:blue;
+        background-color:#4088CA;
         text-align:center;
         line-height:95%;
       }
@@ -214,14 +214,6 @@ pageEncoding="UTF-8"%>
                     Student student = new Student();
                     student.setStudent_id(Grade.getStudentId());
                     Student setStudent = StudentService.searchStudent(student);
-                    //TODO : 数値じゃないので応急措置(今後変える)
-                    if(setStudent.getStudent_gender().equals("男")){
-                      setStudent.setStudent_gender("1");
-                    }else if(setStudent.getStudent_gender().equals("その他")){
-                      setStudent.setStudent_gender("3");
-                    }else if(setStudent.getStudent_gender().equals("女")){
-                      setStudent.setStudent_gender("2");
-                    }
                     String Red=new String();
                     String Blue=new String();
                     String Green=new String();
@@ -251,7 +243,7 @@ pageEncoding="UTF-8"%>
 
 
 
-                    if(Integer.parseInt(setStudent.getStudent_gender()) == 1){//男
+                    if(setStudent.getStudent_gender() == 1){//男
                     %>
                     <script>
                       $(function () {
@@ -270,7 +262,7 @@ pageEncoding="UTF-8"%>
                         $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                       });
                     </script>
-                    <% }else if(Integer.parseInt(setStudent.getStudent_gender()) == 2){//女
+                    <% }else if(setStudent.getStudent_gender() == 2){//女
                     %>
                   <script>
                       $(function () {
@@ -289,7 +281,7 @@ pageEncoding="UTF-8"%>
                       });
                   </script>
                     <%
-                    }else if(Integer.parseInt(setStudent.getStudent_gender()) == 3){//その他
+                    }else if(setStudent.getStudent_gender() == 3){//その他
                     %>
                     <script>
                       $(function () {
