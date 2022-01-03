@@ -16,7 +16,7 @@ public class SeatingDAO extends DriverAccessor {
         // 座席を1つ登録する
         try {
             // SQLコマンド
-            String sql = "insert into students_seating_arrangements (seating_arrangement_id,student_id,seat) values(?, ?, ?)";
+            String sql = "insert into students_seating_arrangements (seating_arrangements_id,student_id,seat) values(?, ?, ?)";
             // SQLコマンドの実行
             PreparedStatement stmt = connection.prepareStatement(sql);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
@@ -91,6 +91,63 @@ public class SeatingDAO extends DriverAccessor {
         }
     }
 
+    public List<StudentSeatingArr> findStudentSeatingArrList(SeatingArrangements SeatingArrangements,
+            Connection connection) {
+        // 特定座席配置Idの全座席情報を取得して返す
+        String sql = "select * from students_seating_arrangements where seating_arrangements_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, SeatingArrangements.getId());
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<StudentSeatingArr> StudentSeatingArrList = new ArrayList<StudentSeatingArr>();
+            while (rs.next()) {
+                StudentSeatingArr StudentSeatingArr = new StudentSeatingArr();
+                StudentSeatingArr.setId(rs.getInt("id"));
+                StudentSeatingArr.setSeatingArrangementId(rs.getInt("seating_arrangements_id"));
+                StudentSeatingArr.setStudentId(rs.getString("student_id"));
+                StudentSeatingArr.setSeat(rs.getInt("seat"));
+                StudentSeatingArrList.add(StudentSeatingArr);
+            }
+
+            statement.close();
+            rs.close();
+
+            return StudentSeatingArrList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public SeatingArrangements findSeatingArrangements(SeatingArrangements SeatingArrangements, Connection connection) {
+        // 特定Idの座席配置情報を取得して返す
+        String sql = "select * from seating_arrangements where id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, SeatingArrangements.getId());
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            // SeatingArrangements getSeatingArrangements = new SeatingArrangements();
+            rs.first();
+            SeatingArrangements getSeatingArrangements = new SeatingArrangements();
+            getSeatingArrangements.setId(rs.getInt("id"));
+            getSeatingArrangements.setClassId(rs.getInt("class_id"));
+            getSeatingArrangements.setCreatedDate(rs.getString("created_date"));
+            getSeatingArrangements.setStartDate(rs.getString("start_date"));
+            getSeatingArrangements.setEndDate(rs.getString("end_date"));
+            getSeatingArrangements.setName(rs.getString("name"));
+            getSeatingArrangements.setUserId(rs.getString("user_id"));
+
+            statement.close();
+            rs.close();
+
+            return getSeatingArrangements;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+      
     public List<SeatingArrangements> getSeatingList(Connection connection) {
         String sql = "select * from seating_arrangements";
         try {
@@ -313,6 +370,95 @@ public class SeatingDAO extends DriverAccessor {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public SeatingArrangements updateSeatingArr(SeatingArrangements seatingArrangements, Connection connection) {
+        // idをもとに1つの座席配置情報（開始日時、終了日時、座席配置名）を更新し、更新した結果を返す
+        String sql = "UPDATE seating_arrangements SET start_date= ? ,end_date=? ,name=? WHERE id= ? LIMIT 1";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, seatingArrangements.getStartDate());
+            if (seatingArrangements.getEndDate().equals("")) {
+                seatingArrangements.setEndDate(null);
+            }
+            statement.setString(2, seatingArrangements.getEndDate());
+            if (seatingArrangements.getName().equals("")) {
+                seatingArrangements.setName(null);
+            }
+            statement.setString(3, seatingArrangements.getName());
+            statement.setInt(4, seatingArrangements.getId());
+            System.out.println(statement);
+            statement.executeUpdate();
+            // 更新した結果を取得
+            sql = "select * from seating_arrangements WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, seatingArrangements.getId());
+            ResultSet rs = statement.executeQuery();
+            SeatingArrangements SeatingArrangement = new SeatingArrangements();
+            rs.first();
+            SeatingArrangement.setId(rs.getInt("id"));
+            SeatingArrangement.setClassId(rs.getInt("class_id"));
+            SeatingArrangement.setCreatedDate(rs.getString("created_date"));
+            SeatingArrangement.setStartDate(rs.getString("start_date"));
+            SeatingArrangement.setEndDate(rs.getString("end_date"));
+            SeatingArrangement.setName(rs.getString("name"));
+            SeatingArrangement.setUserId(rs.getString("user_id"));
+            statement.close();
+            rs.close();
+
+            return SeatingArrangement;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean deleteStudentSeatingArr(int SeatingArrangementsId, int studentSeatingArrListsize,
+            Connection connection) {
+        // 座席から特定の座席配置IDのものを削除
+        try {
+            // SQLコマンド
+            String sql = "delete FROM students_seating_arrangements where seating_arrangements_id=? LIMIT ?";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, SeatingArrangementsId);
+            stmt.setInt(2, studentSeatingArrListsize);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+            return true;
+
+        } catch (
+
+        SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;
+        } finally {
+        }
+    }
+
+    public boolean deleteSeatingArrangement(int SeatingArrangementsId, Connection connection) {
+        // 座席から特定の座席配置IDのものを削除
+        try {
+            // SQLコマンド
+            String sql = "delete FROM seating_arrangements where id=? LIMIT 1";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, SeatingArrangementsId);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+            return true;
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;
+        } finally {
         }
     }
 

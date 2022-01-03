@@ -55,7 +55,8 @@ public class RegistSeatingClass extends HttpServlet {
         session.setAttribute("StudentList", null); // 座席に配置されていない生徒一覧
         session.setAttribute("setStudentList", null);// 座席に配置している生徒一覧
         session.setAttribute("StudentSeatingArrList", null);// 座席一覧（座席番号と生徒）
-        session.setAttribute("ClassDef", null); // クラスの情報を初期かTODO
+        session.setAttribute("ClassDef", null); // クラスの情報を初期化
+        session.setAttribute("SeatingArrangements", null); // 座席配置を初期化
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingClass.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
@@ -79,13 +80,13 @@ public class RegistSeatingClass extends HttpServlet {
         ClassDef Classdef = new ClassDef(classId);
         ClassDef ClassDef = ClassService.findClass(Classdef);
         System.out.println(ClassDef);
-        request.setAttribute("ClassDef", ClassDef);// いらないかも？
+        // request.setAttribute("ClassDef", ClassDef);// いらないかも？
         session.setAttribute("ClassDef", ClassDef);
 
         // クラスIDから全ての生徒情報を取得
         List<Student> studentList = ClassService.getAllClassmember(Classdef);
         System.out.println(studentList);
-        request.setAttribute("StudentList", studentList);// いらないかも？
+        // request.setAttribute("StudentList", studentList);// いらないかも？
         session.setAttribute("StudentList", studentList);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeating.jsp");

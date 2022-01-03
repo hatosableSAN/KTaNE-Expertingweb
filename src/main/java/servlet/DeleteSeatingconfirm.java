@@ -32,15 +32,15 @@ import java.util.Date;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/manageSeatingTop")
+@WebServlet("/DeleteSeatingconfirm")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class manageSeatingTop extends HttpServlet {
+public class DeleteSeatingconfirm extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // 削除ボタンを押し、確認画面へ飛ぶ
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
@@ -56,7 +56,7 @@ public class manageSeatingTop extends HttpServlet {
         List<SeatingArrangements> otherSeatingArrangementsList = SeatingService.getAllOtherSeatingArr(user.getId());
         request.setAttribute("mySeatingArrangementsList", mySeatingArrangementsList);
         request.setAttribute("otherSeatingArrangementsList", otherSeatingArrangementsList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/manageSeatingTop.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/deleteSeating.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }
@@ -64,14 +64,14 @@ public class manageSeatingTop extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 座席日配置詳細閲覧のためのPOST
+        // 削除ボタンを押し、確認画面へ飛ぶPOST
         // requestオブジェクトの文字エンコーディングの設定
-
         request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
+        System.out.println("いまdoPost");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("User");
+
         // 送信された座席配置Idを取得
         int seatingId = Integer.parseInt(request.getParameter("SeatingId"));
         SeatingArrangements seatingArrangements = new SeatingArrangements();
@@ -94,7 +94,7 @@ public class manageSeatingTop extends HttpServlet {
         request.setAttribute("StudentList", StudentList);
         request.setAttribute("ClassDef", ClassDef);
         request.setAttribute("StudentSeatingArrList", StudentSeatingArrList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingInfo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/deleteSeating.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
     }

@@ -8,11 +8,10 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.*" %>
 <%@ page import="service.StudentService" %>
 <% User User = (User)session.getAttribute("User"); %>
+<% SeatingArrangements seatingArrangements = (SeatingArrangements)session.getAttribute("SeatingArrangements"); %>
 <% List<Student> StudentList = (ArrayList<Student>) session.getAttribute("StudentList"); %>
 <% ClassDef ClassDef = (ClassDef)session.getAttribute("ClassDef"); %>
 <% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList"); %>
-<% SeatingArrangements seatingArrangements = (SeatingArrangements) session.getAttribute("SeatingArrangements"); %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -38,7 +37,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:rgb(240, 134, 134);
+        background-color:red;
         text-align:center;
       }
       .setseato {
@@ -65,11 +64,11 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <h1 align="center">座席配置変更確認</h1>
     <br>
 
-    ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
-      <form action="./RegistSeatingInfo" method="post">
+    ・以下の情報で更新します<br>
+      <form action="./UpdateSeatingAll" method="post">
         <table>
           <%
           int j = 0;
@@ -85,14 +84,12 @@ pageEncoding="UTF-8"%>
             <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
           </tr>
         </table>
-        <br />
-        クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        期間：<input type="date" value="<%=seatingArrangements.getStartDate()%>" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
-        ～
-        <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
+        <br>
+        クラス：<%=seatingArrangements.getClassId() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
+        期間：<%=seatingArrangements.getStartDate() %>～<%=seatingArrangements.getEndDate() %>
         <Br>
-        席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
-        <input type="submit" value="座席配置登録" name="registSeatingClass" />
+        席名：<%=seatingArrangements.getName()%>
+        <input type="submit" value="座席配置を登録" name="updateSeatingClass" />
         </form>
 
       <br />
@@ -107,7 +104,7 @@ pageEncoding="UTF-8"%>
                     Student setStudent = StudentService.searchStudent(student);
                     //TODO : 数値じゃないので応急措置(今後変える)
                     //if(setStudent.getStudent_gender().equals("男")){
-                    //  setStudent.setStudent_gender("1");
+                     // setStudent.setStudent_gender("1");
                     //}else if(setStudent.getStudent_gender().equals("その他")){
                     //  setStudent.setStudent_gender("3");
                     //}else if(setStudent.getStudent_gender().equals("女")){
@@ -143,6 +140,6 @@ pageEncoding="UTF-8"%>
                     %>
                     <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
-      <a href="./RegistSeatingStudent"><button align="center" name="regist_top">座席配置画面へ戻る</button></a>
+      <a href="./UpdateSeatingStudent"><button align="center" name="regist_top">入力画面へ戻る</button></a>
   </body>
 </html>
