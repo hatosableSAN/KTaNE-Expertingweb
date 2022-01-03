@@ -27,10 +27,10 @@ import service.StudentService;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/ShowLessonGrades")
+@WebServlet("/ShowStudentGrades")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class ShowLessonGrades extends HttpServlet {
+public class ShowStudentGrades extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,32 +39,30 @@ public class ShowLessonGrades extends HttpServlet {
 
         HttpSession session = request.getSession(true);
         System.out.println("教室風評価登録");
-        String idnumber=request.getParameter("id");
-        int id=Integer.parseInt(idnumber);//授業ID
+        String idnumber = request.getParameter("id");
+        int id = Integer.parseInt(idnumber);// 授業ID
         session.setAttribute("Lessonnum", idnumber);
         GradeService gService = new GradeService();
-        
-        List<Grade> GradeList=gService.getGradeList(id);//ひょうかりすと
-        Lessons lesson=gService.searchLesson(id);//じゅぎょう(コメント、授業名、授業日が必要)
-        SeatingService sService=new SeatingService();
-        SeatingArrangements SeatingArrangements = sService.searchSeatingArrangements(lesson.getSeating_arrangements_id());
-        //得た授業に対応する座席配置(開始期間、終了期間)
-        ClassService cService=new ClassService();
-        ClassDef Class=new ClassDef();
-        Class.setClass_id(SeatingArrangements.getClassId());
-        Class=cService.findClass(Class);
-        
 
-        session.setAttribute("GradeList", GradeList);//ゲットした座席リストをセッションに入れるよ
-        session.setAttribute("Lesson", lesson);//ゲットした授業をセッションに入れるよ
-        session.setAttribute("SeatingArrangements", SeatingArrangements);//ゲットした座席配置をセッションに入れるよ
-        session.setAttribute("Class", Class);//ゲットした座席配置をセッションに入れるよ
+        List<Grade> GradeList = gService.getGradeList(id);// ひょうかりすと
+        Lessons lesson = gService.searchLesson(id);// じゅぎょう(コメント、授業名、授業日が必要)
+        SeatingService sService = new SeatingService();
+        SeatingArrangements SeatingArrangements = sService
+                .searchSeatingArrangements(lesson.getSeating_arrangements_id());
+        // 得た授業に対応する座席配置(開始期間、終了期間)
+        ClassService cService = new ClassService();
+        ClassDef Class = new ClassDef();
+        Class.setClass_id(SeatingArrangements.getClassId());
+        Class = cService.findClass(Class);
+
+        session.setAttribute("GradeList", GradeList);// ゲットした座席リストをセッションに入れるよ
+        session.setAttribute("Lesson", lesson);// ゲットした授業をセッションに入れるよ
+        session.setAttribute("SeatingArrangements", SeatingArrangements);// ゲットした座席配置をセッションに入れるよ
+        session.setAttribute("Class", Class);// ゲットした座席配置をセッションに入れるよ
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/showLessonGrades.jsp");
         dispatcher.forward(request, response);
 
     }
 
-
-  
 }
