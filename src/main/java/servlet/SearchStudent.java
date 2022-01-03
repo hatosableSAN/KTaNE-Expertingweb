@@ -66,30 +66,29 @@ public class SearchStudent extends HttpServlet {
             System.out.println("Please full all");
             tourl = "/WEB-INF/classes/registClass.jsp";
         } else {
-            // studentオブジェクトに情報を格納
-            if(select.equals("number")){//番号のラジオボタンが押された
+            //このif文意味ない気がする
+            /*if(select.equals("number")){//番号のラジオボタンが押された
                 String stu_id = stu_info;
                 String stu_name = null;
             }else if(select.equals("name")){//名前のラジオボタンが押された
                 String stu_id = null;
-                String name = stu_info;
-            }
+                String stu_name = stu_info;
+            }*/
             //String stu_id = null;
             //String stu_name = null;
-            int stu_gender = 0;
-            String stu_user = null;
-            Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+            //int stu_gender = 0;
+            //String stu_user = null;
+            //Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
             list = service.getStudent(stu_info,select);//引数を付けます。stu_infoとselect
-            // StudentMemo studentmemo = new StudentMemo(stu_id, stu_name,
-            // stu_gender,stu_user);
-            // HttpSession session = request.getSession();
+            System.out.println("list size is "+list.size());
+            if(list.size()==0){
+                //検索に当てはまる児童がいなかった
+                tourl="/WEB-INF/classes/registClassNone.jsp";//検索結果がありません画面に飛ぶ
+                System.out.println("in if");
+            }
 
             request.setAttribute("List", list);
-
-            // 成功画面を表示する
-            // System.out.println("OK牧場");
-            // response.sendRedirect("/TableTennis/RegistInfo");
-            tourl = "/WEB-INF/classes/regist.jsp"; // パスは、webappにいるところから考えないといけない！
+            tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
         }
 
         getServletContext().getRequestDispatcher(tourl).forward(request, response);// 上のdoGetをまとめて書いている
