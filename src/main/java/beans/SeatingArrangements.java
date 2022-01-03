@@ -37,8 +37,8 @@ public class SeatingArrangements {
         return classId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassId(int id) {
+        this.classId = id;
     }
 
     public String getCreatedDate() {

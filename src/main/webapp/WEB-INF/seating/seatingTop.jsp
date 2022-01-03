@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     <div class="darkgray"><h2 style="text-align:center">座席配置メニュートップ</h2></div>
     <br/><br/><br/><br/>
     <p align="center">
-    <a href="./manageSeatingTop.jsp"><button align="center" name="manage_sea">登録済みの座席配置の閲覧・管理</button></a><br><Br>
+    <a href="./manageSeatingTop"><button align="center" name="manage_sea">登録済みの座席配置の閲覧・管理</button></a><br><Br>
     <a href="./RegistSeatingClass"><button text-align="center" name="regist_seating">座席配置新規登録</button></a>
     <br><Br>
     <a href="./SystemTop"><button align-items="center" name="regist_stu">トップへ戻る</button></a>
