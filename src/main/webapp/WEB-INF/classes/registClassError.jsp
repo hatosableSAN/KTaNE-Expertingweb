@@ -35,7 +35,10 @@ pageEncoding="UTF-8"%>
             <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
             <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
 
-            <% for(Student s:list){ %>
+            <% if(list.size() == 0){ %>
+              <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
+              <% }else{
+            for(Student s:list){ %>
                 <tr>
                 <td><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td>
                 <td><%=s.getStudent_id() %></td>
@@ -51,7 +54,7 @@ pageEncoding="UTF-8"%>
                 </td>
                 <td><%=s.getStudent_user() %></td>
                 </tr>
-            <%} %>
+            <%} }%>
 
         </table>
         </div>
