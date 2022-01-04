@@ -75,7 +75,10 @@ public class RegistClass extends HttpServlet {
             System.out.println(Arrays.toString(checkedStudents));
             System.out.println("right here");
             System.out.println(request.getParameter("student_member"));
-            for (int i = 0; i < checkedStudents.length; i++) {
+            if(/*checkedStudents.length*/ request.getParameter("student_member")!=null){//nullじゃないとき
+                //
+            
+             for (int i = 0; i < checkedStudents.length; i++) {
                 String stu_id = checkedStudents[i];
                 String stu_name = null;
                 int stu_gender = 0;
@@ -83,7 +86,7 @@ public class RegistClass extends HttpServlet {
                 Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
                 student = service.searchStudent(student);
                 list.add(student);
-            }
+             }
             // これには、valueが全部入ってるから、あーメンバーに登録するときに使える これを突っ込めばよい
             // int i = 0;
             /*
@@ -96,12 +99,14 @@ public class RegistClass extends HttpServlet {
             // list = service.getStudentNumber(checkedStudents); //やめます！上手くいかない
             // }
             // list = service.getStudent(); //一回コメントアウト
+            
+          }//null判定したif文のかっこ
 
             ClassDef classdef = new ClassDef(class_name, class_year, class_user);
             request.setAttribute("ClassDef", classdef);
-            session.setAttribute("List", list);
+            session.setAttribute("List", list);//児童選択されていないと空
             //session.setAttribute("Student", studentinfo);
-            System.out.println(list);
+            //System.out.println(list);
             System.out.println(session.getAttribute("Student"));
             System.out.println(request.getAttribute("ClassDef"));
 
