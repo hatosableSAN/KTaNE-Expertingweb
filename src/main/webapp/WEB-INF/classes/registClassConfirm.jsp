@@ -41,7 +41,12 @@ pageEncoding="UTF-8"%>
         </tr>
         <tr>
           <th>メンバー　</th>
-          <td><div class="student">
+          <td>
+            <% if(student.size()==0){%>
+              なし</td>
+              <input type="hidden"/ name="student_member" value="anyone">
+              <%} else{%>
+            <div class="student">
             <table>
                 <tr id="bar"><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
 
@@ -65,7 +70,7 @@ pageEncoding="UTF-8"%>
                 <%} %>
 
             </table>
-            </div></td>
+            </div></td><% } %>
         </tr>
       </table>
         <input type="submit" value="確定" name="hand" class="btn" id="btn_right">
