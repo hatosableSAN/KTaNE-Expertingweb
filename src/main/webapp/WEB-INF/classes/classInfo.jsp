@@ -66,11 +66,12 @@ pageEncoding="UTF-8"%>
                 <%} %>
 
         </table>
+      </table>
         </div>
         <% if(ClassDef.getClass_user().equals(User.getId())){ %>
           <form action="./UpdateClass" method="post">
             <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-            <input type="submit" value="クラス変更" name="hand" class="button" style="position:absolute; bottom: 40px; right: 200px; font-size: 20px; width: 120px; height: 50px;"/>
+            <input type="submit" value="クラス変更" name="hand" class="button" style="position:absolute; bottom: 50px; right: 200px; font-size: 20px; width: 120px; height: 50px;"/>
           </form>
           <% if(Candelete){ %>
           <form action="./DeleteClass" method="post">
