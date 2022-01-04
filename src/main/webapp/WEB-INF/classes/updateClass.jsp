@@ -16,26 +16,40 @@ pageEncoding="UTF-8"%>
         height: 230px;               /* 横幅を200pxに指定 */
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         overflow-y: scroll;          /* 縦方向にスクロール可能にする */
-      }
+    }
+    .bar{
+      background-color: #F8AB74;
+    }
     </style>
+    <head>
+      <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+    </head>
   <body>
-    <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">クラス変更</h1>
+    <div class="rightblue">
+     <p align="right">ユーザーID　${User.id}</p>
+     <h1 align="center">クラス変更</h1>
+    </div>
     <form action="./UpdateClassCheck" method="post">
-        年度　<font color="red">＊</font>
+        <!--年度　<font color="red">＊</font>
         <input type="text" name="class_year" value="<%=ClassDef.getClass_year()%>" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊</font>
         <br>
         クラス名　<font color="red">＊</font>
         <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">＊</font>
         <br>
-        メンバー　　
+        メンバー　　-->
         <!--form action="../RegistStudentGet" method="post">
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
-        <br />
+        <table align="center">
+        <tr><th>年度　</th>
+          <td><input type="text" name="class_year" value="<%=ClassDef.getClass_year()%>" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊</font></td></tr>
+          <tr><th>クラス名　</th>
+          <td><input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">＊</font></td></tr>
+          <tr><th>メンバー　</th>
+          <td>
         <div class="student">
         <table>
-            <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
+            <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
             <% for(Student s:stu_list){
               int flag=0; %>
                 <tr>
@@ -66,23 +80,25 @@ pageEncoding="UTF-8"%>
                 </label>
                 </tr></label>
                 <%} %>
+              </div>
+              </td></tr>
         </table>
-        </div>
-        <input type="submit" value="変更" name="hand" />
+      </table>
+        <input type="submit" value="変更" name="hand" class="btn" id="btn_right" style="width:110px;">
         <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
         <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
       </form>
       <font size="2px">検索：</font>
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
-            <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
+            <input type="radio" name="radiobutton" value="number" required> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
-            <button text-align="center" name="regist_class">検索実行</button>
-            <button text-align="center" name="regist_class">一覧表示</button>
+            <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>
+            <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
         </form>
       <br />
       <form action='./ClassTop' method='get'>
-        <input type='submit' value='キャンセル'>
+        <input type='submit' value='キャンセル' class="button_grey" id="btn_left">
       </form>
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
   </body>
