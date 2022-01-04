@@ -6,6 +6,7 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -81,9 +82,14 @@ public class UpdateUser extends HttpServlet {
         }
 
         //現在のパスワード確認
-        if(manager.checkPassword(id,passwordP)==false){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserPassNot.jsp");
-        	dispatcher.forward(request, response);
+        try {
+            if(manager.checkPassword(id,passwordP)==false){
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserPassNot.jsp");
+            	dispatcher.forward(request, response);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
 
@@ -94,7 +100,12 @@ public class UpdateUser extends HttpServlet {
         	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/updateUserSuccess.jsp");
 
             //DBに更新内容を反映させる
-            manager.updatePassword(id,passwordU);
+            try {
+                manager.updatePassword(id,passwordU);
+            } catch (NoSuchAlgorithmException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
             User user = new User(id, passwordU,passwordU2);
             request.setAttribute("User", user);

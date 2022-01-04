@@ -66,7 +66,7 @@ public class UserManager {
 
     
    // ログイン
-   public boolean loginUser(User user) {
+   public boolean loginUser(User user) throws NoSuchAlgorithmException {
     System.out.println("Manager.loginUser");
 
     //あるかないか（仮）
@@ -91,7 +91,7 @@ public class UserManager {
     }
 
     // パスワード変更時のパスワードチェック
-   public boolean checkPassword(String id,String password) {
+   public boolean checkPassword(String id,String password) throws NoSuchAlgorithmException {
     System.out.println("Manager.checkPassword");
 
     //あっているかないか（仮）
@@ -116,7 +116,7 @@ public class UserManager {
     }
 
     // パスワード変更
-   public void updatePassword(String id,String passwordU) {
+   public void updatePassword(String id,String passwordU) throws NoSuchAlgorithmException {
     System.out.println("Manager.updatePassword");
 
     // StudentDAOオブジェクト生成

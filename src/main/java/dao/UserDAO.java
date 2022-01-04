@@ -62,7 +62,6 @@ public class UserDAO extends DriverAccessor{
         try {
             System.out.println("DAO.serchUser");
 
-
             // SQLコマンド
             String sql = "select * from user where id = '" + user.getId() + "'";
 
@@ -98,7 +97,7 @@ public class UserDAO extends DriverAccessor{
 
     // ログインする
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public boolean loginUser(User user, Connection connection) {
+    public boolean loginUser(User user, Connection connection) throws NoSuchAlgorithmException {
 
         try {
             System.out.println("DAO.loginUser");
@@ -119,7 +118,10 @@ public class UserDAO extends DriverAccessor{
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
             //user.setPassword2(null);
 
-            String passA = user.getPassword();//入力されたpass
+            String password = user.getPassword();
+            String hashedpassword =  hash(password);
+
+            String passA = hashedpassword;//入力されたpass
             String passB = rs.getString("password");//入力されたidに対応するpass
 
             System.out.println("A:"+passA);
@@ -154,7 +156,7 @@ public class UserDAO extends DriverAccessor{
 
     // 入力された現在のパスワードがあっているか
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public boolean checkPassword(String id,String passwordU, Connection connection) {
+    public boolean checkPassword(String id,String passwordU, Connection connection) throws NoSuchAlgorithmException {
 
         try {
             System.out.println("DAO.checkPassword");
@@ -172,6 +174,8 @@ public class UserDAO extends DriverAccessor{
             //user.setPassword2(null);
 
             String pass = rs.getString("password");//入力されたidに対応するpass
+
+            passwordU=hash(passwordU);
 
             System.out.println("password:"+pass);
             System.out.println("passU:"+passwordU);
@@ -205,9 +209,11 @@ public class UserDAO extends DriverAccessor{
 
     // 入力された現在のパスワードがあっているか
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void updatePassword(String id,String passwordU, Connection connection) {
+    public void updatePassword(String id,String passwordU, Connection connection) throws NoSuchAlgorithmException {
         try {
             System.out.println("DAO.updateUser");
+
+            passwordU=hash(passwordU);
         // SQLコマンド
         //String sql = "insert into user values(?, ?)";
         String sql ="update user set password='"+ passwordU +"' where id='"+ id +"'";

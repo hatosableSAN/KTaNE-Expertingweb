@@ -4,6 +4,7 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -74,7 +75,12 @@ public class Login extends HttpServlet {
 
         // ログインの可否
         // manager.searchUser(user)の修正を行うことで、ログインできない理由まで表示できそう
-        ok= manager.loginUser(user);
+        try {
+            ok= manager.loginUser(user);
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         // ログイン
         if(ok==true) {
