@@ -15,31 +15,38 @@ pageEncoding="UTF-8"%>
         height: 230px;               /* 横幅を200pxに指定 */
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         overflow-y: scroll;          /* 縦方向にスクロール可能にする */
-      }
+    }
+    #bar{
+      background-color: #F8AB74;
+    }
     </style>
+    <head>
+      <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+    </head>
   <body>
-    <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">クラス変更完了</h1>
-    <h2>クラス変更完了　以下の内容に更新しました</h2>
+    <div class="rightblue">
+     <p align="right">ユーザーID　${User.id}</p>
+     <h1 align="center">クラス変更完了</h1>
+    </div>
+    <h2 align="center">クラス変更完了　以下の内容に更新しました</h2>
     <!--form action="./RegistClassConfirm" method="post"-->
-      <table>
+      <table align="center">
         <tr>
-          <th>年度</th>
-          <td>${ClassDef.class_year}</td>
+          <th>年度　</th>
+          <td>${ClassDef.class_year}　年度</td>
         </tr>
         <tr>
-          <th>クラス名</th>
+          <th>クラス名　</th>
           <td>${ClassDef.class_name}</td>
         </tr>
         <tr>
-          <th>メンバー</th>
+          <th>メンバー　</th>
           <td><div class="student">
             <table>
-                <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
+                <tr id="bar"><th></th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
 
                 <% for(Student s:student){ %>
-                    <tr>
-                    <td><!--lavel--><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %>></td>
+                    <!--lavel--><td><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %></td>
                     <td><%=s.getStudent_id() %></td>
                     <td><%=s.getStudent_name() %></td>
                     <td><!--%=s.getStudent_gender() %-->
@@ -56,8 +63,8 @@ pageEncoding="UTF-8"%>
                     </tr>
                 <%} %>
 
-            </table>
-            </div></td>
+            </table></td>
+            </div>
         </tr>
       </table>
         <!--form action="../RegistStudentGet" method="post">
@@ -85,7 +92,9 @@ pageEncoding="UTF-8"%>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">クラストップへ戻る</button></a-->
       <form action='./ClassTop' method='get'>
-        <input type='submit' value='クラストップへ戻る'>
+        <div class="center">
+         <input type='submit' value='クラストップへ戻る' class="backbtn_middle">
+        </div>
       </form>
   </body>
 </html>
