@@ -8,11 +8,18 @@ pageEncoding="UTF-8"%>
 <% List<SeatingArrangements> SeatList = (List<SeatingArrangements>)request.getAttribute("SeatList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+  <head>
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center"> 授業評価新規作成</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">授業評価新規作成</h1>
+    </div>
+    <a href="./GradeTop" class="backbtn">評価メニュートップへ戻る</a>
+
     <br>
-    座席配置を選択してください。<br>
+    　座席配置を選択してください。<br>
     <table border="1">
       <tr>
         <th>クラス</th>
@@ -35,6 +42,5 @@ pageEncoding="UTF-8"%>
       <% } }%>
     </table>
       <br/>
-      <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

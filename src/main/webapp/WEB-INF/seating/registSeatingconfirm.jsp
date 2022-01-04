@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;

@@ -25,11 +25,18 @@ pageEncoding="UTF-8"%>
       border: 1px solid #000;
     }
     </style>
+
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
 </head>
   <body>
-    <a href="./SeatingTop"><button align-items="center" name="regist_stu">座席配置メニュートップへ戻る</button></a>
-     <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">座席配置一覧</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置一覧</h1>
+    </div>
+
+    <a href="./SeatingTop"><button align-items="center" class = "backbtn" name="regist_stu">座席配置メニュートップへ戻る</button></a>
+
     <%-- <form action="./RegistStudentGet" method="post">
       <button text-align="center" name="regist_class">検索実行</button>
     </form> --%>

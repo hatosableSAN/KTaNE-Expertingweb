@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -54,18 +54,24 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
       }
 
     </style>
+
+<link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-      <%-- <a href="./manageSeatingTop"><button align="center" name="regist_top">座席配置一覧へ戻る</button></a> --%>
-    <h1 align="center">座席配置削除</h1>
+
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置削除</h1>
+    </div>
+
     <font color="red">以下の座席配置を削除します</font>
     <br>
         <table>
@@ -97,8 +103,10 @@ pageEncoding="UTF-8"%>
 
         <form>
           <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  name="deleteSeating" value="削除" formaction="./DeleteSeating"  formmethod="POST" />
-          <input type="submit" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="GET" />
+          <p align = "center">
+            <input type="submit" class ="button_grey" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="GET" />　　　
+            <input type="submit"  class = "button_grey" name="deleteSeating" value="　削除　" formaction="./DeleteSeating"  formmethod="POST" />
+          </p>
         </form>
         <% } %>
 
