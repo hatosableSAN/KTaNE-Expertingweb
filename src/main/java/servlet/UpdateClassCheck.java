@@ -64,7 +64,7 @@ public class UpdateClassCheck extends HttpServlet {
 
         String tourl = null;
         if (class_name.isEmpty() || classyear.isEmpty()) {
-            int class_year = Integer.parseInt(classyear);
+            int class_year = 0;//Integer.parseInt(classyear);
             ClassDef classdef = new ClassDef(class_id,class_name,class_year,class_user);
             classdef = class_service.searchClass(classdef);//クラス情報を取得
             stu_classlist = class_service.getAllClassmember(classdef);//クラスに所属している児童を取得 //null
