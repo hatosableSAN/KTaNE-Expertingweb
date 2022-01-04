@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         overflow-y: scroll;          /* 縦方向にスクロール可能にする */
       }
-    #bar{
+    .bar{
       background-color: #F8AB74;
     }
     </style>
@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
         <td>
         <div class="student">
         <table>
-            <tr id="bar"><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　　　　</th><th>登録者　　　　　　　　　</th></tr>
+            <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
             <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
 
             <% for(Student s:list){ %>
