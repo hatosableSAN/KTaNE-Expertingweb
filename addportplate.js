@@ -7,10 +7,10 @@
 //         target.remove();
 //     }
 // });
-    $(document).on("click", ".add", function() {
-      $(this).parent().clone(true).insertAfter($(this).parent()).addClass('cloned');
-      $(this).parent().next().find('input[type="text"]').val("");
-    });
+$(document).on("click", ".add", function() {
+  $(this).parent().clone(true).insertAfter($(this).parent()).addClass('cloned');
+  $(this).parent().next().find('input[name="port"]').prop('checked',false);
+});
   
     $(document).on("click", ".del", function() {
         var target = $(this).parent();
