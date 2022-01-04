@@ -177,27 +177,43 @@ public class StudentDAO extends DriverAccessor {
 
             // SQLコマンド
             //if(!student.getStudent_id().isEmpty()){
+                String sql_c = "select count(*) from students";
                 String sql = "select * from students where id = '" + stu_id +"'";
             //}
             //String sql = "select * from students where id = '" + student.getStudent_id()+ "'";
 
             // SQLのコマンドを実行する
             // 実行結果はrsに格納される
+            Statement stmt_c = connection.createStatement();
+            ResultSet rs_c = stmt_c.executeQuery(sql_c);
+            rs_c.first();
+            if(rs_c.getInt(1) == 0){//そもそもstudent tableに値入っているか
+                return false;//登録できる。テーブル空だから、番号なにも使われていない
+            }
             Statement stmt = connection.createStatement();
+            System.out.println(stmt);
             ResultSet rs = stmt.executeQuery(sql);
+            //System.out.println(rs);
             //System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
-
-            rs.first();
+            //rs.first();//これがあるとすべてfalseになっちゃった
+            boolean isExist = rs.next();
+            if(isExist==false){//sql文の実行結果が空だったら
+              System.out.println("u can use this id");
+              return false;//番号登録されていなかったので、この番号で新規登録できる
+            }
+            //rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
             
-            if(rs.getString("id").isEmpty()){
+            /*if(rs.getString("id").isEmpty()){
                 return false;//使ってよい。まだ使用していないから
-            }
+            }*/
 
             // 終了処理
             stmt.close();
+            stmt_c.close();
             rs.close();
+            rs_c.close();
             return true;//もう使用されているので使えない
 
             // Studentオブジェクトを返す
