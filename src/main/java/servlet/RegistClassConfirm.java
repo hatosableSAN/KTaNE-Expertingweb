@@ -71,7 +71,7 @@ public class RegistClassConfirm extends HttpServlet {
         System.out.println(Arrays.toString(checkedStudents));
         System.out.println("right here");
         ClassDef classdef = new ClassDef(class_name, class_year, class_user);
-        if(request.getParameter("student_member").equals("anyone")){
+        if(request.getParameter("student_member").equals("")){
             //誰も登録されない
             //ClassDef classdef = new ClassDef(class_name, class_year, class_user);
             System.out.println("this class has no one");

@@ -71,13 +71,16 @@ public class RegistClass extends HttpServlet {
         } else {
             // studentオブジェクトに情報を格納
             int class_year = Integer.parseInt(classyear);
-            String[] checkedStudents = request.getParameterValues("student_member");
-            System.out.println(Arrays.toString(checkedStudents));
+            //String[] checkedStudents = request.getParameterValues("student_member");
+            String member = request.getParameter("student_member");//これがnoneだったら児童がシステムにいない
+            //System.out.println(Arrays.toString(checkedStudents));
             System.out.println("right here");
-            System.out.println(request.getParameter("student_member"));
-            if(/*checkedStudents.length*/ request.getParameter("student_member")!=null){//nullじゃないとき
-                //
-            
+            System.out.println("stu_member= "+request.getParameter("student_member"));
+            //System.out.println("length of checked= "+checkedStudents.length);//null
+            if(member.equals("")){//誰も登録できない、児童がシステムにいない時
+                //児童の情報なし
+            }else{
+                String[] checkedStudents = request.getParameterValues("student_member");
              for (int i = 0; i < checkedStudents.length; i++) {
                 String stu_id = checkedStudents[i];
                 String stu_name = null;
