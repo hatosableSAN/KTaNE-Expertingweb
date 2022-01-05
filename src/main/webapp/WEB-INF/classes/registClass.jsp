@@ -37,6 +37,14 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
         <td>
+          <% if(list.size()==0){%>
+            児童が登録されていません</td>
+            <input type="hidden"/ name="student_member" value="">
+          </tr></table><br><br><br>
+          <!--h4 align="center"><font color="red">クラス、年度は必須項目です</font></h4-->
+          <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
+       </form>
+            <% }else{%>
         <div class="student">
         <table>
             <tr id="bar"><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　　　　</th><th>登録者　　　　　　　　　</th></tr>
@@ -76,6 +84,7 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="search_stu" value="all">一覧表示</button>
         </form>
         <!--/div--></td></tr></table>
+        <% } %>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
       <form action='./ClassTop' method='get'>

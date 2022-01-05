@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
           <td>
             <% if(student.size()==0){%>
               なし</td>
-              <input type="hidden"/ name="student_member" value="anyone">
+              <input type="hidden"/ name="student_member" value="">
               <%} else{%>
             <div class="student">
             <table>

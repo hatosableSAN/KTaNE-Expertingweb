@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
 
       <table align="center">
         <tr><th>年度　</th><!--p align="right"--><!--/p-->
-        <td><input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊　　　　　　　　　　　　　　　　</font><font color="red" align="right">＊は必須項目です。</font></td></tr>
+        <td><input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊　　</font><font color="red" align="right">＊は必須項目です。</font></td></tr>
         <tr><th>クラス名　</th>
         <td><input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">＊</font></td></tr>
         <tr><th>メンバー　</th>
@@ -38,6 +38,14 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
         <td>
+          <% if(list.size()==0){%>
+            児童が登録されていません</td>
+            <input type="hidden"/ name="student_member" value="">
+            </tr></table><br><br><br>
+            <h4 align="center"><font color="red">クラス、年度は必須項目です</font></h4>
+        <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
+      </form>
+            <% }else{%>
         <div class="student">
         <table>
             <tr id="bar"><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　　　　</th><th>登録者　　　　　　　　　</th></tr>
@@ -76,6 +84,7 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">検索実行</button>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form></td></tr></table>
+        <% }%>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
       <form action='./ClassTop' method='get'>
