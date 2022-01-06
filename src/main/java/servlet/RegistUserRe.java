@@ -26,7 +26,7 @@ public class RegistUserRe extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/registUserRe.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/registUserRe.jsp");
         dispatcher.forward(request, response);
     }
 
