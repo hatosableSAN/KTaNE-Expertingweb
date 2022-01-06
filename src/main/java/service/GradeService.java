@@ -149,7 +149,28 @@ public class GradeService {
         // dao に反映
         dao.closeConnection(this.connection);
         return List;
-    }
+        }
+
+        public Grade getStudentGrade(int id) {
+            GradeDAO dao = new GradeDAO();
+            this.connection=dao.createConnection();
+            System.out.println(id);
+            Grade Grade = dao.getStudentGrade(id,connection);
+            // dao に反映
+            dao.closeConnection(this.connection);
+            return Grade;
+            }
+
+        public void updateStudentGrade(int red, int blue, int green, String comment, Boolean attendance,int id) {
+            GradeDAO dao = new GradeDAO();
+            this.connection=dao.createConnection();
+            dao.updateStudentGrade(red,blue,green,comment,attendance,id,connection);
+            // dao に反映
+            dao.closeConnection(this.connection);
+               
+        }
+        
+        
 
 
 
