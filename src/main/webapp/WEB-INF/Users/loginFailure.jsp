@@ -9,8 +9,8 @@
     <p align="center">
         <FONT size="6"><BR />
         <BR />
-        ユーザ登録に失敗しました<br/>
-        再度登録しなおしてください</FONT>
+        ログインに失敗しました<br/>
+        IDまたはパスワードが間違っています</FONT>
     </p>
     <p align="center"><a href="/se21g1/Login" class="btn">ログイン画面へ戻る</a>　　<a href="/se21g1/" class="btn">スタート画面へ</a></p>
   </body>
