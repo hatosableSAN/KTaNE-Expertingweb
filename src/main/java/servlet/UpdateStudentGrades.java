@@ -36,7 +36,7 @@ public class UpdateStudentGrades extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         System.out.println("生徒評価確認");
         String idnumber=request.getParameter("gradeid");

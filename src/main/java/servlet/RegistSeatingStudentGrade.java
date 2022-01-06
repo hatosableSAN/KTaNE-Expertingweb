@@ -63,7 +63,7 @@ public class RegistSeatingStudentGrade extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         System.out.println("セッションに個人評価を追加するよ～");
         HttpSession session = request.getSession();
 

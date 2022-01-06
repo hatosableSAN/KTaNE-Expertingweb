@@ -36,7 +36,7 @@ public class ShowLessonGrades extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         System.out.println("教室風評価登録");
         String idnumber=request.getParameter("id");

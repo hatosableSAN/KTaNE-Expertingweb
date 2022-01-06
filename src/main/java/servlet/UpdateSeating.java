@@ -39,7 +39,7 @@ public class UpdateSeating extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 座席配置変更確定ボタンを押す
         System.out.println("いまdoGet");
-
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         // User User = (User) session.getAttribute("User");
         // session.setAttribute("User", user);
