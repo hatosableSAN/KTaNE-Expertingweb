@@ -11,8 +11,8 @@ pageEncoding="UTF-8"%>
      <p align="right">ユーザーID　${User.id}</p>
     </div>
     <h2 align="center">児童・生徒情報の登録に失敗しました</h2>
-    <form action="./GoRegistStudentTop" method="get">
-        <input type="submit" value="児童・生徒登録へ戻る" class="backbtn_middle">
+    <form action="./StudentTop" method="get">
+        <input type="submit" value="児童・生徒メニュートップへ戻る" class="backbtn_middle">
     </form>
   </body>
 </html>

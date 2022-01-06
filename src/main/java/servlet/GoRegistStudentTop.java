@@ -29,7 +29,7 @@ public class GoRegistStudentTop extends HttpServlet {//クラス
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         //RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/student/studentTop.jsp");
         //dispatcher.forward(request, response);
-        getServletContext().getRequestDispatcher("/WEB-INF/student/registStudentTop.jsp").forward(request,response);//上のdoGetをまとめて書いている
+        getServletContext().getRequestDispatcher("/WEB-INF/student/registStudentHand.jsp").forward(request,response);//上のdoGetをまとめて書いている
         System.out.println("doGet now regist");
     	//doPost(request,response);
     }
