@@ -71,9 +71,11 @@ public class DeleteStudentConfirm extends HttpServlet {
                 tourl = "/WEB-INF/student/deleteStudentFail.jsp";
                 //RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/student/deleteStudentFail.jsp");
                 //dispatcher.forward(request, response);
+            }else{
+                tourl = "/WEB-INF/student/deleteStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
             }
 
-             tourl = "/WEB-INF/student/deleteStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
+             //tourl = "/WEB-INF/student/deleteStudentComplete.jsp"; //パスは、webappにいるところから考えないといけない！
 
          getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
 

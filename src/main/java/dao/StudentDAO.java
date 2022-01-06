@@ -235,26 +235,35 @@ public class StudentDAO extends DriverAccessor {
 
             // SQLコマンド
             System.out.println(student.getStudent_id());
+            String sql_check = "select * from members where student_id = '"+student.getStudent_id()+"'"; //児童がクラスに所属しているか調べる
             String sql = "delete from students where id = '"+student.getStudent_id()+"'" ;
 
             // SQLコマンドの実行
-            PreparedStatement stmt = connection.prepareStatement(sql);//nullになる…
+            PreparedStatement stmt_check = connection.prepareStatement(sql_check);
 
+            //Statement stmt = connection.createStatement();
+            //System.out.println(stmt);
+            ResultSet rs_check = stmt_check.executeQuery(sql_check);
+
+            boolean isExist = rs_check.next();
+            if(isExist==false){//sql文の実行結果が空だったら
+              System.out.println("u can delete this student");
+              PreparedStatement stmt = connection.prepareStatement(sql);
+              stmt.executeUpdate();
+              stmt.close();
+              return true;//児童はどこのクラスにも登録されていないので、削除できる
+            }
             
-
             // SQLコマンドのクエッションマークに値を、1番目から代入する
-            //stmt.setString(1, student.getStudent_id());
-            //int stu_gender = Integer.parseInt(student.getStudent_gender());
-            //stmt.setInt(2, student.getStudent_gender());
-            //stmt.setString(3, student.getStudent_name());
-            //stmt.setString(4, student.getStudent_user());
-            //stmt.setString(5, result.getTaikai_kekka());
             System.out.println("delete complete");
             //boolean result = true;
 
 
-            stmt.executeUpdate();
-            return true;
+            
+            stmt_check.close();
+            //rs.close();
+            rs_check.close();
+            return false;//児童がクラスに所属しているので、削除できない
 
         } catch (SQLException e) {
 
