@@ -74,7 +74,7 @@ pageEncoding="UTF-8"%>
                   <td><%=s.getComment() %></td>
                   <td><form action="./UpdateStudentGrades" method="get">
                     <input type="hidden" name="gradeid" value="<%=s.getId() %>">
-                    <input type="submit" value="選択">
+                    <input type="submit" value="変更">
                     </form>
                     </td>
                   <!--/label-->

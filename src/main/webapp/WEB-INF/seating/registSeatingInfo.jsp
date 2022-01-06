@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:blue;
+        background-color:#4088CA;
         text-align:center;
       }
       .setseatf {

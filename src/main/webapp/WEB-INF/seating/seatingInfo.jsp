@@ -23,21 +23,21 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490
         text-align:center;
       }
       .setseatm {
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:blue;
+        background-color:#4088CA;
         text-align:center;
       }
       .setseatf {
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:red;
+        background-color:rgb(240, 134, 134);
         text-align:center;
       }
       .setseato {
@@ -65,7 +65,7 @@ pageEncoding="UTF-8"%>
   <body>
   <p align="right">ID: ${User.id}</p>
       <a href="./manageSeatingTop"><button align="center" name="regist_top">座席配置一覧へ戻る</button></a>
-    <h1 align="center">座席配詳細閲覧</h1>
+    <h1 align="center">座席配置詳細閲覧</h1>
     <br>
         <table>
           <%
