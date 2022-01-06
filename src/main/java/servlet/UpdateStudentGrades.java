@@ -27,10 +27,10 @@ import service.StudentService;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/ShowStudentGrades")
+@WebServlet("/UpdateStudentGrades")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class ShowStudentGrades extends HttpServlet {
+public class UpdateStudentGrades extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,13 +39,13 @@ public class ShowStudentGrades extends HttpServlet {
 
         HttpSession session = request.getSession(true);
         System.out.println("生徒評価確認");
-        String idnumber=request.getParameter("studentid");
+        String idnumber=request.getParameter("gradeid");
         int id=Integer.parseInt(idnumber);//授業ID
         GradeService service=new GradeService();
-        List<Grade> GradeList=service.getStudentGradeList(id);//ひょうかりすと
-        session.setAttribute("Grade", GradeList);
+        Grade Grade=service.getStudentGrade(id);//ひょうかりすと
+        session.setAttribute("Grade", Grade);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/showStudentGradesList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateStudentGrades.jsp");
         dispatcher.forward(request, response);
 
     }
