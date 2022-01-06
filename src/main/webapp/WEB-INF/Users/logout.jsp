@@ -16,7 +16,7 @@
         </FONT>
     </p>
     <p align="center">
-        <a href="/se21g1/Login" class="btn">トップへ戻る</a>　　　　　
+        <a href="/se21g1/SystemTop" class="btn">トップへ戻る</a>　　　　　
         <a href="/se21g1/Logout" class="btn">ログアウト</a>
       </p>
     
