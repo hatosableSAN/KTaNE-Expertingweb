@@ -6,8 +6,11 @@ pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"><a href="/se21g1/" class="backbtn">スタート画面へ</a></p>
-        <h2 style="text-align:center">ログイン画面</h2></div><br/>
+    <div class="darkgray">
+        
+        <a href="/se21g1/" class="backbtn">スタート画面へ</a>　
+        <h1 style="text-align:center">ログイン画面</h1>
+      </div>
     <br/><br/><br/><br/>
     <form action="./Login" method="post">
         <p align="center">

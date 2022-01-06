@@ -4,9 +4,11 @@
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"><a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-        ユーザーID ${User.id}</p></p>
-        <h2 style="text-align:center">パスワード変更</h2></div><br/>
+    <div class="darkgray">
+        <p align="right" class="id">ユーザーID　${User.id}</p>
+        <h1 style="text-align:center">パスワード変更</h1>
+        <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>　
+      </div>
     <br/><br/><br/><br/>
     <form action="./UpdateUser" method="post">
         <p align="center">

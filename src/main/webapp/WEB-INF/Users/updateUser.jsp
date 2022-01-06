@@ -7,8 +7,8 @@
 
     <div class="darkgray">
       <p align="right" class="id">ユーザーID　${User.id}</p>
-      <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>　
       <h1 style="text-align:center">パスワード変更</h1>
+      <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>　
     </div>
 
     <br/><br/><br/><br/>
