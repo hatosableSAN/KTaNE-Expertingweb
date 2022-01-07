@@ -43,10 +43,26 @@ public class UpdateStudent extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //HttpSession session = request.getSession(true);
         // requestオブジェクトの文字エンコーディングの設定
+        HttpSession session = request.getSession(true);
+        String stu_id = request.getParameter("update_hidden");
+        String stu_name = null;
+        int stu_gender = 0;
+        String stu_user = null;
+        Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
+        StudentService service = new StudentService();
+        student = service.searchStudent(student); //どの児童か探す
+        //response.setContentType("text/html; charset=UTF-8");//元はShift_JIS
+        session.setAttribute("Student", student);
+        getServletContext().getRequestDispatcher("/WEB-INF/student/updateStudent.jsp").forward(request,response);//上のdoGetをまとめて書いている
+        //System.out.println("doGet now regist");
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/student/updateStudent.jsp");
+        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+        //dispatcher.forward(request, response);
         request.setCharacterEncoding("UTF-8");
         //System.out.println("いまHandのPost");
         //List<Student> list = new ArrayList<Student>();
-        StudentService service = new StudentService();
+        /*StudentService service = new StudentService();
+        
 
         String tourl = null;
         	// studentオブジェクトに情報を格納
@@ -104,7 +120,8 @@ public class UpdateStudent extends HttpServlet {
             out.print(student.getStudent_id());
             out.print("<input type='hidden' name='stu_id' value=");
             out.print(student.getStudent_id());
-            out.print("></td><td><input type='text' name='stu_name' maxlength='20' minlength='1' pattern='^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]' value=");
+            out.print("></td><td><input type='text' name='stu_name' maxlength='20' minlength='1' pattern='");
+            out.print("[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-]+' value=");
             out.print(student.getStudent_name());
             out.print("></td><td>");
             switch(student.getStudent_gender()){
@@ -152,6 +169,7 @@ public class UpdateStudent extends HttpServlet {
         
 
         //getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
+        */
 
     }
 }

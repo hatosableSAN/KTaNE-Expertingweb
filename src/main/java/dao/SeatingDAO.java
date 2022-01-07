@@ -380,7 +380,7 @@ public class SeatingDAO extends DriverAccessor {
                     statement.setInt(1, searchClassList.get(i).getClass_id());
                     statement.setString(2, user_id);
                     rs = statement.executeQuery();
-                    if (rs.first()) {
+                    while (rs.next()) {
                         SeatingArrangements SeatingArrangement = new SeatingArrangements();
                         SeatingArrangement.setId(rs.getInt("id"));
                         SeatingArrangement.setClassId(rs.getInt("class_id"));
