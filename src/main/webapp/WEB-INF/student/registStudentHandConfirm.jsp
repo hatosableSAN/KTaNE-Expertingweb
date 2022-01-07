@@ -38,7 +38,7 @@
       <input type="submit" value="登録" class="btn" id="btn_right">
     </div>
   </form>
-  <form action="./StudentTop" method="get">
+  <form action="./GoRegistStudentTop" method="get">
     <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
   </form>
   <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->

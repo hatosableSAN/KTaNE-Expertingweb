@@ -12,7 +12,9 @@ pageEncoding="UTF-8"%>
     </div>
     <h2 align="center">児童・生徒情報の登録に失敗しました</h2>
     <form action="./StudentTop" method="get">
+      <div class="center">
         <input type="submit" value="児童・生徒メニュートップへ戻る" class="backbtn_middle">
+      </div>
     </form>
   </body>
 </html>
