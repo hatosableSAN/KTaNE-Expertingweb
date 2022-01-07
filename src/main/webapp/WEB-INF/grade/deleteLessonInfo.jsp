@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価作成</h1>
+    <h1 align="center">授業評価削除</h1>
     <br>
     以下の内容を削除します。<br/><br/>
 

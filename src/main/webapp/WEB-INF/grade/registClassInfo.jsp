@@ -14,14 +14,14 @@ pageEncoding="UTF-8"%>
 
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価作成</h1>
+    <h1 align="center">授業評価新規作成</h1>
     <br>
     授業日および授業全体のコメントを入力してください。<br>
 
     <form action="./RegistGradeInfoConfirm" method="post">
 授業日：
-      <input type="date" name="ClassDate">
-      <input type="text" name="PeriodNum">限<br/>
+      <input type="date" name="ClassDate" required>
+      <input type="number" name="PeriodNum" required>限<br/>
 授業コメント(400文字以内)
       <textarea class="textarea-grade" rows="40" cols="10" maxlength="100" name="Comment" style="  width:500px;
       height:300px;"></textarea>
