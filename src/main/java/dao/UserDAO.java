@@ -121,7 +121,7 @@ public class UserDAO extends DriverAccessor {
             String hashedpassword = hash(password);
 
             String passA = hashedpassword;// 入力されたpass
-            String passB = hash(rs.getString("password"));// 入力されたidに対応するpass
+            String passB = rs.getString("password");// 入力されたidに対応するpass
 
             System.out.println("A:" + passA);
             System.out.println("B:" + passB);
