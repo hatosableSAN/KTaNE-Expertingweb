@@ -48,6 +48,12 @@ public class UpdateStudentGradeComplete extends HttpServlet {
         Boolean attendance_b=false;
         if(attendance.equals("true")){
             attendance_b=true;
+        }else{
+            //欠席の場合データを初期化
+            red=1;
+            blue=1;
+            green=1;
+            comment="";
         }
 
             service.updateStudentGrade(red,blue,green,comment,attendance_b,id);
