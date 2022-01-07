@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <html>
     <head>
-        <link rel="stylesheet" href="${pagecontext.request.contextpath}/style.css" type="text/css" >
+        <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
     <div class="darkgray"></div><br/>

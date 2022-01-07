@@ -8,9 +8,12 @@ pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"><a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-      ユーザーID ${User.id}</p>
-    <h2 style="text-align:center">システムマニュアル</h2></div>
+    <div class="darkgray">
+      <p align="right">ID ${User.id}</p>
+      <h1 align="center">システムマニュアル</h1>
+      <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る
+    </div>
+    
     <h3>　目次</h3>
     　１．ユーザー情報管理<br/>
     　２．<br/>
