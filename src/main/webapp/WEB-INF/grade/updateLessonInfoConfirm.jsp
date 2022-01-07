@@ -17,7 +17,7 @@
 
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価変更</h1>
+    <h1 align="center">授業内容変更</h1>
     <br>
     以下の内容に変更します。<br/><br/>
 

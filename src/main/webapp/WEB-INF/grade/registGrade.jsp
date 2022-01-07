@@ -95,7 +95,7 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
-    <h1 align="center">評価新規作成</h1>
+    <h1 align="center">授業評価新規作成</h1>
     <br>
 
 

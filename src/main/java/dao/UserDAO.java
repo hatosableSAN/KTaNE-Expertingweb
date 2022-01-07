@@ -22,7 +22,7 @@ import java.util.List;
 import beans.User;
 import utility.DriverAccessor;
 
-public class UserDAO extends DriverAccessor{
+public class UserDAO extends DriverAccessor {
 
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
@@ -32,7 +32,7 @@ public class UserDAO extends DriverAccessor{
             System.out.println("DAO.registUser");
 
             String password = user.getPassword();
-            String hashedpassword =  hash(password);
+            String hashedpassword = hash(password);
 
             // SQLコマンド
             String sql = "insert into user values(?, ?)";
@@ -73,7 +73,7 @@ public class UserDAO extends DriverAccessor{
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            if(rs.getString("id")==null){
+            if (rs.getString("id") == null) {
                 return false;
             }
 
@@ -94,7 +94,6 @@ public class UserDAO extends DriverAccessor{
         }
     }
 
-
     // ログインする
     // 引数はStudentオブジェクトと、Connectionオブジェクト
     public boolean loginUser(User user, Connection connection) throws NoSuchAlgorithmException {
@@ -105,7 +104,7 @@ public class UserDAO extends DriverAccessor{
             String sql = "select * from user where id = '" + user.getId() + "'";
 
             System.out.println("（DAO）取得した文字列は" + user.getId() + "です！");
-            System.out.println("（DAO）取得した文字列は" + user.getPassword()+ "です！");
+            System.out.println("（DAO）取得した文字列は" + user.getPassword() + "です！");
             System.out.println("（DAO）取得した文字列は" + user.getPassword2() + "です！");
 
             // SQLのコマンドを実行する
@@ -116,25 +115,24 @@ public class UserDAO extends DriverAccessor{
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            //user.setPassword2(null);
+            // user.setPassword2(null);
 
             String password = user.getPassword();
-            String hashedpassword =  hash(password);
+            String hashedpassword = hash(password);
 
-            String passA = hashedpassword;//入力されたpass
-            String passB = rs.getString("password");//入力されたidに対応するpass
+            String passA = hashedpassword;// 入力されたpass
+            String passB = hash(rs.getString("password"));// 入力されたidに対応するpass
 
-            System.out.println("A:"+passA);
-            System.out.println("B:"+passB);
-            
+            System.out.println("A:" + passA);
+            System.out.println("B:" + passB);
+
             boolean ans = false;
 
-            //パスワードが正しいかどうか
-            if(passA.equals(passB)){
-                ans=true;
-            }
-            else{
-                ans=false;
+            // パスワードが正しいかどうか
+            if (passA.equals(passB)) {
+                ans = true;
+            } else {
+                ans = false;
             }
 
             // 終了処理
@@ -156,7 +154,7 @@ public class UserDAO extends DriverAccessor{
 
     // 入力された現在のパスワードがあっているか
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public boolean checkPassword(String id,String passwordU, Connection connection) throws NoSuchAlgorithmException {
+    public boolean checkPassword(String id, String passwordU, Connection connection) throws NoSuchAlgorithmException {
 
         try {
             System.out.println("DAO.checkPassword");
@@ -171,23 +169,22 @@ public class UserDAO extends DriverAccessor{
             rs.first();
 
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-            //user.setPassword2(null);
+            // user.setPassword2(null);
 
-            String pass = rs.getString("password");//入力されたidに対応するpass
+            String pass = rs.getString("password");// 入力されたidに対応するpass
 
-            passwordU=hash(passwordU);
+            passwordU = hash(passwordU);
 
-            System.out.println("password:"+pass);
-            System.out.println("passU:"+passwordU);
-            
+            System.out.println("password:" + pass);
+            System.out.println("passU:" + passwordU);
+
             boolean ans = false;
 
-            //パスワードが正しいかどうか
-            if(passwordU.equals(pass)){
-                ans=true;
-            }
-            else{
-                ans=false;
+            // パスワードが正しいかどうか
+            if (passwordU.equals(pass)) {
+                ans = true;
+            } else {
+                ans = false;
             }
 
             // 終了処理
@@ -209,37 +206,36 @@ public class UserDAO extends DriverAccessor{
 
     // 入力された現在のパスワードがあっているか
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void updatePassword(String id,String passwordU, Connection connection) throws NoSuchAlgorithmException {
+    public void updatePassword(String id, String passwordU, Connection connection) throws NoSuchAlgorithmException {
         try {
             System.out.println("DAO.updateUser");
 
-            passwordU=hash(passwordU);
-        // SQLコマンド
-        //String sql = "insert into user values(?, ?)";
-        String sql ="update user set password='"+ passwordU +"' where id='"+ id +"'";
+            passwordU = hash(passwordU);
+            // SQLコマンド
+            // String sql = "insert into user values(?, ?)";
+            String sql = "update user set password='" + passwordU + "' where id='" + id + "'";
 
-        // SQLコマンドの実行
-        PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
 
-        stmt.executeUpdate();
+            stmt.executeUpdate();
 
-    } catch (SQLException e) {
+        } catch (SQLException e) {
 
-        // エラーが発生した場合、エラーの原因を出力する
-        e.printStackTrace();
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
 
-    } finally {
+        } finally {
+        }
     }
-    }
 
-    public String  hash(String password) throws NoSuchAlgorithmException {
+    public String hash(String password) throws NoSuchAlgorithmException {
         // SHA-256（SHA-2）ハッシュ化制御
         MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-        byte[] sha256_result = sha256.digest(password.getBytes());//ここでハッシュ化している
-        String hashedpassword=String.format("%040x", new BigInteger(1, sha256_result));
+        byte[] sha256_result = sha256.digest(password.getBytes());// ここでハッシュ化している
+        String hashedpassword = String.format("%040x", new BigInteger(1, sha256_result));
         System.out.println("SHA-256：" + hashedpassword);
         return hashedpassword;
     }
-
 
 }
