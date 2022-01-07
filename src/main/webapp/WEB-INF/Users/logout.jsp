@@ -11,10 +11,10 @@
         <p align="right">ユーザーID　${User.id}</p>
         </div>
     <p align="right"></p>
-    <br/><br/><br/><br/>
+    <br/><br/>
 
     <h2 align="center">ログアウトしますか？</h2>
-
+    <br/>
     <p align="center">
         <a href="/se21g1/SystemTop" class="btn">トップへ戻る</a>　　　　　
         <a href="/se21g1/Logout" class="btn">ログアウト</a>
