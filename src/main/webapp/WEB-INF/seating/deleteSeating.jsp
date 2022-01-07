@@ -59,6 +59,15 @@ pageEncoding="UTF-8"%>
         margin-left: auto;
         margin-right: auto;
       }
+      .right_div{/*座席配置情報を教卓の横に置くクラス*/
+        width: 450px;                /* 横幅を900pxに指定 */
+        height: 100px;               /* 横幅を230pxに指定 */
+        right: 90px;
+        top: 530px;
+        /*bottom: 5;*/
+        position: absolute;
+        /*align-items: flex-end;*/
+      }
 
     </style>
 
@@ -90,6 +99,7 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br>
+        <div class="right_div">
         クラス：<%=seatingArrangements.getClassId() %>: <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～
         <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
@@ -100,12 +110,13 @@ pageEncoding="UTF-8"%>
         <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
         <%=seatingArrangements.getName()%>
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
+        </div>
 
         <form>
           <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
           <p align = "center">
-            <input type="submit" class ="button_grey" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="GET" />　　　
-            <input type="submit"  class = "button_grey" name="deleteSeating" value="　削除　" formaction="./DeleteSeating"  formmethod="POST" />
+            <input type="submit" class ="button_grey" id="btn_left_seat" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="GET" />　　　
+            <input type="submit"  class = "button_grey" id="btn_right_seat" name="deleteSeating" value="　削除　" formaction="./DeleteSeating"  formmethod="POST" />
           </p>
         </form>
         <% } %>

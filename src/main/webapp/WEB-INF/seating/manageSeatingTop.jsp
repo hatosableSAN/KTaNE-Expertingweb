@@ -35,10 +35,10 @@ pageEncoding="UTF-8"%>
       <h1 align="center">座席配置一覧</h1>
     </div>
 
-    <a href="./SeatingTop"><button align-items="center" class = "backbtn" name="regist_stu">座席配置メニュートップへ戻る</button></a>
+    <a href="./SeatingTop"><button align-items="center" class = "backbtn" name="regist_stu">座席配置メニュー<br/>トップへ戻る</button></a>
 
     <%-- <form action="./RegistStudentGet" method="post">
-      <button text-align="center" name="regist_class">検索実行</button>
+      <button text-align="center" class="button" name="regist_class">検索実行</button>
     </form> --%>
     <br>
     <font size="2px">検索：</font>
@@ -47,7 +47,7 @@ pageEncoding="UTF-8"%>
             <label><input type="radio" name="radiobutton" value="class"> <font size="2px">クラス</font></label>
             <label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
             <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>
-            <button text-align="center" name="search_seatingArr">検索実行</button></label>
+            <button text-align="center" class="button" name="search_seatingArr" style=" width:80px; height:20px; padding:0px; ">検索実行</button></label>
 
         </form>
       <br />
@@ -80,7 +80,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" value="座席配置詳細" name="hand" />
+                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
               </form></td>
             </tr>
           <% } }else{%>
@@ -114,7 +114,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" value="座席配置詳細" name="hand" />
+                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
               </form></td>
             </tr>
           <% } }else{%>

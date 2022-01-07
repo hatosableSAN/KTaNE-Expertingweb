@@ -59,6 +59,15 @@ pageEncoding="UTF-8"%>
         margin-left: auto;
         margin-right: auto;
       }
+      .right_div{/*座席配置情報を教卓の横に置くクラス*/
+        width: 450px;                /* 横幅を900pxに指定 */
+        height: 100px;               /* 横幅を230pxに指定 */
+        right: 90px;
+        top: 530px;
+        /*bottom: 5;*/
+        position: absolute;
+        /*align-items: flex-end;*/
+      }
 
     </style>
     <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
@@ -68,9 +77,8 @@ pageEncoding="UTF-8"%>
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置変更確認</h1>
     </div>
-    <br>
 
-    ・以下の情報で更新します<br>
+    以下の情報で更新します<br><br/>
       <form action="./UpdateSeatingAll" method="post">
         <table>
           <%
@@ -88,11 +96,13 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br>
+        <div class="right_div">
         クラス：<%=seatingArrangements.getClassId() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～<%=seatingArrangements.getEndDate() %>
         <Br>
         席名：<%=seatingArrangements.getName()%>
-        <input type="submit" value="座席配置を登録" name="updateSeatingClass" />
+      </div>
+        <input type="submit" class="btn" id="btn_right_seat" value="座席配置を登録" name="updateSeatingClass" />
         </form>
 
       <br />
@@ -143,6 +153,6 @@ pageEncoding="UTF-8"%>
                     %>
                     <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
-      <a href="./UpdateSeatingStudent"><button align="center" class="button_grey" name="regist_top">入力画面へ戻る</button></a>
+      <a href="./UpdateSeatingStudent"><button align="center" class="button_grey" id="btn_left_seat" name="regist_top">入力画面へ戻る</button></a>
   </body>
 </html>

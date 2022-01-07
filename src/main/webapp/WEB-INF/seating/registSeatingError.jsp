@@ -61,6 +61,14 @@ pageEncoding="UTF-8"%>
         margin-left: auto;
         margin-right: auto;
       }
+      .right_div{/*座席配置情報を教卓の横に置くクラス*/
+        width: 450px;                /* 横幅を900pxに指定 */
+        height: 100px;               /* 横幅を230pxに指定 */
+        right: 90px;
+        bottom:  5px;
+        position: absolute;
+        align-items: flex-end;
+      }
 
     </style>
 
@@ -93,13 +101,15 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
+        <div class="right_div">
         クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<input type="date" value="<%=seatingArrangements.getStartDate()%>" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
         ～
         <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
         席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
-        <input type="submit" formaction="./RegistSeatingInfo" formmethod="POST" value="座席配置を確定する" />
+      </div>
+        <input type="submit" formaction="./RegistSeatingInfo" formmethod="POST" value="座席配置を確定する" class="btn" id="btn_right_seat" />
 
 <font color="red">＊座席配置開始期間の入力は必須です</font>
 
