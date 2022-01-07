@@ -44,13 +44,26 @@ public class SelectGradeSeating extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
+        // HttpSession session = request.getSession(true);
+   //     if(LoginChecker.notLogin(session)){
+        // System.out.println("セッション情報がありません");
+        // RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sessionerror.jsp");
+        // dispatcher.forward(request, response);
 
+        
         SeatingService Service = new SeatingService();
 
         List<SeatingArrangements> SeatList=Service.getSeatList();
-
+        List<String> ClassNameList=new ArrayList<String>();
+        ClassService ClassService = new ClassService();
+        for(SeatingArrangements seat:SeatList){
+            int classid=seat.getId();
+        String ClassName=ClassService.getClassName(classid);
+        ClassNameList.add(ClassName);
+        }
 
         request.setAttribute("SeatList", SeatList);
+        request.setAttribute("ClassNameList", ClassNameList);
         System.out.println(SeatList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectSeating.jsp");
 
