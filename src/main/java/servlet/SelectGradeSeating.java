@@ -44,11 +44,12 @@ public class SelectGradeSeating extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
-        // HttpSession session = request.getSession(true);
-   //     if(LoginChecker.notLogin(session)){
-        // System.out.println("セッション情報がありません");
-        // RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sessionerror.jsp");
-        // dispatcher.forward(request, response);
+        HttpSession session = request.getSession(true);
+       if(LoginChecker.notLogin(session)){
+        System.out.println("セッション情報がありません");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+        dispatcher.forward(request, response);
+   }else{
 
         
         SeatingService Service = new SeatingService();
@@ -69,6 +70,7 @@ public class SelectGradeSeating extends HttpServlet {
 
         dispatcher.forward(request, response);
     }
+}
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
