@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
           dvPassport.style.display = attend.checked ? "block" : "none";
           $("#red").val(<%=Grade.getRed()%>);
           $("#blue").val(<%=Grade.getBlue()%>);
-          $("#greem").val(<%=Grade.getGreen()%>);
+          $("#green").val(<%=Grade.getGreen()%>);
             
 
           }

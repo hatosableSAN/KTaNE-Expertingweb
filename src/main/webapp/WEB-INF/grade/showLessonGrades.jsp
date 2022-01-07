@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal_grade.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal_gradeshow.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
   <style type="text/css">
@@ -101,6 +101,10 @@ pageEncoding="UTF-8"%>
       .h1-bottom {
               color: rgb(255, 0, 0);
             }
+    .bottom{
+      text-align:center;
+      padding-left:40px;
+    }
     </style>
     <!--  ここまでスタイル  -->
 
@@ -128,12 +132,13 @@ pageEncoding="UTF-8"%>
           </tr>
           <%}%>
         </table>
+        <div class="bottom">
         <p style=" vertical-align: top;margin:20px;border-style:solid;width:240px;height:100px;display: inline-block;text-align: center;border-color: #000;">授業コメント</br><%=Lesson.getComment()%></p>
         <div style="display: inline-block;"class="kyoutaku">教卓</div>
         <p style=" vertical-align: top;margin:20px;border-style:solid;width:240px;height:100px;display: inline-block;text-align: center;border-color: #000;">年度：<%=Class.getClass_year()%>　クラス：<%=Class.getClass_name()%></br>
           期間：<%=outputdf.format(inputdf.parse(SeatingArrangement.getStartDate()))%>～<%=outputdf.format(inputdf.parse(SeatingArrangement.getEndDate()))%></br>
           授業日：<%=outputlessondf.format(inputlessondf.parse(Lesson.getLessonDate()))%></p>
-        
+        </div>
         <br />
       
       
@@ -217,7 +222,6 @@ pageEncoding="UTF-8"%>
                     String Red=new String();
                     String Blue=new String();
                     String Green=new String();
-                    
                     if(Grade.getRed()==1){
                       Red="A";
                   }else if(Grade.getRed()==2){
@@ -249,35 +253,40 @@ pageEncoding="UTF-8"%>
                       $(function () {
                         $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
 
-                        if(<%=Grade.isAttendance() %>){
+                        if(<%=Grade.isAttendance() %>==true){
                         $("#<%=Grade.getSeat() %>").attr('attendance',1);
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                         }else{
                         $("#<%=Grade.getSeat() %>").attr('attendance',0);
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br>欠席");
                         }
                         
                         $("#<%=Grade.getSeat() %>").addClass('setseatm');
                         $("#<%=Grade.getSeat() %>").addClass('seatall');
                         $("#<%=Grade.getSeat() %>").addClass('seat');
                         $("#<%=Grade.getSeat() %>").removeClass("seatblank");
-                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
+                        
                       });
                     </script>
                     <% }else if(setStudent.getStudent_gender() == 2){//女
                     %>
                   <script>
                       $(function () {
-                        if(<%=Grade.isAttendance() %>){
+                        if(<%=Grade.isAttendance() %>==true){
                         $("#<%=Grade.getSeat() %>").attr('attendance',1);
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                         }else{
                         $("#<%=Grade.getSeat() %>").attr('attendance',0);
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br>欠席");
                         }
+
                         $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
                         $("#<%=Grade.getSeat() %>").addClass('seat');
                         $("#<%=Grade.getSeat() %>").addClass('seatall');
                         $("#<%=Grade.getSeat() %>").removeClass("seatblank");
                         $("#<%=Grade.getSeat() %>").addClass('setseatf');
  
-                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
+                        
                       });
                   </script>
                     <%
@@ -285,17 +294,20 @@ pageEncoding="UTF-8"%>
                     %>
                     <script>
                       $(function () {
-                        if(<%=Grade.isAttendance() %>){
+                        if(<%=Grade.isAttendance() %>==true){
                         $("#<%=Grade.getSeat() %>").attr('attendance',1);
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
                         }else{
                         $("#<%=Grade.getSeat() %>").attr('attendance',0);
+                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br>欠席");
                         }
+
                         $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
                         $("#<%=Grade.getSeat() %>").addClass('setseato');
                         $("#<%=Grade.getSeat() %>").addClass('seat');
                         $("#<%=Grade.getSeat() %>").addClass('seatall');
                         $("#<%=Grade.getSeat() %>").removeClass("seatblank");
-                        $("#<%=Grade.getSeat() %>").html("<%=setStudent.getStudent_id() %><br><%=setStudent.getStudent_name() %><br><font color=red><%=Red %></font> <font color=Green><%=Green %></font> <font color=blue><%=Blue %></font> ");
+                        
                       });
                   </script>
                     

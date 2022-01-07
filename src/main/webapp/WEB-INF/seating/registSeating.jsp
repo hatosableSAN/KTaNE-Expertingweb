@@ -69,9 +69,10 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　<input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
+            <input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
           </form>
+          <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　
         </div>
 
       <br />

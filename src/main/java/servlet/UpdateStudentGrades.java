@@ -42,7 +42,7 @@ public class UpdateStudentGrades extends HttpServlet {
         String idnumber=request.getParameter("gradeid");
         int id=Integer.parseInt(idnumber);//授業ID
         GradeService service=new GradeService();
-        Grade Grade=service.getStudentGrade(id);//ひょうかりすと
+        Grade Grade=service.getStudentGrade(id);//ひょうか
         session.setAttribute("Grade", Grade);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateStudentGrades.jsp");
