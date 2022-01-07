@@ -73,7 +73,7 @@ pageEncoding="UTF-8"%>
 
  </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成確認</h1>
     </div>

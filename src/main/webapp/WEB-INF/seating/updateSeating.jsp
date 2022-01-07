@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -56,17 +56,21 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
       }
 
     </style>
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置変更</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置変更</h1>
+      
+      </div>
     <br>
 
     ・座席を選択し、児童・生徒の座席を作成してください。<br>
@@ -93,7 +97,7 @@ pageEncoding="UTF-8"%>
         <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
         席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
-        <input type="submit" formaction="./UpdateSeatingInfo" formmethod="POST" value="座席配置を確定する" />
+        <input type="submit" class="btn" id="btn_right" formaction="./UpdateSeatingInfo" formmethod="POST" value="座席配置を確定する" style="position:fixed;"/>
 
 
 
@@ -172,6 +176,6 @@ pageEncoding="UTF-8"%>
                 <%-- <%  for(Student setstudent : setStudentList ){ %> --%>
                   <%-- <%=setstudent.getStudent_id()%>:<%=setstudent.getStudent_name()%><br> --%>
                 <%-- <% } %> --%>
-      <a href="./manageSeatingTop"><button align="center" name="regist_top">キャンセル</button></a>
+      <a href="./manageSeatingTop"><button align="center" class="button_grey" id="btn_left" name="regist_top" style="position:fixed;">キャンセル</button></a>
   </body>
 </html>

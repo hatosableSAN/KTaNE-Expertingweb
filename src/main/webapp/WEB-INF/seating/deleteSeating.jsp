@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
 
-    <div class="darkblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置削除</h1>
     </div>

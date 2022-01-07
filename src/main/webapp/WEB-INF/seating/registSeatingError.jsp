@@ -63,10 +63,16 @@ pageEncoding="UTF-8"%>
       }
 
     </style>
+
+<link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置新規作成</h1>
+      <a href="./RegistSeatingStudent"><button align="center" class="backbtn" name="regist_top">座席配置画面へ戻る</button></a>
+      </div>
     <br>
 
     ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
@@ -173,6 +179,5 @@ pageEncoding="UTF-8"%>
                   <%-- <%=setstudent.getStudent_id()%>:<%=setstudent.getStudent_name()%><br> --%>
                 <%-- <% } %> --%>
 
-      <a href="./RegistSeatingStudent"><button align="center" name="regist_top">座席配置画面へ戻る</button></a>
   </body>
 </html>

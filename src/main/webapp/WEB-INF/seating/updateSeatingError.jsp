@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -56,17 +56,20 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
       }
 
     </style>
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置変更</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置変更</h1>
+    </div>
     <br>
 
     ・座席を選択し、児童・生徒の座席を作成してください。<br>
@@ -172,6 +175,6 @@ pageEncoding="UTF-8"%>
                 <%-- <%  for(Student setstudent : setStudentList ){ %> --%>
                   <%-- <%=setstudent.getStudent_id()%>:<%=setstudent.getStudent_name()%><br> --%>
                 <%-- <% } %> --%>
-      <a href="./manageSeatingTop"><button align="center" name="regist_top">キャンセル</button></a>
+      <a href="./manageSeatingTop"><button align="center" class="button_grey" name="regist_top">キャンセル</button></a>
   </body>
 </html>
