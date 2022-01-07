@@ -180,4 +180,25 @@ public class SeatingService {
         return seatingArrangements;
     }
 
+    public List<SeatingArrangements> getsearchMySeatingArr(String id, String index, String word) {// 自身の作成した検索ワードの座席配置を返す
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<SeatingArrangements> seatingArrangements = dao.getsearchSeatingArr(true,id, index, word, connection);
+        // dao に反映
+        closeConnection(dao);
+        return seatingArrangements;
+    }
+
+    public List<SeatingArrangements> getsearchOtherSeatingArr(String id, String index, String word) {
+        // 自身"以外"の作成した検索ワードの座席配置を返す
+        // DAOオブジェクト生成
+        SeatingDAO dao = new SeatingDAO();
+        createConnection(dao);
+        List<SeatingArrangements> seatingArrangements = dao.getsearchSeatingArr(false ,id, index, word, connection);
+        // dao に反映
+        closeConnection(dao);
+        return seatingArrangements;
+    }
+
 }

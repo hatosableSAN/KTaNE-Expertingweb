@@ -10,6 +10,8 @@ pageEncoding="UTF-8"%>
 <%
     List<SeatingArrangements> mySeatingArrangementsList=(List<SeatingArrangements>) request.getAttribute("mySeatingArrangementsList");
     List<SeatingArrangements> otherSeatingArrangementsList=(List<SeatingArrangements>) request.getAttribute("otherSeatingArrangementsList");
+    String word = (String) request.getAttribute("Word");
+    String index = (String)request.getAttribute("index");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,14 +36,15 @@ pageEncoding="UTF-8"%>
       <button text-align="center" name="regist_class">検索実行</button>
     </form> --%>
     <br>
-    <font size="2px">検索：</font>
-        <form action="./Search_seatingArr" method="post">
-            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
-            <label><input type="radio" name="radiobutton" value="class"> <font size="2px">クラス</font></label>
-            <label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
-            <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>
-            <button text-align="center" name="search_seatingArr">検索実行</button></label>
-
+   <font size="2px">検索：</font>
+        <form action="./SearchSeating" method="post">
+            <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
+            <label><input type="radio" name="radiobutton" value="class" required <%if(index.equals("class")||index ==null){%>checked<%}%>> <font size="2px">クラス</font></label>
+            <label><input type="radio" name="radiobutton" value="name" <%if(index.equals("name")){%>checked<%}%>> <font size="2px">座席配置名</font></label>
+            <!--<label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
+            <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>-->
+            <button text-align="center" name ="searchbutton" value="search_seatingArr">検索実行</button></label>
+            <button text-align="center" name ="searchbutton" value="searchReset">一覧表示</button></label>
         </form>
       <br />
     自身の作成した座席配置情報<br>
