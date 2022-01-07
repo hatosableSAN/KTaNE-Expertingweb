@@ -18,49 +18,6 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  <style type="text/css">
-    .seat {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-      }
-      .setseatm {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#4088CA;
-        text-align:center;
-      }
-      .setseatf {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:rgb(240, 134, 134);
-        text-align:center;
-      }
-      .setseato {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:gray;
-        text-align:center;
-      }
-      .left{
-        padding-left:40px;
-      }
-      .kyoutaku{
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-    </style>
  </head>
   <body>
   <p align="right">ID: ${User.id}</p>
