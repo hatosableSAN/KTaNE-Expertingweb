@@ -289,32 +289,7 @@ public class SeatingDAO extends DriverAccessor {
             System.out.println(statement);
             ResultSet rs = statement.executeQuery();
 
-            // SQLのコマンドを実行する
-            // 実行結果はrsに格納される
-            // Statement stmt = connection.createStatement();
-            // ResultSet rs = stmt.executeQuery(sql);
-            // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
-
             rs.first();
-
-            /*
-             * if(rs.getString("taikai_name") == null) {
-             * result.setPlayer_name("0");
-             * result.setTaikai_name("0");
-             * result.setTaikai_level("0");
-             * result.setTaikai_kekka("0");
-             *
-             * }else {
-             * result.setTaikai_name(rs.getString("taikai_name"));
-             * result.setTaikai_level(rs.getString("taikai_level"));
-             * result.setTaikai_kekka(rs.getString("taikai_kekka"));
-             * }
-             */
-
-            // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
-
-            //
-            // classdef.setClass_id(rs.getString("id"));
             SeatArr.setClassId(rs.getInt("class_id"));
             SeatArr.setCreatedDate(rs.getString("created_date"));
             SeatArr.setStartDate(rs.getString("start_date"));
@@ -362,6 +337,93 @@ public class SeatingDAO extends DriverAccessor {
             rs.close();
 
             return SeatingArrangementsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<SeatingArrangements> getsearchSeatingArr(boolean isMine, String user_id, String index, String word,
+            Connection connection) {
+        // 特定userIdの作成した座席配置情報を検索し取得。isMine 自分のクラスならtrue 他人ならfalse index クラス、開始期間、終了期間
+        String sql;
+        System.out.println(isMine + ":" + index + ":" + word);
+        List<SeatingArrangements> searchSeatingList = new ArrayList<SeatingArrangements>();
+        try {
+            if (index.equals("class")) {// クラス名の時
+                // クラス名からクラスIDを取得
+                sql = "select * from classes where name LIKE ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, "%" + word + "%");
+                System.out.println(statement);
+                ResultSet rs = statement.executeQuery();
+                List<ClassDef> searchClassList = new ArrayList<ClassDef>();
+                while (rs.next()) {
+                    ClassDef searchClass = new ClassDef();
+                    ClassDef classdef = new ClassDef();
+                    classdef.setClass_id(rs.getInt("id"));
+                    classdef.setClass_name(rs.getString("name"));
+                    classdef.setClass_year(rs.getInt("year"));
+                    classdef.setClass_user(rs.getString("user_id"));
+                    searchClassList.add(classdef);
+                }
+                statement.close();
+                rs.close();
+                // 取得したクラスIDから座席配置を検索
+                for (int i = 0; i < searchClassList.size(); i++) {
+                    if (isMine) {
+                        sql = "select * from seating_arrangements where class_id = ? AND user_id = ?";
+                    } else {
+                        sql = "select * from seating_arrangements where class_id = ? AND user_id != ? ";
+                    }
+                    statement = connection.prepareStatement(sql);
+                    statement.setInt(1, searchClassList.get(i).getClass_id());
+                    statement.setString(2, user_id);
+                    rs = statement.executeQuery();
+                    if (rs.first()) {
+                        SeatingArrangements SeatingArrangement = new SeatingArrangements();
+                        SeatingArrangement.setId(rs.getInt("id"));
+                        SeatingArrangement.setClassId(rs.getInt("class_id"));
+                        SeatingArrangement.setCreatedDate(rs.getString("created_date"));
+                        SeatingArrangement.setStartDate(rs.getString("start_date"));
+                        SeatingArrangement.setEndDate(rs.getString("end_date"));
+                        SeatingArrangement.setName(rs.getString("name"));
+                        SeatingArrangement.setUserId(rs.getString("user_id"));
+                        searchSeatingList.add(SeatingArrangement);
+                    }
+                }
+                statement.close();
+                rs.close();
+            } else if (index.equals("name")) {// 座席配置名の時
+                if (isMine) {
+                    sql = "select * from seating_arrangements where user_id = ? AND name LIKE ?";
+                } else {
+                    sql = "select * from seating_arrangements where user_id != ? AND name LIKE ?";
+                }
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, user_id);
+                statement.setString(2, "%" + word + "%");
+                System.out.println(statement);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    SeatingArrangements SeatingArrangement = new SeatingArrangements();
+                    SeatingArrangement.setId(rs.getInt("id"));
+                    SeatingArrangement.setClassId(rs.getInt("class_id"));
+                    SeatingArrangement.setCreatedDate(rs.getString("created_date"));
+                    SeatingArrangement.setStartDate(rs.getString("start_date"));
+                    SeatingArrangement.setEndDate(rs.getString("end_date"));
+                    SeatingArrangement.setName(rs.getString("name"));
+                    SeatingArrangement.setUserId(rs.getString("user_id"));
+                    searchSeatingList.add(SeatingArrangement);
+                }
+                statement.close();
+                rs.close();
+            } else if (index.equals("startdate")) {// 未完成 開始期間検索
+                sql = "select * from seating_arrangements where user_id = ? AND startdate";
+            } else if (index.equals("enddate")) {// 未完成 終了期間検索
+                sql = "select * from seating_arrangements where user_id = ?";
+            }
+            return searchSeatingList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

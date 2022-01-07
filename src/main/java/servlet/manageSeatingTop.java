@@ -56,6 +56,8 @@ public class manageSeatingTop extends HttpServlet {
         List<SeatingArrangements> otherSeatingArrangementsList = SeatingService.getAllOtherSeatingArr(user.getId());
         request.setAttribute("mySeatingArrangementsList", mySeatingArrangementsList);
         request.setAttribute("otherSeatingArrangementsList", otherSeatingArrangementsList);
+        request.setAttribute("Word", null);// 検索窓になにも入れない
+        request.setAttribute("index", "class");// 検索チェック欄はクラスにしておく
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/manageSeatingTop.jsp");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         dispatcher.forward(request, response);
