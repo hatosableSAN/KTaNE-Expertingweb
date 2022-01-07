@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
       }
       .setseatm {
@@ -93,7 +93,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
@@ -103,11 +103,14 @@ pageEncoding="UTF-8"%>
             }
     </style>
     <!--  ここまでスタイル  -->
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価閲覧</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">授業評価閲覧</h1>
+    </div>
     <br>
 
 
@@ -322,7 +325,7 @@ pageEncoding="UTF-8"%>
             <h2 class="h1-bottom"></h2>
 
             <%}%>
-      <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
+      <a href="./GradeTop"><button align="center" class="backbtn" name="regist_top">評価メニュー<br/>トップへ戻る</button></a>
   </body>
 </html>
 
