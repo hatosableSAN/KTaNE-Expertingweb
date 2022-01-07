@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
               <%=classdef.getClass_name()%></td>
               <%-- TODO:IDじゃなくてクラス名で表示する --%>
               <td><%=SeatingArrangements.getStartDate()%>~
-              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate(""); } %>
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定"); } %>
               <%=SeatingArrangements.getEndDate()%></td>
               <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>

@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
         クラス：<%=seatingArrangements.getClassId() %>: <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～
         <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate(""); } %>
+              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate("終了日未定"); } %>
         <%=seatingArrangements.getEndDate() %>
         <Br>
         席名：
