@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
       <table align="center">
         <tr><td>番号　<font color="red">＊</font>　　　　　　　　　　　　　</td><td>名前　<font color="red">＊</font>　　　　　　　　　　　　　　　　　</td><td>性別　　　　　　　　　</td></tr>
         <tr><td><input type="text" name="stu_id" placeholder="半角英数字(6~15文字)" maxlength="15" minlength="6" pattern="^[0-9A-Za-z]+$"/></td>      
-        <td><input type="text" name="stu_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/></td>
+        <td><input type="text" name="stu_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-]+"/></td>
         <td>
         <select name="stu_gender">
             <option value="1">男</option>
