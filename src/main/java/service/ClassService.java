@@ -192,6 +192,17 @@ public class ClassService {
         return result;
     }
 
+    public String getClassName(int classid) {
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        String ClassName = classDAO.getClassName(classid, connection);
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
+        return ClassName;
+    }
+
+
+
     /*public ClassDef searchClass(int id) {
         ClassDef ClassDef=new ClassDef();
         

@@ -393,4 +393,29 @@ public class ClassDAO extends DriverAccessor {
         }
     }
 
+    public String getClassName(int classid, Connection connection) {
+        try {
+            // SQLコマンド
+            String sql = "select* from classes where id=?";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, classid);
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+            String name=new String();
+            name=rs.getString("name");
+            stmt.close();
+            return name;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
+
 }
