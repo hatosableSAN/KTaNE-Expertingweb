@@ -77,7 +77,9 @@ public class RegistClass extends HttpServlet {
             System.out.println("right here");
             System.out.println("stu_member= "+request.getParameter("student_member"));
             //System.out.println("length of checked= "+checkedStudents.length);//null
-            if(member.equals("")){//誰も登録できない、児童がシステムにいない時
+            if(member == null){
+                //児童が登録されていない
+            }else if(member.equals("")){//誰も選択されなかった
                 //児童の情報なし
             }else{
                 String[] checkedStudents = request.getParameterValues("student_member");

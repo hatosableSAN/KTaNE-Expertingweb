@@ -188,7 +188,17 @@ public class ClassService {
         System.out.println("student_member.length= " + student_member.length);
 
         // for (int i = 0; i < student_member.length; i++) {
-        result = memberDAO.updateMember(student_member, classdef, this.connection);
+            if(student_member.length!=0){
+                for(int i=0; i<student_member.length; i++){
+                    result = memberDAO.updateMember(student_member, classdef, this.connection);
+                }
+                //result = memberDAO.updateMember(student_member, classdef, this.connection);
+            }else{
+                //クラスからメンバーがいなくなったってことなので、児童を消す必要がある
+                ClassService ClassService = new ClassService();
+                List<Student> StudentList = ClassService.getAllClassmember(classdef);
+                result = memberDAO.deleteMember(classdef,StudentList.size(),this.connection);
+            }
         // }
 
         // StudentオブジェクトをDataBaseに登録する
