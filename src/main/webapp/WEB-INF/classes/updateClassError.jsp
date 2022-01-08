@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
         <input type="text" name="class_year" value="<%=ClassDef.getClass_year()%>" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">　　　　　　　　　　　　＊必須項目です</font>
         <br>
         クラス名　
-        <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">　　　　　　　　＊必須項目です</font>
+        <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-\u30FC]+">　1~20文字<font color="red">　　　　　　　　＊必須項目です</font>
         <br>
         メンバー　　
         <!--form action="../RegistStudentGet" method="post">
