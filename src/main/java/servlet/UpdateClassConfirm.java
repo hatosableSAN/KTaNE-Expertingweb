@@ -70,11 +70,33 @@ public class UpdateClassConfirm extends HttpServlet {
         // studentオブジェクトに情報を格納
         
         String[] checkedStudents = request.getParameterValues("student_member");
+        String[] noMember = new String[0];
         System.out.println(Arrays.toString(checkedStudents));
-        System.out.println("right here");
+        System.out.println("update class confirm");
+        boolean result = false;
 
         ClassDef classdef = new ClassDef(class_id,class_name, class_year, class_user);
-        boolean result = class_service.updateClass(classdef, checkedStudents);//クラス情報(名前と年度)を更新
+        if(request.getParameter("student_member").equals("")){
+            //クラスから誰もいなくなった
+            //ClassDef classdef = new ClassDef(class_name, class_year, class_user);
+            System.out.println("now this class became no one");
+            checkedStudents = noMember;
+            result = class_service.updateClass(classdef, checkedStudents);
+            //class_service.registClassOnly(classdef);
+        }else{
+            //String[] checkedStudents = request.getParameterValues("student_member");
+            result = class_service.updateClass(classdef, checkedStudents);//クラス情報(名前と年度)を更新
+            for (int i = 0; i < checkedStudents.length; i++) {
+                String stu_id = checkedStudents[i];
+                String stu_name = null;
+                int stu_gender = 0;
+                String stu_user = null;
+                Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+                student = stu_service.searchStudent(student);
+                list.add(student);
+            }
+        }
+        /*boolean result = class_service.updateClass(classdef, checkedStudents);//クラス情報(名前と年度)を更新
         for (int i = 0; i < checkedStudents.length; i++) {
             String stu_id = checkedStudents[i];
             String stu_name = null;
@@ -83,14 +105,14 @@ public class UpdateClassConfirm extends HttpServlet {
             Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
             student = stu_service.searchStudent(student);
             list.add(student);
-        }
+        }*/
 
         if(result == false){
                 System.out.println("couldnot update class");
                 tourl = "/WEB-INF/classes/updateClassFail.jsp";
                 //RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/student/deleteStudentFail.jsp");
                 //dispatcher.forward(request, response);
-            }
+        }
         // これには、valueが全部入ってるから、あーメンバーに登録するときに使える これを突っ込めばよい
         // int i = 0;
         request.setAttribute("ClassDef", classdef);
