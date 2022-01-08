@@ -70,17 +70,24 @@ public class RegistClassConfirm extends HttpServlet {
         String[] checkedStudents = request.getParameterValues("student_member");
         System.out.println(Arrays.toString(checkedStudents));
         System.out.println("right here");
-
         ClassDef classdef = new ClassDef(class_name, class_year, class_user);
-        class_service.registClass(classdef, checkedStudents);
-        for (int i = 0; i < checkedStudents.length; i++) {
+        if(request.getParameter("student_member").equals("")){
+            //誰も登録されない
+            //ClassDef classdef = new ClassDef(class_name, class_year, class_user);
+            System.out.println("this class has no one");
+            class_service.registClassOnly(classdef);
+        }else{
+         //ClassDef classdef = new ClassDef(class_name, class_year, class_user);
+         class_service.registClass(classdef, checkedStudents);
+         for (int i = 0; i < checkedStudents.length; i++) {
             String stu_id = checkedStudents[i];
             String stu_name = null;
             int stu_gender = 0;
             String stu_user = null;
             Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
-            student = stu_service.searchStudent(student);
+            student = stu_service.searchStudent(student);//なぜここでエラー？
             list.add(student);
+         }
         }
         // これには、valueが全部入ってるから、あーメンバーに登録するときに使える これを突っ込めばよい
         // int i = 0;
@@ -97,7 +104,7 @@ public class RegistClassConfirm extends HttpServlet {
 
         // ClassDef classdef = new ClassDef(class_name,class_year,class_user);
         // service.registClass(classdef);
-        request.setAttribute("ClassDef", classdef);
+        request.setAttribute("ClassDef", classdef);//怒られる
         request.setAttribute("List", list);
         //request.setAttribute("Student", studentinfo);
         // System.out.println(list);

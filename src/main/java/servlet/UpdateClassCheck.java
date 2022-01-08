@@ -82,10 +82,17 @@ public class UpdateClassCheck extends HttpServlet {
             int class_year = Integer.parseInt(classyear);
             //int class_id = Integer.parseInt(classid);
             List<Student> list = new ArrayList<Student>();
-            String[] checkedStudents = request.getParameterValues("student_member");
-            System.out.println(Arrays.toString(checkedStudents));
+            //String[] checkedStudents = request.getParameterValues("student_member");
+            String member = request.getParameter("student_member");
+            //System.out.println(Arrays.toString(checkedStudents));
             //System.out.println("right here");
             //System.out.println(request.getParameter("student_member"));
+            if(member == null){
+                //児童が登録されていない
+            }else if(member.equals("")){
+                //児童の情報なし
+            }else{
+                String[] checkedStudents = request.getParameterValues("student_member");
             for (int i = 0; i < checkedStudents.length; i++) {//これは確認の時に必要だったような
                 String stu_id = checkedStudents[i];
                 String stu_name = null;
@@ -107,6 +114,7 @@ public class UpdateClassCheck extends HttpServlet {
             // list = service.getStudentNumber(checkedStudents); //やめます！上手くいかない
             // }
             // list = service.getStudent(); //一回コメントアウト
+            }//児童入れるか入れないか判定したif文のかっこ
 
             ClassDef classdef = new ClassDef(class_name, class_year, class_user);
             request.setAttribute("ClassDef", classdef);
