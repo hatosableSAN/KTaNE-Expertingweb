@@ -32,11 +32,30 @@ pageEncoding="UTF-8"%>
         <!--form action="../RegistStudentGet" method="post">
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
-        <br />
+        <!--br />
+        <%-- if(stu_list.size()==0){ --%>
+          児童が登録されていません</td>
+          <input type="hidden" name="student_member" value="">
+        </tr></table><br><br><br>
+        <h4 align="center"><font color="red">クラス、年度は必須項目です</font></h4>
+        <input type="submit" value="変更" name="hand" class="btn" id="btn_right">
+        <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+        <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
+     </form-->
+          <%-- }else{ --%>
         <div class="student">
         <table>
             <tr><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
-            <% for(Student s:stu_list){
+            <% if(stu_list.size()==0){ %>
+              </table>
+              <h4 align="center">児童が登録されていません</h4>
+              </div>
+              <input type="submit" value="変更" name="hand" />
+              <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+              <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
+            </form>
+          <% }else{
+            for(Student s:stu_list){
               int flag=0; %>
                 <tr>
                 <td><lavel>
@@ -65,7 +84,6 @@ pageEncoding="UTF-8"%>
                 <td><label><%=s.getStudent_user() %></label></td>
                 </label>
                 </tr></label>
-                <%} %>
         </table>
         </div>
         <input type="submit" value="変更" name="hand" />
@@ -79,7 +97,7 @@ pageEncoding="UTF-8"%>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <button text-align="center" name="regist_class">検索実行</button>
             <button text-align="center" name="regist_class">一覧表示</button>
-        </form>
+        </form><% } }%>
       <br />
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル'>
