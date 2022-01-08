@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
         <input type="text" name="class_year" value="<%=ClassDef.getClass_year()%>" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">　　　　　　　　　　　　＊必須項目です</font>
         <br>
         クラス名　
-        <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-\u30FC]+">　1~20文字<font color="red">　　　　　　　　＊必須項目です</font>
+        <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9０-９\-\u30FC]+">　1~20文字<font color="red">　　　　　　　　＊必須項目です</font>
         <br>
         メンバー　　
         <!--form action="../RegistStudentGet" method="post">
@@ -46,14 +46,15 @@ pageEncoding="UTF-8"%>
             <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
           </form>
         <% }else{
-            for(Student s:stu_list){ %>
+            for(Student s:stu_list){ 
+              int flag=0; %>
                 <tr>
                 <td><lavel>
                   <% for(int i=0; i < stu_classlist.size(); i++ ) { 
                     Student sc = stu_classlist.get(i);
                     if(s.getStudent_id().equals(sc.getStudent_id())){ %>
                       <input type="checkbox"/ name="student_member" checked value=<%=s.getStudent_id() %>>
-                    <% break;}%>
+                    <% flag=1;} } if(flag==0){%>
                       <input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>>
                     <% }%>
                   <!--input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>-->
@@ -71,7 +72,7 @@ pageEncoding="UTF-8"%>
                   </label></td>
                 <td><label><%=s.getStudent_user() %></label></td>
                 </label>
-                </tr></label>
+                </tr></label><% } %>
         </table>
         </div>
         <h4><font color="red">クラス名、年度は必須項目です</font></h4>
@@ -81,12 +82,12 @@ pageEncoding="UTF-8"%>
       </form>
       <font size="2px">検索：</font>
         <form action="./SearchStudent" method="post">
-            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
+            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
             <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <button text-align="center" name="regist_class">検索実行</button>
             <button text-align="center" name="regist_class">一覧表示</button>
-        </form><% } }%>
+        </form><% }%>
       <br />
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル'>
