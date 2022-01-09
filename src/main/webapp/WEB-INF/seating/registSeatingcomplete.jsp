@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
   </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
     </div>
     <h2 align="center">座席配置の登録が完了しました</h2>

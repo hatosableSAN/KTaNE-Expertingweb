@@ -64,8 +64,8 @@ pageEncoding="UTF-8"%>
         width: 450px;                /* 横幅を900pxに指定 */
         height: 100px;               /* 横幅を230pxに指定 */
         right: 90px;
-        bottom: 0px;
-        position: fixed;
+        bottom:  5px;
+        position: absolute;
         align-items: flex-end;
       }
 
@@ -75,13 +75,13 @@ pageEncoding="UTF-8"%>
 
  </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成</h1>
     </div>
-    <a href="./RegistSeatingStudent"><button class="backbtn" id="btn_left" name="regist_top" style="top:auto; position: fixed;">座席配置画面へ戻る</button></a>
+    <a href="./RegistSeatingStudent"><button class="backbtn" id="btn_left_seat" name="regist_top">座席配置画面へ戻る</button></a>
 
-    <div class="center">児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。</div>
+    <div class="center">児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。</div><br/>
       <form action="./RegistSeatingInfo" method="post">
         <table align="center">
           <%
@@ -107,10 +107,11 @@ pageEncoding="UTF-8"%>
         <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
         席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
-        <input type="submit" value="座席配置登録" name="registSeatingClass" class="btn" id="btn_right" style="position: fixed;">
+      </div><input type="submit" value="座席配置登録" name="registSeatingClass" class="btn" id="btn_right_seat" >
+        
         </form>
 
-      <br />
+      <br /><br/><br/><br/>
 
 
       <% if(studentSeatingArrList!=null && studentSeatingArrList.size() > 0) {

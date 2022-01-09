@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
   </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成</h1>
     </div>
