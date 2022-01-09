@@ -75,7 +75,7 @@ pageEncoding="UTF-8"%>
               </div>
             </table>
         </table><br>
-        <div class="center"><font color="red">以上のクラスを削除しますか？</font><br></div>
+        <font color="red"><h4 align="center">以上のクラスを削除しますか？</h4></font><br>
         <form action="./ClassTop" method="post">
                 <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
                 <input type="submit" value="キャンセル" name="hand" class="button_grey" id="btn_left">
