@@ -50,54 +50,57 @@ public class SearchStudent extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
-          // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        // System.out.println("いまHandのPost");
+            // requestオブジェクトの文字エンコーディングの設定
+            request.setCharacterEncoding("UTF-8");
+            // System.out.println("いまHandのPost");
 
-        // requestオブジェクトから登録情報の取り出し
-        String stu_search = request.getParameter("stu_search");
-        List<Student> list = new ArrayList<Student>();
-        // List<Student> list = new ArrayList<Student>();
-        StudentService service = new StudentService();
-        String stu_info = request.getParameter("stu_search"); //textboxの値
-        String select = request.getParameter("radiobutton"); //ラジオボタンどちらが押されたか
-        // int stu_gender = Integer.parseInt(gender);
-        // String stu_user = "ABC"; //今ログインしている教員ユーザ
-        // String taikai_l = request.getParameter("taikai_l");
-        // String taikai_k = request.getParameter("taikai_k");
+            // requestオブジェクトから登録情報の取り出し
+            String stu_search = request.getParameter("stu_search");
+            List<Student> list = new ArrayList<Student>();
+            // List<Student> list = new ArrayList<Student>();
+            StudentService service = new StudentService();
+            String stu_info = request.getParameter("stu_search"); // textboxの値
+            String select = request.getParameter("radiobutton"); // ラジオボタンどちらが押されたか
+            // int stu_gender = Integer.parseInt(gender);
+            // String stu_user = "ABC"; //今ログインしている教員ユーザ
+            // String taikai_l = request.getParameter("taikai_l");
+            // String taikai_k = request.getParameter("taikai_k");
 
-        String tourl = null;
-        if (stu_info.isEmpty()) { //テキストボックスが空だったら一覧表示
-            list = service.getStudent();
-            request.setAttribute("List", list);
-            System.out.println("Please full all");
-            tourl = "/WEB-INF/classes/registClass.jsp";
-        } else {
-            //このif文意味ない気がする
-            /*if(select.equals("number")){//番号のラジオボタンが押された
-                String stu_id = stu_info;
-                String stu_name = null;
-            }else if(select.equals("name")){//名前のラジオボタンが押された
-                String stu_id = null;
-                String stu_name = stu_info;
-            }*/
-            //String stu_id = null;
-            //String stu_name = null;
-            //int stu_gender = 0;
-            //String stu_user = null;
-            //Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
-            list = service.getStudent(stu_info,select);//引数を付けます。stu_infoとselect
-            System.out.println("list size is "+list.size());
-            if(list.size()==0){
-                //検索に当てはまる児童がいなかった
-                tourl="/WEB-INF/classes/registClassNone.jsp";//検索結果がありません画面に飛ぶ
-                System.out.println("in if");
+            String tourl = null;
+            if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
+                list = service.getStudent();
+                request.setAttribute("List", list);
+                System.out.println("Please full all");
+                tourl = "/WEB-INF/classes/registClass.jsp";
+            } else {
+                // このif文意味ない気がする
+                /*
+                 * if(select.equals("number")){//番号のラジオボタンが押された
+                 * String stu_id = stu_info;
+                 * String stu_name = null;
+                 * }else if(select.equals("name")){//名前のラジオボタンが押された
+                 * String stu_id = null;
+                 * String stu_name = stu_info;
+                 * }
+                 */
+                // String stu_id = null;
+                // String stu_name = null;
+                // int stu_gender = 0;
+                // String stu_user = null;
+                // Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+                list = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect
+                System.out.println("list size is " + list.size());
+                if (list.size() == 0) {
+                    // 検索に当てはまる児童がいなかった
+                    tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                    System.out.println("in if");
+                }
+
+                request.setAttribute("List", list);
+                tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
+
             }
-
-            request.setAttribute("List", list);
-            tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
-
         }
-    }
 
+    }
 }
