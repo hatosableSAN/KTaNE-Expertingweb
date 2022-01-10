@@ -6,12 +6,9 @@
   <body>
     <div class="darkgray"></div><br/>
     <br/><br/>
-    <p align="center">
-        <FONT size="6"><BR />
-        <BR />
-        ユーザ登録が完了しました<br/>
-        ログイン画面でログインしてください</FONT>
-    </p>
-    <p align="center"><a href="/se21g1/Login" class="btn">ログイン画面へ</a></p>
+    <h2 align="center">ユーザー登録が完了しました<br/>
+      ログイン画面でログインしてください</h2>
+    
+    <p align="center"><a href="/se21g1/Login"><button class="btn">ログイン画面へ</button></a></p>
   </body>
 </html>

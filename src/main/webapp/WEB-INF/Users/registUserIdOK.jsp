@@ -6,7 +6,7 @@
   <body>
     <div class="darkgray">
       <p align="right">　</p>
-      <h1 align="center">ユーザ登録画面</h1>
+      <h1 align="center">ユーザー登録画面</h1>
       <a href="/se21g1/" class="backbtn">スタート画面へ</a>
     </div>
     
