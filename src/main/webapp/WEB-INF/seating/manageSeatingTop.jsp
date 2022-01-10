@@ -35,6 +35,9 @@ pageEncoding="UTF-8"%>
     .text{
       margin-left:8%;
     }
+    .bar{
+      background-color: #F8AB74;
+    }
     </style>
   <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
@@ -65,7 +68,7 @@ pageEncoding="UTF-8"%>
         </form>
       <br>
     <table>
-      <tr>
+      <tr class="bar">
         <th>クラス</th>
         <th>開始期間~終了期間</th>
         <th>座席配置名</th>
@@ -101,7 +104,7 @@ pageEncoding="UTF-8"%>
     </table><br>
     <p class="text">座席配置一覧</p><br>
     <table>
-      <tr>
+      <tr class="bar">
         <th>クラス</th>
         <th>開始期間~終了期間</th>
         <th>座席配置名</th>
