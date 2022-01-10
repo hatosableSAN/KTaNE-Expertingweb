@@ -16,24 +16,20 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-    table{
-      width:80%;
-      border-collapse:collapse;
-     border: 1px solid #000;      /* わかりやすくボーダーを引く */
-    }
-    tr{
-      text-align:center;
-      border: 1px solid #000;
-    }
-    </style>
+
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
 </head>
   <body>
-    <a href="./SeatingTop"><button align-items="center" name="regist_stu">座席配置メニュートップへ戻る</button></a>
-     <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">座席配置一覧</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置一覧</h1>
+    </div>
+
+    <a href="./SeatingTop"><button align-items="center" class = "backbtn" name="regist_stu">座席配置メニュー<br/>トップへ戻る</button></a>
+
     <%-- <form action="./RegistStudentGet" method="post">
-      <button text-align="center" name="regist_class">検索実行</button>
+      <button text-align="center" class="button" name="regist_class">検索実行</button>
     </form> --%>
     <br>
    <font size="2px">検索：</font>
@@ -41,8 +37,8 @@ pageEncoding="UTF-8"%>
             <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <label><input type="radio" name="radiobutton" value="class" required <%if(index.equals("class")||index ==null){%>checked<%}%>> <font size="2px">クラス</font></label>
             <label><input type="radio" name="radiobutton" value="name" <%if(index.equals("name")){%>checked<%}%>> <font size="2px">座席配置名</font></label>
-            <!--<label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
-            <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>-->
+            <label><input type="radio" name="radiobutton" value="startdate"<%if(index.equals("startdate")||index ==null){%>checked<%}%>>開始期間(yyyy/mm/dd) </label>
+            <label><input type="radio" name="radiobutton" value="enddate"<%if(index.equals("enddate")||index ==null){%>checked<%}%>> <font size="2px">終了期間(yyyy/mm/dd)</font>
             <button text-align="center" name ="searchbutton" value="search_seatingArr">検索実行</button></label>
             <button text-align="center" name ="searchbutton" value="searchReset">一覧表示</button></label>
         </form>
@@ -76,7 +72,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" value="座席配置詳細" name="hand" />
+                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
               </form></td>
             </tr>
           <% } }else{%>
@@ -110,7 +106,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" value="座席配置詳細" name="hand" />
+                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
               </form></td>
             </tr>
           <% } }else{%>

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-import beans.ClassDef; //beansに入れた方がいいのかしら
+import beans.ClassDef;
 import beans.Student;
 import beans.User;
 import service.StudentService;
@@ -29,9 +29,9 @@ import utility.*;
 import beans.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
 
 //アノテーションの記述
-//jspで示してあげると、jspから呼び出さられる
 @WebServlet("/RegistSeatingInfo")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
@@ -79,56 +79,78 @@ public class RegistSeatingInfo extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまPost");
+        try {
+            // 座席配置情報の確定を押した後
+            // requestオブジェクトの文字エンコーディングの設定
+            request.setCharacterEncoding("UTF-8");
+            System.out.println("いまPost");
 
-        // 入力された座席情報を取得
-        String seatname = request.getParameter("seatname");
-        String startdate = request.getParameter("startdate");
-        String enddate = request.getParameter("enddate");
-        HttpSession session = request.getSession();
-        if (LoginChecker.notLogin(session)) {
-            System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
-            dispatcher.forward(request, response);
-        } else {
-            User user = (User) session.getAttribute("User");
+            // 入力された座席情報を取得
+            String seatname = request.getParameter("seatname");
+            String startdate = request.getParameter("startdate");
+            String enddate = request.getParameter("enddate");
+            HttpSession session = request.getSession();
+            if (LoginChecker.notLogin(session)) {
+                System.out.println("セッション情報がありません");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+                dispatcher.forward(request, response);
+            } else {
+                User user = (User) session.getAttribute("User");
 
-            String tourl = null;
-            if (startdate.isEmpty()) {// 開始日時がnullの時（未入力)
-                tourl = "/WEB-INF/seating/registSeatingError.jsp";
-                System.out.println("Please full all seatinarrangements information");
-            } else {// 開始日時が正しく入力されているとき
-                ClassDef classdef = (ClassDef) session.getAttribute("ClassDef");
-                Date createdDate = new Date();// 現在時刻＝作成日
-                String createddate = new SimpleDateFormat("yyyy-MM-dd").format(createdDate);
-                System.out.println(seatname + ":" + startdate + ":" + enddate + ":" + classdef.getClass_id() + ":"
-                        + user.getId() + ":" + createddate);
+                String tourl = null;
+                if (startdate.isEmpty()) {// 開始日時がnullの時（未入力)
+                    tourl = "/WEB-INF/seating/registSeatingError.jsp";
+                    System.out.println("Please full all seatinarrangements information");
+                } else {// 開始日時が正しく入力されているとき
 
-                // registSeatingArrangementsオブジェクトに座席情報を入れる
-                SeatingArrangements seatingArrangements = new SeatingArrangements();
-                seatingArrangements.setClassId(classdef.getClass_id());
-                if (seatname.equals(null)) {
-                    seatname = "";
+                    // 開始期間と終了期間を比較する
+                    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date Startdate = sdformat.parse(startdate);
+                    Date Enddate = sdformat.parse(enddate);
+                    System.out.println("Startdate: " + sdformat.format(Startdate));
+                    System.out.println("Enddate: " + sdformat.format(Enddate));
+                    if (!Enddate.after(Startdate)) {// 終了期間が開始期間より前で登録されている時
+                        System.out.println("Enddate is not after Startdate");
+                        tourl = "/WEB-INF/seating/registSeatingErrordate.jsp";// ない
+                        System.out.println("終了期間は開始期間より後に入力してください");
+                    } else {
+                        tourl = "/WEB-INF/seating/registSeatingconfirm.jsp";
+                    } // 終了期間が開始期間より後で正しく登録されている時
+                    ClassDef classdef = (ClassDef) session.getAttribute("ClassDef");
+                    Date createdDate = new Date();// 現在時刻＝作成日
+                    String createddate = new SimpleDateFormat("yyyy-MM-dd").format(createdDate);
+                    System.out
+                            .println(seatname + ":" + startdate + ":" + enddate + ":" + classdef.getClass_id() + ":"
+                                    + user.getId() + ":" + createddate);
+
+                    // registSeatingArrangementsオブジェクトに座席情報を入れる
+                    SeatingArrangements seatingArrangements = new SeatingArrangements();
+                    seatingArrangements.setClassId(classdef.getClass_id());
+                    if (seatname.equals(null)) {
+                        seatname = "";
+                    }
+                    seatingArrangements.setName(seatname);
+                    seatingArrangements.setStartDate(startdate);
+                    seatingArrangements.setEndDate(enddate);
+                    seatingArrangements.setCreatedDate(createddate);
+                    seatingArrangements.setUserId(user.getId());
+
+                    System.out
+                            .println(seatingArrangements.getName() + ":" + seatingArrangements.getStartDate() + ":"
+                                    + seatingArrangements.getEndDate() + seatingArrangements.getClassId() + ":"
+                                    + seatingArrangements.getUserId() + ":" + seatingArrangements.getCreatedDate());
+
+                    request.setAttribute("SeatingArrangements", seatingArrangements);// いる...けど、registSeatingconfirm.jsp次第
+                    session.setAttribute("SeatingArrangements", seatingArrangements);// いる
+                    // }
                 }
-                seatingArrangements.setName(seatname);
-                seatingArrangements.setStartDate(startdate);
-                seatingArrangements.setEndDate(enddate);
-                seatingArrangements.setCreatedDate(createddate);
-                seatingArrangements.setUserId(user.getId());
-
-                System.out.println(seatingArrangements.getName() + ":" + seatingArrangements.getStartDate() + ":"
-                        + seatingArrangements.getEndDate() + seatingArrangements.getClassId() + ":"
-                        + seatingArrangements.getUserId() + ":" + seatingArrangements.getCreatedDate());
-
-                request.setAttribute("SeatingArrangements", seatingArrangements);// いる...けど、registSeatingconfirm.jsp次第
-                session.setAttribute("SeatingArrangements", seatingArrangements);// いる
-                tourl = "/WEB-INF/seating/registSeatingconfirm.jsp";
+                RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
+                // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+                dispatcher.forward(request, response);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
-            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-            dispatcher.forward(request, response);
+        } catch (ParseException e) {
+
+            e.printStackTrace();
         }
     }
 

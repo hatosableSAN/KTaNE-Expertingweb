@@ -18,22 +18,19 @@ pageEncoding="UTF-8"%>
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
 
-
-<link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
-
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
     <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
-      <h1 align="center">座席配置新規作成</h1>
-      <a href="./RegistSeatingStudent"><button align="center" class="backbtn" name="regist_top">座席配置画面へ戻る</button></a>
-      </div>
+      <h1 align="center">座席配置変更</h1>
+    </div>
     <br>
 
-    ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
+    ・座席を選択し、児童・生徒の座席を作成してください。<br>
       <form>
         <table>
           <%
@@ -57,10 +54,10 @@ pageEncoding="UTF-8"%>
         ～
         <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
-        席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/><br>
-        <font color="red">＊座席配置開始期間の入力は必須です</font>
+        席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
+        <br><font color="red">＊終了期間は開始期間より後の日付を<br>入力してください</font>
       </div>
-        <input type="submit" formaction="./RegistSeatingInfo" formmethod="POST" value="座席配置を確定する" class="btn" id="btn_right_seat" />
+        <input type="submit" class="btn" id="btn_right_seat" formaction="./UpdateSeatingInfo" formmethod="POST" value="座席配置を確定する" />
 
 
         <div id="modal-content">
@@ -77,7 +74,7 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" formaction="./RegistSeatingStudent" formmethod="POST" value="座席を確定する" align="center" /></p>
+            <p><input type="submit" formaction="./UpdateSeatingStudent" formmethod="POST" value="座席を確定する" align="center" /></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
 
             <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
@@ -138,6 +135,6 @@ pageEncoding="UTF-8"%>
                 <%-- <%  for(Student setstudent : setStudentList ){ %> --%>
                   <%-- <%=setstudent.getStudent_id()%>:<%=setstudent.getStudent_name()%><br> --%>
                 <%-- <% } %> --%>
-
+      <a href="./manageSeatingTop"><button align="center" class="button_grey" id="btn_left_seat" name="regist_top">キャンセル</button></a>
   </body>
 </html>

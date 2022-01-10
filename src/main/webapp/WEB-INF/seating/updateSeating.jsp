@@ -20,13 +20,17 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
+  
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置変更</h1>
-    <br>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置変更</h1>
+      
+      </div>
 
-    ・座席を選択し、児童・生徒の座席を作成してください。<br>
+    座席を選択し、児童・生徒の座席を作成してください。<br><br/>
       <form>
         <table>
           <%
@@ -44,13 +48,15 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
+        <div class="right_div">
         クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<input type="date" value="<%=seatingArrangements.getStartDate()%>" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
         ～
         <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
         席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z],[0-9A-Za-z]+$"/>
-        <input type="submit" formaction="./UpdateSeatingInfo" formmethod="POST" value="座席配置を確定する" />
+      </div>
+        <input type="submit" class="btn" id="btn_right_seat" formaction="./UpdateSeatingInfo" formmethod="POST" value="座席配置を確定する" />
 
 
 
@@ -129,6 +135,6 @@ pageEncoding="UTF-8"%>
                 <%-- <%  for(Student setstudent : setStudentList ){ %> --%>
                   <%-- <%=setstudent.getStudent_id()%>:<%=setstudent.getStudent_name()%><br> --%>
                 <%-- <% } %> --%>
-      <a href="./manageSeatingTop"><button align="center" name="regist_top">キャンセル</button></a>
+      <a href="./manageSeatingTop"><button align="center" class="button_grey" id="btn_left_seat" name="regist_top" >キャンセル</button></a>
   </body>
 </html>

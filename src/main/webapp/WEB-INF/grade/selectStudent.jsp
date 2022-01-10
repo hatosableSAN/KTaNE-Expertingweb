@@ -17,9 +17,14 @@ pageEncoding="UTF-8"%>
       }
       th{background-color:#F8AB74;}
     </style>
+    <head>
+      <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+    </head>
   <body>
-    <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">児童・生徒ごとの評価一覧</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">児童・生徒ごとの評価一覧</h1>
+    </div>
         <!--form action="../RegistStudentGet" method="post">
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
@@ -63,6 +68,6 @@ pageEncoding="UTF-8"%>
       
 
       <br />
-      <a href="./GradeTop"><button align="center">キャンセル</button></a>
+      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" >キャンセル</button></a>
   </body>
 </html>

@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
+        background-color:#fcc490;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
@@ -92,14 +92,18 @@ pageEncoding="UTF-8"%>
     </style>
     <!--  ここまでスタイル  -->
 
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価新規作成</h1>
-    <br>
+
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">授業評価新規作成</h1>
+    </div>
+    <a href="./GradeTop" class="backbtn">評価メニュー<br/>トップへ戻る</a>
 
 
-    ・評価を登録する座席を選択してください。<br>
+    ・評価を登録する座席を選択してください。<br><br/>
       <form action="./RegistClassesInfo" method="post" class="form-grade">
         <table>
           <%
@@ -117,7 +121,9 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
-        <input type="submit" value="座席配置を確定する" id="submitbtn" class="selectable">
+        <p align="right">
+          <input type="submit" value="座席配置を確定する" id="submitbtn" class="selectable">　　　
+        </p>
       </form>
 
 <!-- モーダルはここから -->
@@ -282,7 +288,6 @@ pageEncoding="UTF-8"%>
             <h2 class="h1-bottom"></h2>
 
             <%}%>
-            <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>
 
