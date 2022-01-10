@@ -122,6 +122,45 @@ public class ClassDAO extends DriverAccessor {
         }
     }
 
+    public void registClassOnly(ClassDef classdef, Connection connection) { //クラス情報だけ登録、メンバーなし
+
+        try {
+
+            // SQLコマンド
+            String sql = "insert into classes (name,year,user_id) values(?, ?, ?)";
+
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // PreparedStatement stmt = connection.prepareStatement(sql,
+            // java.sql.Statement.RETURN_GENERATED_KEYS);
+
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setString(1, classdef.getClass_name());
+            stmt.setInt(2, classdef.getClass_year());
+            stmt.setString(3, classdef.getClass_user());
+            // ResultSet rs = statement.executeQuery();
+            stmt.executeUpdate();// この場所
+            //ResultSet rs = stmt.getGeneratedKeys();
+            //rs.first();
+            //int class_id = 0;
+            //class_id = rs.getInt(1);
+
+            //rs.close();
+
+            //stmt.executeUpdate();
+            //System.out.println("class_id" + class_id);
+            //return;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            //return; // class_idにしたら怒られた
+
+        } finally {
+        }
+    }
+
     // 検索する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
     public ClassDef searchClass(ClassDef classdef, Connection connection) {
@@ -388,6 +427,31 @@ public class ClassDAO extends DriverAccessor {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
             return false;
+
+        } finally {
+        }
+    }
+
+    public String getClassName(int classid, Connection connection) {
+        try {
+            // SQLコマンド
+            String sql = "select* from classes where id=?";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, classid);
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+            String name=new String();
+            name=rs.getString("name");
+            stmt.close();
+            return name;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return null;
 
         } finally {
         }

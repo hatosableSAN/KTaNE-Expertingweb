@@ -37,26 +37,39 @@ public class UpdateStudentGradeComplete extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GradeService service=new GradeService();
+        GradeService service = new GradeService();
         request.setCharacterEncoding("UTF-8");
-        int red=Integer.parseInt(request.getParameter("red"));
-        int blue= Integer.parseInt(request.getParameter("blue"));
-        int green= Integer.parseInt(request.getParameter("green"));
-        String comment=(String) request.getParameter("comment");
-        String attendance=(String) request.getParameter("attendance");
-        int id=Integer.parseInt(request.getParameter("id"));
-        Boolean attendance_b=false;
-        if(attendance.equals("true")){
-            attendance_b=true;
-        }
 
-            service.updateStudentGrade(red,blue,green,comment,attendance_b,id);
-
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateStudentGradeComplete.jsp");
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
-    
+        } else {
 
-        
+            int red = Integer.parseInt(request.getParameter("red"));
+            int blue = Integer.parseInt(request.getParameter("blue"));
+            int green = Integer.parseInt(request.getParameter("green"));
+            String comment = (String) request.getParameter("comment");
+            String attendance = (String) request.getParameter("attendance");
+            int id = Integer.parseInt(request.getParameter("id"));
+            Boolean attendance_b = false;
+            if (attendance.equals("true")) {
+                attendance_b = true;
+            } else {
+                // 欠席の場合データを初期化
+                red = 1;
+                blue = 1;
+                green = 1;
+                comment = "";
+            }
+
+            service.updateStudentGrade(red, blue, green, comment, attendance_b, id);
+
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/WEB-INF/grade/updateStudentGradeComplete.jsp");
+            dispatcher.forward(request, response);
+
+        }
     }
 }

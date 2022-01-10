@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         overflow-y: scroll;          /* 縦方向にスクロール可能にする */
     }
-    .bar{
+    #bar{
       background-color: #F8AB74;
     }
     </style>
@@ -41,12 +41,20 @@ pageEncoding="UTF-8"%>
           <td><input type="hidden"/ name="class_name" value=${ClassDef.class_name}>${ClassDef.class_name}</td>
         </tr>
         <tr>
-          <th>メンバー　</th>
-          <td><div class="student">
-            <table>
-                <tr><th></th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
-                <% for(Student s:student){ %>
                     <!--lavel--><td><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %></td>
+          <th>メンバー</th>
+          <td>
+          <div class="student">
+            <table>
+                <tr><th>　　</th><th id="bar">番号　　　　　　　　　　　</th><th id="bar">名前　　　　　　　　　　　　　</th><th id="bar">性別　　　　　</th><th id="bar">登録者　　　　　　　　　</th></tr>
+                <% if(student.size()==0){%>
+                </table>
+                <h4 align="center">なし</h4></div>
+                  <input type="hidden"/ name="student_member" value="">
+                  <%} else{
+                 for(Student s:student){ %>
+                    <tr>
+                    <td><!--lavel--><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %>></td>
                     <td><%=s.getStudent_id() %></td>
                     <td><%=s.getStudent_name() %></td>
                     <td><!--%=s.getStudent_gender() %-->
@@ -63,8 +71,7 @@ pageEncoding="UTF-8"%>
                     </tr>
                 <%} %>
             </table>
-          </td>
-          </div>
+            </div></td><% } %>
         </tr>
       </table>
         <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">

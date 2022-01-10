@@ -75,7 +75,7 @@ pageEncoding="UTF-8"%>
               <%=classdef.getClass_name()%></td>
               <td><%=SeatingArrangements.getStartDate()%>~
               <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate(""); } %>
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定"); } %>
               <%=SeatingArrangements.getEndDate()%></td>
               <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>
@@ -109,7 +109,7 @@ pageEncoding="UTF-8"%>
               <%=classdef.getClass_name()%></td>
               <%-- TODO:IDじゃなくてクラス名で表示する --%>
               <td><%=SeatingArrangements.getStartDate()%>~
-              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate(""); } %>
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定"); } %>
               <%=SeatingArrangements.getEndDate()%></td>
               <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>

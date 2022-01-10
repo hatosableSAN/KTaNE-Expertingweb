@@ -40,13 +40,20 @@ pageEncoding="UTF-8"%>
           <td>${ClassDef.class_name}</td>
         </tr>
         <tr>
-          <th>メンバー　</th>
-          <td><div class="student">
-            <table>
-                <tr id="bar"><th></th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
-
-                <% for(Student s:student){ %>
                     <!--lavel--><td><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %></td>
+          <th>メンバー</th>
+          <td>
+            <div class="student">
+            <table>
+                <tr><th>　　</th><th id="bar">番号　　　　　　　　　　　</th><th id="bar">名前　　　　　　　　　　　　　</th><th id="bar">性別　　　　　</th><th id="bar">登録者　　　　　　　　　</th></tr>
+                <% if(student.size()==0){%>
+                </table>
+                <h4 align="center">なし</h4></div>
+                  <input type="hidden"/ name="student_member" value="">
+                  <%} else{
+                for(Student s:student){ %>
+                    <tr>
+                    <td><!--lavel--><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %>></td>
                     <td><%=s.getStudent_id() %></td>
                     <td><%=s.getStudent_name() %></td>
                     <td><!--%=s.getStudent_gender() %-->
@@ -62,9 +69,8 @@ pageEncoding="UTF-8"%>
                     <!--/label-->
                     </tr>
                 <%} %>
-
-            </table></td>
-            </div>
+            </table>
+            </div></td><% } %>
         </tr>
       </table>
         <!--form action="../RegistStudentGet" method="post">

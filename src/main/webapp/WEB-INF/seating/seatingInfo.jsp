@@ -102,10 +102,10 @@ pageEncoding="UTF-8"%>
         <br>
 
         <div class="right_div">
-        クラス：<%=seatingArrangements.getClassId() %>: <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
+        クラス：<!--<%=seatingArrangements.getClassId() %>:--> <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～
         <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate(""); } %>
+              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate("終了日未定"); } %>
         <%=seatingArrangements.getEndDate() %>
         <Br>
         席名：
@@ -122,8 +122,9 @@ pageEncoding="UTF-8"%>
         </form>
 
         <% } %>
-        <form action="./ResistGrade" method="post">
-          <input type="submit" class = "button" value="授業評価作成" name="registGrade" />
+        <form action="./RegistGradeInfo" method="post">
+        <input type="hidden" name="id" value="<%=seatingArrangements.getId() %>" >
+        <input type="submit" value="授業評価作成" name="registGrade" class="button"/>
         </form>
 
       <br />

@@ -99,7 +99,7 @@ pageEncoding="UTF-8"%>
         <br>
         <div class="right_div">
         クラス：<%=seatingArrangements.getClassId() %>: <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        期間：<%=seatingArrangements.getStartDate() %>～<%=seatingArrangements.getEndDate() %>
+        期間：<%=seatingArrangements.getStartDate() %>～<% if(seatingArrangements.getEndDate() == null||seatingArrangements.getEndDate().equals("")){%>終了日未定<%}else{%><%=seatingArrangements.getEndDate() %><%}%>
         <Br>
         席名：<%=seatingArrangements.getName()%><br/></div>
         <input type="submit" class = "btn" id="btn_right_seat"  value="座席配置を登録">

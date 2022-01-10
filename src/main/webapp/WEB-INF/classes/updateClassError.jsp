@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         overflow-y: scroll;          /* 縦方向にスクロール可能にする */
     }
-    .bar{
+    #bar{
       background-color: #F8AB74;
     }
     </style>
@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
         <input type="text" name="class_year" value="<%=ClassDef.getClass_year()%>" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">　　　　　　　　　　　　＊必須項目です</font>
         <br>
         クラス名　
-        <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">　　　　　　　　＊必須項目です</font>
+        <input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9０-９\-\u30FC]+">　1~20文字<font color="red">　　　　　　　　＊必須項目です</font>
         <br>
         メンバー　　-->
         <!--form action="../RegistStudentGet" method="post">
@@ -49,8 +49,18 @@ pageEncoding="UTF-8"%>
             <td>
         <div class="student">
         <table>
-            <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
-            <% for(Student s:stu_list){
+            <tr><th>　　</th><th id="bar">番号　　　　　　　　　　　</th><th id="bar">名前　　　　　　　　　　　　　</th><th id="bar">性別　　　　　</th><th id="bar">登録者　　　　　　　　　</th></tr>
+            <% if(stu_list.size()==0){ %>
+            </table>
+            <h4 align="center">児童が登録されていません</h4>
+            </div>
+            <h4><font color="red">クラス名、年度は必須項目です</font></h4>
+            <input type="submit" value="変更" name="hand" />
+            <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+            <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
+          </form>
+        <% }else{
+            for(Student s:stu_list){ 
               int flag=0; %>
                 <tr>
                 <td><lavel>
@@ -78,10 +88,7 @@ pageEncoding="UTF-8"%>
                   </label></td>
                 <td><label><%=s.getStudent_user() %></label></td>
                 </label>
-                </tr></label>
-                <%} %>
-              </div>
-            </td></tr>
+                </tr></label><% } %>
         </table>
       </table>
         <h4 align="center"><font color="red">クラス名、年度は必須項目です</font></h4>
@@ -91,12 +98,12 @@ pageEncoding="UTF-8"%>
       </form>
       <font size="2px">検索：</font>
         <form action="./SearchStudent" method="post">
-            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
+            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
             <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <button text-align="center" name="regist_class">検索実行</button>
             <button text-align="center" name="regist_class">一覧表示</button>
-        </form>
+        </form><% }%>
       <br />
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル' class="button_grey" id="btn_left">

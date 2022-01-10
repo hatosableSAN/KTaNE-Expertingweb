@@ -46,24 +46,29 @@ public class RegistGradeAll extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
         HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        } else {
+            // // 「生徒座席一覧(studentSeatingArrList)」に座らせた生徒と座席の情報を入れる
+            // List<StudentSeatingArr> studentSeatingArrList = new
+            // ArrayList<StudentSeatingArr>();
+            // if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList")
+            // != null) {
+            // studentSeatingArrList = (List<StudentSeatingArr>)
+            // session.getAttribute("StudentSeatingArrList");
+            // }
 
-        // // 「生徒座席一覧(studentSeatingArrList)」に座らせた生徒と座席の情報を入れる
-        // List<StudentSeatingArr> studentSeatingArrList = new
-        // ArrayList<StudentSeatingArr>();
-        // if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList")
-        // != null) {
-        // studentSeatingArrList = (List<StudentSeatingArr>)
-        // session.getAttribute("StudentSeatingArrList");
-        // }
+            // // SeatingServiceオブジェクトの生成
+            // SeatingService seatingService = new SeatingService();
+            // // 座席を登録
+            // seatingService.registStudentSeatingArr(studentSeatingArrList);
 
-        // // SeatingServiceオブジェクトの生成
-        // SeatingService seatingService = new SeatingService();
-        // // 座席を登録
-        // seatingService.registStudentSeatingArr(studentSeatingArrList);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingInfo.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingInfo.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
@@ -103,44 +108,49 @@ public class RegistGradeAll extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        //まずは授業情報を取得
-        Lessons Lessons = new Lessons();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        } else {
+            // まずは授業情報を取得
+            Lessons Lessons = new Lessons();
 
-        String ClassDate=(String)request.getParameter("ClassDate");
-        String PeriodNum=(String)request.getParameter("PeriodNum");
-        int period_num=Integer.parseInt(PeriodNum);
-        String Comment=(String)request.getParameter("Comment");
-       String SeatNum= (String) session.getAttribute("Seatnum");
-        int idnumber=Integer.parseInt(SeatNum);
-        Lessons.setSeating_arrangements_id(idnumber);
-        Lessons.setLessonDate(ClassDate);
-        Lessons.setPeriodnum(period_num);
-        Lessons.setComment(Comment);
+            String ClassDate = (String) request.getParameter("ClassDate");
+            String PeriodNum = (String) request.getParameter("PeriodNum");
+            int period_num = Integer.parseInt(PeriodNum);
+            String Comment = (String) request.getParameter("Comment");
+            String SeatNum = (String) session.getAttribute("Seatnum");
+            int idnumber = Integer.parseInt(SeatNum);
+            Lessons.setSeating_arrangements_id(idnumber);
+            Lessons.setLessonDate(ClassDate);
+            Lessons.setPeriodnum(period_num);
+            Lessons.setComment(Comment);
 
+            GradeService service = new GradeService();
+            service.registLessons(Lessons);
+            // 授業を登録します
+            // 登録した授業のIDを取得します
 
-        GradeService service=new GradeService();
-        service.registLessons(Lessons);
-        // 授業を登録します
-        //登録した授業のIDを取得します
-        
-    int lessonid=service.getLessonId();
- 
-        //次に評価を登録します
-       List<Grade> GradeList= (List<Grade>) session.getAttribute("Grade");
-       User User = (User)session.getAttribute("User");
-       String UserId=User.getId();
-        for(Grade Grade : GradeList ){
-            Grade.setLessonId(lessonid);
-            Grade.setUserId(UserId);
+            int lessonid = service.getLessonId();
 
-            service.registGrade(Grade);
-            
-            System.out.println(UserId+"さんの評価を登録しました");
+            // 次に評価を登録します
+            List<Grade> GradeList = (List<Grade>) session.getAttribute("Grade");
+            User User = (User) session.getAttribute("User");
+            String UserId = User.getId();
+            for (Grade Grade : GradeList) {
+                Grade.setLessonId(lessonid);
+                Grade.setUserId(UserId);
+
+                service.registGrade(Grade);
+
+                System.out.println(UserId + "さんの評価を登録しました");
+            }
+
+            System.out.println("全ての評価が登録されました");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGradecomplete.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
         }
-            
-        System.out.println("全ての評価が登録されました");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGradecomplete.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
     }
-    }
+}

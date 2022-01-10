@@ -121,7 +121,7 @@ pageEncoding="UTF-8"%>
                 <% if(StudentList.size() > 0) {
                   for(Student student : StudentList ){ %>
                   <option value="<%=student.getStudent_id() %>">
-                  <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%=student.getStudent_gender()%><%=student.getStudent_user()%>
+                  <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%switch(student.getStudent_gender()){case 1:%>男<%break;case 2:%>女<%break;case 3:%>その他<%break;}%><!--:<%=student.getStudent_user()%>-->
                   </option>
                 <% } }%>
                 </select><br /><br />
