@@ -30,7 +30,12 @@ public class ManageStudent extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        }
         // requestオブジェクトの文字エンコーディングの設定
         // request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
@@ -38,7 +43,7 @@ public class ManageStudent extends HttpServlet {
         // request.getRequestDispatcher("WEB-INF/student/studentTop.jsp");
         // dispatcher.forward(request, response);
         // System.out.println("いまdoGet");
-        // doPost(request,response);
+        // doPost(request, response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
