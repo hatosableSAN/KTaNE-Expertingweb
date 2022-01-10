@@ -109,20 +109,23 @@ public class UpdateSeatingInfo extends HttpServlet {
                     tourl = "/WEB-INF/seating/updateSeatingError.jsp";
                     System.out.println("Please full all seatinarrangements information");
                 } else {
-                    // 開始期間と終了期間を比較する
-                    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-                    Date Startdate = sdformat.parse(startdate);
-                    Date Enddate = sdformat.parse(enddate);
-                    System.out.println("Startdate: " + sdformat.format(Startdate));
-                    System.out.println("Enddate: " + sdformat.format(Enddate));
-                    if (!Enddate.after(Startdate)) {// 終了期間が開始期間より前で登録されている時
-                        System.out.println("Enddate is not after Startdate");
-                        tourl = "/WEB-INF/seating/updateSeatingErrordate.jsp";// ない
-                        System.out.println("終了期間は開始期間より後に入力してください");
+                    if (!enddate.isEmpty()) {// 終了日時がnullでない時
+                        // 開始期間と終了期間を比較する
+                        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+                        Date Startdate = sdformat.parse(startdate);
+                        Date Enddate = sdformat.parse(enddate);
+                        System.out.println("Startdate: " + sdformat.format(Startdate));
+                        System.out.println("Enddate: " + sdformat.format(Enddate));
+                        if (!Enddate.after(Startdate)) {// 終了期間が開始期間より前で登録されている時
+                            System.out.println("Enddate is not after Startdate");
+                            tourl = "/WEB-INF/seating/updateSeatingErrordate.jsp";// ない
+                            System.out.println("終了期間は開始期間より後に入力してください");
+                        } else {// 終了期間が開始期間より後で正しく登録されている時
+                            tourl = "/WEB-INF/seating/updateSeatingconfirm.jsp";
+                        }
                     } else {
-                        tourl = "/WEB-INF/seating/updateSeatingconfirm.jsp";
-                    } // 終了期間が開始期間より後で正しく登録されている時
-
+                        tourl = "/WEB-INF/seating/registSeatingconfirm.jsp";
+                    }
                     // 「配置されている生徒一覧セッション」に座らせた生徒を入れる
                     List<Student> setstudentList = new ArrayList<Student>();
                     if ((List<Student>) session.getAttribute("setStudentList") != null) {
