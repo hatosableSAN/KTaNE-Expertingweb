@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" formaction="./RegistSeatingStudent" formmethod="POST" value="座席を確定する" align="center" /></p>
+            <p><input type="submit" formaction="./RegistSeatingStudent" formmethod="POST" value="座席を確定する" class="btn" align="center"style="position:absolute;bottom:10px;right:20px; width:110px; height: 25px; padding:0px;" /></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
 
             <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
