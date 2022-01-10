@@ -374,7 +374,7 @@ public class GradeDAO extends DriverAccessor {
         returnSb.setAttendance(rs.getBoolean("attendance"));
         returnSb.setRed(rs.getInt("red"));
         returnSb.setBlue(rs.getInt("blue"));
-        returnSb.setRed(rs.getInt("green"));
+        returnSb.setGreen(rs.getInt("green"));
         returnSb.setComment(rs.getString("comment"));
         returnSb.setSeat(rs.getInt("seat"));
         returnSb.setUserId(rs.getString("user_id"));
@@ -506,7 +506,7 @@ public class GradeDAO extends DriverAccessor {
         returnSb.setAttendance(rs.getBoolean("attendance"));
         returnSb.setRed(rs.getInt("red"));
         returnSb.setBlue(rs.getInt("blue"));
-        returnSb.setRed(rs.getInt("green"));
+        returnSb.setGreen(rs.getInt("green"));
         returnSb.setComment(rs.getString("comment"));
         returnSb.setSeat(rs.getInt("seat"));
         returnSb.setUserId(rs.getString("user_id"));
@@ -540,7 +540,7 @@ public class GradeDAO extends DriverAccessor {
                 Grade.setAttendance(rs.getBoolean("attendance"));
                 Grade.setRed(rs.getInt("red"));
                 Grade.setBlue(rs.getInt("blue"));
-                Grade.setRed(rs.getInt("green"));
+                Grade.setGreen(rs.getInt("green"));
                 Grade.setComment(rs.getString("comment"));
                 Grade.setSeat(rs.getInt("seat"));
                 Grade.setUserId(rs.getString("user_id"));;
