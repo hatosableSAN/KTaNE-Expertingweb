@@ -44,7 +44,11 @@ pageEncoding="UTF-8"%>
             
             <td><%=ClassNameList.get(i)%></td>
             <td colspan="3" ><%=outputdf.format(inputdf.parse(Seating.getStartDate()))%>~
-            <%=outputdf.format(inputdf.parse(Seating.getEndDate()))%>
+              <% if(Seating.getEndDate()!=null){ %>
+                <%=outputdf.format(inputdf.parse(Seating.getEndDate()))%>
+                <% }else{%>
+                  終了日未定
+                <% }%>
             <td><%=Seating.getName() %></td>
             <td style="padding-left: 10px;padding-right: 10px;"><form action="./RegistGradeInfo" method="post">
               <input type="hidden" name="id" value=<%=Seating.getId()%>>
