@@ -58,7 +58,7 @@ public class DeleteStudentConfirm extends HttpServlet {
             // requestオブジェクトから登録情報の取り出し
             // String stu_id = request.getParameter("stu_id");
             Student student_confirm = (Student) session.getAttribute("Student");
-            String stu_id = request.getParameter("stu_id");
+            String stu_id = request.getParameter("delete_hidden");
             String stu_name = null;// student_confirm.getStudent_name();
             // int stu_gender = request.getParameter("stu_gender");
             int stu_gender = 0;// student_confirm.getStudent_gender();
