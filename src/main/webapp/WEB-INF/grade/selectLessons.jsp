@@ -41,6 +41,6 @@ pageEncoding="UTF-8"%>
       <% } }%>
     </table>
       <br/>
-      <a href="./LessoningTop"><button align="center" class="backbtn" name="regist_top">評価メニュートップへ戻る</button></a>
+      <a href="./GradeTop"><button align="center" class="backbtn" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

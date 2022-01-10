@@ -168,7 +168,7 @@ pageEncoding="UTF-8"%>
   
                 <li><a href="#">思考・判断・表現</a>
                    <ul>
-                    <select name="blue">
+                    <select name="green">
                       <option value="1">A</option>
                       <option value="2">B</option>
                       <option value="3">C</option>
@@ -181,7 +181,7 @@ pageEncoding="UTF-8"%>
   
                 <li><a href="#">学びに向かう人間性</a>
                    <ul>
-                    <select name="green">
+                    <select name="blue">
                       <option value="1">A</option>
                       <option value="2">B</option>
                       <option value="3">C</option>

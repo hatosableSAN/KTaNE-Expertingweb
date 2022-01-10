@@ -68,7 +68,6 @@ pageEncoding="UTF-8"%>
         position: absolute;
         /*align-items: flex-end;*/
       }
-
     </style>
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 

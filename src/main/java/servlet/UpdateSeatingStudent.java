@@ -39,7 +39,7 @@ public class UpdateSeatingStudent extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 確定画面から戻ってきたとき
         System.out.println("いまdoGet");
-
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         // User User = (User) session.getAttribute("User");
         // session.setAttribute("User", user);

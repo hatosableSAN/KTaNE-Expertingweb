@@ -69,7 +69,7 @@ public class ManageStudent extends HttpServlet {
             //cssファイル見つからないと言われてしまう
             out.println("<style>");
             out.println(".student{");
-            out.println("width:900px;");
+            out.println("width:1000px;");
             out.println("height:350px;");
             out.println("border:1px solid #000;");
             out.println("overflow-y:scroll;");
@@ -112,8 +112,12 @@ public class ManageStudent extends HttpServlet {
             //out.println("<form action='./ManageStudentDetail' method='post'>");
             out.println("<div class='student'>");
             out.println("<table align='center'>");
-            out.println("<tr id='bar'><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
-            for(int i=0;i<list.size();i++){
+            out.println("<tr id='bar'><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　</th><th>　　　　　</th><th>　　　　　</th></tr>");
+            if(list.size()==0){
+                out.println("</table>");
+                out.println("<h4 align='center'>児童が登録されていません</h4>");
+            }else{
+             for(int i=0;i<list.size();i++){
                 //System.out.println("in for");
                 Student studentinfo = list.get(i);
                 //User user = session.getAttribute("User");
@@ -158,8 +162,10 @@ public class ManageStudent extends HttpServlet {
                     out.print("<td>　　</td>");
                 }
                 out.println("</tr>");
+             }
+             out.println("</table>");
             }
-            out.println("</table>");
+            //out.println("</table>");
             out.println("</div></form><br>");
             out.println("<form action='./GoStudentTop' method='get'>");
             out.println("<input type='submit' value='児童・生徒メニュートップへ戻る' class='backbtn'></form>");

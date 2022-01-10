@@ -18,49 +18,6 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  <style type="text/css">
-    .seat {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-      }
-      .setseatm {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:blue;
-        text-align:center;
-      }
-      .setseatf {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:rgb(240, 134, 134);
-        text-align:center;
-      }
-      .setseato {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:gray;
-        text-align:center;
-      }
-      .left{
-        padding-left:40px;
-      }
-      .kyoutaku{
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    </style>
-    
   <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
   </head>
@@ -73,7 +30,7 @@ pageEncoding="UTF-8"%>
     <br>
 
     <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div>
-    
+
       <form action="./RegistSeatingInfo" method="get">
         <table align="center">
           <%
@@ -94,7 +51,7 @@ pageEncoding="UTF-8"%>
         クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　　　　　　　　　　</div>
         <p align="right"><input type="submit" value="座席配置を確定する" class = "btn" id="btn_right_seat" >　　　</p>
       </form>
-    
+
 
 
         <div id="modal-content">
@@ -112,9 +69,10 @@ pageEncoding="UTF-8"%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　<input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
+            <input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
           </form>
+          <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　
         </div>
 
       <br />

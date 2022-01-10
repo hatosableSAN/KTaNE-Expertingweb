@@ -2,7 +2,6 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
-import java.net.http.HttpRequest;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,29 +14,40 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.ClassDef;
 import beans.Grade;
 import beans.Lessons;
+import beans.SeatingArrangements;
 import beans.Student; //beansに入れた方がいいのかしら
 import beans.StudentSeatingArr;
+import service.ClassService;
+import service.GradeService;
 import service.SeatingService;
 import service.StudentService;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/DeleteLessonInfo")
+@WebServlet("/UpdateStudentGrades")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class DeleteLessonInfo extends HttpServlet {
+public class UpdateStudentGrades extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/deleteLessonInfo.jsp");
+        HttpSession session = request.getSession(true);
+        System.out.println("生徒評価確認");
+        String idnumber=request.getParameter("gradeid");
+        int id=Integer.parseInt(idnumber);//授業ID
+        GradeService service=new GradeService();
+        Grade Grade=service.getStudentGrade(id);//ひょうか
+        session.setAttribute("Grade", Grade);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateStudentGrades.jsp");
         dispatcher.forward(request, response);
 
     }
 
-  
 }

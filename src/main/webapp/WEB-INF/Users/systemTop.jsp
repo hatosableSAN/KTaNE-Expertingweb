@@ -8,8 +8,10 @@ pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
+
     <div class="darkgray">
       <p align="right" class="id">ユーザーID　${User.id}</p>
+      <p align="left"><a href="/se21g1/CheckLogout" class="backbtn">ログアウト</a>
       <h1 style="text-align:center">児童・生徒評価システムトップ</h1>
     </div>
     <br/><br/><br/>
@@ -26,6 +28,12 @@ pageEncoding="UTF-8"%>
         <a href="./GradeTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
         評価管理
       </button></a>
+        <br/><br/><br/><br/>
+        <a href="/se21g1/Manual" class="btn">システムマニュアル</a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+        <a href="/se21g1/UpdateUser" class="btn">パスワード変更</a>
+
     </p>
+
+
   </body>
 </html>

@@ -4,8 +4,12 @@
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"><a href="/se21g1/" class="backbtn">スタート画面へ</a></p>
-      <h2 style="text-align:center">ユーザ登録画面</h2></div><br/>
+    <div class="darkgray">
+      <p align="right">　</p>
+      <h1 align="center">ユーザ登録画面</h1>
+      <a href="/se21g1/" class="backbtn">スタート画面へ</a>
+    </div>
+    
     <br/><br/><br/><br/>
     <form action="./RegistUser" method="post">
         <p align="center">
