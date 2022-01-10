@@ -14,6 +14,10 @@
     /*width: 120px;*/
     height: 50px;
   }
+.btn:active {
+    transform: translate(0,2px);
+    filter:none;
+    }
   .backbtn {/*戻るボタン 左上についている戻るボタン*/
     border: none;
     border-radius: 5px;
@@ -26,6 +30,10 @@
     color: black; /*周りが黒くならない*/
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
+  .backbtn:active {
+    transform: translate(0,2px);
+    filter:none;
+    }
 
   .backbtn_middle {/*戻るボタン 完了画面の戻るボタン*/
     border: none;
@@ -42,6 +50,11 @@
     margin: 20px;
   }
 
+  .backbtn_.backbtn_middle:active {
+    transform: translate(0,2px);
+    filter:none;
+    }
+
   .backbtn3 {/*戻るボタン？完了画面の戻るボタン　位置が固定されていない*/
     border: none;
     border-radius: 5px;
@@ -54,7 +67,10 @@
     color: black; /*周りが黒くならない*/
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
-
+  .backbtn3:active {
+    transform: translate(0,2px);
+    filter:none;
+    }
   .backbutton{/*システムトップのボタン　色と影*/
     border: none;
     background: #FFF4CB;
@@ -68,6 +84,10 @@
     left: 255px;
     top: 307px;*/
   }
+  .backbutton:active {
+    transform: translate(0,2px);
+    filter:none;
+    }
 
 .id{/*ユーザーIDの表示場所*/
   right:1000px;
@@ -161,6 +181,10 @@ div.right {
   left: 255px;
   top: 307px;*/
 }
+.button:active {
+  transform: translate(0,2px);
+  filter:none;
+  }
 
 .button_grey{/*○○トップに戻るボタン？ではなく左下のキャンセルボタン　色と影と大きさ*/
   border: none;
@@ -176,6 +200,10 @@ div.right {
   left: 255px;
   top: 307px;*/
 }
+.button_grey:active{
+  transform: translate(0,2px);
+  filter:none;
+  }
 
 .center{
   /*display:inline-block;*/

@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
             <td><%=Seating.getName() %></td>
             <td style="padding-left: 10px;padding-right: 10px;"><form action="./RegistGradeInfo" method="post">
               <input type="hidden" name="id" value=<%=Seating.getId()%>>
-            <input type="submit" value="選択" class="btn" style="height: 50%;"></form></td>
+            <input type="submit" value="選択" class="btn" style="height: 10%;padding: 5px;"></form></td>
       <% i++;} }%>
     </table>
       <br/>
