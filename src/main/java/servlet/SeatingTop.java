@@ -40,13 +40,19 @@ public class SeatingTop extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            // requestオブジェクトの文字エンコーディングの設定
+            request.setCharacterEncoding("UTF-8");
+            System.out.println("いまdoGet");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
@@ -55,12 +61,16 @@ public class SeatingTop extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまPost");
-
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
 }

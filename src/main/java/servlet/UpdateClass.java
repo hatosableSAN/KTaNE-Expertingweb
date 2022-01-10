@@ -3,6 +3,7 @@ package servlet;
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ import beans.Student;
 import beans.User;
 import service.StudentService;
 import service.ClassService;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -47,51 +49,58 @@ public class UpdateClass extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        //System.out.println("いまHandのPost");
-        List<Student> stu_list = new ArrayList<Student>();//全児童
-        List<Student> stu_classlist = new ArrayList<Student>();//クラスに所属している児童 
-        StudentService stu_service = new StudentService();
-        ClassService class_service = new ClassService();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            // requestオブジェクトの文字エンコーディングの設定
+            request.setCharacterEncoding("UTF-8");
+            // System.out.println("いまHandのPost");
+            List<Student> stu_list = new ArrayList<Student>();// 全児童
+            List<Student> stu_classlist = new ArrayList<Student>();// クラスに所属している児童
+            StudentService stu_service = new StudentService();
+            ClassService class_service = new ClassService();
 
-        String classid = request.getParameter("ClassId");
-        int class_id = Integer.parseInt(classid);//null
-        String class_name = null;
-        int class_year = 0;
-        User user = (User)session.getAttribute("User");
-        String class_user = null;//user.getId(); // 今ログインしている教員ユーザ
+            String classid = request.getParameter("ClassId");
+            int class_id = Integer.parseInt(classid);// null
+            String class_name = null;
+            int class_year = 0;
+            User user = (User) session.getAttribute("User");
+            String class_user = null;// user.getId(); // 今ログインしている教員ユーザ
 
-        String tourl = null;
-        //if (class_name.isEmpty() || classyear.isEmpty()) {
-            ClassDef classdef = new ClassDef(class_id,class_name,class_year,class_user);
-            classdef = class_service.searchClass(classdef);//クラス情報を取得
-            stu_classlist = class_service.getAllClassmember(classdef);//クラスに所属している児童を取得
+            String tourl = null;
+            // if (class_name.isEmpty() || classyear.isEmpty()) {
+            ClassDef classdef = new ClassDef(class_id, class_name, class_year, class_user);
+            classdef = class_service.searchClass(classdef);// クラス情報を取得
+            stu_classlist = class_service.getAllClassmember(classdef);// クラスに所属している児童を取得
 
-            stu_list = stu_service.getStudent();//全児童を取得
+            stu_list = stu_service.getStudent();// 全児童を取得
 
-            session.setAttribute("Stu_list", stu_list);//sessionもしくはrequest
-            session.setAttribute("Stu_classlist",stu_classlist);
-            session.setAttribute("ClassDef",classdef);
-            //request.setAttribute("Student", studentinfo);
-            //tourl = "/classes/registClassError.jsp";
-            //System.out.println("Please full all class information");
-        //} else {
+            session.setAttribute("Stu_list", stu_list);// sessionもしくはrequest
+            session.setAttribute("Stu_classlist", stu_classlist);
+            session.setAttribute("ClassDef", classdef);
+            // request.setAttribute("Student", studentinfo);
+            // tourl = "/classes/registClassError.jsp";
+            // System.out.println("Please full all class information");
+            // } else {
             // studentオブジェクトに情報を格納
-            //int class_year = Integer.parseInt(classyear);
-            //String[] checkedStudents = request.getParameterValues("student_member");
-            //System.out.println(Arrays.toString(checkedStudents));
-            //System.out.println("right here");
-            //System.out.println(request.getParameter("student_member"));
-            /*for (int i = 0; i < checkedStudents.length; i++) {//これは確認の時に必要だったような
-                String stu_id = checkedStudents[i];
-                String stu_name = null;
-                int stu_gender = 0;
-                String stu_user = null;
-                Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
-                student = service.searchStudent(student);
-                list.add(student);
-            }*/
+            // int class_year = Integer.parseInt(classyear);
+            // String[] checkedStudents = request.getParameterValues("student_member");
+            // System.out.println(Arrays.toString(checkedStudents));
+            // System.out.println("right here");
+            // System.out.println(request.getParameter("student_member"));
+            /*
+             * for (int i = 0; i < checkedStudents.length; i++) {//これは確認の時に必要だったような
+             * String stu_id = checkedStudents[i];
+             * String stu_name = null;
+             * int stu_gender = 0;
+             * String stu_user = null;
+             * Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+             * student = service.searchStudent(student);
+             * list.add(student);
+             * }
+             */
             // これには、valueが全部入ってるから、あーメンバーに登録するときに使える これを突っ込めばよい
             // int i = 0;
             /*
@@ -105,19 +114,20 @@ public class UpdateClass extends HttpServlet {
             // }
             // list = service.getStudent(); //一回コメントアウト
 
-            //ClassDef classdef = new ClassDef(class_name, class_year, class_user);
-            //request.setAttribute("ClassDef", classdef);
-            //session.setAttribute("List", list);
-            //session.setAttribute("Student", studentinfo);
-            //System.out.println(list);
-            //System.out.println(session.getAttribute("Student"));
-            //System.out.println(request.getAttribute("ClassDef"));
+            // ClassDef classdef = new ClassDef(class_name, class_year, class_user);
+            // request.setAttribute("ClassDef", classdef);
+            // session.setAttribute("List", list);
+            // session.setAttribute("Student", studentinfo);
+            // System.out.println(list);
+            // System.out.println(session.getAttribute("Student"));
+            // System.out.println(request.getAttribute("ClassDef"));
 
             tourl = "/WEB-INF/classes/updateClass.jsp"; // パスは、webappにいるところから考えないといけない！
-        //}
+            // }
 
-        getServletContext().getRequestDispatcher(tourl).forward(request, response);// 上のdoGetをまとめて書いている
+            getServletContext().getRequestDispatcher(tourl).forward(request, response);// 上のdoGetをまとめて書いている
 
+        }
     }
 
 }

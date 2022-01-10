@@ -24,6 +24,7 @@ import service.ClassService;
 import service.GradeService;
 import service.SeatingService;
 import service.StudentService;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -38,16 +39,21 @@ public class UpdateStudentGrades extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        System.out.println("生徒評価確認");
-        String idnumber=request.getParameter("gradeid");
-        int id=Integer.parseInt(idnumber);//授業ID
-        GradeService service=new GradeService();
-        Grade Grade=service.getStudentGrade(id);//ひょうか
-        session.setAttribute("Grade", Grade);
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            System.out.println("生徒評価確認");
+            String idnumber = request.getParameter("gradeid");
+            int id = Integer.parseInt(idnumber);// 授業ID
+            GradeService service = new GradeService();
+            Grade Grade = service.getStudentGrade(id);// ひょうか
+            session.setAttribute("Grade", Grade);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateStudentGrades.jsp");
-        dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateStudentGrades.jsp");
+            dispatcher.forward(request, response);
 
+        }
     }
-
 }

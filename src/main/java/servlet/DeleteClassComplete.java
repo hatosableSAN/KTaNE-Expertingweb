@@ -46,19 +46,24 @@ public class DeleteClassComplete extends HttpServlet {
         System.out.println("いまdoGet");
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("User");
-
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        // Classserviceobjectの作成
-        ClassService ClassService = new ClassService();
-        List<ClassDef> myClassDefList = ClassService.getAllMyClass(user.getId());
-        List<ClassDef> otherClassDefList = ClassService.getAllOtherClass(user.getId());
-        request.setAttribute("myClassDefList", myClassDefList);
-        request.setAttribute("otherClassDefList", otherClassDefList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/classTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            User user = (User) session.getAttribute("User");
+            // requestオブジェクトの文字エンコーディングの設定
+            request.setCharacterEncoding("UTF-8");
+            // Classserviceobjectの作成
+            ClassService ClassService = new ClassService();
+            List<ClassDef> myClassDefList = ClassService.getAllMyClass(user.getId());
+            List<ClassDef> otherClassDefList = ClassService.getAllOtherClass(user.getId());
+            request.setAttribute("myClassDefList", myClassDefList);
+            request.setAttribute("otherClassDefList", otherClassDefList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/classes/classTop.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
@@ -69,28 +74,34 @@ public class DeleteClassComplete extends HttpServlet {
         System.out.println("いまdoGet");
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("User");
-
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        // Classserviceobjectの作成
-        ClassService ClassService = new ClassService();
-        ClassDef ClassDef = new ClassDef();
-        ClassDef.setClass_id(Integer.parseInt(request.getParameter("ClassId")));
-        List<Student> StudentList = ClassService.getAllClassmember(ClassDef);
-        ClassDef = ClassService.searchClass(ClassDef);
-
-        // クラスを削除する
-        boolean result = ClassService.deleteClass(ClassDef);
-        String tourl = null;
-        if (result) {
-            tourl = "/WEB-INF/classes/deleteClassComplete.jsp";
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
         } else {
-            tourl = "/WEB-INF/classes/deleteClassError.jsp";
+            User user = (User) session.getAttribute("User");
+
+            // requestオブジェクトの文字エンコーディングの設定
+            request.setCharacterEncoding("UTF-8");
+            // Classserviceobjectの作成
+            ClassService ClassService = new ClassService();
+            ClassDef ClassDef = new ClassDef();
+            ClassDef.setClass_id(Integer.parseInt(request.getParameter("ClassId")));
+            List<Student> StudentList = ClassService.getAllClassmember(ClassDef);
+            ClassDef = ClassService.searchClass(ClassDef);
+
+            // クラスを削除する
+            boolean result = ClassService.deleteClass(ClassDef);
+            String tourl = null;
+            if (result) {
+                tourl = "/WEB-INF/classes/deleteClassComplete.jsp";
+            } else {
+                tourl = "/WEB-INF/classes/deleteClassError.jsp";
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
     }
 
 }
