@@ -22,10 +22,11 @@ pageEncoding="UTF-8"%>
     授業日および授業全体のコメントを入力してください。<br>
 
     <form action="./RegistGradeInfoConfirm" method="post">
-授業日：
+<h2 style="text-align: center;">授業日：
       <input type="date" name="ClassDate" required>
-      <input type="number" name="PeriodNum" required>限<br/>
-授業コメント(400文字以内)
+      <input type="number" name="PeriodNum" required>限  <font color="red">* </h2>
+        <br/><p style="position: absolute;right:300px;">*は必須項目です</font></p></br>
+<h2>授業コメント(400文字以内)</h2>
       <textarea class="textarea-grade" rows="40" cols="10" maxlength="100" name="Comment" style="  width:500px;
       height:300px;"></textarea>
 
