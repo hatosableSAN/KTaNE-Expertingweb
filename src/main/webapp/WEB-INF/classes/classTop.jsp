@@ -53,7 +53,9 @@ pageEncoding="UTF-8"%>
                 <input type="submit" value="クラス情報詳細表示" name="hand" class="button" style=" width:150px; height:20px; padding:0px; ">
               </form></td>
             </tr>
-          <% } }%>
+          <% } }else{%>
+            <tr><td>なし</td></tr>
+          <% }%>
     </table>
     <br>クラス一覧<br>
     <table align="center">
@@ -73,7 +75,9 @@ pageEncoding="UTF-8"%>
                 <input type="submit" value="クラス情報詳細表示" name="hand" class="button" style=" width:150px; height:20px; padding:0px;">
               </form></td>
               </tr>
-          <% } }%>
+          <% } }else{%>
+            <tr><td>なし</td></tr>
+          <% }%>
     </table>
 
 
