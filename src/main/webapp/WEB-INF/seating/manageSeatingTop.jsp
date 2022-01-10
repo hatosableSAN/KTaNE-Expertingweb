@@ -22,10 +22,18 @@ pageEncoding="UTF-8"%>
       border-collapse:collapse;
      border: 1px solid #000;      /* わかりやすくボーダーを引く */
      /*overflow-y: scroll;          /* 縦方向にスクロール可能にする */
-    }
-    tr{
-      text-align:center;
+    }tr{
+      text-align:left;
       border: 1px solid #000;
+    }
+    th,td{
+      padding-top:10px;
+      padding-bottom:10px;
+      padding-left:30px;
+      padding-right:10px;
+    }
+    .text{
+      margin-left:8%;
     }
     </style>
   <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
@@ -43,7 +51,9 @@ pageEncoding="UTF-8"%>
       <button text-align="center" class="button" name="regist_class">検索実行</button>
     </form> --%>
     <br>
-   <font size="2px">検索：</font>
+
+    <p class="text" style="display: inline; margin-right:30px;">自身の作成した座席配置情報</p>
+    <font size="2px">検索：</font>
         <form action="./SearchSeating" method="post" style="display: inline">
             <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <label><input type="radio" name="radiobutton" value="class" required <%if(index.equals("class")||index ==null){%>checked<%}%>> <font size="2px">クラス</font></label>
@@ -53,8 +63,7 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name ="searchbutton" value="search_seatingArr" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button></label>
             <button text-align="center" name ="searchbutton" value="searchReset" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button></label>
         </form>
-      <br />
-    自身の作成した座席配置情報<br>
+      <br>
     <table>
       <tr>
         <th>クラス</th>
@@ -83,14 +92,14 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
+                <input type="submit" class="button" value="座席配置詳細" name="hand"/>
               </form></td>
             </tr>
           <% } }else{%>
             <tr><td>なし</td></tr>
           <% }%>
-    </table>
-    座席配置一覧<br>
+    </table><br>
+    <p class="text">座席配置一覧</p><br>
     <table>
       <tr>
         <th>クラス</th>
@@ -117,7 +126,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
+                <input type="submit" class="button" value="座席配置詳細" name="hand" />
               </form></td>
             </tr>
           <% } }else{%>
