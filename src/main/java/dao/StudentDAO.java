@@ -312,33 +312,44 @@ public class StudentDAO extends DriverAccessor {
     }
 
 
-/*public class StudentDAO extends DriverAccessor {
     //こっちは引数があるから、検索に引っかかったものを探す
-    public List<Student> findAll(Student student, Connection connection) {
-        String sql = "SELECT * FROM students WHERE student_id IN(Select workplace_id FROM workplace WHERE user_id = ?) ORDER BY start_date ASC, end_date ASC";
+    public List<Student> findAll(String stu_info, String select, Connection connection) {
+        String sql_id = "select * from students where id like '%"+stu_info+"%'";
+        String sql_name = "select * from students where name like '%"+stu_info+"%'";
+        PreparedStatement statement;
+        ResultSet resultSet;
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Account.getLoginId());
-            ResultSet resultSet = statement.executeQuery();
-            List<ShiftBeans> SbList = new ArrayList<ShiftBeans>();
-            while (resultSet.next()) {
-                ShiftBeans returnSb = new ShiftBeans();
-                returnSb.setShiftId(resultSet.getInt("shift_id"));
-                returnSb.setStartDate(resultSet.getString("start_date"));
-                returnSb.setEndDate(resultSet.getString("end_date"));
-                returnSb.setWorkplaceId(resultSet.getInt("workplace_id"));
-                returnSb.setMemo(resultSet.getString("memo"));
-                SbList.add(returnSb);
+            if(select.equals("number")){
+                statement = connection.prepareStatement(sql_id);
+                resultSet = statement.executeQuery();
+            }else if(select.equals("name")){
+                statement = connection.prepareStatement(sql_name);
+                resultSet = statement.executeQuery();
+            }else{
+                return null;//必要ないかも
             }
+            //PreparedStatement statement = connection.prepareStatement(sql);
+            //statement.setString(1, Account.getLoginId());
+            //ResultSet resultSet = statement.executeQuery();
+            List<Student> studentList = new ArrayList<Student>();
+            while(resultSet.next()) {
+                Student student = new Student();
+                student.setStudent_id(resultSet.getString("id"));
+                student.setStudent_name(resultSet.getString("name"));
+                student.setStudent_gender(resultSet.getInt("gender"));
+                student.setStudent_user(resultSet.getString("user_id"));
+                studentList.add(student);
+            }
+            //statement_id.close();
             statement.close();
             resultSet.close();
 
-            return SbList;
+            return studentList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-    }*/
+    }
 
 
 //public class SampleDao extends DriverAccessor {
@@ -353,15 +364,6 @@ public class StudentDAO extends DriverAccessor {
                 Student student = new Student();
                 student.setStudent_id(resultSet.getString("id"));
                 student.setStudent_name(resultSet.getString("name"));
-                /*String gender = String.valueOf(resultSet.getInt("gender"));
-                switch(gender){
-                 case "1": gender="男";
-                          break;
-                 case "2": gender="女";
-                          break;
-                 case "3": gender="その他";
-                          break;
-                }*/
                 student.setStudent_gender(resultSet.getInt("gender"));
                 student.setStudent_user(resultSet.getString("user_id"));
                 studentList.add(student);

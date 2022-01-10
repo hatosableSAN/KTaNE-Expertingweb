@@ -41,8 +41,11 @@ pageEncoding="UTF-8"%>
         <table>
             <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
             <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
-
-            <% if(list.size()==0){ %>
+            <% if(list.size() == 0){ %>
+              <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
+              <% 
+            }else{
+            if(list.size()==0){ %><!--検索結果0と児童が登録されていない時の区別が出来ていない-->
             </table>
             <h4 align="center">児童が登録されていません</h4>
             </div>
@@ -65,7 +68,7 @@ pageEncoding="UTF-8"%>
                 <td><%=s.getStudent_user() %></td>
                 <!--/label-->
                 </tr>
-                <%} %>
+                <%} }%>
 
         </table>
         </div>
@@ -73,15 +76,17 @@ pageEncoding="UTF-8"%>
         <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
       </form>
       <tr><th>　</th>
-      <td><!--div class="center"-->
+      <td><font size="2px">メンバー検索：</font><!--div class="center"-->
         <form action="./SearchStudent" method="post">
-          <font size="2px">メンバー検索：</font>
+
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-            <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
+            <input type="radio" name="radiobutton" value="number" required> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <button text-align="center" name="search_stu" value="search">検索実行</button>
-            <button text-align="center" name="search_stu" value="all">一覧表示</button>
         </form>
+            <form action="./RegistStudentGet" method="post">
+             <button text-align="center" name="search_stu" value="all">一覧表示</button>
+           </form>
         <!--/div--></td></tr></table>
         <% } %>
       <br />
