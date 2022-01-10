@@ -109,7 +109,7 @@ public class DeleteSeating extends HttpServlet {
             if (result) {
                 tourl = "/WEB-INF/seating/deleteSeatingcomplete.jsp";
             } else {
-                tourl = "/WEB-INF/seating/deleteSeatingError.jsp";
+                tourl = "/WEB-INF/seating/deleteSeatingfail.jsp";
 
             }
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
