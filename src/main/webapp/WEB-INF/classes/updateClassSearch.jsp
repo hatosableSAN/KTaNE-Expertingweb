@@ -60,7 +60,7 @@ pageEncoding="UTF-8"%>
             </form-->
           <% }else if(stu_classlist.size() == 0){ %>
               <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
-              <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
+              <!--input type="submit" value="登録" name="hand" class="btn" id="btn_right"-->
           <% }else{
             for(Student s:stu_classlist){
               int flag=0; %>
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
                   <% for(int i=0; i < stu_classlist.size(); i++ ) { 
                     Student sc = stu_classlist.get(i);
                     if(s.getStudent_id().equals(sc.getStudent_id())){ %>
-                      <input type="checkbox"/ name="student_member" checked value=<%=s.getStudent_id() %>>
+                      <input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>>
                     <% flag=1;} } %>
                       <!--input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>-->
                     <% if(flag==0){ %>

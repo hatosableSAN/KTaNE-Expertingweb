@@ -40,7 +40,6 @@ pageEncoding="UTF-8"%>
           <td>${ClassDef.class_name}</td>
         </tr>
         <tr>
-                    <!--lavel--><td><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %></td>
           <th>メンバー</th>
           <td>
             <div class="student">
