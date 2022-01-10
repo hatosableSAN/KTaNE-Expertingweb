@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
 
       <a href="./manageSeatingTop"><button align="center" class = "backbtn" name="regist_top">座席配置一覧へ戻る</button></a>
 
-    <br>
+    <br><br/>
         <table>
           <%
           int j = 0;
@@ -66,14 +66,14 @@ pageEncoding="UTF-8"%>
         
         <form formmethod="POST" method="post">
           <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  class = "button" name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" />
-          <input type="submit" class = "button" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>　　　</p>
+          <input type="submit"  class = "button" id="btn_left_seat" name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" />
+          <input type="submit" class = "button" id="btn_right_seat2" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>　　　</p>
         </form>
 
         <% } %>
         <form action="./RegistGradeInfo" method="post">
         <input type="hidden" name="id" value="<%=seatingArrangements.getId() %>" >
-        <input type="submit" value="授業評価作成" name="registGrade" class="button"/>
+        <input type="submit" value="授業評価作成" name="registGrade" class="button" id="btn_right_seat"/>
         </form>
 
       <br />

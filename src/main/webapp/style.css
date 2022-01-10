@@ -281,6 +281,15 @@ font-size: 30px;
   top: 600px; 
   font-size: 20px;
 }
+
+#btn_right_seat2{ /*右下の確定系ボタン*/
+  position:absolute; 
+  right:200px; 
+  top: 600px; 
+  font-size: 20px;
+}
+
+
 /* -------------------- */
 /* ▼メニューバーの装飾 */
 /* -------------------- */
