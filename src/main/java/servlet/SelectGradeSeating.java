@@ -57,7 +57,7 @@ public class SelectGradeSeating extends HttpServlet {
             List<String> ClassNameList = new ArrayList<String>();
             ClassService ClassService = new ClassService();
             for (SeatingArrangements seat : SeatList) {
-                int classid = seat.getId();
+                int classid = seat.getClassId();
                 String ClassName = ClassService.getClassName(classid);
                 ClassNameList.add(ClassName);
             }
