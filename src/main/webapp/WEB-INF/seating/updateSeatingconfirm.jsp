@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  
+
     <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
       <h1 align="center">座席配置変更確認</h1>
     </div>
 
-    以下の情報で更新します<br><br/>
+    <div class="center">以下の情報で更新します</div><br>
       <form action="./UpdateSeatingAll" method="post">
         <table>
           <%
@@ -46,7 +46,7 @@ pageEncoding="UTF-8"%>
         </table>
         <br>
         <div class="right_div">
-        クラス：<%=seatingArrangements.getClassId() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
+        クラス：<!--<%=seatingArrangements.getClassId() %>:--><%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～<% if(seatingArrangements.getEndDate() == null||seatingArrangements.getEndDate().equals("")){%>終了日未定<%}else{%><%=seatingArrangements.getEndDate() %><%}%>
         <Br>
         席名：<%=seatingArrangements.getName()%>

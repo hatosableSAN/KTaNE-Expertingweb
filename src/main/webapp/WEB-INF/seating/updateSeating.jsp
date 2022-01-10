@@ -20,17 +20,17 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  
+
     <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
  </head>
   <body>
     <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置変更</h1>
-      
+
       </div>
 
-    座席を選択し、児童・生徒の座席を作成してください。<br><br/>
+    <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div><br>
       <form>
         <table>
           <%
@@ -135,6 +135,10 @@ pageEncoding="UTF-8"%>
                 <%-- <%  for(Student setstudent : setStudentList ){ %> --%>
                   <%-- <%=setstudent.getStudent_id()%>:<%=setstudent.getStudent_name()%><br> --%>
                 <%-- <% } %> --%>
-      <a href="./manageSeatingTop"><button align="center" class="button_grey" id="btn_left_seat" name="regist_top" >キャンセル</button></a>
+                <form action="./manageSeatingTop" method="post">
+                  <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId()%>">
+                  <input type="submit" align="center" class="button_grey" id="btn_left_seat" name="regist_top" value="キャンセル"/>
+              </form>
+      <%-- <a href="./manageSeatingTop"><button >キャンセル</button></a> --%>
   </body>
 </html>

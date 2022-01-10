@@ -11,6 +11,8 @@ pageEncoding="UTF-8"%>
       <p align="right">ユーザーID　${User.id}</p>
       </div>
       <h2 align="center">座席配置を削除しました</h2>
+      <div class="center">
     <a href="./SeatingTop"><button align="center" class="backbtn_middle"　name="regist_top">座席配置メニュートップへ戻る</button></a>
+    </div>
   </body>
 </html>

@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  
+
 
     <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
@@ -63,10 +63,10 @@ pageEncoding="UTF-8"%>
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
         </div>
 
-        
+
         <form formmethod="POST" method="post">
           <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  class = "button" id="btn_left_seat" name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" />
+          <input type="submit"  class = "button button_grey" id="btn_left_seat" name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" style="color:red;"/>
           <input type="submit" class = "button" id="btn_right_seat2" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>　　　</p>
         </form>
 

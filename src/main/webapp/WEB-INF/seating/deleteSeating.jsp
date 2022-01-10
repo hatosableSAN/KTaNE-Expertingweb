@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  
+
 
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
       <h1 align="center">座席配置削除</h1>
     </div>
 
-    <font color="red">以下の座席配置を削除します</font>
+    <div class="center"><font color="red">以下の座席配置を削除します</font></div>
     <br>
         <table>
           <%
@@ -64,8 +64,8 @@ pageEncoding="UTF-8"%>
         <form>
           <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
           <p align = "center">
-            <input type="submit" class ="button_grey" id="btn_left_seat" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="GET" />　　　
-            <input type="submit"  class = "button_grey" id="btn_right_seat" name="deleteSeating" value="　削除　" formaction="./DeleteSeating"  formmethod="POST" />
+            <input type="submit" class ="button_grey" id="btn_left_seat" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="POST" />　　　
+            <input type="submit"  class = "btn" id="btn_right_seat" name="deleteSeating" value="　削除　" formaction="./DeleteSeating"  formmethod="POST" style="color:red;"/>
           </p>
         </form>
         <% } %>
