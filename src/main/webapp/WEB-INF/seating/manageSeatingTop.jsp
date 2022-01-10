@@ -41,8 +41,8 @@ pageEncoding="UTF-8"%>
             <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <label><input type="radio" name="radiobutton" value="class" required <%if(index.equals("class")||index ==null){%>checked<%}%>> <font size="2px">クラス</font></label>
             <label><input type="radio" name="radiobutton" value="name" <%if(index.equals("name")){%>checked<%}%>> <font size="2px">座席配置名</font></label>
-            <!--<label><input type="radio" name="radiobutton" value="startdate"> <font size="2px">開始期間</font></label>
-            <label><input type="radio" name="radiobutton" value="enddate"> <font size="2px">終了期間</font>-->
+            <label><input type="radio" name="radiobutton" value="startdate"<%if(index.equals("startdate")||index ==null){%>checked<%}%>>開始期間(yyyy/mm/dd) </label>
+            <label><input type="radio" name="radiobutton" value="enddate"<%if(index.equals("enddate")||index ==null){%>checked<%}%>> <font size="2px">終了期間(yyyy/mm/dd)</font>
             <button text-align="center" name ="searchbutton" value="search_seatingArr">検索実行</button></label>
             <button text-align="center" name ="searchbutton" value="searchReset">一覧表示</button></label>
         </form>
