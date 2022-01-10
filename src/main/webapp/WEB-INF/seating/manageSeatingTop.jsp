@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
     </form> --%>
     <br>
    <font size="2px">検索：</font>
-        <form action="./SearchSeating" method="post">
+        <form action="./SearchSeating" method="post" style="display: inline">
             <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <label><input type="radio" name="radiobutton" value="class" required <%if(index.equals("class")||index ==null){%>checked<%}%>> <font size="2px">クラス</font></label>
             <label><input type="radio" name="radiobutton" value="name" <%if(index.equals("name")){%>checked<%}%>> <font size="2px">座席配置名</font></label>
