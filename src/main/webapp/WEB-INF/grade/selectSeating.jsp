@@ -7,6 +7,10 @@ pageEncoding="UTF-8"%>
 <% User User = (User)session.getAttribute("User"); %>
 <% List<SeatingArrangements> SeatList = (List<SeatingArrangements>)request.getAttribute("SeatList"); %>
   <% List<String> ClassNameList = (List<String>)request.getAttribute("ClassNameList"); %>
+    <%@ page import="java.text.SimpleDateFormat"%>
+    <% SimpleDateFormat inputdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
+    <% SimpleDateFormat outputdf = new SimpleDateFormat("MM月dd日");%>
+    <% SimpleDateFormat outputlessondf = new SimpleDateFormat("yyyy年MM月dd日");%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,12 +28,13 @@ pageEncoding="UTF-8"%>
 
     <br>
     　座席配置を選択してください。<br>
-    <table border="1">
+    <table border="1" style="border-collapse: collapse;width: 800px;text-align: center;">
       <tr>
         <th>クラス</th>
-        <th>開始期間</th>
-        <th>終了期間</th>
+        <th colspan="3">開始期間　終了期間</th>
         <th>クラス名</th>
+        <th></th>
+        
     </tr>
       <% if(SeatList.size() > 0) {
         int i=0;
@@ -38,14 +43,15 @@ pageEncoding="UTF-8"%>
         <tr>
             
             <td><%=ClassNameList.get(i)%></td>
-            <td><%=Seating.getStartDate() %></td>
-            <td><%=Seating.getEndDate()%></td>
+            <td colspan="3" ><%=outputdf.format(inputdf.parse(Seating.getStartDate()))%>~
+            <%=outputdf.format(inputdf.parse(Seating.getEndDate()))%>
             <td><%=Seating.getName() %></td>
-            <td><form action="./RegistGradeInfo" method="post">
-              <input type="hidden" name="id" value=<%=Seating.getId() %> >
-            <input type="submit" value="選択" ></form></td>
+            <td style="padding-left: 10px;padding-right: 10px;"><form action="./RegistGradeInfo" method="post">
+              <input type="hidden" name="id" value=<%=Seating.getId()%>>
+            <input type="submit" value="選択" class="btn" style="height: 50%;"></form></td>
       <% i++;} }%>
     </table>
       <br/>
   </body>
 </html>
+

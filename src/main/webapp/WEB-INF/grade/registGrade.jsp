@@ -50,21 +50,28 @@ pageEncoding="UTF-8"%>
         text-align:center;
       }
       .selectable{
-      border-radius: 5px;
-      background-color: rgb(255, 218, 0);
-      padding: 10px;
-      font-size: 20px;
-      color: black;
-      font:bold;
+    margin-right: -80px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 218, 0);
+    text-decoration: none;
+    /*color: black;*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    /*width: 120px;*/
+    padding: 10px;
+    
       }
       .no-selectable{
-      border-radius: 5px;
-      background-color: rgb(240, 240, 240);
-      padding: 10px;
-      text-decoration: none;
-      color: rgb(172, 172, 172);
-      font-size: 20px;
-      font:bold;
+    margin-left: -80px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    background: #ececec;
+    padding: 10px;
+    position: absolute;/*relativeだったけどabsoluteにしました*/
+    text-decoration: none;
+    color: rgb(167, 167, 167);
       }
       .registed {
         width: 80px;
@@ -88,6 +95,7 @@ pageEncoding="UTF-8"%>
       }
       .h1-bottom {
               color: rgb(255, 0, 0);
+              text-align: center;
             }
     </style>
     <!--  ここまでスタイル  -->
@@ -103,7 +111,8 @@ pageEncoding="UTF-8"%>
     <a href="./GradeTop" class="backbtn">評価メニュー<br/>トップへ戻る</a>
 
 
-    ・評価を登録する座席を選択してください。<br><br/>
+    評価を登録する座席を選択してください。<br><br/>
+    評価が完了した座席は、緑色で表示されます。<br><br/>
       <form action="./RegistClassesInfo" method="post" class="form-grade">
         <table>
           <%
@@ -121,8 +130,8 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br />
-        <p align="right">
-          <input type="submit" value="座席配置を確定する" id="submitbtn" class="selectable">　　　
+        <p align="center">
+          <input type="submit" value="授業日時・授業コメント入力画面へ" id="submitbtn" class="selectable">　　　
         </p>
       </form>
 
@@ -203,10 +212,10 @@ pageEncoding="UTF-8"%>
             </script>
                         
              </div><br/>
-             <input type="submit" value="評価を確定する" align="center" />
+             <input type="submit" value="評価を確定する" align="center" class="btn" style="position:absolute;bottom:20px;right:20px;"/>
           </form>
           
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
+            <p><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="position:absolute;bottom:20px;left:20px;">キャンセル</button></a></p>
         </div>
 
       <br />
@@ -274,7 +283,7 @@ pageEncoding="UTF-8"%>
               
               <%} }%>
 
-              <% if(GradeList.size()!=studentSeatingArrList.size()) { %>
+              <% if(GradeList.size()<studentSeatingArrList.size()) { %>
                 <script>
                   $(function () {
             

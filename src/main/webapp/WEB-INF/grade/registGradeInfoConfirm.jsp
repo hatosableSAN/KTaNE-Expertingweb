@@ -23,18 +23,18 @@ pageEncoding="UTF-8"%>
       <h1 align="center">評価新規作成</h1>
     </div>
     <br>
-    以下の内容で登録します。<br/><br/>
+    この内容で登録します。<br/><br/>
 
     <form action="./RegistGradeAll" method="post">
       
-    <p>授業日</p>
+      <h2>授業日：
       <%=ClassDate%>
       <input type="hidden" value="<%=ClassDate%>" name="ClassDate">
-      <%=PeriodNum%>限<br/>
+      <%=PeriodNum%>限</h2><br/>
       <input type="hidden" value="<%=PeriodNum%>" name="PeriodNum">
-<p>授業コメント(400文字以内)</p>
+      <h2>授業コメント(400文字以内)</h2>
 <input type="hidden" value="<%=Comment%>" name="Comment">
-<p> <%=Comment%></p>
+<h3> <%=Comment%></h3>
       </textarea>
     
 
@@ -45,3 +45,4 @@ pageEncoding="UTF-8"%>
     <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>
+
