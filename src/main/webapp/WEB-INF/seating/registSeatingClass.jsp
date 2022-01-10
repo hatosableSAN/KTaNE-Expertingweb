@@ -29,7 +29,12 @@ pageEncoding="UTF-8"%>
               </option>
             <% } }%></select><br />
         <br />
-        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn"/>　　　</p>
+        <% if(ClassDefList.size() > 0){%>
+        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn"/></p>
+        <%}else{%>
+        <font color='red'>※先にクラスを登録してください。</font>
+        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn" disabled></p>
+        <%}%>
       </form>
     </div>
       <br />

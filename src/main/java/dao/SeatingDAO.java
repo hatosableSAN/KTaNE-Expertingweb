@@ -419,9 +419,53 @@ public class SeatingDAO extends DriverAccessor {
                 statement.close();
                 rs.close();
             } else if (index.equals("startdate")) {// 未完成 開始期間検索
-                sql = "select * from seating_arrangements where user_id = ? AND startdate";
+                if (isMine) {
+                    sql = "select * from seating_arrangements where user_id = ? AND DATE_FORMAT(start_date, '%Y/%m/%d') = DATE_FORMAT(?, '%Y/%m/%d')";
+                } else {
+                    sql = "select * from seating_arrangements where user_id != ? AND DATE_FORMAT(start_date, '%Y/%m/%d') = DATE_FORMAT(?, '%Y/%m/%d')";
+                }
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, user_id);
+                statement.setString(2, word);
+                System.out.println(statement);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    SeatingArrangements SeatingArrangement = new SeatingArrangements();
+                    SeatingArrangement.setId(rs.getInt("id"));
+                    SeatingArrangement.setClassId(rs.getInt("class_id"));
+                    SeatingArrangement.setCreatedDate(rs.getString("created_date"));
+                    SeatingArrangement.setStartDate(rs.getString("start_date"));
+                    SeatingArrangement.setEndDate(rs.getString("end_date"));
+                    SeatingArrangement.setName(rs.getString("name"));
+                    SeatingArrangement.setUserId(rs.getString("user_id"));
+                    searchSeatingList.add(SeatingArrangement);
+                }
+                statement.close();
+                rs.close();
             } else if (index.equals("enddate")) {// 未完成 終了期間検索
-                sql = "select * from seating_arrangements where user_id = ?";
+                if (isMine) {
+                    sql = "select * from seating_arrangements where user_id = ? AND DATE_FORMAT(end_date, '%Y/%m/%d') = DATE_FORMAT(?, '%Y/%m/%d')";
+                } else {
+                    sql = "select * from seating_arrangements where user_id != ? AND DATE_FORMAT(end_date, '%Y/%m/%d') = DATE_FORMAT(?, '%Y/%m/%d')";
+                }
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, user_id);
+                statement.setString(2, word);
+                System.out.println(statement);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    SeatingArrangements SeatingArrangement = new SeatingArrangements();
+                    SeatingArrangement.setId(rs.getInt("id"));
+                    SeatingArrangement.setClassId(rs.getInt("class_id"));
+                    SeatingArrangement.setCreatedDate(rs.getString("created_date"));
+                    SeatingArrangement.setStartDate(rs.getString("start_date"));
+                    SeatingArrangement.setEndDate(rs.getString("end_date"));
+                    SeatingArrangement.setName(rs.getString("name"));
+                    SeatingArrangement.setUserId(rs.getString("user_id"));
+                    searchSeatingList.add(SeatingArrangement);
+                }
+                statement.close();
+                rs.close();
             }
             return searchSeatingList;
         } catch (SQLException e) {
