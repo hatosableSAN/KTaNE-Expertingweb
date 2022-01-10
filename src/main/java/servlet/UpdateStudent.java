@@ -49,7 +49,7 @@ public class UpdateStudent extends HttpServlet {
         HttpSession session = request.getSession(true);
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
             String stu_id = request.getParameter("update_hidden");

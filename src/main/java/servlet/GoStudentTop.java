@@ -31,7 +31,7 @@ public class GoStudentTop extends HttpServlet {// クラス
         HttpSession session = request.getSession();
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
@@ -46,7 +46,7 @@ public class GoStudentTop extends HttpServlet {// クラス
         /*
          * public void doPost(HttpServletRequest request, HttpServletResponse response)
          * throws ServletException, IOException {
-         * 
+         *
          * // requestオブジェクトの文字エンコーディングの設定
          * request.setCharacterEncoding("UTF-8");
          * // forwardはrequestオブジェクトを引数として、次のページに渡すことができる

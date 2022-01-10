@@ -48,7 +48,7 @@ public class RegistGradeAll extends HttpServlet {
         HttpSession session = request.getSession();
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
             // // 「生徒座席一覧(studentSeatingArrList)」に座らせた生徒と座席の情報を入れる
@@ -110,7 +110,7 @@ public class RegistGradeAll extends HttpServlet {
 
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
             // まずは授業情報を取得

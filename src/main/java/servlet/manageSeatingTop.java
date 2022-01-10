@@ -48,7 +48,7 @@ public class manageSeatingTop extends HttpServlet {
         HttpSession session = request.getSession();
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
             User user = (User) session.getAttribute("User");
@@ -81,7 +81,7 @@ public class manageSeatingTop extends HttpServlet {
         HttpSession session = request.getSession();
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
             User user = (User) session.getAttribute("User");
