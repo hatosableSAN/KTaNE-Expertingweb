@@ -34,8 +34,8 @@ pageEncoding="UTF-8"%>
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
-            <button text-align="center" name="regist_class">検索実行</button>
-            <button text-align="center" name="regist_class">一覧表示</button>
+            <button text-align="center" name="regist_class" class="button" >検索実行</button>
+            <button text-align="center" name="regist_class" class="button">一覧表示</button>
         </form>
         <div class="student">
         <table>
@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
                 <td><%=s.getStudent_user() %></td>
                 <td><form action="./ShowStudentGrades" method="get">
                   <input type="hidden" name="studentid" value="<%=s.getStudent_id() %>">
-                  <input type="submit" value="選択">
+                  <input type="submit" value="選択" class="btn" >
                   </form>
                   </td>
                 <!--/label-->

@@ -18,9 +18,14 @@ pageEncoding="UTF-8"%>
       }
       th{background-color:#F8AB74;}
     </style>
+    <head>
+      <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+    </head>
   <body>
-    <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">児童・生徒ごとの評価一覧</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">児童・生徒ごとの評価一覧</h1>
+    </div>
         <!--form action="../RegistStudentGet" method="post">
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
@@ -30,8 +35,8 @@ pageEncoding="UTF-8"%>
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
             <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
-            <button text-align="center" name="regist_class">検索実行</button>
-            <button text-align="center" name="regist_class">一覧表示</button>
+            <button text-align="center" name="regist_class" class="button">検索実行</button>
+            <button text-align="center" name="regist_class" class="button">一覧表示</button>
         </form>
           <table>
               <tr><th>授業日</th><th>出欠</th><th>観点1</th><th>観点2</th><th>観点3</th><th>評価コメント</th><th></th></tr>
@@ -74,7 +79,7 @@ pageEncoding="UTF-8"%>
                   <td><%=s.getComment()%></td>
                   <td><form action="./UpdateStudentGrades" method="get">
                     <input type="hidden" name="gradeid" value="<%=s.getId() %>">
-                    <input type="submit" value="変更">
+                    <input type="submit" value="変更" class="btn">
                     </form>
                     </td>
                   <!--/label-->
@@ -86,6 +91,6 @@ pageEncoding="UTF-8"%>
       
 
       <br />
-      <a href="./SelectGradeStudent"><button align="center">キャンセル</button></a>
+      <a href="./SelectGradeStudent"><button align="center" class="button_grey" id="btn_left">キャンセル</button></a>
   </body>
 </html>
