@@ -28,9 +28,9 @@ pageEncoding="UTF-8"%>
         <a href="./GradeTop"><button class="button" style=" width:250px; height:80px; font-size: 30px; margin: 20px;">
         評価管理
       </button></a>
-        <br/><br/><br/><br/>
-        <a href="/se21g1/Manual" class="btn">システムマニュアル</a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-        <a href="/se21g1/UpdateUser" class="btn">パスワード変更</a>
+        <br/><br/>
+        <a href="/se21g1/Manual"><button class="button_grey" style=" width:200px; height:50px; font-size: 20px; margin: 20px;">システムマニュアル</button></a>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+        <a href="/se21g1/UpdateUser"><button class="button_grey" style=" width:200px; height:50px; font-size: 20px; margin: 20px;">パスワード変更</button></a>
 
     </p>
 

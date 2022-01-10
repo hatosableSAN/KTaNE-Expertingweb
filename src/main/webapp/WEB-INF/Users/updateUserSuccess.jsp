@@ -4,15 +4,12 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css" type="text/css" >
     </head>
   <body>
-    <div class="darkgray"><p align="left"></p>
-      <h2 style="text-align:center">パスワード変更</h2></div><br/>
-    <br/>
-    <P align="center">
-        <FONT size="6"><BR />
-        <BR />
-        パスワード変更が完了しました</FONT><br/>
-    </P>
-    <p align="center"><a href="/se21g1/SystemTop" class="btn">システムトップへ</a></p>
+    <div class="darkgray">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">パスワード変更</h1>
+     </div>
+     <h2 align="center">パスワード変更が完了しました</h2>
+    <p align="center"><a href="/se21g1/SystemTop" ><button class="backbtn_middle">システムトップへ</button></a></p>
     
   </body>
 </html>

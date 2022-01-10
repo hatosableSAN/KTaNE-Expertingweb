@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
     <div class="darkgray">
       <p align="right">ID ${User.id}</p>
       <h1 align="center">システムマニュアル</h1>
-      <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る
+      <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>
     </div>
     
     <h3>　目次</h3>

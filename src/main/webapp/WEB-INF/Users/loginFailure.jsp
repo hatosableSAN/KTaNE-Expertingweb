@@ -10,6 +10,6 @@
     
     <h2 align="center">ログインに失敗しました<br/>IDまたはパスワードが間違っています</h2>
     <br/>
-    <p align="center"><a href="/se21g1/Login" class="backbtn3">ログイン画面へ戻る</a>　　<a href="/se21g1/" class="backbtn3">　スタート画面へ　</a></p>
+    <p align="center"><a href="/se21g1/Login"><button class="backbtn3">ログイン画面へ戻る</button></a>　　<a href="/se21g1/" ><button class="backbtn3">　スタート画面へ　</button></a></p>
   </body>
 </html>

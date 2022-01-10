@@ -16,7 +16,7 @@
             変更後のパスワード　 <input type="password" name="passwordU" placeholder="半角英数字(８～１５文字)" pattern="^[a-zA-Z0-9]+$" maxlength="15"/><br /><br/>
             変更後パスワード確認（再入力）　 <input type="password" name="passwordU2" placeholder="半角英数字(８～１５文字)" pattern="^[a-zA-Z0-9]+$" maxlength="15"/><br /><br/>
         <font color="red">現在のパスワードが間違っています</font><br/>
-        <input type="submit" name="OK" value="　変更　" class="btn" />
+        <input type="submit" name="OK" value="　変更　" class="btn" id="btn_check"/>
         </p>
     </form>
   </body>

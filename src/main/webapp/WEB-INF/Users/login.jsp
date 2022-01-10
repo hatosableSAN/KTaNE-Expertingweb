@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
   <body>
     <div class="darkgray">
         
-        <a href="/se21g1/" class="backbtn">スタート画面へ</a>　
+        <a href="/se21g1/" ><button class="backbtn">スタート画面へ</button></a>　
         <h1 style="text-align:center">ログイン画面</h1>
       </div>
     <br/><br/><br/><br/>

@@ -16,8 +16,8 @@
     <h2 align="center">ログアウトしますか？</h2>
     <br/>
     <p align="center">
-        <a href="/se21g1/SystemTop" class="btn">トップへ戻る</a>　　　　　
-        <a href="/se21g1/Logout" class="btn">ログアウト</a>
+        <a href="/se21g1/SystemTop" ><button class="backbtn3" style="height: 50px; font-size: 20;">トップへ戻る</button></a>　　　　　
+        <a href="/se21g1/Logout" ><button class="btn"  style="font-size: 20;">ログアウト</button></a>
       </p>
     
   </body>
