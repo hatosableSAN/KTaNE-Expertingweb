@@ -52,8 +52,8 @@ pageEncoding="UTF-8"%>
             </table>
             <h4 align="center">児童が登録されていません</h4>
             </div>
-            <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
-          </form>
+            <!--input type="submit" value="登録" name="hand" class="btn" id="btn_right">
+          </form-->
         <% }else{
             for(Student s:list){ %>
                 <tr>
@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
                 </td>
                 <td><%=s.getStudent_user() %></td>
                 </tr>
-            <%} }%>
+            <%} } }%>
 
         </table>
         </div>
@@ -84,6 +84,7 @@ pageEncoding="UTF-8"%>
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
             <input type="radio" name="radiobutton" value="number" required> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
+            <input type="hidden" value="regist" name="type">
             <button text-align="center" name="regist_class">検索実行</button>
             <!--button text-align="center" name="regist_class">一覧表示</button-->
         </form>
@@ -91,7 +92,6 @@ pageEncoding="UTF-8"%>
           <button text-align="center" name="search_stu" value="all">一覧表示</button>
         </form>
 </td></tr></table>
-        <% }%>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
       <form action='./ClassTop' method='get'>
