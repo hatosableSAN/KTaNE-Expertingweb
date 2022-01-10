@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.User;
 import control.UserManager;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -31,9 +32,16 @@ public class Manual extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/manual.jsp");
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        } else {
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/manual.jsp");
+            dispatcher.forward(request, response);
+        }
     }
-    
+
 }

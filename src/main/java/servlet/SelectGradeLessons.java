@@ -45,18 +45,25 @@ public class SelectGradeLessons extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
-        GradeService Service = new GradeService();
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        } else {
 
-        List<Lessons> LessonList=Service.getLessonList();
+            GradeService Service = new GradeService();
 
+            List<Lessons> LessonList = Service.getLessonList();
 
-        request.setAttribute("LessonList", LessonList);
-        System.out.println(LessonList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectLessons.jsp");
+            request.setAttribute("LessonList", LessonList);
+            System.out.println(LessonList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectLessons.jsp");
 
-        dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
+        }
     }
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+    // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
@@ -65,11 +72,17 @@ public class SelectGradeLessons extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまPost");
 
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        } else {
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
 }
