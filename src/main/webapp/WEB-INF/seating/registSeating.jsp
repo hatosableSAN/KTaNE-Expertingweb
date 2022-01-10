@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成</h1>
     </div>
-  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left_seat" >キャンセル</button></a>  
+  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left_seat" >キャンセル</button></a>
     <br>
 
     <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div>
@@ -66,13 +66,13 @@ pageEncoding="UTF-8"%>
                   <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%switch(student.getStudent_gender()){case 1:%>男<%break;case 2:%>女<%break;case 3:%>その他<%break;}%><!--:<%=student.getStudent_user()%>-->
                   </option>
                 <% } }%>
-                </select><br /><br />
+                </select><br /><br>
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
             <input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
-          </form>
-          <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　
+          </form><br>
+          <a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>
         </div>
 
       <br />

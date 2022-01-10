@@ -98,24 +98,27 @@ public class RegistSeatingInfo extends HttpServlet {
                 User user = (User) session.getAttribute("User");
 
                 String tourl = null;
-                if (startdate.isEmpty()) {// 開始日時がnullの時（未入力)
+                if (startdate.isEmpty()) {// 開始日時がnullの時（未入力)//TODO開始期間が正しく入力されていないとき
                     tourl = "/WEB-INF/seating/registSeatingError.jsp";
                     System.out.println("Please full all seatinarrangements information");
                 } else {// 開始日時が正しく入力されているとき
-
-                    // 開始期間と終了期間を比較する
-                    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-                    Date Startdate = sdformat.parse(startdate);
-                    Date Enddate = sdformat.parse(enddate);
-                    System.out.println("Startdate: " + sdformat.format(Startdate));
-                    System.out.println("Enddate: " + sdformat.format(Enddate));
-                    if (!Enddate.after(Startdate)) {// 終了期間が開始期間より前で登録されている時
-                        System.out.println("Enddate is not after Startdate");
-                        tourl = "/WEB-INF/seating/registSeatingErrordate.jsp";// ない
-                        System.out.println("終了期間は開始期間より後に入力してください");
+                    if (!enddate.isEmpty()) {// 終了日時がnullでない時
+                        // 開始期間と終了期間を比較する
+                        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+                        Date Startdate = sdformat.parse(startdate);
+                        Date Enddate = sdformat.parse(enddate);
+                        System.out.println("Startdate: " + sdformat.format(Startdate));
+                        System.out.println("Enddate: " + sdformat.format(Enddate));
+                        if (!Enddate.after(Startdate)) {// 終了期間が開始期間より前で登録されている時
+                            System.out.println("Enddate is not after Startdate");
+                            tourl = "/WEB-INF/seating/registSeatingErrordate.jsp";// ない
+                            System.out.println("終了期間は開始期間より後に入力してください");
+                        } else {// 終了期間が開始期間より後で正しく登録されている時
+                            tourl = "/WEB-INF/seating/registSeatingconfirm.jsp";
+                        }
                     } else {
                         tourl = "/WEB-INF/seating/registSeatingconfirm.jsp";
-                    } // 終了期間が開始期間より後で正しく登録されている時
+                    }
                     ClassDef classdef = (ClassDef) session.getAttribute("ClassDef");
                     Date createdDate = new Date();// 現在時刻＝作成日
                     String createddate = new SimpleDateFormat("yyyy-MM-dd").format(createdDate);
@@ -149,7 +152,9 @@ public class RegistSeatingInfo extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         } catch (ParseException e) {
-
+            System.out.println("期間は正しい形式(y-m-d)で入力してください");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingInfo.jsp");
+            dispatcher.forward(request, response);
             e.printStackTrace();
         }
     }

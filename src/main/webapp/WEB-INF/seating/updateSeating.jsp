@@ -60,10 +60,11 @@ pageEncoding="UTF-8"%>
 
 
 
+
         <div id="modal-content">
-            <p class="red">「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
-            生徒選択画面<br>
-            生徒：<select name="StudentId">
+              <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+              生徒選択画面<br>
+              生徒：<select name="StudentId">
                 <option value="">なし</option>
                 <% if(StudentList.size() > 0) {
                   for(Student student : StudentList ){ %>
@@ -71,15 +72,14 @@ pageEncoding="UTF-8"%>
                   <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%switch(student.getStudent_gender()){case 1:%>男<%break;case 2:%>女<%break;case 3:%>その他<%break;}%><!--:<%=student.getStudent_user()%>-->
                   </option>
                 <% } }%>
-                </select><br /><br />
+                </select><br /><br>
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" formaction="./UpdateSeatingStudent" formmethod="POST" value="座席を確定する" align="center" /></p>
-            <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
-
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
+            <input type="submit" formaction="./UpdateSeatingStudent" formmethod="POST" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;" /></p>
+            <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%><br>
+            <a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>
         </div>
-</form>
+         </form>
       <br />
 
       <% if(studentSeatingArrList!=null && studentSeatingArrList.size() > 0) {

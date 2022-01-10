@@ -107,7 +107,7 @@ pageEncoding="UTF-8"%>
       <font size="2px">メンバー検索：</font>
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-            <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
+            <input type="radio" name="radiobutton" required value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <input type="hidden" value="update" name="type">
             <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>

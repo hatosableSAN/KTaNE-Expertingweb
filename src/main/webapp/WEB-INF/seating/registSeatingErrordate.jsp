@@ -29,11 +29,10 @@ pageEncoding="UTF-8"%>
     <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成</h1>
-      <a href="./RegistSeatingStudent"><button align="center" class="backbtn" name="regist_top">座席配置画面へ戻る</button></a>
       </div>
-    <br>
+      <a href="./RegistSeatingStudent"><button class="backbtn" id="btn_left_seat" name="regist_top">座席配置画面へ戻る</button></a>
 
-    ・児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。<br>
+    <div class="center">児童・生徒の席を以下に確定しました。期間・席名を入力し、登録してください。</div><br>
       <form>
         <table>
           <%
