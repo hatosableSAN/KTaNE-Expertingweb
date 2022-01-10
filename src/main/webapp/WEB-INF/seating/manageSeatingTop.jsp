@@ -16,24 +16,20 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-    table{
-      width:80%;
-      border-collapse:collapse;
-     border: 1px solid #000;      /* わかりやすくボーダーを引く */
-    }
-    tr{
-      text-align:center;
-      border: 1px solid #000;
-    }
-    </style>
+
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
 </head>
   <body>
-    <a href="./SeatingTop"><button align-items="center" name="regist_stu">座席配置メニュートップへ戻る</button></a>
-     <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">座席配置一覧</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置一覧</h1>
+    </div>
+
+    <a href="./SeatingTop"><button align-items="center" class = "backbtn" name="regist_stu">座席配置メニュー<br/>トップへ戻る</button></a>
+
     <%-- <form action="./RegistStudentGet" method="post">
-      <button text-align="center" name="regist_class">検索実行</button>
+      <button text-align="center" class="button" name="regist_class">検索実行</button>
     </form> --%>
     <br>
    <font size="2px">検索：</font>
@@ -76,7 +72,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" value="座席配置詳細" name="hand" />
+                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
               </form></td>
             </tr>
           <% } }else{%>
@@ -110,7 +106,7 @@ pageEncoding="UTF-8"%>
               <form action="./manageSeatingTop" method="post">
                 <input type="hidden" name="SeatingId" value="<%=SeatingArrangements.getId()%>">
 
-                <input type="submit" value="座席配置詳細" name="hand" />
+                <input type="submit" class="button" value="座席配置詳細" name="hand" style=" width:120px; height:20px; padding:0px; "/>
               </form></td>
             </tr>
           <% } }else{%>

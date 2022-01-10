@@ -18,28 +18,18 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  <style type="text/css">
-      .right_div{/*座席配置情報を教卓の横に置くクラス*/
-        width: 260px;                /* 横幅を900pxに指定 */
-        height: 90px;               /* 横幅を230pxに指定 */
-        right: 20px;
-        top: 400px;
-        position: fixed;
-        /*align-items: flex-end;*/
-      }
-    </style>
+
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
  </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成確認</h1>
     </div>
-    <a href="./RegistSeatingInfo"><button align="center" class="button_grey" id="btn_left" style="position:fixed" name="regist_top">入力画面へ戻る</button></a>
-    <br>
+    <a href="./RegistSeatingInfo"><button align="center" class="button_grey" id="btn_left_seat"  name="regist_top">入力画面へ戻る</button></a>
 
-    <div class="center">以下の情報で登録します</div>
+    <div class="center">以下の情報で登録します</div><br/>
       <form action="./RegistSeatingAll" method="post">
         <table align="center">
           <%
@@ -62,7 +52,7 @@ pageEncoding="UTF-8"%>
         期間：<%=seatingArrangements.getStartDate() %>～<% if(seatingArrangements.getEndDate() == null||seatingArrangements.getEndDate().equals("")){%>終了日未定<%}else{%><%=seatingArrangements.getEndDate() %><%}%>
         <Br>
         席名：<%=seatingArrangements.getName()%><br/></div>
-        <input type="submit" class = "btn" id="btn_right" style="position: fixed;" value="座席配置を登録">
+        <input type="submit" class = "btn" id="btn_right_seat"  value="座席配置を登録">
 
       <br />
 

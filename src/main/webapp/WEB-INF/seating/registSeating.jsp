@@ -22,11 +22,11 @@ pageEncoding="UTF-8"%>
 
   </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成</h1>
     </div>
-  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left" style="position: fixed;">キャンセル</button></a>
+  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left_seat" >キャンセル</button></a>  
     <br>
 
     <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div>
@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
         </table>
         <div class="right">
         クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　　　　　　　　　　</div>
-        <p align="right"><input type="submit" value="座席配置を確定する" class = "btn" id="btn_right" style="position:fixed;">　　　</p>
+        <p align="right"><input type="submit" value="座席配置を確定する" class = "btn" id="btn_right_seat" >　　　</p>
       </form>
 
 

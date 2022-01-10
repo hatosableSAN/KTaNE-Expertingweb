@@ -18,11 +18,20 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
+  
+
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+
  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-      <a href="./manageSeatingTop"><button align="center" name="regist_top">座席配置一覧へ戻る</button></a>
-    <h1 align="center">座席配置詳細閲覧</h1>
+
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置詳細閲覧</h1>
+    </div>
+
+      <a href="./manageSeatingTop"><button align="center" class = "backbtn" name="regist_top">座席配置一覧へ戻る</button></a>
+
     <br>
         <table>
           <%
@@ -40,6 +49,8 @@ pageEncoding="UTF-8"%>
           </tr>
         </table>
         <br>
+
+        <div class="right_div">
         クラス：<!--<%=seatingArrangements.getClassId() %>:--> <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
         期間：<%=seatingArrangements.getStartDate() %>～
         <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
@@ -50,16 +61,19 @@ pageEncoding="UTF-8"%>
         <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
         <%=seatingArrangements.getName()%>
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
+        </div>
 
+        
         <form formmethod="POST" method="post">
-          <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" />
-          <input type="submit" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>
+          <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
+          <input type="submit"  class = "button" name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" />
+          <input type="submit" class = "button" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>　　　</p>
         </form>
+
         <% } %>
         <form action="./RegistGradeInfo" method="post">
         <input type="hidden" name="id" value="<%=seatingArrangements.getId() %>" >
-        <input type="submit" value="授業評価作成" name="registGrade" />
+        <input type="submit" value="授業評価作成" name="registGrade" class="button"/>
         </form>
 
       <br />
