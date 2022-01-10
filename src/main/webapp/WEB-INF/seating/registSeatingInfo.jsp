@@ -47,7 +47,7 @@ pageEncoding="UTF-8"%>
             <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
           </tr>
         </table>
-        <div class="right_div"><br>
+        <div class="right_div">
         クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　<br>
         
         期間：<input type="date" value="<%=seatingArrangements.getStartDate()%>" name="startdate"  value="<%=ClassDef.getClass_year()%>-04-01" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31" required><font color="red">＊</font>
