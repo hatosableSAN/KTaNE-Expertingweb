@@ -39,20 +39,27 @@ import java.util.Date;
 public class DeleteLessonComplete extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+    // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
-        GradeService Service = new GradeService();
-        String Id=request.getParameter("Id");
-        int id=Integer.parseInt(Id);
-        Service.DeleteLessonInfo(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/deleteLessoncomplete.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            GradeService Service = new GradeService();
+            String Id = request.getParameter("Id");
+            int id = Integer.parseInt(Id);
+            Service.DeleteLessonInfo(id);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/deleteLessoncomplete.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
 }

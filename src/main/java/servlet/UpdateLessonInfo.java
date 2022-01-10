@@ -19,6 +19,7 @@ import beans.Student; //beansに入れた方がいいのかしら
 import beans.StudentSeatingArr;
 import service.SeatingService;
 import service.StudentService;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -32,10 +33,18 @@ public class UpdateLessonInfo extends HttpServlet {
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateLessonInfo.jsp");
-        dispatcher.forward(request, response);
 
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/updateLessonInfo.jsp");
+            dispatcher.forward(request, response);
+
+        }
     }
 
-  
 }

@@ -45,33 +45,32 @@ public class SelectGradeSeating extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
         HttpSession session = request.getSession(true);
-       if(LoginChecker.notLogin(session)){
-        System.out.println("セッション情報がありません");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
-        dispatcher.forward(request, response);
-   }else{
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
 
-        
-        SeatingService Service = new SeatingService();
+            SeatingService Service = new SeatingService();
 
-        List<SeatingArrangements> SeatList=Service.getSeatList();
-        List<String> ClassNameList=new ArrayList<String>();
-        ClassService ClassService = new ClassService();
-        for(SeatingArrangements seat:SeatList){
-            int classid=seat.getId();
-        String ClassName=ClassService.getClassName(classid);
-        ClassNameList.add(ClassName);
+            List<SeatingArrangements> SeatList = Service.getSeatList();
+            List<String> ClassNameList = new ArrayList<String>();
+            ClassService ClassService = new ClassService();
+            for (SeatingArrangements seat : SeatList) {
+                int classid = seat.getId();
+                String ClassName = ClassService.getClassName(classid);
+                ClassNameList.add(ClassName);
+            }
+
+            request.setAttribute("SeatList", SeatList);
+            request.setAttribute("ClassNameList", ClassNameList);
+            System.out.println(SeatList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectSeating.jsp");
+
+            dispatcher.forward(request, response);
         }
-
-        request.setAttribute("SeatList", SeatList);
-        request.setAttribute("ClassNameList", ClassNameList);
-        System.out.println(SeatList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectSeating.jsp");
-
-        dispatcher.forward(request, response);
     }
-}
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+    // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
@@ -80,11 +79,17 @@ public class SelectGradeSeating extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまPost");
 
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/seatingTop.jsp");
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            dispatcher.forward(request, response);
+        }
     }
 
 }

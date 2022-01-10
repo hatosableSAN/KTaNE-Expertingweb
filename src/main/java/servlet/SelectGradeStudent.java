@@ -45,20 +45,27 @@ public class SelectGradeStudent extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまdoGet");
 
-        StudentService Service = new StudentService();
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
 
-        List<Student> StudentList=Service.getStudent();
+            StudentService Service = new StudentService();
 
-        request.setAttribute("StudentList", StudentList);
-        System.out.println(StudentList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectStudent.jsp");
+            List<Student> StudentList = Service.getStudent();
 
-        dispatcher.forward(request, response);
-    }
+            request.setAttribute("StudentList", StudentList);
+            System.out.println(StudentList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectStudent.jsp");
+
+            dispatcher.forward(request, response);
+        }
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
 
-    // requestオブジェクトには、フォームで入力された文字列などが格納されている。
-    // responseオブジェクトを使って、次のページを表示する
+        // requestオブジェクトには、フォームで入力された文字列などが格納されている。
+        // responseオブジェクトを使って、次のページを表示する
 
-
+    }
 }

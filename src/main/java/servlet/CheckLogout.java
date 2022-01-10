@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -27,9 +29,17 @@ public class CheckLogout extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/logout.jsp");
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+
+            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/logout.jsp");
+            dispatcher.forward(request, response);
+        }
     }
-    
+
 }

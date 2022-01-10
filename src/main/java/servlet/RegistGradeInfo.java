@@ -19,6 +19,7 @@ import beans.Student; //beansに入れた方がいいのかしら
 import beans.StudentSeatingArr;
 import service.SeatingService;
 import service.StudentService;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -33,24 +34,30 @@ public class RegistGradeInfo extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        System.out.println("教室風評価登録");
-        String idnumber=request.getParameter("id");
-        int id=Integer.parseInt(idnumber);
-        session.setAttribute("Seatnum", idnumber);
-        SeatingService Service = new SeatingService();
-        List<StudentSeatingArr> StudentList=Service.getStudentSeatingArrList(id);
-        session.setAttribute("StudentSeatingArrList", StudentList);//ゲットした座席リストをセッションに入れるよ
 
-        List<StudentSeatingArr> NoGradeStudentList=Service.getStudentSeatingArrList(id);
-        session.setAttribute("NoGradeStudentList", NoGradeStudentList);//ゲットした座席リストをセッションに入れるよ
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./sessionerror.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            System.out.println("教室風評価登録");
+            String idnumber = request.getParameter("id");
+            int id = Integer.parseInt(idnumber);
+            session.setAttribute("Seatnum", idnumber);
+            SeatingService Service = new SeatingService();
+            List<StudentSeatingArr> StudentList = Service.getStudentSeatingArrList(id);
+            session.setAttribute("StudentSeatingArrList", StudentList);// ゲットした座席リストをセッションに入れるよ
 
-        List<Grade> Grade=new ArrayList<Grade>();
-        session.setAttribute("Grade", Grade);//ゲットした座席リストをセッションに入れるよ
+            List<StudentSeatingArr> NoGradeStudentList = Service.getStudentSeatingArrList(id);
+            session.setAttribute("NoGradeStudentList", NoGradeStudentList);// ゲットした座席リストをセッションに入れるよ
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGrade.jsp");
-        dispatcher.forward(request, response);
+            List<Grade> Grade = new ArrayList<Grade>();
+            session.setAttribute("Grade", Grade);// ゲットした座席リストをセッションに入れるよ
 
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/registGrade.jsp");
+            dispatcher.forward(request, response);
+
+        }
     }
 
-  
 }
