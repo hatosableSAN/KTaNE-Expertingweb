@@ -18,58 +18,21 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  <style type="text/css">
-    .seat {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
-        text-align:center;
-      }
-      .setseatm {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:blue;
-        text-align:center;
-      }
-      .setseatf {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:red;
-        text-align:center;
-      }
-      .setseato {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:gray;
-        text-align:center;
-      }
-      .left{
-        padding-left:40px;
-      }
-      .kyoutaku{
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#cccccf;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-      }
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
-    </style>
- </head>
+  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置新規作成</h1>
+    </div>
+  <a href="./SeatingTop"><button name="regist_top" class = "button_grey" id="btn_left_seat" >キャンセル</button></a>  
     <br>
 
-    ・座席を選択し、児童・生徒の座席を作成してください。<br>
+    <div class="center">座席を選択し、児童・生徒の座席を作成してください。</div>
+
       <form action="./RegistSeatingInfo" method="get">
-        <table>
+        <table align="center">
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>
@@ -84,31 +47,32 @@ pageEncoding="UTF-8"%>
             <td colspan="6" class="left"><div class="kyoutaku">教卓</div></td>
           </tr>
         </table>
-        <br />
-        クラス： <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        <input type="submit" value="座席配置を確定する" />
+        <div class="right">
+        クラス： <%=ClassDef.getClass_year()%>年度　<%=ClassDef.getClass_name() %>　　　　　　　　　　　　　　　　</div>
+        <p align="right"><input type="submit" value="座席配置を確定する" class = "btn" id="btn_right_seat" >　　　</p>
       </form>
+
 
 
         <div id="modal-content">
           <form action="./RegistSeatingStudent" method="post">
-            <p class="red">「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+            <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
             生徒選択画面<br>
             生徒：<select name="StudentId">
                 <option value="">なし</option>
                 <% if(StudentList.size() > 0) {
                   for(Student student : StudentList ){ %>
                   <option value="<%=student.getStudent_id() %>">
-                  <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%=student.getStudent_gender()%><%=student.getStudent_user()%>
+                  <%=student.getStudent_id() %>:<%=student.getStudent_name()%>:<%switch(student.getStudent_gender()){case 1:%>男<%break;case 2:%>女<%break;case 3:%>その他<%break;}%><!--:<%=student.getStudent_user()%>-->
                   </option>
                 <% } }%>
                 </select><br /><br />
             <%-- <textarea class="textarea"></textarea> --%>
             <input type="hidden" name="seatNum" value="-1" id="seatnum">
-            <p><input type="submit" value="座席を確定する" align="center" /></p>
+            <input type="submit" value="座席を確定する" align="center" class="btn" style="width:110px; height: 25px; padding:0px;"></p>
             <%-- TODO:座席を確定するを押したら2重に送信されないようにする --%>
           </form>
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
+          <p align="center"><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="width:80px; height: 25px; padding:0px;">閉じる</button></a>　　　
         </div>
 
       <br />
@@ -158,6 +122,5 @@ pageEncoding="UTF-8"%>
                     %>
                   <%-- <%=studentSeatingArr.getSeat() %>:<%=studentSeatingArr.getStudentId() %><Br> --%>
                 <% } }%>
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>

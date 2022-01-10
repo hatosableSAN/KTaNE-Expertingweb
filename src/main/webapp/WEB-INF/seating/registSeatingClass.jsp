@@ -8,23 +8,30 @@ pageEncoding="UTF-8"%>
 <% List<ClassDef> ClassDefList = (ArrayList<ClassDef>)request.getAttribute("ClassDefList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+  <head>
+    <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+  </head>
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">座席配置新規作成</h1>
+    <div class="blue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">座席配置新規作成</h1>
+    </div>
+    <a href="./SeatingTop"><button align="center" name="regist_top" class = "backbtn">座席配置メニュー<br/>トップへ戻る</button></a>
     <br>
     <form action="./RegistSeatingClass" method="post">
-    クラスを選択してください。<br>
+    　クラスを選択してください。<br>
+    <div class="center">
         クラス：<select name="classId">
             <% if(ClassDefList.size() > 0) {
               for(ClassDef ClassDef : ClassDefList ){ %>
               <option value="<%=ClassDef.getClass_id() %>">
-              <%=ClassDef.getClass_id() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>
+              <!--<%=ClassDef.getClass_id() %>:--><%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>
               </option>
             <% } }%></select><br />
         <br />
-        <input type="submit" value="座席配置新規作成" />
+        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn"/>　　　</p>
       </form>
+    </div>
       <br />
-      <a href="./SeatingTop"><button align="center" name="regist_top">座席配置メニュートップへ戻る</button></a>
   </body>
 </html>

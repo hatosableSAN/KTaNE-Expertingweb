@@ -8,6 +8,17 @@
 	display: none ;
 	z-index: 2 ;
 }
+#modal-content-grade {
+	width: 50% ;
+	height: 100% ;
+	margin: 0 ;
+	padding: 10px 20px ;
+	border: 2px solid #aaa ;
+	background: #fff ;
+	position: fixed ;
+	display: none ;
+	z-index: 2 ;
+}
 
 #modal-overlay {
 	z-index: 1 ;
@@ -28,4 +39,44 @@
 .button-link:hover {
 	cursor: pointer ;
 	color: #f00 ;
+}
+.seat {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:#fcc490;
+	text-align:center;
+}
+.setseatm {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:#4088CA;
+	text-align:center;
+}
+.setseatf {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:rgb(240, 134, 134);
+	text-align:center;
+}
+.setseato {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:gray;
+	text-align:center;
+}
+.left{
+	padding-left:40px;
+}
+.kyoutaku{
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:#cccccf;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
 }

@@ -83,8 +83,9 @@ public class ClassDAO extends DriverAccessor {
             String sql = "insert into classes (name,year,user_id) values(?, ?, ?)";
 
             // SQLコマンドの実行
-            PreparedStatement stmt = connection.prepareStatement(sql,java.sql.Statement.RETURN_GENERATED_KEYS);
-            //PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // PreparedStatement stmt = connection.prepareStatement(sql,
+            // java.sql.Statement.RETURN_GENERATED_KEYS);
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setString(1, classdef.getClass_name());
@@ -93,27 +94,68 @@ public class ClassDAO extends DriverAccessor {
             stmt.setString(3, classdef.getClass_user());
             // stmt.setString(4, student.getStudent_user());
             // stmt.setString(5, result.getTaikai_kekka());
-            //ResultSet rs = statement.executeQuery();
-            stmt.executeUpdate();//この場所
+            // ResultSet rs = statement.executeQuery();
+            stmt.executeUpdate();// この場所
             ResultSet rs = stmt.getGeneratedKeys();
             rs.first();
             int class_id = 0;
-            class_id = rs.getInt(1);//怒られた
+            class_id = rs.getInt(1);// 怒られた
 
-            /*if (rs.next()) {
-                class_id = rs.getInt(1);//ここで怒られる emptyなのに置けないよって
-            }*/
+            /*
+             * if (rs.next()) {
+             * class_id = rs.getInt(1);//ここで怒られる emptyなのに置けないよって
+             * }
+             */
             rs.close();
 
-            //stmt.executeUpdate();
-            System.out.println("class_id"+class_id);
+            // stmt.executeUpdate();
+            System.out.println("class_id" + class_id);
             return class_id;
 
         } catch (SQLException e) {
 
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
-            return 0; //class_idにしたら怒られた
+            return 0; // class_idにしたら怒られた
+
+        } finally {
+        }
+    }
+
+    public void registClassOnly(ClassDef classdef, Connection connection) { //クラス情報だけ登録、メンバーなし
+
+        try {
+
+            // SQLコマンド
+            String sql = "insert into classes (name,year,user_id) values(?, ?, ?)";
+
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // PreparedStatement stmt = connection.prepareStatement(sql,
+            // java.sql.Statement.RETURN_GENERATED_KEYS);
+
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setString(1, classdef.getClass_name());
+            stmt.setInt(2, classdef.getClass_year());
+            stmt.setString(3, classdef.getClass_user());
+            // ResultSet rs = statement.executeQuery();
+            stmt.executeUpdate();// この場所
+            //ResultSet rs = stmt.getGeneratedKeys();
+            //rs.first();
+            //int class_id = 0;
+            //class_id = rs.getInt(1);
+
+            //rs.close();
+
+            //stmt.executeUpdate();
+            //System.out.println("class_id" + class_id);
+            //return;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            //return; // class_idにしたら怒られた
 
         } finally {
         }
@@ -295,5 +337,124 @@ public class ClassDAO extends DriverAccessor {
     }
 
     // }
+    public boolean updateClass(ClassDef classdef, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            String sql = "update classes set name=?,year=? where id = '" + classdef.getClass_id() + "'";
+
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // PreparedStatement stmt = connection.prepareStatement(sql,
+            // java.sql.Statement.RETURN_GENERATED_KEYS);
+
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setString(1, classdef.getClass_name());
+            // int stu_gender = Integer.parseInt(student.getStudent_gender());
+            stmt.setInt(2, classdef.getClass_year());
+            // stmt.setString(3, classdef.getClass_user());
+            // stmt.setString(4, student.getStudent_user());
+            // stmt.setString(5, result.getTaikai_kekka());
+            // ResultSet rs = statement.executeQuery();
+            stmt.executeUpdate();// この場所
+            // ResultSet rs = stmt.getGeneratedKeys();
+            // rs.first();
+            // int class_id = 0;
+            // class_id = rs.getInt(1);//怒られた
+
+            /*
+             * if (rs.next()) {
+             * class_id = rs.getInt(1);//ここで怒られる emptyなのに置けないよって
+             * }
+             */
+            // rs.close();
+
+            // stmt.executeUpdate();
+            // System.out.println("class_id"+class_id);
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false; // class_idにしたら怒られた
+
+        } finally {
+        }
+    }
+
+    public boolean deleteClassMember(ClassDef classdef, Connection connection) {
+
+        try {
+            // SQLコマンド
+            String sql = "delete FROM classes where id=? LIMIT 1";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, classdef.getClass_id());
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;
+
+        } finally {
+        }
+    }
+
+    public boolean deleteClass(ClassDef classdef, Connection connection) {
+
+        try {
+            // SQLコマンド
+            String sql = "delete FROM classes where id=? LIMIT 1";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, classdef.getClass_id());
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+            return true;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return false;
+
+        } finally {
+        }
+    }
+
+    public String getClassName(int classid, Connection connection) {
+        try {
+            // SQLコマンド
+            String sql = "select* from classes where id=?";
+            // SQLコマンドの実行
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            stmt.setInt(1, classid);
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+            String name=new String();
+            name=rs.getString("name");
+            stmt.close();
+            return name;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
 
 }

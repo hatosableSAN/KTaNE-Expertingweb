@@ -1,19 +1,74 @@
-.btn {
+* { /*ブラウザのmargin等をリセット*/
+  margin:0 auto; 
+  padding:0;
+}
+
+.btn {/*登録、確認など実行系のボタン*/
     border-radius: 5px;
     background-color: rgb(255, 218, 0);
     padding: 10px;
     text-decoration: none;
-    color: black;
+    /*color: black;*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    /*width: 120px;*/
+    height: 50px;
   }
-  .backbtn {
-    background-color: rgb(255, 218, 0);
+  .backbtn {/*戻るボタン 左上についている戻るボタン*/
+    border-radius: 5px;
+    background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
     padding: 10px;
-    position: relative;
+    position: absolute;/*relativeだったけどabsoluteにしました*/
     top: 20px;
     left: 10px;
     text-decoration: none;
-    color: black;
+    color: black; /*周りが黒くならない*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
+
+  .backbtn_middle {/*戻るボタン 完了画面の戻るボタン*/
+    border-radius: 5px;
+    background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
+    padding: 10px;
+    /*position: absolute;/*relativeだったけどabsoluteにしました*/
+    /*top: auto;
+    left: 10px;*/
+    text-decoration: none;
+    color: black; /*周りが黒くならない*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-size: 20px;
+    margin: 20px;
+  }
+
+  .backbtn3 {/*戻るボタン？完了画面の戻るボタン　位置が固定されていない*/
+    border-radius: 5px;
+    background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
+    padding: 10px;
+    /*position: relative;/*relativeだったけどabsoluteにしました*/
+    /*top: auto;
+    left: 10px;*/
+    text-decoration: none;
+    color: black; /*周りが黒くならない*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  .backbutton{/*システムトップのボタン　色と影*/
+    background: #FFF4CB;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    /*margin: 20px;*/
+    /*width: 321px;
+    height: 113px;
+    left: 255px;
+    top: 307px;*/
+  }
+
+.id{/*ユーザーIDの表示場所*/
+  right:1000px;
+  top:30px;
+  margin:0em;
+}
 
   header {
     display: flex;
@@ -52,7 +107,447 @@ div.right {
 	background-color: blue;
 }
 
-.darkgray {
+.darkgray {/*ヘッダーグレー*/
 	height: 100px;
 	background-color: darkgray;
+  margin: auto;
+}
+
+
+.green {/*ヘッダー児童生徒*/
+	height: 100px;
+	background-color: #C1F6CD;
+  margin: auto;
+}
+
+.skyblue {/*ヘッダー水色*/
+	height: 100px;
+	background-color: #92e2f7;
+}
+
+.rightblue {/*ヘッダークラス*/
+	height: 100px;
+	background-color: #C1EAF6;
+  margin: auto;
+}
+
+.blue {/*ヘッダー座席配置*/
+	height: 100px;
+	background-color: #98D4E7;
+  margin: auto;
+}
+
+.darkblue {/*ヘッダー評価*/
+	height: 100px;
+	background-color: #0AA6D8;
+  margin: auto;
+}
+
+.button{/*システムトップのボタン　色と影*/
+  background: #B6D8FF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  /*margin: 20px;*/
+  /*width: 321px;
+  height: 113px;
+  left: 255px;
+  top: 307px;*/
+}
+
+.button_grey{/*○○トップに戻るボタン？ではなく左下のキャンセルボタン　色と影と大きさ*/
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  /*width: 120px;*/
+  height: 50px;
+  /*width: 321px;
+  height: 113px;
+  left: 255px;
+  top: 307px;*/
+}
+
+.center{
+  /*display:inline-block;*/
+  text-align: center;
+}
+
+/*#btn_stu {/*システムトップのボタン 使ってない
+  position: absolute;
+width: 250px;
+height: 80px;
+left: 255px;
+top: 200px;
+font-size: 30px;
+margin: 20px;
+}*/
+
+/*#btn_class {/*システムトップのボタン　使ってない
+  /*position: absolute;
+width: 250px;
+height: 80px;
+left: 860px;
+top: 307px;
+font-size: 33px;
+}*/
+
+/*#btn_seat {/*システムトップのボタン 使ってない
+  /*position: absolute;
+  width: 250px;
+height: 80px;
+left: 255px;
+top: 523px;
+font-size: 30px;
+}*/
+
+/*#btn_grade{/*システムトップのボタン　使ってない
+  /*position: absolute;
+  width: 250px;
+height: 80px;
+left: 864px;
+top: 527px;
+/*font-size: 25px;
+}*/
+
+/*#btn_manastu {/*児童閲覧のボタン　使ってない
+  /*position: absolute;
+  /*display: inline-block;
+  width: 700px;
+height: 100px;
+left: 130px;
+top: 180px;
+font-size: 30px;
+}*/
+
+/*#btn_registu {/*児童登録のボタン 使ってない
+  /*position: absolute;
+  width: 400px;
+height: 100px;
+left: 400px;
+top: 700px;
+font-size: 30px;
+}*/
+
+
+#btn_check {/*確認ボタン　複数のボタンに使用予定？*/
+  /*position: absolute;*/
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+
+#btn_regi {/*登録ボタン　右下に置く　複数のボタンに使用予定？*/
+  position: absolute;
+  width: 120px;
+  height: 50px;
+  right: 40px;
+  font-size: 20px;
+}
+
+#btn_left{ /*左下のキャンセル系ボタン*/
+  position:absolute; 
+  left:40px; 
+  bottom: 50px; 
+  font-size: 20px;
+}
+
+#btn_left_seat{ /*左下のキャンセル系ボタン*/
+  position:absolute; 
+  left:40px; 
+  top: 600px; 
+  font-size: 20px;
+}
+
+#btn_right{ /*右下の確定系ボタン*/
+  position:absolute; 
+  right:40px; 
+  bottom: 50px; 
+  font-size: 20px;
+}
+
+#btn_right_seat{ /*右下の確定系ボタン*/
+  position:absolute; 
+  right:40px; 
+  top: 600px; 
+  font-size: 20px;
+}
+/* -------------------- */
+/* ▼メニューバーの装飾 */
+/* -------------------- */
+ul.ddmenu1 {
+  width: 360px; 
+  text-align:center;
+  padding-left: 0px;
+  margin: auto;               /* メニューバー外側の余白(ゼロ) */
+  background-color: #dd0000; /* バーの背景色(濃い赤色) */
+}
+
+/* -------------------------- */
+/* ▼メインメニュー項目の装飾 */
+/* -------------------------- */
+ul.ddmenu1 li {
+  text-align:center;          /* メニュー項目の横幅(125px) */
+  display: inline-block; /* ★横並びに配置する */
+  list-style-type: none; /* ★リストの先頭記号を消す */
+  position: relative;    /* ★サブメニュー表示の基準位置にする */
+}
+ul.ddmenu1 a {
+  background-color: #dd0000; /* メニュー項目の背景色(濃い赤色) */
+  color: white;            /* メニュー項目の文字色(白色) */
+  line-height: 40px;         /* メニュー項目のリンクの高さ(40px) */
+  text-align: left;        /* メインメニューの文字列の配置(中央寄せ) */
+  text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
+  font-weight: bold;         /* 太字にする */
+  display: block;            /* ★項目内全域をリンク可能にする */
+}
+ul.ddmenu1 a:hover {
+  background-color: #ffdddd; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
+  color: #dd0000;            /* メニュー項目にマウスが載ったときの文字色(濃い赤色) */
+}
+
+/* ---------------------------------- */
+/* ▼サブメニューがある場合に開く処理 */   /* ※サブメニューが1階層しか存在しない場合の記述 */
+/* ---------------------------------- */
+ul.ddmenu1 li:hover ul {
+  display: block;      /* ★マウスポインタが載っている項目の内部にあるリストを表示する */
+}
+
+/* -------------------- */
+/* ▼サブメニューの装飾 */
+/* -------------------- */
+ul.ddmenu1 ul {
+  margin: 0px;         /* ★サブメニュー外側の余白(ゼロ) */
+  padding: 0px;        /* ★サブメニュー内側の余白(ゼロ) */
+  display: none;       /* ★標準では非表示にする */
+  position: absolute;  /* ★絶対配置にする */ 
+  left:  -140px;
+  z-index: 2;
+       
+}
+
+/* ------------------------ */
+/* ▼サブメニュー項目の装飾 */
+/* ------------------------ */
+ul.ddmenu1 ul li {
+  width: 360px;               /* サブメニュー1項目の横幅(135px) */
+  border-top: 1px solid pink; /* 項目上側の枠線(ピンク色で1pxの実線) */
+  text-align: center;
+  z-index: 2;
+}
+ul.ddmenu1 ul li a {
+  line-height: 35px;     /* サブメニュー1項目の高さ(35px) */
+  text-align: center;      /* 文字列の配置(左寄せ) */
+  padding-left: 5px;     /* 文字列前方の余白(5px) */
+  font-weight: normal;   /* 太字にはしない */
+}
+ul.ddmenu1 ul li a:hover {
+  background-color: #ffff80; /* サブメニュー項目にマウスが載ったときの背景色(淡い黄色) */
+  color: #005500;            /* サブメニュー項目にマウスが載ったときの文字色(濃い緑色) */
+}
+
+/* -------------------- */
+/* ▼メニューバーの装飾 */
+/* -------------------- */
+ul.ddmenu2 {
+margin: auto;   
+width: 360px; 
+text-align:center;
+padding-left: 0px;
+background-color: #09AA06; /* バーの背景色(濃い赤色) */
+z-index: 1;
+}
+
+/* -------------------------- */
+/* ▼メインメニュー項目の装飾 */
+/* -------------------------- */
+ul.ddmenu2 li {
+text-align:center;          /* メニュー項目の横幅(125px) */
+display: inline-block; /* ★横並びに配置する */
+list-style-type: none; /* ★リストの先頭記号を消す */
+position: relative;    /* ★サブメニュー表示の基準位置にする */
+z-index: 1;
+}
+ul.ddmenu2 a {
+background-color: #09AA06; /* メニュー項目の背景色(濃い赤色) */
+color: white;            /* メニュー項目の文字色(白色) */
+line-height: 40px;         /* メニュー項目のリンクの高さ(40px) */
+text-align: left;        /* メインメニューの文字列の配置(中央寄せ) */
+text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
+font-weight: bold;         /* 太字にする */
+display: block;            /* ★項目内全域をリンク可能にする */
+}
+ul.ddmenu2 a:hover {
+background-color: #e0ffdd; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
+color: #09AA06;            /* メニュー項目にマウスが載ったときの文字色(濃い赤色) */
+}
+
+/* ---------------------------------- */
+/* ▼サブメニューがある場合に開く処理 */   /* ※サブメニューが1階層しか存在しない場合の記述 */
+/* ---------------------------------- */
+ul.ddmenu2 li:hover ul {
+display: block;      /* ★マウスポインタが載っている項目の内部にあるリストを表示する */
+}
+
+/* -------------------- */
+/* ▼サブメニューの装飾 */
+/* -------------------- */
+ul.ddmenu2 ul {
+margin: 0px;         /* ★サブメニュー外側の余白(ゼロ) */
+padding: 0px;        /* ★サブメニュー内側の余白(ゼロ) */
+display: none;       /* ★標準では非表示にする */
+position: absolute;  /* ★絶対配置にする */ 
+left:  -117px;
+z-index: 1;
+     
+}
+
+/* ------------------------ */
+/* ▼サブメニュー項目の装飾 */
+/* ------------------------ */
+ul.ddmenu2 ul li {
+width: 360px;               /* サブメニュー1項目の横幅(135px) */
+border-top: 1px solid rgb(192, 255, 208); /* 項目上側の枠線(ピンク色で1pxの実線) */
+text-align: center;
+z-index: 1;
+}
+ul.ddmenu2 ul li a {
+line-height: 35px;     /* サブメニュー1項目の高さ(35px) */
+text-align: center;      /* 文字列の配置(左寄せ) */
+padding-left: 5px;     /* 文字列前方の余白(5px) */
+font-weight: normal;   /* 太字にはしない */
+}
+ul.ddmenu2 ul li a:hover {
+background-color: #ffff80; /* サブメニュー項目にマウスが載ったときの背景色(淡い黄色) */
+color: #005500;            /* サブメニュー項目にマウスが載ったときの文字色(濃い緑色) */
+}
+
+ul.ddmenu3 {
+  margin: auto;   
+  width: 360px; 
+  text-align:center;
+  padding-left: 0px;
+  background-color: #0075FF; /* バーの背景色(濃い赤色) */
+  z-index: 0;
+  }
+  
+  /* -------------------------- */
+  /* ▼メインメニュー項目の装飾 */
+  /* -------------------------- */
+  ul.ddmenu3 li {
+  text-align:center;          /* メニュー項目の横幅(125px) */
+  display: inline-block; /* ★横並びに配置する */
+  list-style-type: none; /* ★リストの先頭記号を消す */
+  position: relative;    /* ★サブメニュー表示の基準位置にする */
+  z-index: 0;
+}
+  
+  ul.ddmenu3 a {
+  background-color: #0075FF; /* メニュー項目の背景色(濃い赤色) */
+  color: white;            /* メニュー項目の文字色(白色) */
+  line-height: 40px;         /* メニュー項目のリンクの高さ(40px) */
+  text-align: left;        /* メインメニューの文字列の配置(中央寄せ) */
+  text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
+  font-weight: bold;         /* 太字にする */
+  display: block;            /* ★項目内全域をリンク可能にする */
+  }
+  ul.ddmenu3 a:hover {
+  background-color: #ddf4ff; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
+  color: #0075FF;            /* メニュー項目にマウスが載ったときの文字色(濃い赤色) */
+  }
+  
+  /* ---------------------------------- */
+  /* ▼サブメニューがある場合に開く処理 */   /* ※サブメニューが1階層しか存在しない場合の記述 */
+  /* ---------------------------------- */
+  ul.ddmenu3 li:hover ul {
+  display: block;      /* ★マウスポインタが載っている項目の内部にあるリストを表示する */
+  }
+  
+  /* -------------------- */
+  /* ▼サブメニューの装飾 */
+  /* -------------------- */
+  ul.ddmenu3 ul {
+  margin: 0px;         /* ★サブメニュー外側の余白(ゼロ) */
+  padding: 0px;        /* ★サブメニュー内側の余白(ゼロ) */
+  display: none;       /* ★標準では非表示にする */
+  position: absolute;  /* ★絶対配置にする */ 
+  left:  -109px;
+  z-index: 0;   
+  }
+  
+  /* ------------------------ */
+  /* ▼サブメニュー項目の装飾 */
+  /* ------------------------ */
+  ul.ddmenu3 ul li {
+  width: 360px;               /* サブメニュー1項目の横幅(135px) */
+  border-top: 1px solid rgb(192, 248, 255); /* 項目上側の枠線(ピンク色で1pxの実線) */
+  text-align: center;
+  }
+  ul.ddmenu3 ul li a {
+  line-height: 35px;     /* サブメニュー1項目の高さ(35px) */
+  text-align: center;      /* 文字列の配置(左寄せ) */
+  padding-left: 5px;     /* 文字列前方の余白(5px) */
+  font-weight: normal;   /* 太字にはしない */
+  }
+  ul.ddmenu3 ul li a:hover {
+  background-color: #ffff80; /* サブメニュー項目にマウスが載ったときの背景色(淡い黄色) */
+  color: #005500;            /* サブメニュー項目にマウスが載ったときの文字色(濃い緑色) */
+  }
+textarea{
+  font-size:14pt;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
+  width:300px;
+  height:200px;
+
+}
+
+ul.ddmenu1 select{
+  background-color: #dd0000; /* メニュー項目の背景色(濃い赤色) */
+  color: white;
+  width: 360px; 
+  line-height: 35px; 
+  text-align-last:center;
+  display: block; 
+  height: 40px;
+  
+}
+
+ul.ddmenu1 select{
+  text-align:center; 
+}
+
+ul.ddmenu2 select{
+  background-color: #09AA06; /* メニュー項目の背景色(濃い赤色) */
+  color: white;
+  width: 360px; 
+  line-height: 35px; 
+  text-align-last:center;
+  display: block; 
+  height: 40px;
+  
+}
+
+ul.ddmenu2 option{
+  text-align:center; 
+}
+
+ul.ddmenu3 select{
+  background-color: #0075FF; /* メニュー項目の背景色(濃い赤色) */
+  color: white;
+  width: 360px; 
+  line-height: 35px; 
+  text-align-last:center;
+  display: block; 
+  height: 40px;
+  
+}
+
+ul.ddmenu3 option{
+  text-align:center; 
+
 }

@@ -7,12 +7,16 @@
 <% Student student_info = (Student)session.getAttribute("Student"); %>
 <html>
     <head>
-       <title></title>
+      <head>
+        <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+    </head>
     </head>
     <body>
-      <p align="right">ユーザーID　${User.id}</p>
-    <h1 align="center">児童・生徒情報変更確認</h1>
-    <h3 align="center">以下の内容で児童・生徒情報の変更を確定しますか？</h3>
+      <div class="green">
+       <p align="right">ユーザーID　${User.id}</p>
+       <h1 align="center">児童・生徒情報変更確認</h1>
+      </div>
+    <h2 align="center">以下の内容で児童・生徒情報の変更を確定しますか？</h2><br><br>
     <form action="./UpdateStudentConfirm" method="post">
     <table align="center">
       <tr>
@@ -32,11 +36,11 @@
       </tr>
     </table>
     <div>
-      <input type="submit" value="変更を確定" class="button-red">
+      <input type="submit" value="変更を確定" class="btn" id="btn_right">
     </div>
   </form>
   <form action="./ManageStudent" method="post">
-    <input type="submit" value="キャンセル">
+    <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
   </form>
   <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->
     </body>

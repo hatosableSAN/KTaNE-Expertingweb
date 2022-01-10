@@ -3,6 +3,7 @@ package servlet;
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import beans.Student; //beansに入れた方がいいのかしら
 import service.StudentService;
+import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -43,7 +45,12 @@ public class SearchStudent extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
-        // requestオブジェクトの文字エンコーディングの設定
+        if (LoginChecker.notLogin(session)) {
+            System.out.println("セッション情報がありません");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+            dispatcher.forward(request, response);
+        } else {
+          // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // System.out.println("いまHandのPost");
 
@@ -89,22 +96,8 @@ public class SearchStudent extends HttpServlet {
 
             request.setAttribute("List", list);
             tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
+
         }
-
-        getServletContext().getRequestDispatcher(tourl).forward(request, response);// 上のdoGetをまとめて書いている
-
-        // studentオブジェクトに情報を格納
-        // Student student = new Student(player_n, taikai_n, taikai_l, taikai_k);
-
-        // StudentManagerオブジェクトの生成
-        // StudentManager manager = new StudentManager();
-
-        // 登録
-        // manager.registStudent(student);
-
-        // 成功画面を表示する
-        // System.out.println("OK牧場");
-        // response.sendRedirect("/TableTennis/RegistInfo");
     }
 
 }

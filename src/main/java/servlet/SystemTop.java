@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 //import javax.servlet.http.*;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -37,28 +38,44 @@ import java.util.Date;
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
 public class SystemTop extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまdoGet");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/systemTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+    System.out.println("SystemTop");
+    request.setCharacterEncoding("UTF-8");
+
+    // ➀セッションの作成・取得
+    HttpSession session = request.getSession();
+    if (LoginChecker.notLogin(session)) {
+      System.out.println("セッション情報がありません");
+      RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+      dispatcher.forward(request, response);
+    } else {
+      User user = new User();
+      user = (User) session.getAttribute("User");
+
+      RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF//Users/systemTop.jsp");
+      dispatcher.forward(request, response);
     }
+  }
 
-    // requestオブジェクトには、フォームで入力された文字列などが格納されている。
-    // responseオブジェクトを使って、次のページを表示する
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // requestオブジェクトの文字エンコーディングの設定
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("いまPost");
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/systemTop.jsp");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        dispatcher.forward(request, response);
+  // requestオブジェクトには、フォームで入力された文字列などが格納されている。
+  // responseオブジェクトを使って、次のページを表示する
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // requestオブジェクトの文字エンコーディングの設定
+    request.setCharacterEncoding("UTF-8");
+    System.out.println("いまPost");
+    HttpSession session = request.getSession();
+    if (LoginChecker.notLogin(session)) {
+      System.out.println("セッション情報がありません");
+      RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
+      dispatcher.forward(request, response);
+    } else {
+      RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/systemTop.jsp");
+      // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+      dispatcher.forward(request, response);
     }
+  }
 
 }

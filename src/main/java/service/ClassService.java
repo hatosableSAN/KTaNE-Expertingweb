@@ -24,7 +24,7 @@ public class ClassService {
     // 追加
     // 引数はStudentオブジェクト
     // なんか間違えてる気がする、この引数とか、メソッド名が…
-    public void registClass(ClassDef classdef, String student_member[]) {
+    public void registClass(ClassDef classdef, String student_member[]) { //メンバーがいるクラスの登録時
 
         // StudentDAOオブジェクト生成
         ClassDAO classDAO = new ClassDAO();
@@ -54,6 +54,42 @@ public class ClassService {
 
         // DataBaseとの接続を切断する
         memberDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+    }
+
+    public void registClassOnly(ClassDef classdef) { //メンバーがいないクラスの登録時
+
+        // StudentDAOオブジェクト生成
+        ClassDAO classDAO = new ClassDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = classDAO.createConnection();
+
+        // StudentオブジェクトをDataBaseに登録する
+        //int class_id = 0;
+        classDAO.registClassOnly(classdef, this.connection); // エラー
+
+        // DataBaseとの接続を切断する
+        classDAO.closeConnection(this.connection);
+
+        // ここからメンバー登録
+        //MemberDAO memberDAO = new MemberDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        //this.connection = memberDAO.createConnection();
+
+        /*for (int i = 0; i < student_member.length; i++) {
+            memberDAO.registMember(student_member[i], class_id, this.connection);
+        }*/
+
+        // StudentオブジェクトをDataBaseに登録する
+        // memberDAO.registMember(classdef, this.connection);
+
+        // DataBaseとの接続を切断する
+        //memberDAO.closeConnection(this.connection);
 
         // コネクションオブジェクトを破棄する
         this.connection = null;
@@ -126,6 +162,100 @@ public class ClassService {
         this.connection = null;// コネクションオブジェクトを破棄する
         return StudentList;
     }
+
+    public boolean updateClass(ClassDef classdef, String student_member[]) { // クラス変更
+        boolean result = false;
+
+        // StudentDAOオブジェクト生成
+        ClassDAO classDAO = new ClassDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = classDAO.createConnection();
+
+        // StudentオブジェクトをDataBaseに登録する
+        // int class_id = 0;
+        // class_id =
+        result = classDAO.updateClass(classdef, this.connection); // id撮ってくる意味ないよね、classdefで分かるし
+
+        // DataBaseとの接続を切断する
+        classDAO.closeConnection(this.connection);
+
+        // ここからメンバー更新
+        MemberDAO memberDAO = new MemberDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = memberDAO.createConnection();
+        System.out.println("student_member.length= " + student_member.length);
+
+        // for (int i = 0; i < student_member.length; i++) {
+            if(student_member.length!=0){
+                for(int i=0; i<student_member.length; i++){
+                    result = memberDAO.updateMember(student_member, classdef, this.connection);
+                }
+                //result = memberDAO.updateMember(student_member, classdef, this.connection);
+            }else{
+                //クラスからメンバーがいなくなったってことなので、児童を消す必要がある
+                ClassService ClassService = new ClassService();
+                List<Student> StudentList = ClassService.getAllClassmember(classdef);
+                result = memberDAO.deleteMember(classdef,StudentList.size(),this.connection);
+            }
+        // }
+
+        // StudentオブジェクトをDataBaseに登録する
+        // memberDAO.registMember(classdef, this.connection);
+
+        // DataBaseとの接続を切断する
+        memberDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return result;
+
+    }
+
+    public boolean deleteClass(ClassDef classDef) { // クラス削除
+        boolean result = false;
+        ClassDAO classDAO = new ClassDAO();
+        MemberDAO memberDAO = new MemberDAO();
+        ClassService ClassService = new ClassService();
+        List<Student> StudentList = ClassService.getAllClassmember(classDef);
+
+        this.connection = memberDAO.createConnection();
+        // クラスメンバー削除
+        result = memberDAO.deleteMember(classDef, StudentList.size(), connection);
+        memberDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
+
+        if (result) {
+            this.connection = classDAO.createConnection();
+            // クラス削除
+            result = classDAO.deleteClass(classDef, connection);
+            classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+            this.connection = null;// コネクションオブジェクトを破棄する
+
+        }
+        return result;
+    }
+
+    public String getClassName(int classid) {
+        ClassDAO classDAO = new ClassDAO();
+        this.connection = classDAO.createConnection();
+        String ClassName = classDAO.getClassName(classid, connection);
+        classDAO.closeConnection(this.connection); // DataBaseとの接続を切断する
+        this.connection = null;// コネクションオブジェクトを破棄する
+        return ClassName;
+    }
+
+
+
+    /*public ClassDef searchClass(int id) {
+        ClassDef ClassDef=new ClassDef();
+        
+        return ClassDef;
+    }*/
+
+
 
     /*
      * public List<ClassDef> getClassDef() {

@@ -62,6 +62,27 @@ public class StudentService {
         return student;
     }
 
+    public boolean checkStudent(String stu_id) { //児童の番号がすでに使われているかチェック
+        boolean result = false;//falseだと使えない
+
+        // StudentDAOオブジェクト生成
+        StudentDAO studentDAO = new StudentDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = studentDAO.createConnection();
+
+        // 検索する
+        result = studentDAO.checkStudent(stu_id, this.connection);//ここもだめ
+
+        // DataBaseとの接続を切断する
+        studentDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return result;
+    }
+
     public List<Student> getStudent() {
 
         // StudentDAOオブジェクト生成
