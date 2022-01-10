@@ -18,58 +18,7 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  <style type="text/css">
-    .seat {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-      }
-      .setseatm {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:blue;
-        text-align:center;
-      }
-      .setseatf {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:red;
-        text-align:center;
-      }
-      .setseato {
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:gray;
-        text-align:center;
-      }
-      .left{
-        padding-left:40px;
-      }
-      .kyoutaku{
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .right_div{/*座席配置情報を教卓の横に置くクラス*/
-        width: 450px;                /* 横幅を900pxに指定 */
-        height: 100px;               /* 横幅を230pxに指定 */
-        right: 90px;
-        top: 530px;
-        /*bottom: 5;*/
-        position: absolute;
-        /*align-items: flex-end;*/
-      }
-
-    </style>
+  
 
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 

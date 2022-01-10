@@ -16,17 +16,6 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-    table{
-      width:80%;
-      border-collapse:collapse;
-     border: 1px solid #000;      /* わかりやすくボーダーを引く */
-    }
-    tr{
-      text-align:center;
-      border: 1px solid #000;
-    }
-    </style>
 
   <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 

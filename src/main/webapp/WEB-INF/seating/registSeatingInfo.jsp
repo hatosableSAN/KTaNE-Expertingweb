@@ -19,17 +19,6 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-  <style type="text/css">
-      .right_div{/*座席配置情報を教卓の横に置くクラス*/
-        width: 450px;                /* 横幅を900pxに指定 */
-        height: 100px;               /* 横幅を230pxに指定 */
-        right: 90px;
-        bottom:  5px;
-        position: absolute;
-        align-items: flex-end;
-      }
-
-    </style>
 
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
