@@ -11,11 +11,15 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 </head>
 
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業評価変更</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">授業評価変更</h1>
+    </div>
+  
     <br>
     変更後の授業日および授業全体のコメントを入力してください。<br>
 
@@ -27,10 +31,10 @@ pageEncoding="UTF-8"%>
       <textarea class="textarea-grade" rows="40" cols="10" maxlength="100" name="Comment" style="  width:500px;
       height:300px;"><%=Lesson.getComment()%></textarea>
 <input type="hidden" value="<%=Lesson.getId()%>" name="Id">
-        <input type="submit" value="確認画面へ">
+        <input type="submit" class="btn" id="btn_right" value="確認画面へ">
 
     </form>
     
-    <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
+    <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left"　name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

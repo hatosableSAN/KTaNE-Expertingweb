@@ -162,7 +162,7 @@ div.right {
   padding: 10px;
   border-radius: 5px;
   text-decoration: none;
-  width: 120px;
+  /*width: 120px;*/
   height: 50px;
   /*width: 321px;
   height: 113px;
@@ -231,6 +231,7 @@ top: 700px;
 font-size: 30px;
 }*/
 
+
 #btn_check {/*確認ボタン　複数のボタンに使用予定？*/
   /*position: absolute;*/
   width: 100px;
@@ -253,10 +254,24 @@ font-size: 30px;
   font-size: 20px;
 }
 
+#btn_left_seat{ /*左下のキャンセル系ボタン*/
+  position:absolute; 
+  left:40px; 
+  top: 600px; 
+  font-size: 20px;
+}
+
 #btn_right{ /*右下の確定系ボタン*/
   position:absolute; 
   right:40px; 
   bottom: 50px; 
+  font-size: 20px;
+}
+
+#btn_right_seat{ /*右下の確定系ボタン*/
+  position:absolute; 
+  right:40px; 
+  top: 600px; 
   font-size: 20px;
 }
 /* -------------------- */

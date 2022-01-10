@@ -13,11 +13,15 @@
 <html>
 <head>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+  <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 </head>
 
   <body>
-  <p align="right">ID: ${User.id}</p>
-    <h1 align="center">授業内容変更</h1>
+    <div class="darkblue">
+      <p align="right">ユーザーID　${User.id}</p>
+      <h1 align="center">授業評価変更</h1>
+    </div>
+  
     <br>
     以下の内容に変更します。<br/><br/>
 
@@ -33,10 +37,10 @@
   <p> <%=Comment%></p>
         </textarea>
 
-        <input type="submit" value="変更を確定">
+        <input type="submit" class="btn" id="btn_right" value="変更を確定">
 
     </form>
     
-      <a href="./GradeTop"><button align="center" name="regist_top">評価メニュートップへ戻る</button></a>
+      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

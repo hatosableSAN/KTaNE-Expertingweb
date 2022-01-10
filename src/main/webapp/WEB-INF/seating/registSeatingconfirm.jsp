@@ -19,12 +19,53 @@ pageEncoding="UTF-8"%>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
   <style type="text/css">
+    .seat {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:#fcc490;
+        text-align:center;
+      }
+      .setseatm {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:blue;
+        text-align:center;
+      }
+      .setseatf {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:rgb(240, 134, 134);
+        text-align:center;
+      }
+      .setseato {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:gray;
+        text-align:center;
+      }
+      .left{
+        padding-left:40px;
+      }
+      .kyoutaku{
+        width: 80px;
+        height: 50px;
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        background-color:#fcc490;
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+      }
       .right_div{/*座席配置情報を教卓の横に置くクラス*/
-        width: 260px;                /* 横幅を900pxに指定 */
-        height: 90px;               /* 横幅を230pxに指定 */
-        right: 20px;
-        top: 400px;
-        position: fixed;
+        width: 450px;                /* 横幅を900pxに指定 */
+        height: 100px;               /* 横幅を230pxに指定 */
+        right: 90px;
+        top: 530px;
+        /*bottom: 5;*/
+        position: absolute;
         /*align-items: flex-end;*/
       }
     </style>
@@ -32,14 +73,13 @@ pageEncoding="UTF-8"%>
 
  </head>
   <body>
-    <div class="skyblue">
+    <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成確認</h1>
     </div>
-    <a href="./RegistSeatingInfo"><button align="center" class="button_grey" id="btn_left" style="position:fixed" name="regist_top">入力画面へ戻る</button></a>
-    <br>
+    <a href="./RegistSeatingInfo"><button align="center" class="button_grey" id="btn_left_seat"  name="regist_top">入力画面へ戻る</button></a>
 
-    <div class="center">以下の情報で登録します</div>
+    <div class="center">以下の情報で登録します</div><br/>
       <form action="./RegistSeatingAll" method="post">
         <table align="center">
           <%
@@ -62,7 +102,7 @@ pageEncoding="UTF-8"%>
         期間：<%=seatingArrangements.getStartDate() %>～<% if(seatingArrangements.getEndDate() == null||seatingArrangements.getEndDate().equals("")){%>終了日未定<%}else{%><%=seatingArrangements.getEndDate() %><%}%>
         <Br>
         席名：<%=seatingArrangements.getName()%><br/></div>
-        <input type="submit" class = "btn" id="btn_right" style="position: fixed;" value="座席配置を登録">
+        <input type="submit" class = "btn" id="btn_right_seat"  value="座席配置を登録">
 
       <br />
 
