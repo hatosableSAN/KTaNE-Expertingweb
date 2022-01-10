@@ -3,6 +3,11 @@ $(function () {
     //alert("test");
     $(document).on('click', '.seat',function () {
         var seatid= $(this).attr('id');
+        var gradeid= $(this).attr('gradeid');
+        var red=$(this).attr('red');
+        var green=$(this).attr('green');
+        var blue=$(this).attr('blue');
+        var comment=$(this).attr('comment');
         var attendance= $(this).attr('attendance');
         var index = $('.seatall').index(this);//前から順番に0.1.2...と数字がつけられる
         window.sessionStorage.clear();
@@ -17,6 +22,12 @@ $(function () {
 
         var id=window.sessionStorage.getItem("Selected");
         $('#seatnum').val(id);//hiddenパラメータを座席のidに置き換え
+        $('#submitid').val(gradeid);//hiddenパラメータを座席のidに置き換え
+        $('#commenttext').val(comment);
+        $("#red").val(red);
+        $("#blue").val(blue);
+        $("#green").val(green);
+
 
         //alert(index);
         //alert("クリックされました");

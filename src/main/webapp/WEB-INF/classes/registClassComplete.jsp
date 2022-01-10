@@ -34,20 +34,26 @@ pageEncoding="UTF-8"%>
     <!--form action="./RegistClassConfirm" method="post"-->
       <table align="center">
         <tr>
-          <th>年度</th>
+          <th>年度　</th>
           <td>${ClassDef.class_year}</td>
         </tr>
         <tr>
-          <th>クラス名</th>
+          <th>クラス名　</th>
           <td>${ClassDef.class_name}</td>
         </tr>
         <tr>
-          <th>メンバー</th>
-          <td><div class="student">
+          <th>メンバー　</th>
+          <td>
+            <div class="student">
             <table>
                 <tr id="bar"><th>　　</th><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　</th><th>登録者　　　　　　　　　</th></tr>
 
-                <% for(Student s:student){ %>
+                <% if(student.size()==0){%>
+                </table>
+                <h4 align="center">なし</h4></div>
+                <input type="hidden"/ name="student_member" value="">
+                <%} else{
+                for(Student s:student){ %>
                     <tr>
                     <td><!--lavel--><input type="hidden"/ name="student_member" value=<%=s.getStudent_id() %>></td>
                     <td><%=s.getStudent_id() %></td>
@@ -67,7 +73,7 @@ pageEncoding="UTF-8"%>
                 <%} %>
 
             </table>
-            </div></td>
+            </div></td><% } %>
         </tr>
       </table>
         <!--form action="../RegistStudentGet" method="post">

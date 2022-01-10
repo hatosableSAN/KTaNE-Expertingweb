@@ -136,7 +136,14 @@ pageEncoding="UTF-8"%>
         <p style=" vertical-align: top;margin:20px;border-style:solid;width:240px;height:100px;display: inline-block;text-align: center;border-color: #000;">授業コメント</br><%=Lesson.getComment()%></p>
         <div style="display: inline-block;"class="kyoutaku">教卓</div>
         <p style=" vertical-align: top;margin:20px;border-style:solid;width:240px;height:100px;display: inline-block;text-align: center;border-color: #000;">年度：<%=Class.getClass_year()%>　クラス：<%=Class.getClass_name()%></br>
-          期間：<%=outputdf.format(inputdf.parse(SeatingArrangement.getStartDate()))%>～<%=outputdf.format(inputdf.parse(SeatingArrangement.getEndDate()))%></br>
+          期間：<%=outputdf.format(inputdf.parse(SeatingArrangement.getStartDate()))%>～
+          <% if(SeatingArrangement.getEndDate()!=null){ %>
+            <%=outputdf.format(inputdf.parse(SeatingArrangement.getEndDate()))%>
+            <% }else{%>
+              終了日未定
+            <% }%>
+          
+         </br>
           授業日：<%=outputlessondf.format(inputlessondf.parse(Lesson.getLessonDate()))%></p>
         </div>
         <br />
@@ -146,22 +153,24 @@ pageEncoding="UTF-8"%>
 
 <!-- モーダルはここから -->
         <div id="modal-content-grade">
-          <form action="./UpdateStudentGrade" method="get"></form>
+          <form action="./UpdateStudentGradeComplete" method="post">
             「閉じる」か「背景」をクリックするとウィンドウを終了します。<br/>
             <h1 align="center">個人評価変更</h1>
             
             出欠状態：<span id="attendance"></span>
-            
-
-            <script>
-            </script>
-              
+            <br/>
+            <p>変更後の評価はこちらに入力してください。</p>
+            <br/>
+            <input type="radio" id="attend" name="attendance" value="true"/>
+            出席
+            <input type="radio" id="absent" name="attendance" value="false" checked="checked"/>
+            欠席
               <ul class="ddmenu1">
 
-                <li><a href="#" id="red">知識・技能 </a>
+                <li><a href="#" >知識・技能 </a>
                    <ul>
                      <li>
-                    <select name="red">
+                    <select name="red"id="red">
                       <option value="1">A</option>
                       <option value="2">B</option>
                       <option value="3">C</option>
@@ -175,7 +184,7 @@ pageEncoding="UTF-8"%>
   
                 <li><a href="#">思考・判断・表現</a>
                    <ul>
-                    <select name="blue">
+                    <select name="blue"id="blue">
                       <option value="1">A</option>
                       <option value="2">B</option>
                       <option value="3">C</option>
@@ -188,7 +197,7 @@ pageEncoding="UTF-8"%>
   
                 <li><a href="#">学びに向かう人間性</a>
                    <ul>
-                    <select name="green">
+                    <select name="green" id="green">
                       <option value="1">A</option>
                       <option value="2">B</option>
                       <option value="3">C</option>
@@ -198,8 +207,10 @@ pageEncoding="UTF-8"%>
               </ul>
   
               個人コメント(100文字まで)
-              <textarea class="textarea-grade" rows="6" cols="20" maxlength="100" name="comment"></textarea>
-              <input type="button" value="-1" align="center" name="seatnum" id="seatnum"/>
+              <textarea class="textarea-grade" rows="6" cols="20" maxlength="100" name="comment" id="commenttext">
+                
+              </textarea>
+              <input type="hidden" value="-1" align="center" name="id" id="submitid"/>
               
                         
              <br/>
@@ -252,6 +263,11 @@ pageEncoding="UTF-8"%>
                     <script>
                       $(function () {
                         $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
+                        $("#<%=Grade.getSeat() %>").attr('gradeid',<%=Grade.getId() %>);
+                        $("#<%=Grade.getSeat() %>").attr('red',<%=Grade.getRed() %>);
+                        $("#<%=Grade.getSeat() %>").attr('green',<%=Grade.getGreen() %>);
+                        $("#<%=Grade.getSeat() %>").attr('blue',<%=Grade.getBlue() %>);
+                        $("#<%=Grade.getSeat() %>").attr('comment',"<%=Grade.getComment() %>");
 
                         if(<%=Grade.isAttendance() %>==true){
                         $("#<%=Grade.getSeat() %>").attr('attendance',1);
@@ -281,6 +297,11 @@ pageEncoding="UTF-8"%>
                         }
 
                         $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
+                        $("#<%=Grade.getSeat() %>").attr('gradeid',<%=Grade.getId() %>);
+                        $("#<%=Grade.getSeat() %>").attr('red',<%=Grade.getRed() %>);
+                        $("#<%=Grade.getSeat() %>").attr('green',<%=Grade.getGreen() %>);
+                        $("#<%=Grade.getSeat() %>").attr('blue',<%=Grade.getBlue() %>);
+                        $("#<%=Grade.getSeat() %>").attr('comment',"<%=Grade.getComment() %>");
                         $("#<%=Grade.getSeat() %>").addClass('seat');
                         $("#<%=Grade.getSeat() %>").addClass('seatall');
                         $("#<%=Grade.getSeat() %>").removeClass("seatblank");
@@ -303,6 +324,11 @@ pageEncoding="UTF-8"%>
                         }
 
                         $("#<%=Grade.getSeat() %>").attr('id',<%=Grade.getSeat() %>);
+                        $("#<%=Grade.getSeat() %>").attr('gradeid',<%=Grade.getId() %>);
+                        $("#<%=Grade.getSeat() %>").attr('red',<%=Grade.getRed() %>);
+                        $("#<%=Grade.getSeat() %>").attr('green',<%=Grade.getGreen() %>);
+                        $("#<%=Grade.getSeat() %>").attr('blue',<%=Grade.getBlue() %>);
+                        $("#<%=Grade.getSeat() %>").attr('comment',"<%=Grade.getComment() %>");
                         $("#<%=Grade.getSeat() %>").addClass('setseato');
                         $("#<%=Grade.getSeat() %>").addClass('seat');
                         $("#<%=Grade.getSeat() %>").addClass('seatall');

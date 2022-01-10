@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
             <% if(ClassDefList.size() > 0) {
               for(ClassDef ClassDef : ClassDefList ){ %>
               <option value="<%=ClassDef.getClass_id() %>">
-              <%=ClassDef.getClass_id() %>:<%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>
+              <!--<%=ClassDef.getClass_id() %>:--><%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %>
               </option>
             <% } }%></select><br />
         <br />

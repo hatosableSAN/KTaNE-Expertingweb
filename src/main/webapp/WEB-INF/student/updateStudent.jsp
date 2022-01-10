@@ -1,9 +1,8 @@
 <%@page contentType= "text/html; charset=UTF-8" session="true"%>
-<% String stu_id = request.getParameter("stu_id");%>
-<% String stu_name = request.getParameter("stu_name");%>
-<% String stu_gender = request.getParameter("stu_gender");%>
-<% String stu_user = request.getParameter("stu_user");%>
 <%@ page import= "beans.Student" %>
+<%
+    Student student=(Student) session.getAttribute("Student");
+%>
 <html>
     <head>
       <head>
@@ -22,13 +21,13 @@
         <td><input type="text" name="stu_name" value=${Student.student_name} pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-\u30FC]+"></td>
         <td>
         <!--td>${Student.student_gender}</td-->
-<% if( stu_gender.equals("1")){ %>
+<% if( student.getStudent_gender()==1){ %>
   <select name='stu_gender'>");
     <option value='1' selected>男</option>
     <option value='2'>女</option>
     <option value='3'>その他</option>
    </select>
-<%} else if(stu_gender.equals("2")){ %>
+<%} else if(student.getStudent_gender()==2){ %>
   <select name='stu_gender'>");
     <option value='1'>男</option>
     <option value='2' selected>女</option>
@@ -45,7 +44,6 @@
         <td>${Student.student_user}<input type="hidden" name="stu_user" value=${Student.student_user}></td>
       </tr>
     </table>
-    <h5 align="center"><font color="red">＊は必須項目です。すべて入力し、変更を押してください</font></h5>
     <div class="center">
       <input type="submit" value="変更" class="button">
     </div>

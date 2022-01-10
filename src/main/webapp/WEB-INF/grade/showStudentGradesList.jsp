@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
                 C
                 <%}%>
                   </td>
-                  <td><%=s.getComment() %></td>
+                  <td><%=s.getComment()%></td>
                   <td><form action="./UpdateStudentGrades" method="get">
                     <input type="hidden" name="gradeid" value="<%=s.getId() %>">
                     <input type="submit" value="変更">
@@ -86,6 +86,6 @@ pageEncoding="UTF-8"%>
       
 
       <br />
-      <a href="./GradeTop"><button align="center">キャンセル</button></a>
+      <a href="./SelectGradeStudent"><button align="center">キャンセル</button></a>
   </body>
 </html>

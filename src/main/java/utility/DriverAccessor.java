@@ -24,7 +24,7 @@ public class DriverAccessor {
             DRIVER_URL = "jdbc:mysql://local_se21g1_db:3306/schoolapp_db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
         } else if (JAVA_ENV.equals("production")) { // docker-composeで立ち上げるproduction環境の場合
             DRIVER_URL = "jdbc:mysql://se21g1_db/schoolapp_db?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true";
-        }else{
+        } else {
             // gradleなどで起動の場合
             DRIVER_URL = "jdbc:mysql://localhost:3306/schoolapp_db?characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
         }
