@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Student; //beansに入れた方がいいのかしら
-import service.StudentService;
+import beans.*;
+import service.*;
 import utility.*;
 
 //アノテーションの記述
@@ -55,12 +55,17 @@ public class SearchStudent extends HttpServlet {
             // System.out.println("いまHandのPost");
 
             // requestオブジェクトから登録情報の取り出し
-            String stu_search = request.getParameter("stu_search");
+            //String stu_search = request.getParameter("stu_search");
             List<Student> list = new ArrayList<Student>();
-            // List<Student> list = new ArrayList<Student>();
+            List<Student> stu_classlist = new ArrayList<Student>();
+            String type = request.getParameter("type");
             StudentService service = new StudentService();
+            ClassService class_service = new ClassService();
             String stu_info = request.getParameter("stu_search"); // textboxの値
             String select = request.getParameter("radiobutton"); // ラジオボタンどちらが押されたか
+            System.out.println("select "+select);
+            System.out.println("type "+type);
+            System.out.println("stu_info "+stu_info);
             // int stu_gender = Integer.parseInt(gender);
             // String stu_user = "ABC"; //今ログインしている教員ユーザ
             // String taikai_l = request.getParameter("taikai_l");
@@ -68,39 +73,63 @@ public class SearchStudent extends HttpServlet {
 
             String tourl = null;
             if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
-                list = service.getStudent();
-                request.setAttribute("List", list);
-                System.out.println("Please full all");
-                tourl = "/WEB-INF/classes/registClass.jsp";
-            } else {
-                // このif文意味ない気がする
-                /*
-                 * if(select.equals("number")){//番号のラジオボタンが押された
-                 * String stu_id = stu_info;
-                 * String stu_name = null;
-                 * }else if(select.equals("name")){//名前のラジオボタンが押された
-                 * String stu_id = null;
-                 * String stu_name = stu_info;
-                 * }
-                 */
-                // String stu_id = null;
-                // String stu_name = null;
-                // int stu_gender = 0;
-                // String stu_user = null;
-                // Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+                if(type.equals("regist")){
+                    list = service.getStudent();
+                    request.setAttribute("List", list);
+                    System.out.println("Please full all regist");
+                    tourl = "/WEB-INF/classes/registClass.jsp";
+                }else if(type.equals("update")){
+                    String classid = request.getParameter("ClassId");
+                    int class_id = Integer.parseInt(classid);//null
+                    String class_name = request.getParameter("class_name");
+                    String classyear = request.getParameter("class_year");
+                    int class_year = 0;// Integer.parseInt(classyear);
+                    String class_user = request.getParameter("class_user");
+                    ClassDef classdef = new ClassDef(class_id, class_name, class_year, class_user);
+                    classdef = class_service.searchClass(classdef);// クラス情報を取得
+                    stu_classlist = class_service.getAllClassmember(classdef);// クラスに所属している児童を取得 //null
+                    list = service.getStudent();
+                    session.setAttribute("Stu_list", list);//システム内の児童全員
+                    session.setAttribute("Stu_classlist", stu_classlist);//システム内の児童全員
+                    System.out.println("Please full all update");
+                    tourl = "/WEB-INF/classes/updateClass.jsp";
+                }else if(type.equals("grade")){//評価の児童検索
+                   //
+                   tourl="";
+                }
+            } else { //検索開始
+             if(type.equals("regist")){
                 list = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect
                 System.out.println("list size is " + list.size());
                 if (list.size() == 0) {
                     // 検索に当てはまる児童がいなかった
-                    tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
                     System.out.println("in if");
                 }
 
                 request.setAttribute("List", list);
                 tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
+             }else if(type.equals("update")){
+                 stu_classlist = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect
+                 list = service.getStudent();
+                System.out.println("stu_classlist size is " + stu_classlist.size());
+                System.out.println("list size is "+list.size());
+                if (stu_classlist.size() == 0) {
+                    // 検索に当てはまる児童がいなかった
+                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                    System.out.println("in if");
+                }
+
+                session.setAttribute("Stu_classlist", stu_classlist);
+                session.setAttribute("Stu_list", list);
+                tourl = "/WEB-INF/classes/updateClassSearch.jsp"; // パスは、webappにいるところから考えないといけない！
+             }
+                
 
             }
+            getServletContext().getRequestDispatcher(tourl).forward(request, response);
         }
+        
 
     }
 }

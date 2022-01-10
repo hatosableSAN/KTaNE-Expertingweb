@@ -62,7 +62,7 @@ pageEncoding="UTF-8"%>
               <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
               <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
           <% }else{
-            for(Student s:stu_list){
+            for(Student s:stu_classlist){
               int flag=0; %>
                 <tr>
                 <td><lavel>
@@ -114,8 +114,8 @@ pageEncoding="UTF-8"%>
             <!--button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button-->
         </form>
         <form action="./UpdateClass" method="post">
-          <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-          <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
+            <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+            <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
           <button text-align="center" name="search_stu" value="all" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
         </form>
       </td></tr></table>
