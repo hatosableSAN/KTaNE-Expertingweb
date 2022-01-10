@@ -50,8 +50,8 @@ pageEncoding="UTF-8"%>
             <label><input type="radio" name="radiobutton" value="name" <%if(index.equals("name")){%>checked<%}%>> <font size="2px">座席配置名</font></label>
             <label><input type="radio" name="radiobutton" value="startdate"<%if(index.equals("startdate")||index ==null){%>checked<%}%>><font size="2px">開始期間(yyyy/mm/dd) </font></label>
             <label><input type="radio" name="radiobutton" value="enddate"<%if(index.equals("enddate")||index ==null){%>checked<%}%>> <font size="2px">終了期間(yyyy/mm/dd)</font></label>
-            <button text-align="center" name ="searchbutton" value="search_seatingArr">検索実行</button></label>
-            <button text-align="center" name ="searchbutton" value="searchReset">一覧表示</button></label>
+            <button text-align="center" name ="searchbutton" value="search_seatingArr" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button></label>
+            <button text-align="center" name ="searchbutton" value="searchReset" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button></label>
         </form>
       <br />
     自身の作成した座席配置情報<br>
