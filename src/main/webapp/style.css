@@ -1,10 +1,10 @@
 * { /*ブラウザのmargin等をリセット*/
-  border: none;
   margin:0 auto; 
   padding:0;
 }
 
 .btn {/*登録、確認など実行系のボタン*/
+    border: none;
     border-radius: 5px;
     background-color: rgb(255, 218, 0);
     padding: 10px;
@@ -15,6 +15,7 @@
     height: 50px;
   }
   .backbtn {/*戻るボタン 左上についている戻るボタン*/
+    border: none;
     border-radius: 5px;
     background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
     padding: 10px;
@@ -27,6 +28,7 @@
   }
 
   .backbtn_middle {/*戻るボタン 完了画面の戻るボタン*/
+    border: none;
     border-radius: 5px;
     background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
     padding: 10px;
@@ -41,6 +43,7 @@
   }
 
   .backbtn3 {/*戻るボタン？完了画面の戻るボタン　位置が固定されていない*/
+    border: none;
     border-radius: 5px;
     background-color: #FFF4CB;/*戻るボタンの色変えました*/ /*rgb(255, 218, 0);*/
     padding: 10px;
@@ -53,6 +56,7 @@
   }
 
   .backbutton{/*システムトップのボタン　色と影*/
+    border: none;
     background: #FFF4CB;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 10px;
@@ -145,6 +149,7 @@ div.right {
 }
 
 .button{/*システムトップのボタン　色と影*/
+  border: none;
   background: #B6D8FF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 10px;
@@ -158,6 +163,7 @@ div.right {
 }
 
 .button_grey{/*○○トップに戻るボタン？ではなく左下のキャンセルボタン　色と影と大きさ*/
+  border: none;
   background: #C4C4C4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 10px;
