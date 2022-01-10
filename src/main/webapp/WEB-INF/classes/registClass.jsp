@@ -84,10 +84,10 @@ pageEncoding="UTF-8"%>
             <input type="radio" name="radiobutton" value="number" required> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <input type="hidden" value="regist" name="type">
-            <button text-align="center" name="search_stu" value="search">検索実行</button>
+            <button text-align="center" name="search_stu" value="search" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>
         </form>
             <form action="./RegistStudentGet" method="post">
-             <button text-align="center" name="search_stu" value="all">一覧表示</button>
+             <button text-align="center" name="search_stu" value="all" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
            </form>
         <!--/div--></td></tr></table>
         <%-- } --%>
