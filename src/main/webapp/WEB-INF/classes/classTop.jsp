@@ -20,8 +20,17 @@ pageEncoding="UTF-8"%>
      /*overflow-y: scroll;          /* 縦方向にスクロール可能にする */
     }
     tr{
-      text-align:center;
+      text-align:left;
       border: 1px solid #000;
+    }
+    th,td{
+      padding-top:10px;
+      padding-bottom:10px;
+      padding-left:30px;
+      padding-right:10px;
+    }
+    p{
+      margin-left:8%;
     }
     </style>
 </head>
@@ -34,11 +43,12 @@ pageEncoding="UTF-8"%>
       <button text-align="center" name="regist_class" class="btn" style="font-size: 15px; position:absolute; top:110px; right:30px; width:130px;">クラス新規登録</button>
     </form>
     <br>
-    自身の作成したクラス<br><br>
+    <p>自身の作成したクラス</p><br>
     <table align="center">
       <tr>
-        <th>年度</th>
-        <th>クラス名</th>
+        <th style="width:200px;">年度</th>
+        <th style="width:800px;">クラス名</th>
+        <th style="width:200px;"></th>
       </tr>
 
           <% if(myClassDefList.size() > 0) {
@@ -50,18 +60,23 @@ pageEncoding="UTF-8"%>
               <td>
               <form action="./ClassTop" method="post">
                 <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-                <input type="submit" value="クラス情報詳細表示" name="hand" class="button" style=" width:150px; height:20px; padding:0px; ">
+                <input type="submit" value="クラス情報詳細表示" name="hand" class="button" >
               </form></td>
             </tr>
           <% } }else{%>
-            <tr><td>なし</td></tr>
+            <tr>
+              <td>なし</td>
+              <td></td>
+              <td></td>
+            </tr>
           <% }%>
     </table>
-    <br>クラス一覧<br>
+    <br><p>クラス一覧</p><br>
     <table align="center">
       <tr>
-        <th>年度</th>
-        <th>クラス名</th>
+        <th style="width:200px;">年度</th>
+        <th style="width:800px;">クラス名</th>
+        <th style="width:200px;"></th>
       </tr>
         <% if(otherClassDefList.size() > 0) {
             for(ClassDef ClassDef : otherClassDefList ){ %>
@@ -72,11 +87,15 @@ pageEncoding="UTF-8"%>
               <td>
               <form action="./ClassTop" method="post">
                 <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-                <input type="submit" value="クラス情報詳細表示" name="hand" class="button" style=" width:150px; height:20px; padding:0px;">
+                <input type="submit" value="クラス情報詳細表示" name="hand" class="button">
               </form></td>
               </tr>
           <% } }else{%>
-            <tr><td>なし</td></tr>
+            <tr>
+              <td>なし</td>
+              <td></td>
+              <td></td>
+            </tr>
           <% }%>
     </table>
 

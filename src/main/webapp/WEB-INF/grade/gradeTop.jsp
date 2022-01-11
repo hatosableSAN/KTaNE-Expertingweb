@@ -14,11 +14,11 @@ pageEncoding="UTF-8"%>
       <h1 align="center">評価メニュートップ</h1>
     </div>
     <a href="./SystemTop" class="backbtn">トップへ戻る</a>
-    <br/><br/><br/><br/>
+    <br/><br/><br/>
     <p align="center">
-    <a href="./SelectGradeSeating"><button class = "button" align="center" >　　　新規作成　　　</button></a>　
-    <a href="./SelectGradeLessons"><button class = "button" text-align="center" >　　授業評価一覧　　</button></a>　
-    <a href="./SelectGradeStudent"><button class = "button" text-align="center" >児童生徒個人評価一覧</button></a>
+    <a href="./SelectGradeSeating"><button class = "button" align="center" style=" width:500px; height:80px; font-size: 30px;">　　　新規作成　　　</button></a><br/><br/>
+    <a href="./SelectGradeLessons"><button class = "button" text-align="center" style=" width:500px; height:80px; font-size: 30px;">　　授業評価一覧　　</button></a><br/><br/>
+    <a href="./SelectGradeStudent"><button class = "button" text-align="center" style=" width:500px; height:80px; font-size: 30px;">児童生徒個人評価一覧</button></a>
     <br><Br>
   </body>
 </html>
