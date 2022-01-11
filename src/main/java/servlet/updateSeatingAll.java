@@ -63,6 +63,7 @@ public class updateSeatingAll extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         System.out.println("いまPost");
+        String tourl = "/WEB-INF/seating/updateSeatingfail.jsp";
 
         HttpSession session = request.getSession();
         if (LoginChecker.notLogin(session)) {
@@ -77,26 +78,37 @@ public class updateSeatingAll extends HttpServlet {
             SeatingService seatingService = new SeatingService();
             // 座席配置情報を更新・取得
             setseatingArrangements = seatingService.updateSeatingArrangements(setseatingArrangements);
-            System.out.println("座席配置情報登録完了");
+            if (setseatingArrangements == null) {
+                System.out.println("座席配置情報登録失敗");
+                tourl = "/WEB-INF/seating/updateSeatingfail.jsp";
+            } else {
+                System.out.println("座席配置情報登録完了");
 
-            // 「生徒座席一覧(studentSeatingArrList)」の情報を取得
-            List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
-            if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
-                studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
+                // 「生徒座席一覧(studentSeatingArrList)」の情報を取得
+                List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
+                if ((List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList") != null) {
+                    studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
+                }
+                // 座席配置IDをすべての座席に登録
+                for (int i = 0; i < studentSeatingArrList.size(); i++) {
+                    studentSeatingArrList.get(i).setSeatingArrangementId(setseatingArrangements.getId());
+                }
+                // 座席を登録
+                seatingService.updateStudentSeatingArr(setseatingArrangements.getId(), studentSeatingArrList);
+                if (false) {
+                    System.out.println("座席（生徒）更新失敗");
+                    tourl = "/WEB-INF/seating/updateSeatingfail.jsp";
+                } else {
+                    System.out.println("座席（生徒）更新完了");
+                    tourl = "/WEB-INF/seating/updateSeatingcomplete.jsp";
+                }
             }
-            // 座席配置IDをすべての座席に登録
-            for (int i = 0; i < studentSeatingArrList.size(); i++) {
-                studentSeatingArrList.get(i).setSeatingArrangementId(setseatingArrangements.getId());
-            }
-            // 座席を登録
-            seatingService.updateStudentSeatingArr(setseatingArrangements.getId(), studentSeatingArrList);
-            System.out.println("座席（生徒）更新完了");
 
             // // request,sessionで座席配置情報を送る
             // request.setAttribute("SeatingArrangements", seatingArrangements);
             // session.setAttribute("SeatingArrangements", seatingArrangements);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/updateSeatingcomplete.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
             dispatcher.forward(request, response);
         }
