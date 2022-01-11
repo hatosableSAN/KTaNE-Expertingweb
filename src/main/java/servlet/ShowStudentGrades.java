@@ -48,6 +48,7 @@ public class ShowStudentGrades extends HttpServlet {
 
             System.out.println("生徒評価確認");
             String idnumber = request.getParameter("studentid");
+            session.setAttribute("searchstuid", idnumber);
             int id = Integer.parseInt(idnumber);// 授業ID
             GradeService service = new GradeService();
             List<Grade> GradeList = service.getStudentGradeList(id);// ひょうかりすと

@@ -18,6 +18,14 @@ pageEncoding="UTF-8"%>
     </div>
     <br>
   <br>
+  <font size="2px">検索：</font>
+  <form action="./SearchLessons" method="post">
+    <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
+    <input type="radio" name="radiobutton" value="date" checked> <font size="2px">授業日(yyyy/mm/dd)</font>
+    <input type="radio" name="radiobutton" value="comment"> <font size="2px">授業コメント</font>
+    <button text-align="center" name="show_class" class="button" style="width: 70px; height:30px; margin: 5px;padding: 0px;">検索実行</button>
+    <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; margin:5px; margin: 5px;padding: 0px;">一覧表示</button>
+</form>
     <table border="1">
       <tr>
         <th>授業日</th>

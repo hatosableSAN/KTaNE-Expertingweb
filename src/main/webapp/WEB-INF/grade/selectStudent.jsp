@@ -64,6 +64,14 @@ pageEncoding="UTF-8"%>
                       <td><label><%=s.getStudent_user() %></label></td>
                       <td><form action="./ShowStudentGrades" method="get">
                         <input type="hidden" name="studentid" value="<%=s.getStudent_id() %>">
+                        <input type="hidden" name="studentname" value="<%=s.getStudent_name() %>">
+                        <% if(s.getStudent_gender() == 1){ %>
+                          <input type="hidden" name="studentgender" value="男">
+                        <% }else if(s.getStudent_gender() == 2){ %>
+                          <input type="hidden" name="studentgender" value="女">
+                        <% }else{ %>
+                          <input type="hidden" name="studentgender" value="その他">
+                        <% } %>
                         <input type="submit" class="btn"value="選択">
                         </form>
                         </td>
