@@ -12,7 +12,7 @@ import java.util.List;
 import beans.SeatingArrangements;
 
 public class SeatingDAO extends DriverAccessor {
-    public void registStudentSeatingArr(StudentSeatingArr StudentSeatingArr, Connection connection) {
+    public boolean registStudentSeatingArr(StudentSeatingArr StudentSeatingArr, Connection connection) {
         // 座席を1つ登録する
         try {
             // SQLコマンド
@@ -26,12 +26,14 @@ public class SeatingDAO extends DriverAccessor {
             System.out.println(stmt);
             stmt.executeUpdate();
             stmt.close();
+            return true;
 
         } catch (
 
         SQLException e) {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
+            return false;
         } finally {
         }
     }
@@ -48,11 +50,11 @@ public class SeatingDAO extends DriverAccessor {
             stmt.setInt(1, SeatingArrangements.getClassId());
             stmt.setString(2, SeatingArrangements.getCreatedDate());
             stmt.setString(3, SeatingArrangements.getStartDate());
-            if (SeatingArrangements.getEndDate().equals("")) {
+            if (SeatingArrangements.getEndDate().equals("") || SeatingArrangements.getEndDate() == null) {
                 SeatingArrangements.setEndDate(null);
             }
             stmt.setString(4, SeatingArrangements.getEndDate());
-            if (SeatingArrangements.getName().equals("")) {
+            if (SeatingArrangements.getName().equals("") || SeatingArrangements.getName() == null) {
                 SeatingArrangements.setName(null);
             }
             stmt.setString(5, SeatingArrangements.getName());
@@ -86,7 +88,7 @@ public class SeatingDAO extends DriverAccessor {
         SQLException e) {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
-            return SeatingArrangements;
+            return null;// SeatingArrangements;
         } finally {
         }
     }
