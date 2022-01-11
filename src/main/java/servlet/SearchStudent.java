@@ -93,9 +93,18 @@ public class SearchStudent extends HttpServlet {
                     session.setAttribute("Stu_classlist", stu_classlist);//システム内の児童全員
                     System.out.println("Please full all update");
                     tourl = "/WEB-INF/classes/updateClass.jsp";
-                }else if(type.equals("grade")){//評価の児童検索
-                   //
-                   tourl="";
+                }else if(type.equals("stu_search_grade")){
+                    list = service.getStudent();
+                   System.out.println("stu_classlist size is " + stu_classlist.size());
+                   System.out.println("list size is "+list.size());
+                   if (stu_classlist.size() == 0) {
+                       // 検索に当てはまる児童がいなかった
+                       //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                       System.out.println("in if");
+                   }
+    
+                   session.setAttribute("Stu_list", list);
+                   tourl = "/WEB-INF/grade/selectStudent.jsp"; // パスは、webappにいるところから考えないといけない！
                 }
             } else { //検索開始
              if(type.equals("regist")){
@@ -123,7 +132,20 @@ public class SearchStudent extends HttpServlet {
                 session.setAttribute("Stu_classlist", stu_classlist);
                 session.setAttribute("Stu_list", list);
                 tourl = "/WEB-INF/classes/updateClassSearch.jsp"; // パスは、webappにいるところから考えないといけない！
-             }
+             }else if(type.equals("stu_search_grade")){
+                stu_classlist = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect
+                list = service.getStudent();
+               System.out.println("stu_classlist size is " + stu_classlist.size());
+               System.out.println("list size is "+list.size());
+               if (stu_classlist.size() == 0) {
+                   // 検索に当てはまる児童がいなかった
+                   //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                   System.out.println("in if");
+               }
+
+               session.setAttribute("Stu_list", stu_classlist);
+               tourl = "/WEB-INF/grade/selectStudent.jsp"; // パスは、webappにいるところから考えないといけない！
+            }
                 
 
             }
