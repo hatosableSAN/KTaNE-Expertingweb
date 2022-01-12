@@ -141,7 +141,7 @@ public class GradeService {
         dao.closeConnection(this.connection);
     }
 
-    public List<Grade> getStudentGradeList(int id) {
+    public List<Grade> getStudentGradeList(String id) {
         GradeDAO dao = new GradeDAO();
         this.connection=dao.createConnection();
         System.out.println(id);

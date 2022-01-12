@@ -468,7 +468,7 @@ public class GradeDAO extends DriverAccessor {
                 }
     }
 
-    public List<Grade> getStudentGradeList(int id, Connection connection) {
+    public List<Grade> getStudentGradeList(String id, Connection connection) {
         String sql = "select * from grades where student_id = ?";
 
         
@@ -477,7 +477,7 @@ public class GradeDAO extends DriverAccessor {
             // SQLコマンド
             PreparedStatement statement = connection.prepareStatement(sql);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
-            statement.setInt(1, id);
+            statement.setString(1, id);
 
             ResultSet rs = statement.executeQuery();
             
