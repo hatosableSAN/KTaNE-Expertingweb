@@ -12,7 +12,10 @@ pageEncoding="UTF-8"%>
       </div>
       <h2 align="center">座席配置の削除に失敗しました</h2>
       <div class="center">
-    <a href="./SeatingTop"><button align="center" class="backbtn_middle" name="regist_top">座席配置メニュートップへ戻る</button></a>
+    <%-- <a href="./SeatingTop"><button align="center" class="backbtn_middle" name="regist_top">座席配置メニュートップへ戻る</button></a>
+    </div> --%>
+    <div class="center">
+    <a href="./manageSeatingTop"><button align="center" class="backbtn_middle"　name="regist_top">座席配置一覧へ戻る</button></a>
     </div>
   </body>
 </html>

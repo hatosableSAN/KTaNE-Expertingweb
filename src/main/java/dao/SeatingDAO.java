@@ -50,11 +50,11 @@ public class SeatingDAO extends DriverAccessor {
             stmt.setInt(1, SeatingArrangements.getClassId());
             stmt.setString(2, SeatingArrangements.getCreatedDate());
             stmt.setString(3, SeatingArrangements.getStartDate());
-            if (SeatingArrangements.getEndDate().equals("") || SeatingArrangements.getEndDate() == null) {
+            if (SeatingArrangements.getEndDate() == null || SeatingArrangements.getEndDate().equals("")) {
                 SeatingArrangements.setEndDate(null);
             }
             stmt.setString(4, SeatingArrangements.getEndDate());
-            if (SeatingArrangements.getName().equals("") || SeatingArrangements.getName() == null) {
+            if (SeatingArrangements.getName() == null || SeatingArrangements.getName().equals("")) {
                 SeatingArrangements.setName(null);
             }
             stmt.setString(5, SeatingArrangements.getName());
