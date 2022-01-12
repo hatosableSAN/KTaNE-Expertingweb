@@ -50,8 +50,9 @@
       <input type="submit" value="変更" class="button">
     </div>
   </form>
-  <form action="./ManageStudent" method="post">
+  <a href="./ManageStudent"><button align="center" name="class_top" class="backbtn">児童・生徒<br>一覧へ戻る</button></a>
+  <!--form action="./ManageStudent" method="post">
    <input type="submit" value="児童生徒一覧へ戻る" class="backbtn_middle">
-  </form>
+  </form-->
     </body>
 </html>

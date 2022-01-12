@@ -32,10 +32,10 @@ pageEncoding="UTF-8"%>
         </div>
       </form>
       <br>
-      <!--a href="./student/registStudentTop.jsp"><button align="center" name="return_regist">児童・生徒登録へ戻る</button></a-->
-      <form action="./StudentTop" method="get">
+      <a href="./StudentTop"><button align="center" name="class_top" class="backbtn">児童・生徒メニュー<br>トップへ戻る</button></a>
+      <!--form action="./StudentTop" method="get">
         <input type="submit" value="児童・生徒メニュートップへ戻る" class="backbtn">
       </form>
-      <br />
+      <br /-->
   </body>
 </html>
