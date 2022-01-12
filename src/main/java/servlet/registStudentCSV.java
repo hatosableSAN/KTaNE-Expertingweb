@@ -117,8 +117,8 @@ public class registStudentCSV extends HttpServlet {
                                     checkdatastyle = false;
                                 }
                                 if (i == 1
-                                        && !(data[i].length() <= 20)) {// 文字数
-                                    // &&data[i].matches("^[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9・\\s]+$"))){
+                                        && !(data[i].length() <= 20)
+                                        && data[i].matches("^[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9・]+$")) {
                                     System.out.println("名前に不正な値あり");
                                     checkdatastyle = false;
                                 }
