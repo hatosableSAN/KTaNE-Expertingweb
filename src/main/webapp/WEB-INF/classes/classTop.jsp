@@ -72,7 +72,7 @@ pageEncoding="UTF-8"%>
           <% }%>
     </table>
     <br><p>クラス一覧</p><br>
-    <table align="center">
+    <table align="center"  style="margin-bottom:30px;">
       <tr>
         <th style="width:200px;">年度</th>
         <th style="width:800px;">クラス名</th>

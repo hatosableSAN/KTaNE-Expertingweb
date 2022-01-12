@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
     <style>
     .student {
         width: 900px;                /* 横幅を200pxに指定 */
-        height: 230px;               /* 横幅を200pxに指定 */
+        height: 280px;               /* 横幅を200pxに指定 */
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         overflow-y: scroll;          /* 縦方向にスクロール可能にする */
     }
@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
           <% if(Candelete){ %>
           <form action="./DeleteClass" method="post">
             <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-            <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right"/>
+            <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right" style="color:red;/>
           </form>
         <% } } %>
       <br />
