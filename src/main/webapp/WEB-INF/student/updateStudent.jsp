@@ -13,10 +13,10 @@
       <div class="green">
       <p align="right">ユーザーID　${User.id}</p>
     <h1 align="center">児童・生徒情報変更</h1>
-    </div>
+    </div><br><br><br>
     <form action="./UpdateStudentCheck" method="post">
     <table align="center">
-      <tr><th>番号<font color="red">＊</font>　　　　　　　　</th><th>名前<font color="red">＊</font>　　　　　　　　　　　　　</th><th>性別　　　　　　</th><th>登録者　　　　　　　　　　</th></tr>
+      <tr><th>番号<font color="red">＊</font>　　　　　　　　　　　　</th><th>名前<font color="red">＊</font>　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　　</th></tr>
         <tr><td>${Student.student_id}<input type="hidden" name="stu_id" value=${Student.student_id}></td>
         <td><input type="text" name="stu_name" value=${Student.student_name} pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-\u30FC]+"></td>
         <td>
@@ -43,13 +43,14 @@
 </td>
         <td>${Student.student_user}<input type="hidden" name="stu_user" value=${Student.student_user}></td>
       </tr>
-    </table>
+    </table><br><br><br>
     <div class="center">
-      <input type="submit" value="変更" class="button">
+      <input type="submit" value="変更" class="btn" style="font-size: 20px; width:120px; height:50px;">
     </div>
   </form>
-  <form action="./ManageStudent" method="post">
-   <input type="submit" value="児童生徒一覧へ戻る" class="backbtn_middle">
-  </form>
+  <a href="./ManageStudent"><button align="center" name="class_top" class="backbtn">児童・生徒<br>一覧へ戻る</button></a>
+  <!--form action="./ManageStudent" method="post">
+   <input type="submit" value="児童生徒一覧へ戻る" class="backbtn">
+  </form-->
     </body>
 </html>

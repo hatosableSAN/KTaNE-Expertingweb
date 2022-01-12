@@ -35,15 +35,16 @@ public class ManageStudent extends HttpServlet {
             System.out.println("セッション情報がありません");
             RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
+        }else{
+            request.setCharacterEncoding("UTF-8");
+            // System.out.println("いまHandのPost");
+            List<Student> list = new ArrayList<Student>();
+            StudentService service = new StudentService();
+            list = service.getStudent(); // 児童全員持ってくる
+            session.setAttribute("List", list);
+            String tourl = "/WEB-INF/student/manageStudent.jsp"; //パスは、webappにいるところから考えないといけない！
+            getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
         }
-        // requestオブジェクトの文字エンコーディングの設定
-        // request.setCharacterEncoding("UTF-8");
-        // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        // RequestDispatcher dispatcher =
-        // request.getRequestDispatcher("WEB-INF/student/studentTop.jsp");
-        // dispatcher.forward(request, response);
-        // System.out.println("いまdoGet");
-        // doPost(request, response);
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
@@ -74,6 +75,8 @@ public class ManageStudent extends HttpServlet {
             String stu_user = null;
             Student student = new Student(stu_id, stu_name, stu_gender, stu_user);// 必要？
             list = service.getStudent(); // 児童全員持ってくる
+            session.setAttribute("List", list);
+            /*
             response.setContentType("text/html; charset=UTF-8");
             System.out.println("here");
             PrintWriter out = response.getWriter();
@@ -188,8 +191,9 @@ public class ManageStudent extends HttpServlet {
             // out.println()</form>"
             out.println("</body>");
             out.println("</html>");
+            */
 
-            session.setAttribute("Student", student);
+            //session.setAttribute("Student", student);
 
             // 登録
             // service.searchStudent(student);
@@ -197,9 +201,9 @@ public class ManageStudent extends HttpServlet {
             // 成功画面を表示する
             // System.out.println("OK牧場");
             // response.sendRedirect("/TableTennis/RegistInfo");
-            // tourl = "/student/manageStudentTop.jsp"; //パスは、webappにいるところから考えないといけない！
+            tourl = "/WEB-INF/student/manageStudent.jsp"; //パスは、webappにいるところから考えないといけない！
 
-            // getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
+            getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
 
         }
     }
