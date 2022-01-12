@@ -17,7 +17,6 @@ pageEncoding="UTF-8"%>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/css/stop_button.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
 
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
@@ -26,8 +25,6 @@ pageEncoding="UTF-8"%>
     <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">座席配置新規作成確認</h1>
-
-<button id="aho">あほボタン</botton>
     </div>
     <a href="./RegistSeatingInfo"><button align="center" class="button_grey" id="btn_left_seat"  name="regist_top">入力画面へ戻る</button></a>
     <div class="center">以下の情報で登録します</div><br/>
