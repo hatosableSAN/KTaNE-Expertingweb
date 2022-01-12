@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
       <div class="right"><button class="btn" id="btn_right" >登録</button></div>
     </form>
     <form action="./GoRegistStudentTop" method="get">
-    <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
+    <input type="submit" value="児童・生徒メニュートップへ戻る" class="button_grey" id="btn_left">
   </form>
 </div>
     <!--<form action="./RegistStudentHand" method="post">
@@ -42,10 +42,10 @@ pageEncoding="UTF-8"%>
           <input type="submit" value="確認" name="hand" class="btn" id="btn_check">
         </div>
       </form>-->
-      <br />
+      <%-- <br />
       <form action="./StudentTop" method="get">
           <input type="submit" value="児童・生徒メニュートップへ戻る" class="backbtn">
-      </form>
+      </form> --%>
       <!--a href="./registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録画面へ戻る</button></a-->
   </body>
 </html>
