@@ -23,7 +23,7 @@
     <h2 align="center">以下の内容で児童・生徒を登録しますか？</h2><br><br>
 
 
-    <h3><%=filename %></h3>
+    <h3 align="center"><%=filename %></h3>
 
     <form action="./RegistStudentCSVConfirm" method="post">
     <table align="center">
