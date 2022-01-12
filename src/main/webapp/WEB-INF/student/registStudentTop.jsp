@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
     </div>
     <!--a href="./studentTop.jsp">児童生徒トップへ</a-->
     <div class="center">
-    <a href="./registStudentCSV"><button align="center" name="regist_csv_stu">CSVファイルから登録</button></a>
+    <a href="./registStudentCSV"><button align="center" name="regist_csv_stu" class="button" style="margin: 20px; height: 70px; font-size: 25px;">CSVファイルから登録</button></a>
     </div><!--ここは遷移できない、今csvで登録を別ブランチで作業中なので-->
     <form action="./RegistStudentHand" method="get">
       <div class="center">

@@ -13,15 +13,20 @@ pageEncoding="UTF-8"%>
     <h1 align="center">児童・生徒登録(CSV)</h1>
     </div>
 
+<div class="center"style="margin-top:30px;">
     <form action="./registStudentCSV" method="post"enctype="multipart/form-data">
       <div>
-        <label for="file">アップロードするファイルを選択してください</label><br>
+        <label for="file">児童・生徒情報（csvファイル）の読み込み</label><br>
         <input type="file" id="csv" name="file" accept=".txt,.csv">
       </div><Br>
-      <div><button>送信</button></div>
+      csv形式は、1行目項目名、2行目以降に番号,名前,性別（男・女・その他）<br>
+      <div><button  class="btn" id="btn_right">送信</button></div>
     </form>
     <font color="red">${error}</font>
-    <br><br><br><br><br>
+    </div>
+    <form action="./GoRegistStudentTop" method="get">
+    <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
+  </form>
     <!--<form action="./RegistStudentHand" method="post">
       <table align="center">
         <tr><td>番号　<font color="red">＊</font>　　　　　　　　　　　　　</td><td>名前　<font color="red">＊</font>　　　　　　　　　　　　　　　　　</td><td>性別　　　　　　　　　</td></tr>

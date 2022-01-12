@@ -78,6 +78,11 @@ public class registStudentCSV extends HttpServlet {
             Part part = request.getPart("file");
             if (part.getSize() == 0) {
                 System.out.println("ファイルが送信されてません");
+                error = "ファイルが送信されてません";
+                request.setAttribute("error", error);
+                RequestDispatcher rd = request
+                        .getRequestDispatcher("/WEB-INF/student/registStudentCSVError.jsp");
+                rd.forward(request, response);
             } // ファイルが送信されなかった場合
               // String filename=part.getSubmittedFileName();//ie対応が不要な場合
             String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
@@ -100,8 +105,24 @@ public class registStudentCSV extends HttpServlet {
                         if (data.length > 2) {
                             // 読み込んだCSVファイルの内容を出力
                             // 不正な値がないかチェック（性別の書きミスや文字数制限、他TODO
+                            boolean checkdatastyle = true;
                             for (int i = 0; i < 2; i++) {
-                                if (data[i] == null || data[i].equals("")) {
+                                // 他、文字数や記号等もTODO
+                                if (data[i] == null || data[i].equals("")) {// 空白
+                                    System.out.println("空白項目ありエラー");
+                                    checkdatastyle = false;
+                                }
+                                if (i == 0 && !(data[i].length() <= 15 && data[i].matches("^[0-9A-Za-z]+$"))) {// 文字数
+                                    System.out.println("番号に不正な値あり");
+                                    checkdatastyle = false;
+                                }
+                                if (i == 1
+                                        && !(data[i].length() <= 20)) {// 文字数
+                                    // &&data[i].matches("^[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9・\\s]+$"))){
+                                    System.out.println("名前に不正な値あり");
+                                    checkdatastyle = false;
+                                }
+                                if (!checkdatastyle) {
                                     error = "不正な値の項目があります";
                                     request.setAttribute("error", error);
                                     RequestDispatcher rd = request
@@ -122,6 +143,7 @@ public class registStudentCSV extends HttpServlet {
                                     gender = 3;
                                     break;
                                 default:
+                                    System.out.println("性別欄に不正な値");
                                     error = "不正な値の項目があります";
                                     request.setAttribute("error", error);
                                     RequestDispatcher rd = request
@@ -163,7 +185,7 @@ public class registStudentCSV extends HttpServlet {
             }
 
             if (checkresult) {// 重複がある
-                error = "csvの中に重複したIDが存在します。";
+                error = "csvの中に重複した番号が存在します。";
                 request.setAttribute("error", error);
                 RequestDispatcher rd = request
                         .getRequestDispatcher("/WEB-INF/student/registStudentCSVError.jsp");
@@ -173,50 +195,15 @@ public class registStudentCSV extends HttpServlet {
                 rd.forward(request, response);
             }
 
-            // ------------------ 下は実行されない
-
-            // // requestオブジェクトから登録情報の取り出し
-            // String stu_id = request.getParameter("stu_id");
-            // String stu_name = request.getParameter("stu_name");
-            // String stu_gender = request.getParameter("stu_gender");// これは文字列
-            // // int stu_gender = Integer.parseInt(gender);
-            // // User user = (User) session.getAttribute("User");
-            // String stu_user = user.getId(); // 今ログインしている教員ユーザ
-            // // コンソールに確認するために出力
-            // System.out.println("取得した文字列は" + stu_id + "です！");
-            // System.out.println("取得した文字列は" + stu_name + "です！");
-            // System.out.println("取得した文字列は" + stu_gender + "です！");
-
-            // String tourl = null;
-            // if (stu_id.isEmpty() || stu_name.isEmpty() || stu_gender.isEmpty()) {
-            // tourl = "/WEB-INF/student/registStudentHandError.jsp";
-            // System.out.println("Please full all");
-            // } else {
-            // // studentオブジェクトに情報を格納
-            // int gender = 0;
-            // switch (stu_gender) {
-            // case "1":
-            // gender = 1;
-            // break;
-            // case "2":
-            // gender = 2;
-            // break;
-            // case "3":
-            // gender = 3;
-            // break;
-            // }
-            // Student student = new Student(stu_id, stu_name, gender, stu_user);
-            // request.setAttribute("Student", student);
-            // session.setAttribute("Student", student);
-
-            // tourl = "/WEB-INF/student/registStudentHandConfirm.jsp"; //
-            // パスは、webappにいるところから考えないといけない！
-            // }
-
-            // getServletContext().getRequestDispatcher(tourl).forward(request, response);//
-            // 上のdoGetをまとめて書いている
-
         }
+
+    }
+
+    private boolean checkDatalength(String data, int length) {
+        if (data.length() > length) {
+            return false;
+        }
+        return true;
     }
 
 }
