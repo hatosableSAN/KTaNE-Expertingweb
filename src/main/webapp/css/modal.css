@@ -46,7 +46,13 @@
 	border: 1px solid #000;      /* わかりやすくボーダーを引く */
 	background-color:#fcc490;
 	text-align:center;
+	overflow:auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
+.seat::-webkit-scrollbar{
+	display: none;
+  }
 .setseatm {
 	width: 80px;
 	height: 50px;
@@ -81,7 +87,7 @@
 	margin-right: auto;
 }
 .right_div{/*座席配置情報を教卓の横に置くクラス*/
-	width: 450px;                
+	width: 450px;
 	right: 90px;
 	top: 530px;
 	/*bottom: 5;*/
