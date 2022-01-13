@@ -128,8 +128,10 @@ public class SearchStudent extends HttpServlet {
                     //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
                     System.out.println("in if");
                 }
+                stu_classlist = service.getStudent();
 
                 request.setAttribute("List", list);
+                request.setAttribute("List_all",stu_classlist);
                 tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
              }else if(type.equals("update")){
                  stu_classlist = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect

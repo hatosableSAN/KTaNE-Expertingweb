@@ -58,6 +58,7 @@ public class RegistClass extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
             System.out.println("いまHandのPost");
             List<Student> list = new ArrayList<Student>();
+            List<Student> list_all = new ArrayList<Student>();
             StudentService service = new StudentService();
             // requestオブジェクトから登録情報の取り出し
             // int class_id = request.getParameter("class_id");
@@ -71,7 +72,9 @@ public class RegistClass extends HttpServlet {
             String tourl = null;
             if (class_name.isEmpty() || classyear.isEmpty()) {
                 list = service.getStudent();
-                request.setAttribute("List", list);
+                list_all = service.getStudent();
+                session.setAttribute("List", list);
+                session.setAttribute("List_all", list_all);
                 // request.setAttribute("Student", studentinfo);
                 tourl = "/WEB-INF/classes/registClassError.jsp";
                 System.out.println("Please full all class information");

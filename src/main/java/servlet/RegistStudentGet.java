@@ -54,18 +54,21 @@ public class RegistStudentGet extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
             System.out.println("いまHandのPost");
             List<Student> list = new ArrayList<Student>();
+            List<Student> list_all = new ArrayList<Student>();
 
             String tourl = null;
             // StudentManagerオブジェクトの生成
             StudentService service = new StudentService();
 
             // findAll
-            list = service.getStudent(); // 一回コメントアウト
+            list = service.getStudent();
+            list_all = service.getStudent();
             // String gender = list.get();
             // Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
             // list.add(studentinfo);
             // session.setAttribute("Student",studentinfo);
             request.setAttribute("List", list);
+            request.setAttribute("List_all",list_all);
             // request.setAttribute("Student", studentinfo);
             // System.out.println(session.getAttribute("Student"));
 
@@ -73,28 +76,6 @@ public class RegistStudentGet extends HttpServlet {
             // System.out.println("OK牧場");
             // response.sendRedirect("/TableTennis/RegistInfo");
             tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
-            /*
-             * if(stu_id.isEmpty() || stu_name.isEmpty() || stu_gender.isEmpty()) {
-             * tourl = "/class/registClassError.jsp";
-             * System.out.println("Please full all class information");
-             * }else {
-             * // studentオブジェクトに情報を格納
-             * switch(stu_gender){
-             * case "0": stu_gender="男";
-             * break;
-             * case "1": stu_gender="女";
-             * break;
-             * case "2": stu_gender="その他";
-             * break;
-             * }
-             */
-
-            // Student student = new Student(stu_id, stu_name, stu_gender,stu_user);
-            // StudentMemo studentmemo = new StudentMemo(stu_id, stu_name,
-            // stu_gender,stu_user);
-            // HttpSession session = request.getSession();
-            // session.setAttribute("StudentMemo",studentmemo);
-            // session.setAttribute("Student", student);
 
             // }
 
