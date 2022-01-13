@@ -72,7 +72,20 @@ public class SearchStudent extends HttpServlet {
             // String taikai_k = request.getParameter("taikai_k");
 
             String tourl = null;
-            if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
+            if(type.equals("stu_search_all")){//一覧表示
+
+                list = service.getStudent();
+               System.out.println("list size is "+list.size());
+               if (stu_classlist.size() == 0) {
+                   // 検索に当てはまる児童がいなかった
+                   //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                   System.out.println("in if");
+               }
+            
+
+               session.setAttribute("Stu_list", list);
+               tourl = "/WEB-INF/grade/selectStudent.jsp"; // パスは、webappにいるところから考えないといけない！
+            }else  if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
                 if(type.equals("regist")){
                     list = service.getStudent();
                     request.setAttribute("List", list);
@@ -133,6 +146,7 @@ public class SearchStudent extends HttpServlet {
                 session.setAttribute("Stu_list", list);
                 tourl = "/WEB-INF/classes/updateClassSearch.jsp"; // パスは、webappにいるところから考えないといけない！
              }else if(type.equals("stu_search_grade")){
+
                 stu_classlist = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect
                 list = service.getStudent();
                System.out.println("stu_classlist size is " + stu_classlist.size());
@@ -141,17 +155,16 @@ public class SearchStudent extends HttpServlet {
                    // 検索に当てはまる児童がいなかった
                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
                    System.out.println("in if");
+                   
                }
-
+               tourl = "/WEB-INF/grade/selectStudent.jsp";   
                session.setAttribute("Stu_list", stu_classlist);
-               tourl = "/WEB-INF/grade/selectStudent.jsp"; // パスは、webappにいるところから考えないといけない！
             }
-                
-
-            }
-            getServletContext().getRequestDispatcher(tourl).forward(request, response);
         }
+            getServletContext().getRequestDispatcher(tourl).forward(request, response);
+        
         
 
     }
+}
 }

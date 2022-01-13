@@ -178,6 +178,15 @@ public class GradeService {
             dao.closeConnection(this.connection);
             return List;
         }
+
+        public List<Lessons> searchLessonWithComment(String searchword) {
+            GradeDAO dao = new GradeDAO();
+            this.connection=dao.createConnection();
+            List<Lessons> List = dao.searchLessonWithComment(searchword,connection);
+            // dao に反映
+            dao.closeConnection(this.connection);
+            return List;
+        }
         
         
 

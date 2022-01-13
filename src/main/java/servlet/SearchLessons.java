@@ -55,25 +55,29 @@ public class SearchLessons extends HttpServlet {
             // System.out.println("いまHandのPost");
 
             // requestオブジェクトから登録情報の取り出し
-            //String stu_search = request.getParameter("stu_search");
-            int id=(int) session.getAttribute("searchstuid");
+            //String stu_search = request.getParameter("stu_search");;
             List<Lessons> list = new ArrayList<Lessons>();
-            String type = request.getParameter("type");
+            String type = request.getParameter("type");//授業日or授業コメント
             GradeService service = new GradeService();
-            ClassService class_service = new ClassService();
-            String stu_info = request.getParameter("stu_search"); // textboxの値
-            String select = request.getParameter("radiobutton"); // ラジオボタンどちらが押されたか
-            System.out.println("select "+select);
+            String searchword = request.getParameter("searchword"); // textboxの値
+            String button = request.getParameter("button"); // textboxの値
             System.out.println("type "+type);
-            System.out.println("stu_info "+stu_info);
+            System.out.println("word "+searchword);
             // int stu_gender = Integer.parseInt(gender);
             // String stu_user = "ABC"; //今ログインしている教員ユーザ
             // String taikai_l = request.getParameter("taikai_l");
             // String taikai_k = request.getParameter("taikai_k");
-
-            String tourl = null;
-            if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
-                
+            if(button.equals("all")){//一覧表示
+                list = service.getLessonList();// 引数を付けます。stu_infoとselect
+                System.out.println("一覧表示");
+                System.out.println("list size is "+list.size());
+                if (list.size() == 0) {
+                    // 検索に当てはまる児童がいなかった
+                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                    System.out.println("in if");
+            }
+        }else if (searchword.isEmpty()) { // テキストボックスが空だったら一覧表示
+            System.out.println("空のテキスト");
                     list = service.getLessonList();
                    System.out.println("list size is "+list.size());
                    if (list.size() == 0) {
@@ -82,11 +86,12 @@ public class SearchLessons extends HttpServlet {
                        System.out.println("in if");
                    }
     
-                   session.setAttribute("Stu_list", list);
-                   tourl = "/WEB-INF/grade/showStudentGradesList.jsp"; // パスは、webappにいるところから考えないといけない
+                   session.setAttribute("LessonList", list);
+                  
             } else { //検索開始
-                if(select.equals("date")){
-                list = service.searchLessonWithDate(stu_info);// 引数を付けます。stu_infoとselect
+                System.out.println("日付検索");
+                if(type.equals("date")){//日付検索
+                list = service.searchLessonWithDate(searchword);
 
                System.out.println("list size is "+list.size());
                if (list.size() == 0) {
@@ -94,18 +99,29 @@ public class SearchLessons extends HttpServlet {
                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
                    System.out.println("in if");
                }
-            }
+                                      }else{//コメント検索
+                                        System.out.println("コメント");
+                list = service.searchLessonWithComment(searchword);// 引数を付けます。stu_infoとselect
 
-            session.setAttribute("LessonList",list); 
-               tourl = "/WEB-INF/grade/selectLessons.jsp"; // パスは、webappにいるところから考えないといけない！
+                System.out.println("list size is "+list.size());
+                if (list.size() == 0) {
+                    // 検索に当てはまる児童がいなかった
+                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
+                    System.out.println("in if");   
+                                      }
+
+           
+              
             }
-                
+               
+        }
 
             
+        session.setAttribute("LessonList",list); 
+            getServletContext().getRequestDispatcher("/WEB-INF/grade/selectLessons.jsp").forward(request, response);
         
-            getServletContext().getRequestDispatcher(tourl).forward(request, response);
-        }
         
 
     }
+}
 }

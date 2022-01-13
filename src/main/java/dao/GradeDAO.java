@@ -588,7 +588,7 @@ public class GradeDAO extends DriverAccessor {
     }
 
     public List<Lessons> searchLessonWithDate(String date, Connection connection) {
-        String sql = "select * from lessons where id = ?";
+        String sql = "select * from lessons where lesson_date = ?";
 
         
         try {
@@ -600,7 +600,7 @@ public class GradeDAO extends DriverAccessor {
 
             ResultSet rs = statement.executeQuery();
             List<Lessons> List = new ArrayList<Lessons>();
-            rs.first();
+
             while (rs.next()) {
                 Lessons lesson = new Lessons();
                 lesson.setId(rs.getInt("id"));
@@ -610,6 +610,41 @@ public class GradeDAO extends DriverAccessor {
                 lesson.setLessonDate(rs.getString("lesson_date"));              
                 List.add(lesson);
                 System.out.println("リスト追加しましたよ");
+                     }
+                     return List;
+
+    }catch (SQLException e) {
+
+        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+        e.printStackTrace();
+        return null;
+
+    } 
+    }
+
+    public List<Lessons> searchLessonWithComment(String searchword, Connection connection) {
+        
+        String sql = "select * from lessons where comment = ?";
+
+        
+        try {
+
+            // SQLコマンド
+            PreparedStatement statement = connection.prepareStatement(sql);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+            statement.setString(1, searchword);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            List<Lessons> List = new ArrayList<Lessons>();
+            while (rs.next()) {
+                Lessons lesson = new Lessons();
+                lesson.setId(rs.getInt("id"));
+                lesson.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
+                lesson.setPeriodnum(rs.getInt("period_num"));
+                lesson.setComment(rs.getString("comment"));
+                lesson.setLessonDate(rs.getString("lesson_date"));              
+                List.add(lesson);
+                System.out.println("検索ヒット");
                      }
                      return List;
 
