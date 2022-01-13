@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
           <% if(Candelete){ %>
           <form action="./DeleteClass" method="post">
             <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
-            <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right" style="color:red;/>
+            <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right" style="color:red;"/>
           </form>
         <% } } %>
       <br />
