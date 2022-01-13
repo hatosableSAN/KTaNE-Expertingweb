@@ -2,6 +2,8 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +22,9 @@ import utility.*;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
+
+
+
 @WebServlet("/SearchLessons")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
@@ -44,6 +49,10 @@ public class SearchLessons extends HttpServlet {
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+
+
+
         HttpSession session = request.getSession(true);
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
@@ -67,6 +76,34 @@ public class SearchLessons extends HttpServlet {
             // String stu_user = "ABC"; //今ログインしている教員ユーザ
             // String taikai_l = request.getParameter("taikai_l");
             // String taikai_k = request.getParameter("taikai_k");
+
+//日付かどうかチェック
+Boolean wordisDate=false;
+                if (searchword == null || searchword.length() != 10) {  
+                }
+                DateFormat format = DateFormat.getDateInstance();
+                format.setLenient(false);
+             
+                    try {
+                        format.parse(searchword);
+                        wordisDate=true;
+                    } catch (ParseException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        wordisDate=false;
+                    }
+                    
+                
+
+
+
+
+
+
+
+
+
+
             if(button.equals("all")){//一覧表示
                 list = service.getLessonList();// 引数を付けます。stu_infoとselect
                 System.out.println("一覧表示");
@@ -88,7 +125,7 @@ public class SearchLessons extends HttpServlet {
     
                    session.setAttribute("LessonList", list);
                   
-            } else { //検索開始
+            } else if(wordisDate){ //検索開始
                 System.out.println("日付検索");
                 if(type.equals("date")){//日付検索
                 list = service.searchLessonWithDate(searchword);
