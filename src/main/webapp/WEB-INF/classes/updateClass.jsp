@@ -52,16 +52,19 @@ pageEncoding="UTF-8"%>
             <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
            <% if(stu_list.size()==0){ %>
            </table>
-              <h4 align="center">児童が登録されていません</h4>
-              </div>
+           <br>
+           <h4 align="center">児童が登録されていません</h4>
+           <!--/div-->
               <!--input type="submit" value="変更" name="hand" /-->
               <!--input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
               <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
             </form-->
-          <% }else if(stu_classlist.size() == 0){ %>
+          <%-- }else if(stu_classlist.size() == 0){ %>
               <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
-              <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
-          <% }else{
+              </table>
+              <!--input type="submit" value="変更" name="hand" class="btn" id="btn_right"-->
+          --%>
+              <% }else{
             for(Student s:stu_list){
               int flag=0; %>
                 <tr>
@@ -90,34 +93,35 @@ pageEncoding="UTF-8"%>
                   </label></td>
                 <td><label><%=s.getStudent_user() %></label></td>
                 </label>
-
                 </tr></label><!--/table></div-->
             <% } %>
-              <!--/table></div-->
+              </table></div>
           <% } %>
-        </table></div>
+        <!--/table--></div>
         
         <!--/table>
       </div--></td></tr>
-        <input type="submit" value="変更" name="hand" class="btn" id="btn_right" style="width:110px;">
+        <input type="submit" value="変更" name="hand" class="btn" id="btn_right" style="width:120px;">
         <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
         <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
       </form>
       <tr><th>　</th><td>
-      <font size="2px">メンバー検索：</font>
+      <font size="2px">児童生徒検索：</font>
+      <div style="display:inline-flex">
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-            <input type="radio" name="radiobutton" required value="number"> <font size="2px">番号</font>
+            <input type="radio" name="radiobutton" required checked value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <input type="hidden" value="update" name="type">
             <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>
             <!--button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button-->
-        </form>
+        </form>　
         <form action="./UpdateClass" method="post">
           <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
           <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
           <button text-align="center" name="search_stu" value="all" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
         </form>
+        </div>
       </td></tr></table>
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル' class="button_grey" id="btn_left">
