@@ -51,7 +51,7 @@ pageEncoding="UTF-8"%>
             
             
                 <%if(stu_list==null||stu_list.size()==0){ %>
-                    <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
+                    <tr><td align="center">検索結果に当てはまる児童が</br>いませんでした</td></tr>
                 <% }else{
                   for(Student s:stu_list){
                     int flag=0; %>

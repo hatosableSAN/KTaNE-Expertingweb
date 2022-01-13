@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
               <input type="hidden" name="Comment" value=<%=Lesson.getComment() %> >
             <input type="submit" class="btn"value="評価閲覧" ></form></td>
       <% } }else{ %>
-        <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
+        <tr><td></td><td align="center">検索結果に当てはまる児童が</br>いませんでした</td></tr>
     <% }%>
     </table>
   </div>
