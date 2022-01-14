@@ -128,6 +128,7 @@ public class GradeService {
     public void DeleteLessonInfo(int id) {
         GradeDAO dao = new GradeDAO();
         this.connection=dao.createConnection();
+        dao.deleteGradeInfo(id,connection);
         dao.deleteLessonInfo(id,connection);
         // dao に反映
         dao.closeConnection(this.connection);
