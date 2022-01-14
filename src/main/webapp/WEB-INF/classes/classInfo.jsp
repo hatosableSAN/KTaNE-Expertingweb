@@ -42,7 +42,7 @@ pageEncoding="UTF-8"%>
           <td>
             <% if(list.size()==0){ %>
               0
-            <% }else{ 
+            <% }else{
               out.println(list.size());
              }%>
              人</td>
@@ -93,7 +93,12 @@ pageEncoding="UTF-8"%>
             <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
             <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right" style="color:red;"/>
           </form>
-        <% } } %>
+        <% }else{ %>
+          <form action="" method="">
+            <input type="submit" value="クラス削除" name="hand" class="button_grey" id="btn_right" style=" box-shadow:none"  disabled/>
+            <p style="text-align:center">座席配置が登録されたクラスは削除できません。</p>
+          </form>
+        <%} } %>
       <br />
   </body>
 </html>
