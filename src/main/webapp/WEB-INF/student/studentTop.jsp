@@ -13,18 +13,19 @@ pageEncoding="UTF-8"%>
     </div>
     <a href="./SystemTop" class="backbtn">トップへ戻る</a>
     <!--div class="center"-->
+    <form action="./GoRegistStudentTop" method="get">
+      <div class="center">
+        <br><br>
+      <input type="submit" value="新規登録" class="button" style=" width:300px; height:80px; font-size: 30px;">
+      </div>
+    </form>
+    <br><br><br>
     <form action="./ManageStudent" method="post">
       <div class="center">
-        <br><br><br>
       <input type="submit" value="登録済みの児童・生徒の一覧・管理" class="button" style=" width:500px; height:80px; font-size: 30px;">
       </div>
     </form>
     <br><br>
-    <form action="./GoRegistStudentTop" method="get">
-      <div class="center">
-      <input type="submit" value="新規登録" class="button" style=" width:300px; height:80px; font-size: 30px;">
-      </div>
-    </form>
     <!--a href="/se21g1/student/registStudentTop.jsp"><button text-align="center" name="regist_stu">新規登録</button></a-->
     <!--/div-->
     <!--p align="left"><a href="./SystemTop"><button name="go_top" class="backbtn">トップへ戻る</button></a></p-->

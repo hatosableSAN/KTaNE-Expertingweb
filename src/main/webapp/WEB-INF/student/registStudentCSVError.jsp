@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
         <input type="file" id="csv" name="file" accept=".txt,.csv">
       </div><Br>
       csv形式は、1行目項目名、2行目以降に番号,名前,性別（男・女・その他）<br>
-      <div><button  class="btn" id="btn_right">送信</button></div>
+      <div><button  class="btn" id="btn_right">確認</button></div>
     </form>
     <font color="red">${error}</font>
     </div>
