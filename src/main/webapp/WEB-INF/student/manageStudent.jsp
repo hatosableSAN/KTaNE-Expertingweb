@@ -61,7 +61,7 @@
             <form action='./DeleteStudent' method='post'>
                 <td>
                   <% if(result.get(i)){ %>
-                  <input type='submit' name='student_delete' value='削除' disabled class='button_grey' style="color: grey; width:80px; height: 20px;padding: 0;">
+                  <input type='submit' name='student_delete' value='削除' disabled class='button_grey' style="color: grey; width:80px; height: 20px;padding: 0; box-shadow: none;">
                   <% }else{ %>
                     <input type='submit' name='student_delete' value='削除' class='button_grey' style="color: red; width:80px; height: 20px;padding: 0;">
                   <% } i++;%>
@@ -73,7 +73,7 @@
                 <td>　　</td>
         <% } %>
       </tr><% } %>
-    </table><% } %>
+    </table></div><% } %><p align="center">クラスに登録されている児童・生徒は削除出来ません</p>
     
   <!--form action="./GoStudentTop" method="get"-->
    <!--input type="submit" value="児童生徒一覧へ戻る" class="backbtn"-->
