@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
      <p align="right">ユーザーID　${User.id}</p>
     </div>
     <h2 align="center">クラスを削除しました</h2>
-    <br><br><br>
+    <br>
     <!--a href="./student/registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒一覧へ戻る</button></a-->
     <form action="./ClassTop" method="get">
       <div class="center">
