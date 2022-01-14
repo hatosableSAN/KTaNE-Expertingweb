@@ -100,6 +100,6 @@ pageEncoding="UTF-8"%>
       
 
       <br />
-      <a href="./SelectGradeStudent"><button align="center" class="button_grey" id="btn_left">キャンセル</button></a>
+      <a href="./SelectGradeStudent"><button align="center" class="button_grey" id="btn_left">児童・生徒一覧へ戻る</button></a>
   </body>
 </html>

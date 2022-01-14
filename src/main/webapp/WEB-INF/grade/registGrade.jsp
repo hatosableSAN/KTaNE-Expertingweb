@@ -27,6 +27,9 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:#fcc490;
         text-align:center;
+        overflow:auto;
+      	-ms-overflow-style: none;
+      	scrollbar-width: none;
       }
       .setseatm {
         width: 80px;
@@ -92,22 +95,6 @@ pageEncoding="UTF-8"%>
         white-space: nowrap;
         overflow: hidden;
       }
-      .left{
-        padding-left:40px;
-      }
-      .kyoutaku{
-        width: 80px;
-        height: 50px;
-        border: 1px solid #000;      /* わかりやすくボーダーを引く */
-        background-color:#fcc490;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .h1-bottom {
-              color: rgb(255, 0, 0);
-              text-align: center;
-            }
     </style>
     <!--  ここまでスタイル  -->
 
