@@ -51,7 +51,17 @@ public class ShowStudentGrades extends HttpServlet {
             session.setAttribute("searchstuid", id);
             GradeService service = new GradeService();
             List<Grade> GradeList = service.getStudentGradeList(id);// ひょうかりすと
+            List<String> LessonDateList=new ArrayList<String>();
+
+            for(Grade Grade:GradeList){
+                int lessonid=Grade.getLessonId();
+                String LessonDate=new String();
+                LessonDate=service.searchLesson(lessonid).getLessonDate();
+                LessonDateList.add(LessonDate);
+            }
+           
             session.setAttribute("Grade", GradeList);
+            session.setAttribute("LessonDateList", LessonDateList);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/showStudentGradesList.jsp");
             dispatcher.forward(request, response);
