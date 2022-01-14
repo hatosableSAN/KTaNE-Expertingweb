@@ -85,10 +85,10 @@ pageEncoding="UTF-8"%>
                     classdef.setClass_id(SeatingArrangements.getClassId());
                     classdef = ClassService.searchClass(classdef); %>
               <%=classdef.getClass_name()%></td>
-              <td><%=SeatingArrangements.getStartDate()%>~
+              <td><%=SeatingArrangements.getStartDate().substring(0, SeatingArrangements.getStartDate().length() - 9)%>~
               <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定"); } %>
-              <%=SeatingArrangements.getEndDate()%></td>
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定");%><%=SeatingArrangements.getEndDate()%><% }else{ %>
+              <%=SeatingArrangements.getEndDate().substring(0, SeatingArrangements.getEndDate().length() - 9)%><%}%></td>
               <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>
               <td>
@@ -120,9 +120,9 @@ pageEncoding="UTF-8"%>
                     classdef = ClassService.searchClass(classdef); %>
               <%=classdef.getClass_name()%></td>
               <%-- TODO:IDじゃなくてクラス名で表示する --%>
-              <td><%=SeatingArrangements.getStartDate()%>~
-              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定"); } %>
-              <%=SeatingArrangements.getEndDate()%></td>
+              <td><%=SeatingArrangements.getStartDate().substring(0, SeatingArrangements.getStartDate().length() - 9)%>~
+              <% if(SeatingArrangements.getEndDate() == null){SeatingArrangements.setEndDate("終了日未定");%><%=SeatingArrangements.getEndDate()%><% }else{ %>
+              <%=SeatingArrangements.getEndDate().substring(0, SeatingArrangements.getEndDate().length() - 9)%><%}%></td>
               <% if(SeatingArrangements.getName() == null){SeatingArrangements.setName(""); } %>
               <td><%=SeatingArrangements.getName()%></td>
               <td>

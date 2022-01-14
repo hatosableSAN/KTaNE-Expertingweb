@@ -52,10 +52,10 @@ pageEncoding="UTF-8"%>
 
         <div class="right_div">
         クラス：<!--<%=seatingArrangements.getClassId() %>:--> <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        期間：<%=seatingArrangements.getStartDate() %>～
+        期間：<%=seatingArrangements.getStartDate().substring(0, seatingArrangements.getStartDate().length() - 9) %>～
         <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate("終了日未定"); } %>
-        <%=seatingArrangements.getEndDate() %>
+        <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate("終了日未定");%><%=seatingArrangements.getEndDate()%><% }else{ %>
+              <%=seatingArrangements.getEndDate().substring(0, seatingArrangements.getEndDate().length() - 9)%><%}%>
         <Br>
         席名：
         <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
