@@ -51,7 +51,7 @@ public class updateSeatingAll extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/registSeatingInfo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/seating/updateSeatingconfirm.jsp");
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
             dispatcher.forward(request, response);
         }
