@@ -379,7 +379,7 @@ public class StudentDAO extends DriverAccessor {
     }
 
     public List<Student> getStudentForGrade(String userId, Connection connection) {
-            String sql = "select * from students where user_id=?";
+            String sql = "select students.id,gender,name,students.user_id from students,lessons where lessons.user_id=? group by students.id;";
             try {
                 PreparedStatement statement = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
                 statement.setString(1, userId);
