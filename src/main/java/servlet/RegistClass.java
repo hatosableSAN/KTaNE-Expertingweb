@@ -70,11 +70,14 @@ public class RegistClass extends HttpServlet {
             // Student studentinfo = new Student("E195407", "キムソクジン", "男", "ABC");
 
             String tourl = null;
+            String check_str = request.getParameter("check");
+            int check = Integer.parseInt(check_str);
             if (class_name.isEmpty() || classyear.isEmpty()) {
                 list = service.getStudent();
                 list_all = service.getStudent();
                 session.setAttribute("List", list);
                 session.setAttribute("List_all", list_all);
+                session.setAttribute("Check" ,check);
                 // request.setAttribute("Student", studentinfo);
                 tourl = "/WEB-INF/classes/registClassError.jsp";
                 System.out.println("Please full all class information");
@@ -120,6 +123,7 @@ public class RegistClass extends HttpServlet {
                 ClassDef classdef = new ClassDef(class_name, class_year, class_user);
                 request.setAttribute("ClassDef", classdef);
                 session.setAttribute("List", list);// 児童選択されていないと空
+                session.setAttribute("Check" ,check);
                 // session.setAttribute("Student", studentinfo);
                 // System.out.println(list);
                 System.out.println(session.getAttribute("Student"));

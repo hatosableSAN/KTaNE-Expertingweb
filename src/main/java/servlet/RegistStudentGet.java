@@ -57,6 +57,7 @@ public class RegistStudentGet extends HttpServlet {
             List<Student> list_all = new ArrayList<Student>();
 
             String tourl = null;
+            int check=0;//flag 0の時は初実行
             // StudentManagerオブジェクトの生成
             StudentService service = new StudentService();
 
@@ -69,7 +70,7 @@ public class RegistStudentGet extends HttpServlet {
             // session.setAttribute("Student",studentinfo);
             request.setAttribute("List", list);
             request.setAttribute("List_all",list_all);
-            // request.setAttribute("Student", studentinfo);
+            request.setAttribute("Check", check);
             // System.out.println(session.getAttribute("Student"));
 
             // 成功画面を表示する

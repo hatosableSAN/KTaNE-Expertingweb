@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 <%
     List<Student> list=(List<Student>) request.getAttribute("List");
     List<Student> list_all=(List<Student>) request.getAttribute("List_all");
+    int check = (int) request.getAttribute("Check");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -73,6 +74,7 @@ pageEncoding="UTF-8"%>
         </div>
       </td></tr>
         <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
+        <input type="hidden" name="check" value=<%=check%>>
       </form>
       <tr><th>　</th>
       <td><font size="2px">児童生徒検索：</font><!--div class="center"-->

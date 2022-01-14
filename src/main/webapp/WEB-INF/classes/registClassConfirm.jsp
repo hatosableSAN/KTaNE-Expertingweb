@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ page import= "beans.ClassDef" %>
 <%
     List<Student> student=(List<Student>) session.getAttribute("List");
+    int check = (int) session.getAttribute("Check");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -85,6 +86,7 @@ pageEncoding="UTF-8"%>
         </tr>
       </table>
         <input type="submit" value="確定" name="hand" class="btn" id="btn_right">
+        <input type="hidden" name="check" value=<%=check%>>
       </form>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
