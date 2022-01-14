@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
   <div style="display:inline-flex">
   <form action="./SearchLessons" method="post">
     <input type="text" name="searchword" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-    <input type="radio" name="type" value="date" checked> <font size="2px">授業日(yyyy/mm/dd)</font>
+    <input type="radio" name="type" value="date" checked> <font size="2px">授業日(yyyy-mm-dd)</font>
     <input type="radio" name="type" value="comment"> <font size="2px">授業コメント</font>
     <input type="hidden" value="search" name="button">
     <button text-align="center" name="show_class" class="button" style="width: 70px; height:30px; margin: 5px;padding: 0px;">検索実行</button>
@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
               <input type="hidden" name="Comment" value=<%=Lesson.getComment() %> >
             <input type="submit" value="評価閲覧" class="btn"></form></td>
       <% } }else{ %>
-        <tr><td></td><td align="center">検索結果に当てはまる児童が</br>いませんでした</td></tr>
+        <tr><td></td><td align="center">検索結果に当てはまる授業が</br>ありませんでした</td></tr>
     <% }%>
     </table>
   </div>

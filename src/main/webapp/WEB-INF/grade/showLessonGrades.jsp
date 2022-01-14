@@ -221,17 +221,13 @@ pageEncoding="UTF-8"%>
   
               個人コメント(100文字まで)
               <textarea class="textarea-grade" rows="6" cols="20" maxlength="100" name="comment" id="commenttext">
-                
               </textarea>
               <input type="hidden" value="-1" align="center" name="id" id="submitid"/>
-              
-                        
-             <br/>
-             <input type="submit" value="評価を確定する" align="center" />
+              <input type="submit" value="評価を確定する" align="center" class="btn" style="position:absolute;bottom:20px;right:20px;"/>
              
           </form>
           
-            <p><a id="modal-close" class="button-link"><button align="center">閉じる</button></a></p>
+          <p><a id="modal-close" class="button-link"><button align="center" class="button_grey" style="position:absolute;bottom:20px;left:20px;">キャンセル</button></a></p
         </div>
 
       <br />

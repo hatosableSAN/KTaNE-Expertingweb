@@ -39,13 +39,12 @@ pageEncoding="UTF-8"%>
         番号：<%=id%>　氏名：<%=Name%>　性別：<%=Gender%>
         <% if(list==null){%>
           <p style="text-align: center;">評価がありません</p>
-          <% }else{　%>
+          <% }else{%>
           <table>
               <tr><th>授業日</th><th>出欠</th><th>観点1</th><th>観点2</th><th>観点3</th><th>評価コメント</th><th></th></tr>
               <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
              
-              int i=0;
-               for(Grade s:list){ %>
+              <%int i=0; for(Grade s:list){ %>
                   <tr>
                   <td><%=LessonDateList.get(i)%></td>
                   <% if(s.isAttendance()){%>
