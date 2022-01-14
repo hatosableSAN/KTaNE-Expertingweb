@@ -60,6 +60,8 @@ public class ManageStudent extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
             // System.out.println("いまHandのPost");
             List<Student> list = new ArrayList<Student>();
+            List<Boolean> result = new ArrayList<Boolean>();
+            boolean result_member = false;
             StudentService service = new StudentService();
 
             String tourl = null;
@@ -68,14 +70,26 @@ public class ManageStudent extends HttpServlet {
             // stu_gender,stu_user);
             // HttpSession session = request.getSession(true);
             User user = (User) session.getAttribute("User");
-            String user_id = user.getId();
-            String stu_id = null;
-            String stu_name = null;
-            int stu_gender = 0;
-            String stu_user = null;
-            Student student = new Student(stu_id, stu_name, stu_gender, stu_user);// 必要？
+            //String user_id = user.getId();
+            //String stu_id = null;
+            //String stu_name = null;
+            //int stu_gender = 0;
+            //String stu_user = null;
+            //Student student = new Student(stu_id, stu_name, stu_gender, stu_user);// 必要？
             list = service.getStudent(); // 児童全員持ってくる
             session.setAttribute("List", list);
+            for(int i=0;i<list.size();i++){
+                //児童がクラスに登録されているかを確認　結果をtfでリストに入れる？
+                String stu_id = null;
+                String stu_name = null;
+                int stu_gender = 0;
+                String stu_user = null;
+                Student student = new Student(stu_id, stu_name, stu_gender, stu_user);
+                //student = service.searchStudent(list.get(i).getStudent_id());//児童を順に取り出す
+                result_member = service.searchMember(list.get(i));//児童がクラスに登録されているか検索（memberに存在するか）
+                result.add(result_member);
+            }
+            session.setAttribute("Result", result);
             /*
             response.setContentType("text/html; charset=UTF-8");
             System.out.println("here");

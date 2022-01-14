@@ -6,8 +6,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Student;
-import dao.StudentDAO;
+import beans.*;
+import dao.*;
 
 public class StudentService {
 
@@ -186,6 +186,28 @@ public class StudentService {
 
         // DataBaseとの接続を切断する
         studentDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return result;
+
+    }
+
+    public boolean searchMember(Student student) {
+        boolean result = false;
+
+        // StudentDAOオブジェクト生成
+        MemberDAO memberDAO = new MemberDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = memberDAO.createConnection();
+
+        // StudentオブジェクトをDataBaseに登録する
+        result = memberDAO.searchMember(student, this.connection); //エラー
+
+        // DataBaseとの接続を切断する
+        memberDAO.closeConnection(this.connection);
 
         // コネクションオブジェクトを破棄する
         this.connection = null;

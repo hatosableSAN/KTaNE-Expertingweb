@@ -4,6 +4,7 @@
 <%@ page import= "beans.User" %>
 <%
     List<Student> list=(List<Student>) session.getAttribute("List");
+    List<Boolean> result = (List<Boolean>) session.getAttribute("Result");
     User user = (User) session.getAttribute("User");
 %>
 <html>
@@ -37,6 +38,7 @@
             </table>
             <h4 align='center'>児童が登録されていません</h4>
         <% } else {
+          int i=0;
             for(Student s:list){ %>
             <tr><td><%=s.getStudent_id() %></td>
             <td><%=s.getStudent_name() %></td>
@@ -57,7 +59,12 @@
                 </td>
             </form>
             <form action='./DeleteStudent' method='post'>
-                <td><input type='submit' name='student_delete' value='削除' class='button_grey' style="color: red; width:80px; height: 20px;padding: 0;">
+                <td>
+                  <% if(result.get(i)){ %>
+                  <input type='submit' name='student_delete' value='削除' disabled class='button_grey' style="color: grey; width:80px; height: 20px;padding: 0;">
+                  <% }else{ %>
+                    <input type='submit' name='student_delete' value='削除' class='button_grey' style="color: red; width:80px; height: 20px;padding: 0;">
+                  <% } i++;%>
                     <input type='hidden' name='delete_hidden' value=<%=s.getStudent_id()%>>
                 </td>
             </form>

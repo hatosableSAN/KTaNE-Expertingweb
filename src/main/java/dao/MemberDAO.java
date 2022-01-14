@@ -386,4 +386,52 @@ public class MemberDAO extends DriverAccessor {
         }
     }
 
+    public boolean searchMember(Student student, Connection connection) {
+
+        try {
+
+            // SQLコマンド
+            //if(!student.getStudent_id().isEmpty()){
+                String sql_c = "select count(*) from classes";
+                String sql = "select * from members where student_id = '" + student.getStudent_id() +"'";
+            //}
+            //String sql = "select * from students where id = '" + student.getStudent_id()+ "'";
+
+            // SQLのコマンドを実行する
+            // 実行結果はrsに格納される
+            Statement stmt_c = connection.createStatement();
+            ResultSet rs_c = stmt_c.executeQuery(sql_c);
+            rs_c.first();
+            if(rs_c.getInt(1) == 0){//そもそもclass tableに値入っているか
+                return false;//登録できる。テーブル空だから、児童はどこのクラスにも登録されていない
+            }
+            Statement stmt = connection.createStatement();
+            System.out.println(stmt);
+            ResultSet rs = stmt.executeQuery(sql);
+            boolean isExist = rs.next();
+            if(isExist==false){//sql文の実行結果が空だったら
+              System.out.println("this student is not in class");
+              return false;//児童はどのクラスにも登録されていない
+            }
+
+            // 終了処理
+            stmt.close();
+            stmt_c.close();
+            rs.close();
+            rs_c.close();
+            return true;//児童はどこかのクラスに所属している
+
+            // Studentオブジェクトを返す
+            //return student;
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return true;//エラー 失敗画面に飛ばす
+
+        } finally {
+        }
+    }
+
 }
