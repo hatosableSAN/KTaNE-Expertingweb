@@ -512,11 +512,11 @@ public class SeatingDAO extends DriverAccessor {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, seatingArrangements.getStartDate());
-            if (seatingArrangements.getEndDate().equals("")) {
+            if (seatingArrangements.getEndDate() == null || seatingArrangements.getEndDate().equals("")) {
                 seatingArrangements.setEndDate(null);
             }
             statement.setString(2, seatingArrangements.getEndDate());
-            if (seatingArrangements.getName().equals("")) {
+            if (seatingArrangements.getName() == null || seatingArrangements.getName().equals("")) {
                 seatingArrangements.setName(null);
             }
             statement.setString(3, seatingArrangements.getName());

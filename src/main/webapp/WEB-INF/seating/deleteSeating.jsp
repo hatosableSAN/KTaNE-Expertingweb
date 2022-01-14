@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/css/modal.js"></script> --%>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/modal.css">
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/css/stop_button.js"></script>
 
 <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
 
@@ -50,10 +50,10 @@ pageEncoding="UTF-8"%>
         <br>
         <div class="right_div">
         クラス：<!--<%=seatingArrangements.getClassId() %>: --> <%=ClassDef.getClass_year()%>年<%=ClassDef.getClass_name() %><br>
-        期間：<%=seatingArrangements.getStartDate() %>～
+        期間：<%=seatingArrangements.getStartDate().substring(0, seatingArrangements.getStartDate().length() - 9) %>～
         <%-- 終了期間や座席配置名がないときにnullではなく空白で示すようにする --%>
-              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate("終了日未定"); } %>
-        <%=seatingArrangements.getEndDate() %>
+              <% if(seatingArrangements.getEndDate() == null){seatingArrangements.setEndDate("終了日未定");%><%=seatingArrangements.getEndDate()%><% }else{ %>
+              <%=seatingArrangements.getEndDate().substring(0, seatingArrangements.getEndDate().length() - 9)%><%}%>
         <Br>
         席名：
         <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
@@ -61,11 +61,16 @@ pageEncoding="UTF-8"%>
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
         </div>
 
-        <form>
+        <form action="./manageSeatingTop" method="post">
           <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
           <p align = "center">
-            <input type="submit" class ="button_grey" id="btn_left_seat" name="cancel" value="キャンセル" formaction="./manageSeatingTop"  formmethod="POST" />　　　
-            <input type="submit"  class = "btn" id="btn_right_seat" name="deleteSeating" value="　削除　" formaction="./DeleteSeating"  formmethod="POST" style="color:red;"/>
+            <input type="submit" class ="button_grey" id="btn_left_seat" name="cancel" value="キャンセル"formmethod="POST" /></p>
+        </form>
+
+        <form action="./DeleteSeating" method="post">
+        <input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
+           <p align = "center">
+            <input type="submit"  class = "btn" id="btn_right_seat" name="deleteSeating" value="　削除　" style="color:red;"/>
           </p>
         </form>
         <% } %>
