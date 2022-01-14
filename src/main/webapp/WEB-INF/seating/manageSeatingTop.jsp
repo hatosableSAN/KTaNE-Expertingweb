@@ -58,7 +58,7 @@ pageEncoding="UTF-8"%>
     <p class="text" style="display: inline; margin-right:30px;">自身の作成した座席配置情報</p>
     <font size="2px">検索：</font>
         <form action="./SearchSeating" method="post" style="display: inline">
-            <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
+            <input type="text" name="seating_search" value="<%if(word != null){%><%=word%><%}%>"maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\s\-\u30FC]+"/>
             <label><input type="radio" name="radiobutton" value="class" required <%if(index.equals("class")||index ==null){%>checked<%}%>> <font size="2px">クラス</font></label>
             <label><input type="radio" name="radiobutton" value="name" <%if(index.equals("name")){%>checked<%}%>> <font size="2px">座席配置名</font></label>
             <label><input type="radio" name="radiobutton" value="startdate"<%if(index.equals("startdate")||index ==null){%>checked<%}%>><font size="2px">開始期間(yyyy/mm/dd) </font></label>
