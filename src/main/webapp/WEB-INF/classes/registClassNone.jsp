@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         <input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊</font>
         <br>
         クラス名　
-        <input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">＊</font>
+        <input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\s\-\u30FC]+"/>　1~20文字<font color="red">＊</font>
         <br>
         メンバー　　
         <!--form action="../RegistStudentGet" method="post">
@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
       </form>
       <font size="2px">検索：</font>
         <form action="./SearchStudent" method="post">
-            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
+            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\s\-\u30FC]+"/>
             <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <button text-align="center" name="search_stu" value="search">検索実行</button>
