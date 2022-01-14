@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
         <tr><th>年度　</th>
           <td><input type="number" name="class_year" value="<%=ClassDef.getClass_year()%>" placeholder="(半角数字)" max="2500" min="1970">　年度<font color="red">＊</font>　　年度は1970年～2500年まで登録できます</td></tr>
           <tr><th>クラス名　</th>
-          <td><input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>　1~20文字<font color="red">＊</font></td></tr>
+          <td><input type="text" name="class_name" value="<%=ClassDef.getClass_name()%>" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\s\-\u30FC]+"/>　1~20文字<font color="red">＊</font></td></tr>
           <tr><th>メンバー　</th>
           <td>
         <div class="student">
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
               int flag=0; %>
                 <tr>
                 <td><lavel>
-                  <% for(int i=0; i < stu_classlist.size(); i++ ) { 
+                  <% for(int i=0; i < stu_classlist.size(); i++ ) {
                     Student sc = stu_classlist.get(i);
                     if(s.getStudent_id().equals(sc.getStudent_id())){ %>
                       <input type="checkbox"/ name="student_member" checked value=<%=s.getStudent_id() %>>
@@ -98,7 +98,7 @@ pageEncoding="UTF-8"%>
               </table></div>
           <% } %>
         <!--/table--></div>
-        
+
         <!--/table>
       </div--></td></tr>
         <input type="submit" value="変更" name="hand" class="btn" id="btn_right" style="width:120px;">
