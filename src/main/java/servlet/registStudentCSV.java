@@ -112,7 +112,8 @@ public class registStudentCSV extends HttpServlet {
                                     System.out.println("空白項目ありエラー");
                                     checkdatastyle = false;
                                 }
-                                if (i == 0 && !(data[i].length() <= 15 && data[i].matches("^[0-9A-Za-z]+$"))) {// 文字数
+                                if (i == 0 && !(data[i].length() <= 15 && data[i].length() >= 6
+                                        && data[i].matches("^[0-9A-Za-z]+$"))) {// 文字数
                                     System.out.println("番号に不正な値あり");
                                     checkdatastyle = false;
                                 }
