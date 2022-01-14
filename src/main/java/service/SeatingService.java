@@ -140,8 +140,12 @@ public class SeatingService {
         // DAOオブジェクト生成
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
+        // 削除する生徒の数
+        SeatingArrangements seating = new SeatingArrangements();
+        seating.setId(SeatingArrangementsId);
+        List<StudentSeatingArr> deletestudentList = dao.findStudentSeatingArrList(seating, connection);
         // 削除
-        dao.deleteStudentSeatingArr(SeatingArrangementsId, studentSeatingArrList.size(), connection);
+        dao.deleteStudentSeatingArr(SeatingArrangementsId, deletestudentList.size(), connection);
         // 登録
         for (int i = 0; i < studentSeatingArrList.size(); i++) {
             dao.registStudentSeatingArr(studentSeatingArrList.get(i), connection);

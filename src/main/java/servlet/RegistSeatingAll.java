@@ -103,7 +103,9 @@ public class RegistSeatingAll extends HttpServlet {
                     studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
                 }
                 // 座席配置IDをすべての座席に登録
+                System.out.println("座席登録する生徒一覧");
                 for (int i = 0; i < studentSeatingArrList.size(); i++) {
+                    System.out.println(studentSeatingArrList.get(i).getStudentId());
                     studentSeatingArrList.get(i).setSeatingArrangementId(setseatingArrangements.getId());
                 }
                 // 座席を登録

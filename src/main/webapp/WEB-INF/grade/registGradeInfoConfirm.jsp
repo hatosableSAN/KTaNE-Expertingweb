@@ -20,13 +20,13 @@ pageEncoding="UTF-8"%>
   <body>
     <div class="darkblue">
       <p align="right">ユーザーID　${User.id}</p>
-      <h1 align="center">評価新規作成</h1>
+      <h1 align="center">評価新規作成確認</h1>
     </div>
     <br>
-    この内容で登録します。<br/><br/>
+    <h2 align="center">この内容で登録します</h2><br/>
 
     <form action="./RegistGradeAll" method="post">
-      
+      <div class="center">
       <h2>授業日：
       <%=ClassDate%>
       <input type="hidden" value="<%=ClassDate%>" name="ClassDate">
@@ -36,7 +36,7 @@ pageEncoding="UTF-8"%>
 <input type="hidden" value="<%=Comment%>" name="Comment">
 <h3> <%=Comment%></h3>
       </textarea>
-    
+    </div>
 
         <input type="submit" class="btn" id="btn_right" value="評価を確定する">
 

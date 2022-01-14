@@ -25,8 +25,9 @@ pageEncoding="UTF-8"%>
     <font color="red">${error}</font>
     </div>
     <form action="./GoRegistStudentTop" method="get">
-    <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
+    <input type="submit" value="児童・生徒登録へ戻る" class="button_grey" id="btn_left">
   </form>
+
     <!--<form action="./RegistStudentHand" method="post">
       <table align="center">
         <tr><td>番号　<font color="red">＊</font>　　　　　　　　　　　　　</td><td>名前　<font color="red">＊</font>　　　　　　　　　　　　　　　　　</td><td>性別　　　　　　　　　</td></tr>
@@ -46,9 +47,9 @@ pageEncoding="UTF-8"%>
         </div>
       </form>-->
       <br />
-      <form action="./StudentTop" method="get">
+      <%-- <form action="./StudentTop" method="get">
           <input type="submit" value="児童・生徒メニュートップへ戻る" class="backbtn">
-      </form>
+      </form> --%>
       <!--a href="./registStudentTop.jsp"><button align="center" name="regist_top">児童・生徒登録画面へ戻る</button></a-->
   </body>
 </html>
