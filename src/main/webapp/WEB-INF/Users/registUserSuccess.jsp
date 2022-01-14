@@ -5,9 +5,9 @@
     </head>
   <body>
     <div class="darkgray">
+      <br/><br/><br/><br/>
     <h2 align="center">ユーザー登録が完了しました<br/>
-      ログイン画面でログインしてください</h2>
-    
+      ログイン画面でログインしてください</h2><br/>
     <p align="center"><a href="/se21g1/Login"><button class="btn">ログイン画面へ</button></a></p>
   </body>
 </html>
