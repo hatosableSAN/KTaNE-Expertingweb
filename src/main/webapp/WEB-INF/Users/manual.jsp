@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     </head>
   <body>
     <div class="darkgray">
-      <p align="right">ユーザーID ${User.id}</p>
+      <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">システムマニュアル</h1>
       <a href="/se21g1/SystemTop" class="backbtn">トップへ戻る</a>
     </div>
