@@ -121,6 +121,7 @@ pageEncoding="UTF-8"%>
 
  </head>
   <body>
+    <a href="./GradeTop"><button align="center" class="backbtn" name="regist_top">評価メニュー<br/>トップへ戻る</button></a>
     <div class="darkblue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">授業評価閲覧</h1>
@@ -369,7 +370,6 @@ pageEncoding="UTF-8"%>
             <h2 class="h1-bottom"></h2>
 
             <%}%>
-      <a href="./GradeTop"><button align="center" class="backbtn" name="regist_top">評価メニュー<br/>トップへ戻る</button></a>
   </body>
 </html>
 
