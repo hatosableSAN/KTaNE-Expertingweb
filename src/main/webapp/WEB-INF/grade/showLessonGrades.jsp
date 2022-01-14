@@ -46,7 +46,9 @@ pageEncoding="UTF-8"%>
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
       .setseatf {
         width: 80px;
@@ -57,6 +59,8 @@ pageEncoding="UTF-8"%>
         line-height:95%;
         text-size-adjust:inherit;
         text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
       }
       .setseato {
@@ -67,6 +71,9 @@ pageEncoding="UTF-8"%>
         text-align:center;
         line-height:95%;
         text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
       }
       .selectable{
