@@ -84,10 +84,12 @@ pageEncoding="UTF-8"%>
             <input type="radio" name="radiobutton" value="number" required checked> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <input type="hidden" value="regist" name="type">
+            <input type="hidden" name="check" value=<%=check%>>
             <button text-align="center" name="search_stu" value="search" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>
         </form>　
             <form action="./RegistStudentGet" method="post">
              <button text-align="center" name="search_stu" value="all" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
+             <input type="hidden" name="check" value=<%=check%>>
         </form></div>
       </td></tr></table>
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->

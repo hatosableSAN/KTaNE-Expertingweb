@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <%
     List<Student> list=(List<Student>) session.getAttribute("List");
     List<Student> list_all=(List<Student>) session.getAttribute("List_all");
-    int check = (int) request.getAttribute("Check");
+    int check = (int) session.getAttribute("Check");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
 
       <table align="center">
         <tr><th>年度　</th><!--p align="right"--><!--/p-->
-        <td><input type="number" name="class_year" placeholder="(半角数字)" max="2500" min="1970"/>＊は必須項目です。</font>　　年度は1970年～2500年まで登録できます</td></tr>
+        <td><input type="number" name="class_year" placeholder="(半角数字)" max="2500" min="1970"/>　年度<font color="red">＊</font>　　　年度は1970年～2500年まで登録できます　　　　　　　<font color="red">＊は必須項目です。</font></td></tr>
         <tr><th>クラス名　</th>
         <td><input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9０-９\-\u30FC]+"/>　1~20文字<font color="red">＊</font></td></tr>
         <tr><th>メンバー　</th>
@@ -71,6 +71,7 @@ pageEncoding="UTF-8"%>
         <!--/table-->
         </div>
         <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
+        <input type="hidden" name="check" value=<%=check%>>
       </form>
       <tr><th>　</th>
       <td><font size="2px">児童生徒検索：</font>
@@ -80,15 +81,17 @@ pageEncoding="UTF-8"%>
             <input type="radio" name="radiobutton" value="number" required checked> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <input type="hidden" value="regist" name="type">
+            <input type="hidden" name="check" value=<%=check%>>
             <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>
         </form>　
         <form action="./RegistStudentGet" method="post">
           <button text-align="center" name="search_stu" value="all" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
+          <input type="hidden" name="check" value=<%=check%>>
         </form>
         </div>
        </td></tr></table>
        <br>
-       <h4 align="center"><font color="red">クラス、年度は必須項目です</font></h4>
+       <h4 align="center"><font color="red">クラス名、年度は必須項目です</font></h4>
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル' class="button_grey" id="btn_left">
