@@ -40,6 +40,16 @@ pageEncoding="UTF-8"%>
           <td><input type="hidden"/ name="class_name" value=${ClassDef.class_name}>${ClassDef.class_name}</td>
         </tr>
         <tr>
+          <th>メンバー数　</th>
+          <td>
+            <% if(student.size()==0){ %>
+              0
+            <% }else{ 
+              out.println(student.size());
+             }%>
+             人</td>
+        </tr>
+        <tr>
           <th>メンバー　</th>
           <td>
             <div class="student">

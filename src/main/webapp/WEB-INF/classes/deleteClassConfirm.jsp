@@ -48,14 +48,27 @@ pageEncoding="UTF-8"%>
           <td><%= ClassDef.getClass_year()%>年度</td></tr>
           <tr><th>クラス名　</th>
           <td><%= ClassDef.getClass_name()%></td></tr>
+          <tr><th>メンバー数　</th>
+            <td>
+              <% if(list.size()==0){ %>
+                0
+              <% }else{ 
+                out.println(list.size());
+               }%>
+               人</td>
+          </tr>
           <tr><th>メンバー　</th>
           <td>
         <div class="student">
         <table>
             <tr id="bar"><th>番号　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　　　　</th><th>登録者　　　　　　　　　</th></tr>
             <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
-
-            <% for(Student s:list){ %>
+            <% if(list.size()==0){%>
+            </table>
+            <h4 align="center">なし</h4></div>
+            <input type="hidden"/ name="student_member" value="">
+            <%} else{
+              for(Student s:list){ %>
                 <tr>
                 <%-- <td><!--lavel--><input type="checkbox"/ name="student_member" value=<%=s.getStudent_id() %>></td> --%>
                 <td><%=s.getStudent_id() %></td>
@@ -73,9 +86,9 @@ pageEncoding="UTF-8"%>
                 </tr>
                 <%} %>
               </div>
-            </table>
+            </table><% } %>
         </table><br>
-        <font color="red"><h4 align="center">以上のクラスを削除しますか？</h4></font><br>
+        <font color="red"><h2 align="center">以上のクラスを削除しますか？</h2></font><br>
         <form action="./ClassTop" method="post">
                 <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
                 <input type="submit" value="キャンセル" name="hand" class="button_grey" id="btn_left">

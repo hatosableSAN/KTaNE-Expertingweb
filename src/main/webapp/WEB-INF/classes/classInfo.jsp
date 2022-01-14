@@ -37,6 +37,16 @@ pageEncoding="UTF-8"%>
         <td><%= ClassDef.getClass_year()%>年度</td></tr>
         <tr><th>クラス名　</th>
         <td><%= ClassDef.getClass_name()%></td></tr>
+        <tr>
+          <th>メンバー数　</th>
+          <td>
+            <% if(list.size()==0){ %>
+              0
+            <% }else{ 
+              out.println(list.size());
+             }%>
+             人</td>
+        </tr>
         <tr><th>メンバー　</th>
         <!--form action="../RegistStudentGet" method="post">
             <button text-align="center" name="regist_class">一覧表示</button>
