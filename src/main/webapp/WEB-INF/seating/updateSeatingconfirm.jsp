@@ -51,7 +51,7 @@ pageEncoding="UTF-8"%>
         <Br>
         席名：<%=seatingArrangements.getName()%>
       </div>
-        <input type="submit" class="btn" id="btn_right_seat" value="座席配置を登録" name="updateSeatingClass" />
+        <input type="submit" class="btn" id="btn_right_seat" value="座席配置を更新" name="updateSeatingClass" />
         </form>
 
       <br />
