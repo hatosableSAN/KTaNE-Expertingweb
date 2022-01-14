@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
       <tr>
         <th>クラス</th>
         <th colspan="3">開始期間　終了期間</th>
-        <th>クラス名</th>
+        <th>座席配置名</th>
         <th></th>
         
     </tr>
@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
                 <% }else{%>
                   終了日未定
                 <% } if(Seating.getName()==null){%>
-                  <td>無名のクラス</td>
+                  <td></td>
             <%}else{%>
               <td><%=Seating.getName()%></td>
             <%}%>

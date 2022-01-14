@@ -317,7 +317,7 @@ public class GradeDAO extends DriverAccessor {
              returnSb.setLessonDate(rs.getString("lesson_date"));
              returnSb.setPeriodnum(rs.getInt("period_num"));
              returnSb.setComment(rs.getString("comment"));
-             returnSb.setComment(rs.getString("user_id"));
+             returnSb.setUserId(rs.getString("user_id"));
              List.add(returnSb);
             // System.out.println("リスト追加したよ");
              }

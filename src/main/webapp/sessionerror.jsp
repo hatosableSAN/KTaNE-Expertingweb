@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList"%> 
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> 
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 <html>
 <section class="page_404">
 
@@ -12,7 +12,8 @@
     </h3>
     
     <p style="text-align: center;"><br><br>このページを開くには、ログインが必要です。
-    <br>
+    <br/>
+    <br/>
     <a href="./index.jsp"class="btn">トップページへ</a>
   </div>
     </div>
