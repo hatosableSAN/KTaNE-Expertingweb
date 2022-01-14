@@ -183,9 +183,9 @@ pageEncoding="UTF-8"%>
             <br/>
             <p>変更後の評価はこちらに入力してください。</p>
             <br/>
-            <input type="radio" id="attend" name="attendance" value="true"/>
+            <input type="radio" id="attend" name="attendance" value="true"　checked="checked"/>
             出席
-            <input type="radio" id="absent" name="attendance" value="false" checked="checked"/>
+            <input type="radio" id="absent" name="attendance" value="false" >
             欠席
               <ul class="ddmenu1">
 

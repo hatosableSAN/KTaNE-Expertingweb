@@ -24,7 +24,7 @@
   
     <br>
     <h2>以下の内容に変更します。</h2><br/><br/>
-
+<div style="text-align: center;">
     <form action="./UpdateLessonInfoComplete" method="post">
       <h3>授業日</h3>
         <h3><%=ClassDate%></h3>
@@ -35,8 +35,7 @@
   <input type="hidden" value="<%=Comment%>" name="Comment">
   <input type="hidden" value="<%=Lesson.getId()%>" name="Id">
   <h3> <%=Comment%></h3>
-        </textarea>
-
+      </div>
         <input type="submit" class="btn" id="btn_right" value="変更を確定">
 
     </form>
