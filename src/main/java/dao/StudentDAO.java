@@ -378,6 +378,31 @@ public class StudentDAO extends DriverAccessor {
         }
     }
 
+    public List<Student> getStudentForGrade(String userId, Connection connection) {
+            String sql = "select * from students where user_id=?";
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+                statement.setString(1, userId);
+                ResultSet resultSet = statement.executeQuery();
+                List<Student> studentList = new ArrayList<Student>();
+                while(resultSet.next()) {
+                    Student student = new Student();
+                    student.setStudent_id(resultSet.getString("id"));
+                    student.setStudent_name(resultSet.getString("name"));
+                    student.setStudent_gender(resultSet.getInt("gender"));
+                    student.setStudent_user(resultSet.getString("user_id"));
+                    studentList.add(student);
+                }
+                statement.close();
+                resultSet.close();
+    
+                return studentList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+    }
+
  //}
 
  /*public List<Student> findAllNumber(String student_number[], Connection connection) { //番号が一致する児童を…listも送るか

@@ -31,6 +31,12 @@ public class RegistClassesInfo extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // doPostメソッドから呼び出される(リダイレクトされる)
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        doPost(request, response);
+    }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 

@@ -51,10 +51,11 @@ public class SelectGradeStudent extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
             dispatcher.forward(request, response);
         } else {
+            User User = (User)session.getAttribute("User");
 
             StudentService Service = new StudentService();
 
-            List<Student> StudentList = Service.getStudent();
+            List<Student> StudentList = Service.getStudentForGrade(User.getId());
 
             session.setAttribute("Stu_list", StudentList);
             System.out.println(StudentList);

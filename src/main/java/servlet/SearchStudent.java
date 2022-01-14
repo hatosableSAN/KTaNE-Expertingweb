@@ -58,6 +58,8 @@ public class SearchStudent extends HttpServlet {
             //String stu_search = request.getParameter("stu_search");
             List<Student> list = new ArrayList<Student>();
             List<Student> stu_classlist = new ArrayList<Student>();
+            User User = (User)session.getAttribute("User");
+            String userId=User.getId();
             String type = request.getParameter("type");
             StudentService service = new StudentService();
             ClassService class_service = new ClassService();
@@ -74,7 +76,7 @@ public class SearchStudent extends HttpServlet {
             String tourl = null;
             if(type.equals("stu_search_all")){//一覧表示
 
-                list = service.getStudent();
+                list = service.getStudentForGrade(User.getId());
                System.out.println("list size is "+list.size());
                if (stu_classlist.size() == 0) {
                    // 検索に当てはまる児童がいなかった
@@ -109,7 +111,7 @@ public class SearchStudent extends HttpServlet {
                     System.out.println("Please full all update");
                     tourl = "/WEB-INF/classes/updateClass.jsp";
                 }else if(type.equals("stu_search_grade")){
-                    list = service.getStudent();
+                    list = service.getStudentForGrade(userId);
                    System.out.println("stu_classlist size is " + stu_classlist.size());
                    System.out.println("list size is "+list.size());
                    if (stu_classlist.size() == 0) {
@@ -152,7 +154,7 @@ public class SearchStudent extends HttpServlet {
              }else if(type.equals("stu_search_grade")){
 
                 stu_classlist = service.getStudent(stu_info, select);// 引数を付けます。stu_infoとselect
-                list = service.getStudent();
+                list = service.getStudentForGrade(userId);
                System.out.println("stu_classlist size is " + stu_classlist.size());
                System.out.println("list size is "+list.size());
                if (stu_classlist.size() == 0) {

@@ -194,4 +194,27 @@ public class StudentService {
 
     }
 
+    public List<Student> getStudentForGrade(String userId) {
+        
+        // StudentDAOオブジェクト生成
+        StudentDAO studentDAO = new StudentDAO();
+
+        List<Student> student = new ArrayList<Student>();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = studentDAO.createConnection();
+
+        // 検索する 
+        student = studentDAO.getStudentForGrade(userId,this.connection);
+
+        // DataBaseとの接続を切断する
+        studentDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return student;
+    }
+
+
 }
