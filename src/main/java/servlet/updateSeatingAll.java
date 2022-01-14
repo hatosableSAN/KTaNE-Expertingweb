@@ -79,10 +79,10 @@ public class updateSeatingAll extends HttpServlet {
             // 座席配置情報を更新・取得
             setseatingArrangements = seatingService.updateSeatingArrangements(setseatingArrangements);
             if (setseatingArrangements == null) {
-                System.out.println("座席配置情報登録失敗");
+                System.out.println("座席配置情報更新失敗");
                 tourl = "/WEB-INF/seating/updateSeatingfail.jsp";
             } else {
-                System.out.println("座席配置情報登録完了");
+                System.out.println("座席配置情報更新完了");
 
                 // 「生徒座席一覧(studentSeatingArrList)」の情報を取得
                 List<StudentSeatingArr> studentSeatingArrList = new ArrayList<StudentSeatingArr>();
@@ -90,7 +90,9 @@ public class updateSeatingAll extends HttpServlet {
                     studentSeatingArrList = (List<StudentSeatingArr>) session.getAttribute("StudentSeatingArrList");
                 }
                 // 座席配置IDをすべての座席に登録
+                System.out.println("登録する座席一覧");
                 for (int i = 0; i < studentSeatingArrList.size(); i++) {
+                    System.out.println(studentSeatingArrList.get(i).getStudentId());
                     studentSeatingArrList.get(i).setSeatingArrangementId(setseatingArrangements.getId());
                 }
                 // 座席を登録
