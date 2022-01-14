@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
 
       <table align="center">
         <tr><th>年度　</th><!--p align="right"--><!--/p-->
-        <td><input type="text" name="class_year" placeholder="半角数字(4文字)" maxlength="4" minlength="4" pattern="^[0-9]+$"/>　年度<font color="red">＊　　</font><font color="red" align="right">＊は必須項目です。</font></td></tr>
+        <td><input type="number" name="class_year" placeholder="(半角数字)" max="2500" min="1970"/>＊は必須項目です。</font>　　年度は1970年～2500年まで登録できます</td></tr>
         <tr><th>クラス名　</th>
         <td><input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9０-９\-\u30FC]+"/>　1~20文字<font color="red">＊</font></td></tr>
         <tr><th>メンバー　</th>
