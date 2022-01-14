@@ -88,7 +88,9 @@ public class SearchStudent extends HttpServlet {
             }else  if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
                 if(type.equals("regist")){
                     list = service.getStudent();
+                    stu_classlist = service.getStudent();
                     request.setAttribute("List", list);
+                    request.setAttribute("List_all" ,stu_classlist);
                     System.out.println("Please full all regist");
                     tourl = "/WEB-INF/classes/registClass.jsp";
                 }else if(type.equals("update")){

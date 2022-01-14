@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="green">
-      <p align="right">ID ${User.id}</p><!--ここのID出てこない…-->
+      <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">児童・生徒登録</h1>
     </div>
     <!--a href="./studentTop.jsp">児童生徒トップへ</a-->

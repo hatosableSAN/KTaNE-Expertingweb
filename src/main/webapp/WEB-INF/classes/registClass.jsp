@@ -45,7 +45,8 @@ pageEncoding="UTF-8"%>
           </form>
               <% }else{
             if(list.size()==0){ %>
-              <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>            
+              <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
+            </table>           
         <% }else{
             for(Student s:list){ %>
                 <tr>
