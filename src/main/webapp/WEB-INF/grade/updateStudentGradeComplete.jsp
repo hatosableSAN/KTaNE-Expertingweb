@@ -12,6 +12,6 @@ pageEncoding="UTF-8"%>
       <p align="right">ユーザーID　${User.id}</p>
     </div>
     <h1 align="center">評価の変更が完了しました</h1>
-    <div class="center" ><a href="./GradeTop"><button align="center" name="regist_top" class="backbtn_middle">評価メニュートップへ戻る</button></a></div>
+    <div class="center" ><a href="./GradeTop"><button align="center" name="regist_top" class="backbtn_middle">評価メニュー<br/>トップへ戻る</button></a></div>
   </body>
 </html>

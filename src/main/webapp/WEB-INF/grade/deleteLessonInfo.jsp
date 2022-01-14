@@ -39,6 +39,6 @@ pageEncoding="UTF-8"%>
 
     </form>
     
-      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top" >評価メニュートップへ戻る</button></a>
+      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top" >評価メニュー<br/>トップへ戻る</button></a>
   </body>
 </html>
