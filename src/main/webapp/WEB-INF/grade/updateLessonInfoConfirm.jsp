@@ -23,24 +23,24 @@
     </div>
   
     <br>
-    以下の内容に変更します。<br/><br/>
+    <h2>以下の内容に変更します。</h2><br/><br/>
 
     <form action="./UpdateLessonInfoComplete" method="post">
-      <p>授業日</p>
-        <%=ClassDate%>
+      <h3>授業日</h3>
+        <h3><%=ClassDate%></h3>
         <input type="hidden" value="<%=ClassDate%>" name="LessonDate">
-        <%=PeriodNum%>限<br/>
+        <h3><%=PeriodNum%>限<br/></h3>
         <input type="hidden" value="<%=PeriodNum%>" name="PeriodNum">
-  <p>授業コメント(400文字以内)</p>
+      <h3><p>授業コメント(400文字以内)</p></h3>
   <input type="hidden" value="<%=Comment%>" name="Comment">
   <input type="hidden" value="<%=Lesson.getId()%>" name="Id">
-  <p> <%=Comment%></p>
+  <h3> <%=Comment%></h3>
         </textarea>
 
         <input type="submit" class="btn" id="btn_right" value="変更を確定">
 
     </form>
     
-      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュー<br/>トップへ戻る</button></a>
+      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

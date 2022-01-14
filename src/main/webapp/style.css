@@ -50,7 +50,7 @@
     margin: 20px;
   }
 
-  .backbtn_.backbtn_middle:active {
+  .backbtn_middle:active {
     transform: translate(0,2px);
     filter:none;
     }

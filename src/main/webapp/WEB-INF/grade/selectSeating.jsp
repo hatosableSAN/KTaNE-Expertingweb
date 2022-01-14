@@ -48,8 +48,11 @@ pageEncoding="UTF-8"%>
                 <%=outputdf.format(inputdf.parse(Seating.getEndDate()))%>
                 <% }else{%>
                   終了日未定
-                <% }%>
-            <td><%=Seating.getName() %></td>
+                <% } if(Seating.getName()==null){%>
+                  <td>無名のクラス</td>
+            <%}else{%>
+              <td><%=Seating.getName()%></td>
+            <%}%>
             <td style="padding-left: 10px;padding-right: 10px;"><form action="./RegistGradeInfo" method="post">
               <input type="hidden" name="id" value=<%=Seating.getId()%>>
             <input type="submit" value="選択" class="btn"></form></td>
