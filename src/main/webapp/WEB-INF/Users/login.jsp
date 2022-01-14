@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
         <p align="center">
         ID 　<input type="text" name="id" placeholder="半角英数字(６～１５文字)" pattern="^[a-zA-Z0-9]+$" maxlength="15"/><br /><br/>
         パスワード　 <input type="password" name="password" placeholder="半角英数字(８～１５文字)" pattern="^[a-zA-Z0-9]+$" maxlength="15"/><br /><br/>
-        <input type="submit" name="OK" value="ログイン" class="btn" style="font-size: 16;"/>
+        <input type="submit" name="OK" value="　ログイン　" class="btn" style="font-size: 16;"/>
         </p>
     </form>
 </html>
