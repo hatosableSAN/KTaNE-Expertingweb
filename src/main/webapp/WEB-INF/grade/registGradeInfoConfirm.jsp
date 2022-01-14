@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.SeatingArrangements" %>
 <% User User = (User)session.getAttribute("User"); %>
 <% List<SeatingArrangements> SeatList = (List<SeatingArrangements>)request.getAttribute("SeatList"); %>
-  
+
     <% String ClassDate=(String)request.getParameter("ClassDate");%>
     <% String PeriodNum=(String)request.getParameter("PeriodNum");%>
     <% String Comment=(String)request.getParameter("Comment");%>
@@ -15,6 +15,8 @@ pageEncoding="UTF-8"%>
 <head>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
   <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script type="text/javascript" src="<%=request.getContextPath()%>/css/stop_button.js"></script>
 </head>
 
   <body>
@@ -41,7 +43,7 @@ pageEncoding="UTF-8"%>
         <input type="submit" class="btn" id="btn_right" value="評価を確定する">
 
     </form>
-    
+
     <a href="./RegistClassesInfo"><button align="center" class="button_grey" id="btn_left" name="regist_top">入力画面へ戻る</button></a>
   </body>
 </html>
