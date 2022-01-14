@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
         ～
         <input type="date" value="<%if(seatingArrangements.getEndDate() != null){%><%=seatingArrangements.getEndDate()%><% }%>" name="enddate" min="<%=ClassDef.getClass_year()%>-04-01" max="<%=ClassDef.getClass_year()+1%>-03-31">
         <Br>
-        席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\s\-\u30FC]+"/><br>
+        席名：<input type="text" value="<%=seatingArrangements.getName()%>"name="seatname" placeholder="(0~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\s\-\u30FC]+"/><br>
         <font color="red">＊座席配置開始期間の入力は必須です</font>
       </div>
         <input type="submit" formaction="./RegistSeatingInfo" formmethod="POST" value="座席配置を確定する" class="btn" id="btn_right_seat" />
