@@ -89,6 +89,6 @@ pageEncoding="UTF-8"%>
               </table></div>
 
       <br />
-      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" >キャンセル</button></a>
-  </body>
+      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" >評価メニュー<br/>トップへ戻る</button></a>
+      </body>
 </html>

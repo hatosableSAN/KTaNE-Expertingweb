@@ -121,7 +121,8 @@ pageEncoding="UTF-8"%>
 
  </head>
   <body>
-    <a href="./GradeTop"><button align="center" class="backbtn" name="regist_top">評価メニュー<br/>トップへ戻る</button></a>
+        <table>
+          <a href="./selectGradeLessons"><button align="center" class="backbtn" name="regist_top">評価一覧へ戻る</button></a>
     <div class="darkblue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">授業評価閲覧</h1>
@@ -134,7 +135,7 @@ pageEncoding="UTF-8"%>
     <a href="./DeleteLessonInfo"><button align="center" name="regist_top"class='button_grey' style="color: red; width:80px; height: 20px;padding: 0;">削除</button></a>
     <br>
       
-        <table style="">
+        <table>
           <%
           int j = 0;
           for(int k = 0;k<7;k++) {%>

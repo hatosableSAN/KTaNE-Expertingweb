@@ -24,21 +24,33 @@ pageEncoding="UTF-8"%>
     </div>
   
     <br>
-    以下の内容を削除します。<br/><br/>
+    <div style="text-align: center;">
+    <h2 style="color: red;">以下の内容を削除します。</h2><br/><br/>
 
     <form action="./DeleteLessonComplete" method="post">
-    <p>授業日</p>
-      <%=Lesson.getLessonDate()%>
-      <%=Lesson.getPeriodnum()%>限<br/>
-<p>授業コメント(400文字以内)</p>
+     
+      <h3>授業日<br/>
+        <h3><%=Lesson.getLessonDate()%> <%=Lesson.getPeriodnum()%>限</h3>
+        <br/>
+    </p>
+    <h3>授業コメント(400文字以内)</p></h3>
 <input type="hidden" value="<%=Lesson.getId()%>" name="Id">
-<p> <%=Lesson.getComment()%></p>
-      </textarea>
+<h3> <%=Lesson.getComment()%></p></h3>
+
+<br/>
+<br/>
+<h2 style="color: red;">
+・授業日<br/>
+・授業コメント<br/>
+・授業評価に含まれる全ての個人評価<br/>
+が削除されます。
+</h2>
+</div>
 
         <input type="submit" class="btn" id="btn_right"　value="入力を確定">
 
     </form>
     
-      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top" >評価メニュー<br/>トップへ戻る</button></a>
+      <button onclick="window.history.back(); return false;"align="center" class="button_grey" id="btn_left" name="regist_top" >評価メニュー<br/>トップへ戻る</button></a>
   </body>
 </html>

@@ -26,8 +26,8 @@ pageEncoding="UTF-8"%>
   <font size="2px">検索：</font>
   <div style="display:inline-flex">
   <form action="./SearchLessons" method="post">
-    <input type="text" name="searchword" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-    <input type="radio" name="type" value="date" checked> <font size="2px">授業日(yyyy-mm-dd)</font>
+    <input type="text" name="searchword" maxlength="20" minlength="1"/>
+    <input type="radio" name="type" value="date" checked> <font size="2px">授業日(yyyy/mm/dd)</font>
     <input type="radio" name="type" value="comment"> <font size="2px">授業コメント</font>
     <input type="hidden" value="search" name="button">
     <button text-align="center" name="show_class" class="button" style="width: 70px; height:30px; margin: 5px;padding: 0px;">検索実行</button>

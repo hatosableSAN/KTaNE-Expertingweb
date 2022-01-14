@@ -4,6 +4,7 @@ package servlet;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -82,7 +83,7 @@ Boolean wordisDate=false;
                 if (searchword == null || searchword.length() != 10) {
                     wordisDate=false;  
                 }else{
-                DateFormat format = DateFormat.getDateInstance();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
                 format.setLenient(false);
              
                     try {
@@ -138,6 +139,7 @@ Boolean wordisDate=false;
                    //tourl = "/WEB-INF/classes/registClassNone.jsp";// 検索結果がありません画面に飛ぶ
                    System.out.println("in if");
                }
+            }
                                       }else{//コメント検索
                                         System.out.println("コメント");
                 list = service.searchLessonWithComment(searchword);// 引数を付けます。stu_infoとselect
@@ -153,7 +155,7 @@ Boolean wordisDate=false;
               
             }
                
-        }
+        
 
             
         session.setAttribute("LessonList",list); 

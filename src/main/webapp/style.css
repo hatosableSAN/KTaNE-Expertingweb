@@ -501,6 +501,7 @@ ul.ddmenu3 {
   ul.ddmenu3 a:hover {
   background-color: #ddf4ff; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
   color: #0075FF;            /* メニュー項目にマウスが載ったときの文字色(濃い赤色) */
+  padding-left: auto;
   }
   
   /* ---------------------------------- */
