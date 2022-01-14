@@ -6,14 +6,14 @@
 <section class="page_404">
 
     
-      <h1 class="text-center ">SESSION ERROR</h1>
+      <h1 style="text-align: center;">SESSION ERROR</h1>
 
     <h3 class="h2">
     </h3>
     
-    <p><br><br>このページを開くには、ログインが必要です。
-    
-    <a href="./index.jsp">トップページへ</a>
+    <p style="text-align: center;"><br><br>このページを開くには、ログインが必要です。
+    <br>
+    <a href="./index.jsp"class="btn">トップページへ</a>
   </div>
     </div>
     </div>
