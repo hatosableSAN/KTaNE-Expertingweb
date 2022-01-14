@@ -75,10 +75,10 @@ public class GradeService {
         return Grade;
     }
 
-    public void registLessons(Lessons lessons) {
+    public void registLessons(Lessons lessons, String userId) {
         GradeDAO dao = new GradeDAO();
         this.connection = dao.createConnection();
-        dao.registLessons(lessons, connection);
+        dao.registLessons(lessons,userId, connection);
         dao.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
     }
@@ -92,10 +92,10 @@ public class GradeService {
         return id;
     }
 
-	public List<Lessons> getLessonList() {
+	public List<Lessons> getLessonList(String userId) {
         GradeDAO dao = new GradeDAO();
         this.connection=dao.createConnection();
-        List<Lessons> List = dao.getLessonList(connection);
+        List<Lessons> List = dao.getLessonList(userId,connection);
         // dao に反映
         dao.closeConnection(this.connection);
         return List;

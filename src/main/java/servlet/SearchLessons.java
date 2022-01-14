@@ -49,12 +49,10 @@ public class SearchLessons extends HttpServlet {
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User User = (User)session.getAttribute("User"); 
+        String UserId=User.getId(); 
 
-
-
-
-
-        HttpSession session = request.getSession(true);
         if (LoginChecker.notLogin(session)) {
             System.out.println("セッション情報がありません");
             RequestDispatcher dispatcher = request.getRequestDispatcher(LoginChecker.getErrorpage());
@@ -108,7 +106,7 @@ Boolean wordisDate=false;
 
 
             if(button.equals("all")){//一覧表示
-                list = service.getLessonList();// 引数を付けます。stu_infoとselect
+                list = service.getLessonList(UserId);// 引数を付けます。stu_infoとselect
                 System.out.println("一覧表示");
                 System.out.println("list size is "+list.size());
                 if (list.size() == 0) {
@@ -118,7 +116,7 @@ Boolean wordisDate=false;
             }
         }else if (searchword.isEmpty()) { // テキストボックスが空だったら一覧表示
             System.out.println("空のテキスト");
-                    list = service.getLessonList();
+                    list = service.getLessonList(UserId);
                    System.out.println("list size is "+list.size());
                    if (list.size() == 0) {
                        // 検索に当てはまる児童がいなかった

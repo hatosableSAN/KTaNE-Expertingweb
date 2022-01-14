@@ -8,6 +8,7 @@ public class Lessons {
     private String LessonDate;
     private int periodnum;
     private String Comment;
+    private String UserId;
 
     public int getId() {
         return this.id;
@@ -15,6 +16,14 @@ public class Lessons {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return this.UserId;
+    }
+
+    public void setUserId(String UserId) {
+        this.UserId = UserId;
     }
 
     public int getSeating_arrangements_id() {
@@ -51,14 +60,15 @@ public class Lessons {
 
  
     // 初期値を引数に持ったコンストラクタ
-    public Lessons(int id,int seating_arrangements_id,String LessonDate,int periodnum,String comment) {
+    public Lessons(int id,int seating_arrangements_id,String LessonDate,int periodnum,String comment,String UserId
+    ) {
 
         this.id = id;
         this.seating_arrangements_id	 = seating_arrangements_id;
         this.LessonDate = LessonDate;
         this.periodnum = periodnum;
         this.Comment=comment;
-        // this.taikai_kekka = taikai_kekka;
+        this.UserId=UserId;
 
     }
 

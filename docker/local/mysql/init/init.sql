@@ -61,7 +61,6 @@ CREATE TABLE `grades` (
   `green` int DEFAULT NULL,
   `comment` varchar(400) DEFAULT NULL,
   `seat` int NOT NULL,
-  `user_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -85,6 +84,7 @@ CREATE TABLE `lessons` (
   `lesson_date` date NOT NULL,
   `period_num` int NOT NULL,
   `comment` varchar(400) DEFAULT NULL,
+  `user_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -306,7 +306,6 @@ CREATE TABLE `grades` (
   `green` int DEFAULT NULL,
   `comment` varchar(400) DEFAULT NULL,
   `seat` int NOT NULL,
-  `user_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY(user_id) REFERENCES user(id),
   FOREIGN KEY(student_id) REFERENCES students(id),
@@ -323,6 +322,7 @@ CREATE TABLE `lessons` (
   `lesson_date` date NOT NULL,
   `period_num` int NOT NULL,
   `comment` varchar(400) DEFAULT NULL,
+   `user_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY(seating_arrangements_id) REFERENCES seating_arrangements(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
     <form action="./UpdateLessonInfoConfirm" method="post">
 授業日：
       <input type="date" name="ClassDate" value="<%=Lesson.getLessonDate()%>"required>
-      <input type="text" name="PeriodNum" value ="<%=Lesson.getPeriodnum()%>"required>限<br/><font color="red">* </h2>
+      <input type="number" name="PeriodNum" value ="<%=Lesson.getPeriodnum()%>"required>限<br/><font color="red">* </h2>
         <br/><p style="position: absolute;right:300px;">*は必須項目です</font>
 授業コメント(400文字以内)
       <textarea class="textarea-grade" rows="40" cols="10" maxlength="400" name="Comment" style="  width:500px;

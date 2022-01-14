@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
     <form action="./RegistGradeInfoConfirm" method="post">
 <h2 style="text-align: center;">授業日：
       <input type="date" name="ClassDate" required>
-      <input type="number" name="PeriodNum" required>限  <font color="red">* </h2>
+      <input type="number" name="PeriodNum" required min=0>限  <font color="red">* </h2>
         <br/><p style="position: absolute;right:300px;">*は必須項目です</font></p></br>
 <h2>授業コメント(400文字以内)</h2>
       <textarea class="textarea-grade" rows="40" cols="10" maxlength="400" name="Comment" style="  width:500px;
@@ -34,6 +34,6 @@ pageEncoding="UTF-8"%>
 
     </form>
     
-    <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュー<br/>トップへ戻る</button></a>
+    <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュートップへ戻る</button></a>
   </body>
 </html>

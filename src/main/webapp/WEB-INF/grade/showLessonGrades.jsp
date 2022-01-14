@@ -122,7 +122,7 @@ pageEncoding="UTF-8"%>
  </head>
   <body>
         <table>
-          <a href="./selectGradeLessons"><button align="center" class="backbtn" name="regist_top">評価一覧へ戻る</button></a>
+          <a href="./SelectGradeLessons"><button align="center" class="backbtn" name="regist_top">評価一覧へ戻る</button></a>
     <div class="darkblue">
       <p align="right">ユーザーID　${User.id}</p>
       <h1 align="center">授業評価閲覧</h1>

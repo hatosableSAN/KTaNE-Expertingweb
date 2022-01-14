@@ -82,7 +82,7 @@ public class GradeDAO extends DriverAccessor {
         try {
 
             // SQLコマンド
-            String sql = "insert into grades (student_id,lesson_id,attendance,red,green,blue,comment,seat,user_id) values(?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String sql = "insert into grades (student_id,lesson_id,attendance,red,green,blue,comment,seat) values(?, ?, ?, ?, ?, ?, ?, ?)";
 
             // SQLコマンドの実行
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class GradeDAO extends DriverAccessor {
             stmt.setInt(6, Grade.getBlue());
             stmt.setString(7, Grade.getComment());
             stmt.setInt(8, Grade.getSeat());
-            stmt.setString(9, Grade.getUserId());
+            
 
             stmt.executeUpdate();
 
@@ -235,9 +235,9 @@ public class GradeDAO extends DriverAccessor {
 		return null;
 	}
 
-    public void registLessons(Lessons lessons, Connection connection) {
+    public void registLessons(Lessons lessons,String userId,Connection connection) {
         try{
-        String sql = "insert into lessons (seating_arrangements_id,lesson_date,period_num,comment) values(?, ?, ?,?)";
+        String sql = "insert into lessons (seating_arrangements_id,lesson_date,period_num,comment,user_id) values(?, ?, ?,?,?)";
             
             PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
@@ -245,7 +245,7 @@ public class GradeDAO extends DriverAccessor {
             stmt.setString(2, lessons.getLessonDate());
             stmt.setInt(3, lessons.getPeriodnum());
             stmt.setString(4, lessons.getComment());
-
+            stmt.setString(5, userId);
 
             stmt.executeUpdate();
 
@@ -285,14 +285,15 @@ public class GradeDAO extends DriverAccessor {
      
     }
 
-    public List<Lessons> getLessonList(Connection connection) {
-        String sql = "select * from lessons";
+    public List<Lessons> getLessonList(String UserId,Connection connection) {
+        String sql = "select * from lessons where user_id=?";
         try {
 
             // SQLコマンド
 
-
+          
             PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, UserId);
             ResultSet rs = statement.executeQuery();
             List<Lessons> List = new ArrayList<Lessons>();
 
@@ -316,6 +317,7 @@ public class GradeDAO extends DriverAccessor {
              returnSb.setLessonDate(rs.getString("lesson_date"));
              returnSb.setPeriodnum(rs.getInt("period_num"));
              returnSb.setComment(rs.getString("comment"));
+             returnSb.setComment(rs.getString("user_id"));
              List.add(returnSb);
             // System.out.println("リスト追加したよ");
              }
@@ -377,7 +379,6 @@ public class GradeDAO extends DriverAccessor {
         returnSb.setGreen(rs.getInt("green"));
         returnSb.setComment(rs.getString("comment"));
         returnSb.setSeat(rs.getInt("seat"));
-        returnSb.setUserId(rs.getString("user_id"));
         List.add(returnSb);
              }
              return List;
@@ -509,7 +510,6 @@ public class GradeDAO extends DriverAccessor {
         returnSb.setGreen(rs.getInt("green"));
         returnSb.setComment(rs.getString("comment"));
         returnSb.setSeat(rs.getInt("seat"));
-        returnSb.setUserId(rs.getString("user_id"));
         List.add(returnSb);
         System.out.println("リスト追加しましたよ");
              }
@@ -543,7 +543,6 @@ public class GradeDAO extends DriverAccessor {
                 Grade.setGreen(rs.getInt("green"));
                 Grade.setComment(rs.getString("comment"));
                 Grade.setSeat(rs.getInt("seat"));
-                Grade.setUserId(rs.getString("user_id"));;
             // 終了処理
             rs.close();
             statement.close();

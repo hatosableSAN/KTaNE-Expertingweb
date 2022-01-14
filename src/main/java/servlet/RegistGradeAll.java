@@ -126,9 +126,10 @@ public class RegistGradeAll extends HttpServlet {
             Lessons.setLessonDate(ClassDate);
             Lessons.setPeriodnum(period_num);
             Lessons.setComment(Comment);
-
+            User User = (User) session.getAttribute("User");
+            String userId = User.getId();
             GradeService service = new GradeService();
-            service.registLessons(Lessons);
+            service.registLessons(Lessons,userId);
             // 授業を登録します
             // 登録した授業のIDを取得します
 
@@ -136,15 +137,12 @@ public class RegistGradeAll extends HttpServlet {
 
             // 次に評価を登録します
             List<Grade> GradeList = (List<Grade>) session.getAttribute("Grade");
-            User User = (User) session.getAttribute("User");
-            String UserId = User.getId();
             for (Grade Grade : GradeList) {
                 Grade.setLessonId(lessonid);
-                Grade.setUserId(UserId);
 
                 service.registGrade(Grade);
 
-                System.out.println(UserId + "さんの評価を登録しました");
+                System.out.println(userId + "さんの評価を登録しました");
             }
 
             System.out.println("全ての評価が登録されました");

@@ -12,7 +12,6 @@ public class Grade {
     private int blue = 1; // 初期値を引数に持ったコンストラクタ
     private String comment = null; // 初期値を引数に持ったコンストラクタ
     private int seat = 0; // 初期値を引数に持ったコンストラクタ
-    private String UserId = null;
 
     public int getId() {
         return this.id;
@@ -85,15 +84,6 @@ public class Grade {
     public void setSeat(int seat) {
         this.seat = seat;
     }
-
-    public String getUserId() {
-        return this.UserId;
-    }
-
-    public void setUserId(String UserId) {
-        this.UserId = UserId;
-    }
-
     public Grade(int id,String StudentId,int lesson_id,Boolean attendance,int red,int green,int blue,String comment,int seat,String UserId){
     // 属性
     this.id=id;
@@ -105,7 +95,6 @@ public class Grade {
     this.blue = blue; // 初期値を引数に持ったコンストラクタ
     this.comment = comment; // 初期値を引数に持ったコンストラクタ
     this.seat = seat; // 初期値を引数に持ったコンストラクタ
-    this.UserId = UserId;
 
     }
 

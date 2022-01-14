@@ -74,6 +74,10 @@ pageEncoding="UTF-8"%>
     padding: 10px;
     
       }
+      .selectable:active{
+        transform: translate(0,2px);
+    filter:none;
+      }
       .no-selectable{
     margin-left: -80px;
     text-align: center;
