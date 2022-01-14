@@ -34,6 +34,9 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:#4088CA;
         text-align:center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
       .setseatf {
         width: 80px;
@@ -41,6 +44,9 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:rgb(240, 134, 134);
         text-align:center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
       .setseato {
         width: 80px;
@@ -48,6 +54,9 @@ pageEncoding="UTF-8"%>
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:gray;
         text-align:center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
       .selectable{
     margin-right: -80px;
@@ -78,8 +87,10 @@ pageEncoding="UTF-8"%>
         height: 50px;
         border: 1px solid #000;      /* わかりやすくボーダーを引く */
         background-color:rgb(71, 255, 101);
-        
         text-align:center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
       .left{
         padding-left:40px;
