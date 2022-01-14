@@ -3,7 +3,8 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import= "beans.Student" %>
 <%
-    List<Student> list=(List<Student>) request.getAttribute("List");
+    List<Student> list=(List<Student>) session.getAttribute("List");
+    List<Student> list_all=(List<Student>) session.getAttribute("List_all");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,26 +35,17 @@ pageEncoding="UTF-8"%>
         <tr><th>クラス名　</th>
         <td><input type="text" name="class_name" placeholder="(1~20文字)" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9０-９\-\u30FC]+"/>　1~20文字<font color="red">＊</font></td></tr>
         <tr><th>メンバー　</th>
-        <!--form action="../RegistStudentGet" method="post">
-            <button text-align="center" name="regist_class">一覧表示</button>
-        </form-->
         <td>
         <div class="student">
         <table>
             <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
-            <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->
-
-
-            <% if(list.size() == 0){ %>
-              <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
-              <% }else{
-
-            if(list.size()==0){ %><!--検索結果が0の時と児童が登録されていない時の判別が出来ていない-->
+            <% if(list_all.size() == 0){ %>
             </table>
             <h4 align="center">児童が登録されていません</h4>
             </div>
-            <!--input type="submit" value="登録" name="hand" class="btn" id="btn_right">
-          </form-->
+              <% }else{
+            if(list.size()==0){ %>
+              <tr><td></td><td align="center">検索結果に当てはまる児童が</td><td>いませんでした</td></tr>
         <% }else{
             for(Student s:list){ %>
                 <tr>
@@ -71,28 +63,31 @@ pageEncoding="UTF-8"%>
                 </td>
                 <td><%=s.getStudent_user() %></td>
                 </tr>
-            <%} } }%>
+            <%} %>
+              </table>
+            <% } }%>
 
-        </table>
+        <!--/table-->
         </div>
-        <h4><font color="red">クラス、年度は必須項目です</font></h4>
         <input type="submit" value="登録" name="hand" class="btn" id="btn_right">
       </form>
       <tr><th>　</th>
-      <td><font size="2px">メンバー検索：</font>
+      <td><font size="2px">児童生徒検索：</font>
+        <div style="display:inline-flex">
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-            <input type="radio" name="radiobutton" value="number" required> <font size="2px">番号</font>
+            <input type="radio" name="radiobutton" value="number" required checked> <font size="2px">番号</font>
             <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
             <input type="hidden" value="regist" name="type">
             <button text-align="center" name="regist_class" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>
-            <!--button text-align="center" name="regist_class">一覧表示</button-->
-        </form>
+        </form>　
         <form action="./RegistStudentGet" method="post">
           <button text-align="center" name="search_stu" value="all" class="button" style="width: 70px; height:30px; padding:0px;">一覧表示</button>
         </form>
-</td></tr></table>
-      <br />
+        </div>
+       </td></tr></table>
+       <br>
+       <h4 align="center"><font color="red">クラス、年度は必須項目です</font></h4>
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
       <form action='./ClassTop' method='get'>
         <input type='submit' value='キャンセル' class="button_grey" id="btn_left">

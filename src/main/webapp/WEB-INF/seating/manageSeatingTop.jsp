@@ -103,7 +103,7 @@ pageEncoding="UTF-8"%>
           <% }%>
     </table><br>
     <p class="text">座席配置一覧</p><br>
-    <table>
+    <table style="margin-bottom:30px;">
       <tr class="bar">
         <th>クラス</th>
         <th>開始期間~終了期間</th>

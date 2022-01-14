@@ -184,6 +184,7 @@ div.right {
 .button:active {
   transform: translate(0,2px);
   filter:none;
+  box-shadow:none;
   }
 
 .button_grey{/*○○トップに戻るボタン？ではなく左下のキャンセルボタン　色と影と大きさ*/

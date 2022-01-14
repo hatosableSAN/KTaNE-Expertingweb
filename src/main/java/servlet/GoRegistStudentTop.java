@@ -40,8 +40,12 @@ public class GoRegistStudentTop extends HttpServlet {// クラス
             // RequestDispatcher dispatcher =
             // request.getRequestDispatcher("WEB-INF/student/studentTop.jsp");
             // dispatcher.forward(request, response);
-            getServletContext().getRequestDispatcher("/WEB-INF/student/registStudentHand.jsp").forward(request,
-                    response);// 上のdoGetをまとめて書いている
+
+            // getServletContext().getRequestDispatcher("/WEB-INF/student/registStudentHand.jsp").forward(request,response);//
+            // 上のdoGetをまとめて書いている
+            getServletContext().getRequestDispatcher("/WEB-INF/student/registStudentTop.jsp").forward(request,
+                    response);
+
             System.out.println("doGet now regist");
             // doPost(request,response);
         }

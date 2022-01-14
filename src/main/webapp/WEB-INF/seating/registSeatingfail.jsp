@@ -9,13 +9,9 @@ pageEncoding="UTF-8"%>
   <body>
     <div class="blue">
       <p align="right">ユーザーID　${User.id}</p>
-      </div>
-      <h2 align="center">座席配置を削除しました</h2>
-      <%-- <div class="center">
-    <a href="./SeatingTop"><button align="center" class="backbtn_middle"　name="regist_top">座席配置メニュートップへ戻る</button></a>
-    </div> --%>
-    <div class="center">
-    <a href="./manageSeatingTop"><button align="center" class="backbtn_middle"　name="regist_top">座席配置一覧へ戻る</button></a>
     </div>
+    <h2 align="center">座席配置の登録に失敗しました。<Br>再度やり直してください</h2>
+    <br><br><br>
+    <p align = "center"><a href="./SeatingTop" class="backbtn3">座席配置メニュートップへ戻る</a></p>
   </body>
 </html>

@@ -56,7 +56,7 @@ public class SelectGradeLessons extends HttpServlet {
 
             List<Lessons> LessonList = Service.getLessonList();
 
-            request.setAttribute("LessonList", LessonList);
+            session.setAttribute("LessonList", LessonList);
             System.out.println(LessonList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectLessons.jsp");
 

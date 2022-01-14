@@ -28,7 +28,7 @@ pageEncoding="UTF-8"%>
 
     <br>
     　座席配置を選択してください。<br>
-    <table border="1" style="border-collapse: collapse;width: 800px;text-align: center;">
+    <table border="1" style="border-collapse: collapse;width: 800px;text-align: center;padding: 100;">
       <tr>
         <th>クラス</th>
         <th colspan="3">開始期間　終了期間</th>
@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%>
             <td><%=Seating.getName() %></td>
             <td style="padding-left: 10px;padding-right: 10px;"><form action="./RegistGradeInfo" method="post">
               <input type="hidden" name="id" value=<%=Seating.getId()%>>
-            <input type="submit" value="選択" class="btn" style="height: 10%;padding: 5px;"></form></td>
+            <input type="submit" value="選択" class="btn"></form></td>
       <% i++;} }%>
     </table>
       <br/>

@@ -77,6 +77,9 @@ public class DeleteStudent extends HttpServlet {
             User user = (User) session.getAttribute("User");
 
             student = service.searchStudent(student);
+            //session.setAttribute("Student",student);
+            //コメントアウト
+            /*
             response.setContentType("text/html; charset=UTF-8");
             System.out.println("here delete");
             PrintWriter out = response.getWriter();
@@ -155,13 +158,14 @@ public class DeleteStudent extends HttpServlet {
             // out.println("</div></form>");
             out.println("</body>");
             out.println("</html>");
+            */
             request.setAttribute("Student", student);
 
-            // tourl = "/WEB-INF/student/deleteStudentCheck.jsp";
+            tourl = "/WEB-INF/student/deleteStudentConfirm.jsp";
             // //パスは、webappにいるところから考えないといけない！
             // }
 
-            // getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
+            getServletContext().getRequestDispatcher(tourl).forward(request,response);//上のdoGetをまとめて書いている
 
         }
     }

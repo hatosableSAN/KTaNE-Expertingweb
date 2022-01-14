@@ -33,18 +33,24 @@ public class SeatingService {
     public SeatingService() {
     }
 
-    public void registStudentSeatingArr(List<StudentSeatingArr> studentSeatingArrList) {// 座席リストを登録
+    public boolean registStudentSeatingArr(List<StudentSeatingArr> studentSeatingArrList) {// 座席リストを登録
         // DAOオブジェクト生成
+        boolean result = true;
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
         for (int i = 0; i < studentSeatingArrList.size(); i++) {
-            dao.registStudentSeatingArr(studentSeatingArrList.get(i), connection);
+            boolean eachresult = dao.registStudentSeatingArr(studentSeatingArrList.get(i), connection);
+            if (!eachresult) {
+                result = false;
+            }
         }
         // dao に反映
         closeConnection(dao);
+        return result;
     }
 
-    public SeatingArrangements registSeatingArrangements(SeatingArrangements SeatingArrangements) {// 座席配置を登録・登録した座席配置を返す
+    public SeatingArrangements registSeatingArrangements(SeatingArrangements SeatingArrangements) {
+        // 座席配置を登録・登録した座席配置を返す(失敗した場合はnullが返る)
         // DAOオブジェクト生成
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
@@ -184,7 +190,7 @@ public class SeatingService {
         // DAOオブジェクト生成
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
-        List<SeatingArrangements> seatingArrangements = dao.getsearchSeatingArr(true,id, index, word, connection);
+        List<SeatingArrangements> seatingArrangements = dao.getsearchSeatingArr(true, id, index, word, connection);
         // dao に反映
         closeConnection(dao);
         return seatingArrangements;
@@ -195,7 +201,7 @@ public class SeatingService {
         // DAOオブジェクト生成
         SeatingDAO dao = new SeatingDAO();
         createConnection(dao);
-        List<SeatingArrangements> seatingArrangements = dao.getsearchSeatingArr(false ,id, index, word, connection);
+        List<SeatingArrangements> seatingArrangements = dao.getsearchSeatingArr(false, id, index, word, connection);
         // dao に反映
         closeConnection(dao);
         return seatingArrangements;

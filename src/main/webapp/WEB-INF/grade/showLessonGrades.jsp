@@ -119,8 +119,8 @@ pageEncoding="UTF-8"%>
 
 
     評価を変更したい座席がある場合は、座席をクリックして評価情報を変更できます。
-    <a href="./UpdateLessonInfo"><button align="center" name="regist_top">授業情報変更</button></a>
-    <a href="./DeleteLessonInfo"><button align="center" name="regist_top">削除</button></a>
+    <a href="./UpdateLessonInfo"><button align="center" class="btn" style="height: auto;"name="regist_top">授業情報変更</button></a>
+    <a href="./DeleteLessonInfo"><button align="center" name="regist_top"class='button_grey' style="color: red; width:80px; height: 20px;padding: 0;">削除</button></a>
     <br>
       
         <table style="">

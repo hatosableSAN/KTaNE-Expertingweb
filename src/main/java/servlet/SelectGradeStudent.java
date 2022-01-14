@@ -56,7 +56,7 @@ public class SelectGradeStudent extends HttpServlet {
 
             List<Student> StudentList = Service.getStudent();
 
-            request.setAttribute("StudentList", StudentList);
+            session.setAttribute("Stu_list", StudentList);
             System.out.println(StudentList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/grade/selectStudent.jsp");
 

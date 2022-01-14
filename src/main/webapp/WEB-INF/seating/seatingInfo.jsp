@@ -60,9 +60,9 @@ pageEncoding="UTF-8"%>
         席名：
         <% if(seatingArrangements.getName() == null){seatingArrangements.setName(""); } %>
         <%=seatingArrangements.getName()%>
-        <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
         </div>
 
+        <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
 
         <form formmethod="POST" method="post">
           <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">

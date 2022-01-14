@@ -6,7 +6,9 @@ pageEncoding="UTF-8"%>
     List<Grade> list=(List<Grade>) session.getAttribute("Grade");
 %>
 
-<% User User = (User)session.getAttribute("User"); %>
+<% User User = (User)session.getAttribute("studentid"); %>
+<% String Name = (String)request.getParameter("studentname"); %>
+<% String Gender = (String)request.getParameter("studentgender"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <style>
@@ -30,14 +32,7 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
         <br />
-        <form action="./SearchStudent" method="post">
-          <font size="2px">検索：</font>
-            <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="^[ぁ-ん]+$ , [\u3041-\u309F]*+^[ァ-ンヴー]+$ , [\u30A1-\u30FF]*+[A-Za-z]"/>
-            <input type="radio" name="radiobutton" value="number"> <font size="2px">番号</font>
-            <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
-            <button text-align="center" name="regist_class" class="button">検索実行</button>
-            <button text-align="center" name="regist_class" class="button">一覧表示</button>
-        </form>
+        番号：<%=list.get(0).getStudentId()%>　氏名：<%=Name%>　性別：<%=Gender%>
           <table>
               <tr><th>授業日</th><th>出欠</th><th>観点1</th><th>観点2</th><th>観点3</th><th>評価コメント</th><th></th></tr>
               <!--tr><td><input type="checkbox"/></td><td>E195406</td><td>鈴木有里</td><td>女</td><td>ABC</td></tr-->

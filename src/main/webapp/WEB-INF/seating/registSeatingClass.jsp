@@ -17,9 +17,8 @@ pageEncoding="UTF-8"%>
       <h1 align="center">座席配置新規作成</h1>
     </div>
     <a href="./SeatingTop"><button align="center" name="regist_top" class = "backbtn">座席配置メニュー<br/>トップへ戻る</button></a>
-    <br>
     <form action="./RegistSeatingClass" method="post">
-    　クラスを選択してください。<br>
+    　<div class="center">クラスを選択してください。<br></div>
     <div class="center">
         クラス：<select name="classId">
             <% if(ClassDefList.size() > 0) {
@@ -30,10 +29,10 @@ pageEncoding="UTF-8"%>
             <% } }%></select><br />
         <br />
         <% if(ClassDefList.size() > 0){%>
-        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn"/></p>
+        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn" style="position:absolute; bottom: 50px; right: 200px; font-size: 20px;"/></p>
         <%}else{%>
         <font color='red'>※先にクラスを登録してください。</font>
-        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn" disabled></p>
+        <p align="right"><input type="submit" value="座席配置新規作成" class = "btn" style="position:absolute; bottom: 50px; right: 200px; font-size: 20px;" disabled></p>
         <%}%>
       </form>
     </div>
