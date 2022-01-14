@@ -40,7 +40,6 @@ pageEncoding="UTF-8"%>
             <tr><th>　　</th><th class="bar">番号　　　　　　　　　　　</th><th class="bar">名前　　　　　　　　　　　　　</th><th class="bar">性別　　　　　　　　　</th><th class="bar">登録者　　　　　　　　　</th></tr>
             <% if(list_all.size() == 0){ %>
             </table>
-            <br>
             <h4 align="center">児童が登録されていません</h4>
             </div>
           </form>
@@ -64,7 +63,10 @@ pageEncoding="UTF-8"%>
                 <td><%=s.getStudent_user() %></td>
                 <!--/label-->
                 </tr>
-                <%} } }%>
+                <%} %>
+              </table> 
+            <% }
+             }%>
 
         <!--/table-->
         </div>

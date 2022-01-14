@@ -5,7 +5,7 @@
 <% String stu_user = request.getParameter("stu_user");%>
 <%@ page import= "beans.Student" %>
 <%
-    Student student=(Student) session.getAttribute("Student");
+    Student student=(Student) request.getAttribute("Student");
 %>
 
 <html>
