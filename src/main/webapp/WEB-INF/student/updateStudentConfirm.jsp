@@ -20,7 +20,7 @@
     <form action="./UpdateStudentConfirm" method="post">
     <table align="center">
       <tr>
-        <th>番号　　　　　　</th><th>名前　　　　　　　　</th><th>性別　　　</th><th>登録者　　　　　　　</th>
+        <th>番号　　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　　</th>
       </tr>
       <tr>
         <td>${Student.student_id}</td>

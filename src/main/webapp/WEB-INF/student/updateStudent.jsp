@@ -16,7 +16,7 @@
     </div><br><br><br>
     <form action="./UpdateStudentCheck" method="post">
     <table align="center">
-      <tr><th>番号<font color="red">＊</font>　　　　　　　　　　　　</th><th>名前<font color="red">＊</font>　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　　</th></tr>
+      <tr><th>番号　　　　　　　　　　　　　</th><th>名前<font color="red">＊</font>　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　　</th></tr>
         <tr><td>${Student.student_id}<input type="hidden" name="stu_id" value=${Student.student_id}></td>
         <td><input type="text" name="stu_name" value=${Student.student_name} pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z\-\u30FC]+"></td>
         <td>
