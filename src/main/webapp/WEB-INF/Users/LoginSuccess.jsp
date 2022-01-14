@@ -9,6 +9,6 @@
         <BR />
         ログイン完了</FONT>
     </P>
-    <p align="center"><a href="Users/systemTop.jsp" class="btn">システムトップへ</a></p>
+    <p align="center"><a href="./SystemTop" class="btn">システムトップへ</a></p>
     </body>　
 </HTML>

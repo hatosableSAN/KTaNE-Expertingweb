@@ -1,0 +1,96 @@
+#modal-content {
+	width: 50% ;
+	margin: 0 ;
+	padding: 10px 20px ;
+	border: 2px solid #aaa ;
+	background: #fff ;
+	position: fixed ;
+	display: none ;
+	z-index: 2 ;
+}
+#modal-content-grade {
+	width: 50% ;
+	height: 100% ;
+	margin: 0 ;
+	padding: 10px 20px ;
+	border: 2px solid #aaa ;
+	background: #fff ;
+	position: fixed ;
+	display: none ;
+	z-index: 2 ;
+}
+
+#modal-overlay {
+	z-index: 1 ;
+	display: none ;
+	position: fixed ;
+	top: 0 ;
+	left: 0 ;
+	width: 100% ;
+	height: 120% ;
+	background-color: rgba( 0,0,0, 0.75 ) ;
+}
+
+.button-link {
+	color: #00f ;
+	text-decoration: underline ;
+}
+
+.button-link:hover {
+	cursor: pointer ;
+	color: #f00 ;
+}
+.seat {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:#fcc490;
+	text-align:center;
+	overflow:auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.seat::-webkit-scrollbar{
+	display: none;
+  }
+.setseatm {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:#4088CA;
+	text-align:center;
+}
+.setseatf {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:rgb(240, 134, 134);
+	text-align:center;
+}
+.setseato {
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:gray;
+	text-align:center;
+}
+.left{
+	padding-left:40px;
+}
+.kyoutaku{
+	width: 80px;
+	height: 50px;
+	border: 1px solid #000;      /* わかりやすくボーダーを引く */
+	background-color:#fcc490;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.right_div{/*座席配置情報を教卓の横に置くクラス*/
+	width: 450px;
+	right: 90px;
+	top: 530px;
+	/*bottom: 5;*/
+	position: absolute;
+	/*align-items: flex-end;*/
+}

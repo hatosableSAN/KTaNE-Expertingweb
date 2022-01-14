@@ -1,6 +1,7 @@
 //　自分が格納されているフォルダ名
 package control;
 
+import java.security.NoSuchAlgorithmException;
 //  自分が格納されているフォルダの外にある必要なクラス
 import java.sql.Connection;
 
@@ -18,7 +19,7 @@ public class UserManager {
 
     // 追加
     // 引数はUserオブジェクト
-    public void registUser(User user) {
+    public void registUser(User user) throws NoSuchAlgorithmException {
         System.out.println("Manager.registUser");
 
         // UserDAOオブジェクト生成
@@ -65,7 +66,7 @@ public class UserManager {
 
     
    // ログイン
-   public boolean loginUser(User user) {
+   public boolean loginUser(User user) throws NoSuchAlgorithmException {
     System.out.println("Manager.loginUser");
 
     //あるかないか（仮）
@@ -87,6 +88,52 @@ public class UserManager {
     this.connection = null;
 
     return ans;
+    }
+
+    // パスワード変更時のパスワードチェック
+   public boolean checkPassword(String id,String password) throws NoSuchAlgorithmException {
+    System.out.println("Manager.checkPassword");
+
+    //あっているかないか（仮）
+    boolean ans = false;
+
+    // StudentDAOオブジェクト生成
+    UserDAO userDAO = new UserDAO();
+
+    // DataBaseへ接続し、コネクションオブジェクトを生成する
+    this.connection = userDAO.createConnection();
+
+    // 検索する
+    ans = userDAO.checkPassword(id,password, this.connection);
+
+    // DataBaseとの接続を切断する
+    userDAO.closeConnection(this.connection);
+
+    // コネクションオブジェクトを破棄する
+    this.connection = null;
+
+    return ans;
+    }
+
+    // パスワード変更
+   public void updatePassword(String id,String passwordU) throws NoSuchAlgorithmException {
+    System.out.println("Manager.updatePassword");
+
+    // StudentDAOオブジェクト生成
+    UserDAO userDAO = new UserDAO();
+
+    // DataBaseへ接続し、コネクションオブジェクトを生成する
+    this.connection = userDAO.createConnection();
+
+    // 変更する
+    userDAO.updatePassword(id,passwordU, this.connection);
+
+    // DataBaseとの接続を切断する
+    userDAO.closeConnection(this.connection);
+
+    // コネクションオブジェクトを破棄する
+    this.connection = null;
+
     }
 
 }

@@ -4,6 +4,7 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,11 +32,9 @@ public class Login extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/login.jsp");
         dispatcher.forward(request, response);
     }
-    
-    
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
     // responseオブジェクトを使って、次のページを表示する
@@ -56,43 +55,50 @@ public class Login extends HttpServlet {
         System.out.println("（Login）取得した文字列は" + password2 + "です！");
 
         // userオブジェクトに情報を格納
-        User user = new User(id, password,password2);
+        User user = new User(id, password, password2);
 
         System.out.println("（User）取得した文字列は" + user.getId() + "です！");
-        System.out.println("（User）取得した文字列は" + user.getPassword()+ "です！");
+        System.out.println("（User）取得した文字列は" + user.getPassword() + "です！");
         System.out.println("（User）取得した文字列は" + user.getPassword2() + "です！");
 
         // requestオブジェクトにオブジェクトを登録
-        //request.setAttribute("User", user);
+        // request.setAttribute("User", user);
 
-        //Record record2 = new Record(name, tournament, round,date,result);
+        // Record record2 = new Record(name, tournament, round,date,result);
 
         // RecordManagerオブジェクトの生成
         UserManager manager = new UserManager();
 
-        boolean ok =false;
+        boolean ok = false;
 
         // ログインの可否
         // manager.searchUser(user)の修正を行うことで、ログインできない理由まで表示できそう
-        ok= manager.loginUser(user);
+
+        try {
+            ok= manager.loginUser(user);
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
 
         // ログイン
-        if(ok==true) {
+        if (ok == true) {
             System.out.println("ログイン成功");
-        	// 完了画面を表示する
-        	//RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/LoginSuccess.jsp");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/systemTop.jsp");
-            //request.setAttribute("User", user);
-            //セッションの作成・取得
+            // 完了画面を表示する
+            // RequestDispatcher dispatcher =
+            // request.getRequestDispatcher("/Users/LoginSuccess.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/systemTop.jsp");
+            // request.setAttribute("User", user);
+            // セッションの作成・取得
             HttpSession session = request.getSession();
             session.setAttribute("User", user);
             dispatcher.forward(request, response);
-        }
-        else {
+        } else {
             System.out.println("ログイン失敗");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Users/loginFailure.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/loginFailure.jsp");
             dispatcher.forward(request, response);
-            //response.sendRedirect("/se21g1/Login");
+            // response.sendRedirect("/se21g1/Login");
         }
 
     }

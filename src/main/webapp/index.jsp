@@ -14,8 +14,8 @@ pageEncoding="UTF-8"%>
         スタート画面<br />
         <br/>
       </FONT>
-      <a href="/se21g1/RegistUser" class="btn">ユーザ登録</a>　　　　　
-      <a href="/se21g1/Login" class="btn">ログイン</a>
+      <a href="/se21g1/RegistUser"><button class="btn" style="font-size: 16;">ユーザー登録</button></a>　　　　　
+      <a href="/se21g1/Login" ><button class="btn" style="font-size: 16;">　ログイン　</button></a>
     </p>
   </body>
 </html>
