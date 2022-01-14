@@ -124,7 +124,7 @@ public class UpdateSeatingInfo extends HttpServlet {
                             tourl = "/WEB-INF/seating/updateSeatingconfirm.jsp";
                         }
                     } else {
-                        tourl = "/WEB-INF/seating/registSeatingconfirm.jsp";
+                        tourl = "/WEB-INF/seating/updateSeatingconfirm.jsp";
                     }
                     // 「配置されている生徒一覧セッション」に座らせた生徒を入れる
                     List<Student> setstudentList = new ArrayList<Student>();
