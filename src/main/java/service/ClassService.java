@@ -189,9 +189,9 @@ public class ClassService {
 
         // for (int i = 0; i < student_member.length; i++) {
             if(student_member.length!=0){
-                for(int i=0; i<student_member.length; i++){
+                //for(int i=0; i<student_member.length; i++){
                     result = memberDAO.updateMember(student_member, classdef, this.connection);
-                }
+                //}
                 //result = memberDAO.updateMember(student_member, classdef, this.connection);
             }else{
                 //クラスからメンバーがいなくなったってことなので、児童を消す必要がある
