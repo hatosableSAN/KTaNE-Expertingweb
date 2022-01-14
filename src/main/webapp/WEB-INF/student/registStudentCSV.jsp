@@ -20,9 +20,10 @@ pageEncoding="UTF-8"%>
       csv形式は、1行目項目名、2行目以降に番号,名前,性別（男・女・その他）<br>
       <div class="right"><button class="btn" id="btn_right" >登録</button></div>
     </form>
-    <form action="./GoRegistStudentTop" method="get">
-    <input type="submit" value="児童・生徒メニュートップへ戻る" class="button_grey" id="btn_left">
-  </form>
+    <a href="./GoRegistStudentTop"><button align="center" name="class_top" class="button_grey" id="btn_left">児童・生徒登録へ戻る</button></a>
+    <!--form action="./GoRegistStudentTop" method="get">
+     <input type="submit" value="児童・生徒登録へ戻る" class="button_grey" id="btn_left">
+    </form-->
 </div>
     <!--<form action="./RegistStudentHand" method="post">
       <table align="center">

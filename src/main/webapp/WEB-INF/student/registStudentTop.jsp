@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
     <!--a href="./studentTop.jsp">児童生徒トップへ</a-->
     <div class="center">
     <a href="./registStudentCSV"><button align="center" name="regist_csv_stu" class="button" style="margin: 20px; height: 70px; font-size: 25px;">CSVファイルから登録</button></a>
-    </div><!--ここは遷移できない、今csvで登録を別ブランチで作業中なので-->
+    </div>
     <form action="./RegistStudentHand" method="get">
       <div class="center">
       <input type="submit" value="手動で登録" class="button" style="margin: 20px; width:150px; height: 70px; font-size: 25px;">
@@ -23,9 +23,9 @@ pageEncoding="UTF-8"%>
     <br><br><br>
     <div class="center">csvファイルとは：項目がコンマで区切られている、excel等で使用できるファイルを指します</div>
     <br>
-    <!--a href="./studentTop.jsp"><button align="center" name="regist_top">児童・生徒トップへ戻る</button></a-->
-    <form action="./GoStudentTop" method="get">
+    <a href="./GoStudentTop"><button align="center" name="class_top" class="backbtn">児童・生徒メニュー<br>トップへ戻る</button></a>
+    <!--form action="./GoStudentTop" method="get">
       <input type="submit" value="児童・生徒メニュートップへ戻る" class="backbtn">
-    </form>
+    </form-->
   </body>
 </html>

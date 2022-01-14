@@ -9,7 +9,9 @@
     <div class="darkblue">
       <p align="right">ユーザーID　${User.id}</p>
     </div>
-    <h1 align="center">評価の変更が完了しました</h1>
-    <a href="./GradeTop"><button align="center" class="backbtn_middle" name="regist_top">評価メニュートップへ戻る</button></a>
+    <h2 align="center">評価の変更が完了しました</h2>
+    <div class="center">
+     <a href="./GradeTop"><button align="center" class="backbtn_middle" name="regist_top">評価メニュートップへ戻る</button></a>
+    </div>
   </body>
 </html>
