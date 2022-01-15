@@ -20,6 +20,7 @@ import beans.Student;
 import beans.User;
 import service.StudentService;
 import service.ClassService;
+import service.GradeService;
 import service.SeatingService;
 
 import java.io.*;
@@ -94,6 +95,7 @@ public class manageSeatingTop extends HttpServlet {
             SeatingService seatingService = new SeatingService();
             ClassService ClassService = new ClassService();
             StudentService StudentService = new StudentService();
+            GradeService gradeService = new GradeService();
 
             // 座席配置情報・クラス情報を取得
             seatingArrangements = seatingService.getSeatingArrangements(seatingArrangements);
@@ -103,6 +105,10 @@ public class manageSeatingTop extends HttpServlet {
             List<Student> StudentList = ClassService.getAllClassmember(ClassDef);
             List<StudentSeatingArr> StudentSeatingArrList = seatingService
                     .getStudentSeatingArrList(seatingArrangements);
+
+            // 座席配置が授業評価を持つかどうか
+            boolean result = gradeService.canGetLesson(seatingArrangements.getId());
+            request.setAttribute("candelete", !result);
 
             request.setAttribute("SeatingArrangements", seatingArrangements);
             request.setAttribute("StudentList", StudentList);

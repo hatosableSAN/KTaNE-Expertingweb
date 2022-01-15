@@ -9,8 +9,8 @@ pageEncoding="UTF-8"%>
     List<String> LessonDateList=(List<String>) session.getAttribute("LessonDateList");
 %>
 
-<% User User = (User)session.getAttribute("studentid"); %>
-<% String id = (String)request.getParameter("studentid"); %>
+<% User User = (User)session.getAttribute("id"); %>
+<% String studentid = (String)request.getParameter("studentid"); %>
 <% String Name = (String)request.getParameter("studentname"); %>
 <% String Gender = (String)request.getParameter("studentgender"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,7 +36,7 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
         <br />
-        番号：<%=id%>　氏名：<%=Name%>　性別：<%=Gender%>
+        番号：<%=studentid%>　氏名：<%=Name%>　性別：<%=Gender%>
         <% if(list==null){%>
           <p style="text-align: center;">評価がありません</p>
           <% }else{%>
@@ -84,7 +84,7 @@ pageEncoding="UTF-8"%>
                 
                   </td>
                   <td><%=s.getComment()%></td>
-                  <td><form action="./UpdateStudentGrades" method="get">
+                  <td><form action="./UpdateStudentGrades" method="post">
                     <input type="hidden" name="gradeid" value="<%=s.getId() %>">
                     <input type="submit" value="変更" class="btn">
                     </form>

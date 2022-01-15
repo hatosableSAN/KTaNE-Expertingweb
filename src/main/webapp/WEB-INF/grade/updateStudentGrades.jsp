@@ -5,6 +5,8 @@ pageEncoding="UTF-8"%>
 <% 
     Grade Grade = (Grade)session.getAttribute("Grade");
 %>
+<% String id = (String)session.getAttribute("studentid"); %>
+<% String Name = (String)session.getAttribute("studentname"); %>
 
 
 <% User User = (User)session.getAttribute("User"); %>
@@ -35,7 +37,8 @@ pageEncoding="UTF-8"%>
             <button text-align="center" name="regist_class">一覧表示</button>
         </form-->
         <br />
-        新しい評価の情報を入力してください。
+       <p>番号<%=id%>　<%=Name%>さんの情報を変更します。<br/>
+        新しい評価の情報を入力してください。</p> 
         <script type="text/javascript">
           function ShowHideDiv() {
           var attend = document.getElementById("attend");
