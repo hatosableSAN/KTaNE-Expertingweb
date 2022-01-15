@@ -41,8 +41,8 @@
       <input type="submit" value="変更を確定" class="btn" id="btn_right">
     </div>
   </form>
-  <form action="./ManageStudent" method="post">
-    <input type="submit" value="キャンセル" class="button_grey" id="btn_left">
+  <form action="./UpdateStudent" method="post">
+    <input type="submit" value="入力画面へ戻る" class="button_grey" id="btn_left">
   </form>
   <!--a href="/student/registStudentTop.jsp"><button align="center" name="regist_top">キャンセル</button></a-->
     </body>

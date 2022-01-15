@@ -122,6 +122,6 @@ pageEncoding="UTF-8"%>
       
 
       <br />
-      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left">キャンセル</button></a>
+      <a href="./ShowStudentGrades"><button align="center" class="button_grey" id="btn_left">生徒の評価一覧へ戻る</button></a>
   </body>
 </html>

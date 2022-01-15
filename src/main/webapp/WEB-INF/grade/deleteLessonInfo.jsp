@@ -51,6 +51,6 @@ pageEncoding="UTF-8"%>
 
     </form>
     
-      <button onclick="window.history.back(); return false;"align="center" class="button_grey" id="btn_left" name="regist_top" >評価メニュートップへ戻る</button></a>
+      <button onclick="window.history.back(); return false;"align="center" class="button_grey" id="btn_left" name="regist_top" >授業評価閲覧に戻る</button></a>
   </body>
 </html>

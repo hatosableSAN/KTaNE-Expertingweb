@@ -92,8 +92,8 @@ pageEncoding="UTF-8"%>
       </form>
       <br />
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
-      <form action='./ClassTop' method='get'>
-        <input type='submit' value='キャンセル' class="button_grey" id="btn_left">
+      <form action='./RegistClass' method='get'>
+        <input type='submit' value='入力画面に戻る' class="button_grey" id="btn_left">
       </form>
   </body>
 </html>

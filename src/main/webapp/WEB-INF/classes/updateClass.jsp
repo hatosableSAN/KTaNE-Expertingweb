@@ -125,9 +125,10 @@ pageEncoding="UTF-8"%>
         </form>
         </div>
       </td></tr></table>
-      <form action='./ClassTop' method='get'>
-        <input type='submit' value='キャンセル' class="button_grey" id="btn_left">
-      </form>
+      <form action="./ClassTop" method="post">
+        <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
+        <input type="submit" value="キャンセル" name="hand" class="button_grey" id="btn_left">
+</form>
       <!--a href="./WEB-INF/classes/classTop.jsp"><button align="center" name="class_top">キャンセル</button></a-->
   </body>
 </html>

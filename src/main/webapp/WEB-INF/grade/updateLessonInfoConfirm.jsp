@@ -40,6 +40,6 @@
 
     </form>
     
-      <a href="./GradeTop"><button align="center" class="button_grey" id="btn_left" name="regist_top">評価メニュートップへ戻る</button></a>
+      <a href="./UpdateLessonInfo"><button align="center" class="button_grey" id="btn_left" name="regist_top">入力画面へ戻る</button></a>
   </body>
 </html>
