@@ -347,6 +347,9 @@ ul.ddmenu1 a {
   text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
   font-weight: bold;         /* 太字にする */
   display: block;            /* ★項目内全域をリンク可能にする */
+  padding-left: 140px;
+  padding-right: 140px;
+  white-space: nowrap;
 }
 ul.ddmenu1 a:hover {
   background-color: #ffdddd; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
@@ -378,7 +381,6 @@ ul.ddmenu1 ul {
 /* ------------------------ */
 ul.ddmenu1 ul li {
   width: 360px;               /* サブメニュー1項目の横幅(135px) */
-  border-top: 1px solid pink; /* 項目上側の枠線(ピンク色で1pxの実線) */
   text-align: center;
   z-index: 2;
 }
@@ -387,6 +389,7 @@ ul.ddmenu1 ul li a {
   text-align: center;      /* 文字列の配置(左寄せ) */
   padding-left: 5px;     /* 文字列前方の余白(5px) */
   font-weight: normal;   /* 太字にはしない */
+  margin-right: 0px;
 }
 ul.ddmenu1 ul li a:hover {
   background-color: #ffff80; /* サブメニュー項目にマウスが載ったときの背景色(淡い黄色) */
@@ -422,7 +425,11 @@ line-height: 40px;         /* メニュー項目のリンクの高さ(40px) */
 text-align: left;        /* メインメニューの文字列の配置(中央寄せ) */
 text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
 font-weight: bold;         /* 太字にする */
-display: block;            /* ★項目内全域をリンク可能にする */
+display: block;  
+margin-right: 0px;
+padding-left:116px;
+padding-right: 116px;/* ★項目内全域をリンク可能にする */
+white-space: nowrap;
 }
 ul.ddmenu2 a:hover {
 background-color: #e0ffdd; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
@@ -454,7 +461,6 @@ z-index: 1;
 /* ------------------------ */
 ul.ddmenu2 ul li {
 width: 360px;               /* サブメニュー1項目の横幅(135px) */
-border-top: 1px solid rgb(192, 255, 208); /* 項目上側の枠線(ピンク色で1pxの実線) */
 text-align: center;
 z-index: 1;
 }
@@ -496,7 +502,11 @@ ul.ddmenu3 {
   text-align: left;        /* メインメニューの文字列の配置(中央寄せ) */
   text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
   font-weight: bold;         /* 太字にする */
-  display: block;            /* ★項目内全域をリンク可能にする */
+  display: block;
+  margin-right: 0px;
+  padding-left: 108px;
+  padding-right: 108px;       /* ★項目内全域をリンク可能にする */
+  white-space: nowrap;
   }
   ul.ddmenu3 a:hover {
   background-color: #ddf4ff; /* メニュー項目にマウスが載ったときの背景色(淡いピンク) */
@@ -528,7 +538,6 @@ ul.ddmenu3 {
   /* ------------------------ */
   ul.ddmenu3 ul li {
   width: 360px;               /* サブメニュー1項目の横幅(135px) */
-  border-top: 1px solid rgb(192, 248, 255); /* 項目上側の枠線(ピンク色で1pxの実線) */
   text-align: center;
   }
   ul.ddmenu3 ul li a {
@@ -560,6 +569,11 @@ ul.ddmenu1 select{
   text-align-last:center;
   display: block; 
   height: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  margin-left: 140px;
+  border-left-width: 1px;
   
 }
 
@@ -575,6 +589,11 @@ ul.ddmenu2 select{
   text-align-last:center;
   display: block; 
   height: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  margin-left: 118px;
+  border-left-width: 1px;
   
 }
 
@@ -590,6 +609,11 @@ ul.ddmenu3 select{
   text-align-last:center;
   display: block; 
   height: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  margin-left: 108px;
+  border-left-width: 1px;
   
 }
 
