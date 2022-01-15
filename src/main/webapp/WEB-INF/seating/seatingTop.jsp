@@ -16,8 +16,8 @@ pageEncoding="UTF-8"%>
     <a href="./SystemTop" class="backbtn">トップへ戻る</a>
     <br/><br/><br/><br/>
     <p align="center">
-    <a href="./RegistSeatingClass"><button text-align="center" name="regist_seating" class = "button" style=" width:500px; height:80px; font-size: 30px;">座席配置新規登録</button></a>
-    <a href="./manageSeatingTop"><button align="center" name="manage_sea" class = "button" style=" width:500px; height:80px; font-size: 30px;">登録済みの座席配置の閲覧・管理</button></a><br><Br>
+    <a href="./RegistSeatingClass"><button text-align="center" name="regist_seating" class = "button" style=" width:500px; height:80px; font-size: 30px;">座席配置新規登録</button></a><br><br>
+    <a href="./manageSeatingTop"><button align="center" name="manage_sea" class = "button" style=" width:500px; height:80px; font-size: 30px;">登録済みの座席配置の閲覧・管理</button></a><br>
     <br><Br>
   </body>
 </html>
