@@ -65,7 +65,6 @@ public class GradeService {
         return grade;
     }
 
-
     public Grade findGrade(Grade grade) {// クラスの情報をidから持ってくる
         GradeDAO dao = new GradeDAO();
         this.connection = dao.createConnection();
@@ -78,7 +77,7 @@ public class GradeService {
     public void registLessons(Lessons lessons, String userId) {
         GradeDAO dao = new GradeDAO();
         this.connection = dao.createConnection();
-        dao.registLessons(lessons,userId, connection);
+        dao.registLessons(lessons, userId, connection);
         dao.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
     }
@@ -86,40 +85,40 @@ public class GradeService {
     public int getLessonId() {
         GradeDAO dao = new GradeDAO();
         this.connection = dao.createConnection();
-        int id=dao.getLessonId(connection);
+        int id = dao.getLessonId(connection);
         dao.closeConnection(this.connection); // DataBaseとの接続を切断する
         this.connection = null;// コネクションオブジェクトを破棄する
         return id;
     }
 
-	public List<Lessons> getLessonList(String userId) {
+    public List<Lessons> getLessonList(String userId) {
         GradeDAO dao = new GradeDAO();
-        this.connection=dao.createConnection();
-        List<Lessons> List = dao.getLessonList(userId,connection);
+        this.connection = dao.createConnection();
+        List<Lessons> List = dao.getLessonList(userId, connection);
         // dao に反映
         dao.closeConnection(this.connection);
         return List;
-	}
+    }
 
     public List<Grade> getGradeList(int id) {
         GradeDAO dao = new GradeDAO();
-        this.connection=dao.createConnection();
+        this.connection = dao.createConnection();
         System.out.println(id);
-        List<Grade> List = dao.getGradeList(id,connection);
+        List<Grade> List = dao.getGradeList(id, connection);
         // dao に反映
         dao.closeConnection(this.connection);
         return List;
     }
 
     public Lessons searchLesson(int id) {
-        Lessons lesson=new Lessons();
+        Lessons lesson = new Lessons();
         GradeDAO dao = new GradeDAO();
-        this.connection=dao.createConnection();
-         lesson = dao.searchLesson(id,connection);
+        this.connection = dao.createConnection();
+        lesson = dao.searchLesson(id, connection);
         // dao に反映
         dao.closeConnection(this.connection);
         return lesson;
-	}
+    }
 
     public SeatingArrangements searchSeatingArrangements(int seating_arrangements_id) {
         return null;
@@ -127,73 +126,81 @@ public class GradeService {
 
     public void DeleteLessonInfo(int id) {
         GradeDAO dao = new GradeDAO();
-        this.connection=dao.createConnection();
-        dao.deleteGradeInfo(id,connection);
-        dao.deleteLessonInfo(id,connection);
+        this.connection = dao.createConnection();
+        dao.deleteGradeInfo(id, connection);
+        dao.deleteLessonInfo(id, connection);
         // dao に反映
         dao.closeConnection(this.connection);
     }
 
     public void UpdateLessonInfo(int id, String date, int periodnum, String comment) {
         GradeDAO dao = new GradeDAO();
-        this.connection=dao.createConnection();
-        dao.updateLessonInfo(id,date,periodnum,comment,connection);
+        this.connection = dao.createConnection();
+        dao.updateLessonInfo(id, date, periodnum, comment, connection);
         // dao に反映
         dao.closeConnection(this.connection);
     }
 
     public List<Grade> getStudentGradeList(String id) {
         GradeDAO dao = new GradeDAO();
-        this.connection=dao.createConnection();
+        this.connection = dao.createConnection();
         System.out.println(id);
-        List<Grade> List = dao.getStudentGradeList(id,connection);
+        List<Grade> List = dao.getStudentGradeList(id, connection);
         // dao に反映
         dao.closeConnection(this.connection);
         return List;
+    }
+
+    public Grade getStudentGrade(int id) {
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        System.out.println(id);
+        Grade Grade = dao.getStudentGrade(id, connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return Grade;
+    }
+
+    public void updateStudentGrade(int red, int blue, int green, String comment, Boolean attendance, int id) {
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        dao.updateStudentGrade(red, blue, green, comment, attendance, id, connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+
+    }
+
+    public List<Lessons> searchLessonWithDate(String date) {
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        List<Lessons> List = dao.searchLessonWithDate(date, connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return List;
+    }
+
+    public List<Lessons> searchLessonWithComment(String searchword) {
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        List<Lessons> List = dao.searchLessonWithComment(searchword, connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        return List;
+    }
+
+    public boolean canGetLesson(int seating_arrangements) {
+        // 特定の座席配置IDの授業が存在するか同か
+        GradeDAO dao = new GradeDAO();
+        this.connection = dao.createConnection();
+        List<Lessons> List = dao.getSeatingLessonList(seating_arrangements, connection);
+        // dao に反映
+        dao.closeConnection(this.connection);
+        if (List.size() > 0) {
+            return true;
+        } else {
+            return false;
         }
-
-        public Grade getStudentGrade(int id) {
-            GradeDAO dao = new GradeDAO();
-            this.connection=dao.createConnection();
-            System.out.println(id);
-            Grade Grade = dao.getStudentGrade(id,connection);
-            // dao に反映
-            dao.closeConnection(this.connection);
-            return Grade;
-            }
-
-        public void updateStudentGrade(int red, int blue, int green, String comment, Boolean attendance,int id) {
-            GradeDAO dao = new GradeDAO();
-            this.connection=dao.createConnection();
-            dao.updateStudentGrade(red,blue,green,comment,attendance,id,connection);
-            // dao に反映
-            dao.closeConnection(this.connection);
-               
-        }
-
-        public List<Lessons> searchLessonWithDate(String date) {
-            GradeDAO dao = new GradeDAO();
-            this.connection=dao.createConnection();
-            List<Lessons> List = dao.searchLessonWithDate(date,connection);
-            // dao に反映
-            dao.closeConnection(this.connection);
-            return List;
-        }
-
-        public List<Lessons> searchLessonWithComment(String searchword) {
-            GradeDAO dao = new GradeDAO();
-            this.connection=dao.createConnection();
-            List<Lessons> List = dao.searchLessonWithComment(searchword,connection);
-            // dao に反映
-            dao.closeConnection(this.connection);
-            return List;
-        }
-        
-        
-
-
-
- 
+    }
 
     /*
      * public List<Grade> getGrade() {

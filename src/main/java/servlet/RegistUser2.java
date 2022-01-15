@@ -54,10 +54,14 @@ public class RegistUser2 extends HttpServlet {
         // userオブジェクトに情報を格納
         User user = new User(id, password, password2);
 
+        // 遷移先
+        String tourl = null;
         if (id == null) {
             // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/registUserFailure.jsp");
-            dispatcher.forward(request, response);
+            tourl = "/WEB-INF/Users/registUserFailure.jsp";
+            // RequestDispatcher dispatcher =
+            // request.getRequestDispatcher("/WEB-INF/Users/registUserFailure.jsp");
+            // dispatcher.forward(request, response);
         } else {
             // RecordManagerオブジェクトの生成
             UserManager manager = new UserManager();
@@ -70,22 +74,27 @@ public class RegistUser2 extends HttpServlet {
             if (ex == true) {
                 // response.sendRedirect("/se21g1/RegistUserRe");
                 System.out.println("ユーザ登録画面の再表示（すでにあるID入力のため）");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/registUserRe.jsp");
-                dispatcher.forward(request, response);
+                tourl = "/WEB-INF/Users/registUserRe.jsp";
+                // RequestDispatcher dispatcher =
+                // request.getRequestDispatcher("/WEB-INF/Users/registUserRe.jsp");
+                // dispatcher.forward(request, response);
+            } else {
+                System.out.println("登録するぜ");
+                try {
+                    manager.registUser(user);
+                } catch (NoSuchAlgorithmException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+                tourl = "/WEB-INF/Users/registUserSuccess.jsp";
+                // RequestDispatcher dispatcher =
+                // request.getRequestDispatcher("/WEB-INF/Users/registUserSuccess.jsp");
+                // dispatcher.forward(request, response);
             }
-
-            System.out.println("登録するぜ");
-            try {
-                manager.registUser(user);
-            } catch (NoSuchAlgorithmException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Users/registUserSuccess.jsp");
-            dispatcher.forward(request, response);
         }
+        RequestDispatcher dispatcher = request.getRequestDispatcher(tourl);
+        dispatcher.forward(request, response);
     }
 
 }

@@ -97,7 +97,6 @@ public class GradeDAO extends DriverAccessor {
             stmt.setInt(6, Grade.getBlue());
             stmt.setString(7, Grade.getComment());
             stmt.setInt(8, Grade.getSeat());
-            
 
             stmt.executeUpdate();
 
@@ -231,14 +230,14 @@ public class GradeDAO extends DriverAccessor {
         }
     }
 
-	public Grade searchGrade(Grade classdef, Connection connection) {
-		return null;
-	}
+    public Grade searchGrade(Grade classdef, Connection connection) {
+        return null;
+    }
 
-    public void registLessons(Lessons lessons,String userId,Connection connection) {
-        try{
-        String sql = "insert into lessons (seating_arrangements_id,lesson_date,period_num,comment,user_id) values(?, ?, ?,?,?)";
-            
+    public void registLessons(Lessons lessons, String userId, Connection connection) {
+        try {
+            String sql = "insert into lessons (seating_arrangements_id,lesson_date,period_num,comment,user_id) values(?, ?, ?,?,?)";
+
             PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setInt(1, lessons.getSeating_arrangements_id());
@@ -249,49 +248,46 @@ public class GradeDAO extends DriverAccessor {
 
             stmt.executeUpdate();
 
+            stmt.close();
+        } catch (SQLException e) {
 
-            stmt.close();}
-            catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
 
-                // エラーが発生した場合、エラーの原因を出力する
-                e.printStackTrace();
-    
-            } finally {
-            }
+        } finally {
+        }
     }
 
     public int getLessonId(Connection connection) {
-        try{
+        try {
             String sql = " select max(id) as selected_id from lessons";
-                // 最新のID取得
-                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-                // SQLコマンドのクエッションマークに値を、1番目から代入する
-    
-    
-                ResultSet rs = stmt.executeQuery();
-                rs.first();
-                int id=rs.getInt("selected_id");
-                
-                stmt.close();
-                return id;
-         }catch (SQLException e) {
-    
-                    // エラーが発生した場合、エラーの原因を出力する
-                    e.printStackTrace();
-        
-                } finally {
-                }
+            // 最新のID取得
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+            int id = rs.getInt("selected_id");
+
+            stmt.close();
+            return id;
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+
+        } finally {
+        }
         return 0;
-     
+
     }
 
-    public List<Lessons> getLessonList(String UserId,Connection connection) {
+    public List<Lessons> getLessonList(String UserId, Connection connection) {
         String sql = "select * from lessons where user_id=?";
         try {
 
             // SQLコマンド
 
-          
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, UserId);
             ResultSet rs = statement.executeQuery();
@@ -303,26 +299,24 @@ public class GradeDAO extends DriverAccessor {
             // ResultSet rs = stmt.executeQuery(sql);
             // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
 
-
-
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
 
             //
             // classdef.setClass_id(rs.getString("id"));
-            
-             while (rs.next()) {
-             Lessons returnSb = new Lessons();
-             returnSb.setId(rs.getInt("id"));
-             returnSb.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
-             returnSb.setLessonDate(rs.getString("lesson_date"));
-             returnSb.setPeriodnum(rs.getInt("period_num"));
-             returnSb.setComment(rs.getString("comment"));
-             returnSb.setUserId(rs.getString("user_id"));
-             List.add(returnSb);
-            // System.out.println("リスト追加したよ");
-             }
-             statement.close();
-             rs.close();
+
+            while (rs.next()) {
+                Lessons returnSb = new Lessons();
+                returnSb.setId(rs.getInt("id"));
+                returnSb.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
+                returnSb.setLessonDate(rs.getString("lesson_date"));
+                returnSb.setPeriodnum(rs.getInt("period_num"));
+                returnSb.setComment(rs.getString("comment"));
+                returnSb.setUserId(rs.getString("user_id"));
+                List.add(returnSb);
+                // System.out.println("リスト追加したよ");
+            }
+            statement.close();
+            rs.close();
 
             // Studentオブジェクトを返す
             return List;
@@ -337,11 +331,10 @@ public class GradeDAO extends DriverAccessor {
         }
     }
 
-    public List<Grade> getGradeList(int id,Connection connection) {
+    public List<Grade> getGradeList(int id, Connection connection) {
 
         String sql = "select * from grades where lesson_id = ?";
 
-        
         try {
 
             // SQLコマンド
@@ -350,8 +343,6 @@ public class GradeDAO extends DriverAccessor {
             statement.setInt(1, id);
 
             ResultSet rs = statement.executeQuery();
-            
-
 
             List<Grade> List = new ArrayList<Grade>();
 
@@ -361,41 +352,38 @@ public class GradeDAO extends DriverAccessor {
             // ResultSet rs = stmt.executeQuery(sql);
             // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
 
-
-
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
 
             //
             // classdef.setClass_id(rs.getString("id"));
-            
-             while (rs.next()) {
-        Grade returnSb = new Grade();
-        returnSb.setId(rs.getInt("id"));
-        returnSb.setStudentId(rs.getString("student_id"));
-        returnSb.setLessonId(rs.getInt("lesson_id"));
-        returnSb.setAttendance(rs.getBoolean("attendance"));
-        returnSb.setRed(rs.getInt("red"));
-        returnSb.setBlue(rs.getInt("blue"));
-        returnSb.setGreen(rs.getInt("green"));
-        returnSb.setComment(rs.getString("comment"));
-        returnSb.setSeat(rs.getInt("seat"));
-        List.add(returnSb);
-             }
-             return List;
-    }catch (SQLException e) {
 
-        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
-        e.printStackTrace();
-        return null;
+            while (rs.next()) {
+                Grade returnSb = new Grade();
+                returnSb.setId(rs.getInt("id"));
+                returnSb.setStudentId(rs.getString("student_id"));
+                returnSb.setLessonId(rs.getInt("lesson_id"));
+                returnSb.setAttendance(rs.getBoolean("attendance"));
+                returnSb.setRed(rs.getInt("red"));
+                returnSb.setBlue(rs.getInt("blue"));
+                returnSb.setGreen(rs.getInt("green"));
+                returnSb.setComment(rs.getString("comment"));
+                returnSb.setSeat(rs.getInt("seat"));
+                List.add(returnSb);
+            }
+            return List;
+        } catch (SQLException e) {
 
-    } 
-    
-}
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+
+        }
+
+    }
 
     public Lessons searchLesson(int id, Connection connection) {
         String sql = "select * from lessons where id = ?";
 
-        
         try {
 
             // SQLコマンド
@@ -404,96 +392,97 @@ public class GradeDAO extends DriverAccessor {
             statement.setInt(1, id);
 
             ResultSet rs = statement.executeQuery();
-            
+
             rs.first();
 
-        Lessons lesson = new Lessons();
-        lesson.setId(rs.getInt("id"));
-        lesson.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
-        lesson.setPeriodnum(rs.getInt("period_num"));
-        lesson.setComment(rs.getString("comment"));
-        lesson.setLessonDate(rs.getString("lesson_date"));
-        
-             return lesson;
-    }catch (SQLException e) {
+            Lessons lesson = new Lessons();
+            lesson.setId(rs.getInt("id"));
+            lesson.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
+            lesson.setPeriodnum(rs.getInt("period_num"));
+            lesson.setComment(rs.getString("comment"));
+            lesson.setLessonDate(rs.getString("lesson_date"));
 
-        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
-        e.printStackTrace();
-        return null;
+            return lesson;
+        } catch (SQLException e) {
 
-    } 
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+
+        }
     }
 
     public void deleteLessonInfo(int id, Connection connection) {
-        try{
-            
+        try {
+
             String sql = " delete from lessons where id = ?";
-                // 最新のID取得
-                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-                // SQLコマンドのクエッションマークに値を、1番目から代入する
-    
-                stmt.setInt(1, id);
-                stmt.executeUpdate();
-            
-                stmt.close();
-                
-         }catch (SQLException e) {
-    
-                    // エラーが発生した場合、エラーの原因を出力する
-                    e.printStackTrace();
-        
-                } finally {
-                }
-    } public void deleteGradeInfo(int id, Connection connection) {
-        try{
-            
-            String sql = " delete from grades where lesson_id = ?";
-                // 最新のID取得
-                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-                // SQLコマンドのクエッションマークに値を、1番目から代入する
-    
-                stmt.setInt(1, id);
-                stmt.executeUpdate();
-            
-                stmt.close();
-                
-         }catch (SQLException e) {
-    
-                    // エラーが発生した場合、エラーの原因を出力する
-                    e.printStackTrace();
-        
-                } finally {
-                }
+            // 最新のID取得
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            stmt.close();
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+
+        } finally {
+        }
     }
-    
+
+    public void deleteGradeInfo(int id, Connection connection) {
+        try {
+
+            String sql = " delete from grades where lesson_id = ?";
+            // 最新のID取得
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            stmt.close();
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+
+        } finally {
+        }
+    }
+
     public void updateLessonInfo(int id, String date, int periodnum, String comment, Connection connection) {
-        try{
+        try {
             String sql = " update lessons SET lesson_date=?,period_num=?,comment=? where id = ?";
-                // 最新のID取得
-                PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-                // SQLコマンドのクエッションマークに値を、1番目から代入する
-    
-                stmt.setString(1, date);
-                stmt.setInt(2, periodnum);
-                stmt.setString(3, comment);
-                stmt.setInt(4, id);
-                stmt.executeUpdate();
-            
-                stmt.close();
-                
-         }catch (SQLException e) {
-    
-                    // エラーが発生した場合、エラーの原因を出力する
-                    e.printStackTrace();
-        
-                } finally {
-                }
+            // 最新のID取得
+            PreparedStatement stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            // SQLコマンドのクエッションマークに値を、1番目から代入する
+
+            stmt.setString(1, date);
+            stmt.setInt(2, periodnum);
+            stmt.setString(3, comment);
+            stmt.setInt(4, id);
+            stmt.executeUpdate();
+
+            stmt.close();
+
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+
+        } finally {
+        }
     }
 
     public List<Grade> getStudentGradeList(String id, Connection connection) {
         String sql = "select * from grades where student_id = ?";
 
-        
         try {
 
             // SQLコマンド
@@ -502,8 +491,6 @@ public class GradeDAO extends DriverAccessor {
             statement.setString(1, id);
 
             ResultSet rs = statement.executeQuery();
-            
-
 
             List<Grade> List = new ArrayList<Grade>();
 
@@ -513,104 +500,99 @@ public class GradeDAO extends DriverAccessor {
             // ResultSet rs = stmt.executeQuery(sql);
             // System.out.println("取得した文字列は" + rs.getString("taikai_name") + "です！");
 
-
-
             // rsからそれぞれの情報を取り出し、Studentオブジェクトに設定する
 
             //
             // classdef.setClass_id(rs.getString("id"));
-            
-             while (rs.next()) {
-        Grade returnSb = new Grade();
-        returnSb.setId(rs.getInt("id"));
-        returnSb.setStudentId(rs.getString("student_id"));
-        returnSb.setLessonId(rs.getInt("lesson_id"));
-        returnSb.setAttendance(rs.getBoolean("attendance"));
-        returnSb.setRed(rs.getInt("red"));
-        returnSb.setBlue(rs.getInt("blue"));
-        returnSb.setGreen(rs.getInt("green"));
-        returnSb.setComment(rs.getString("comment"));
-        returnSb.setSeat(rs.getInt("seat"));
-        List.add(returnSb);
-        System.out.println("リスト追加しましたよ");
-             }
-             return List;
-    }catch (SQLException e) {
 
-        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
-        e.printStackTrace();
-        return null;
-
-    } 
-    
-    }
-
-    public Grade getStudentGrade(int id, Connection connection) {
-        try{
-            Grade Grade = new Grade();
-            String sql = " select * from grades where id = ?";
-            
-                // 最新のID取得
-                PreparedStatement statement = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-                statement.setInt(1, id);
-                ResultSet rs = statement.executeQuery();
-                rs.first();
-                Grade.setId(rs.getInt("id"));
-                Grade.setStudentId(rs.getString("student_id"));
-                Grade.setLessonId(rs.getInt("lesson_id"));
-                Grade.setAttendance(rs.getBoolean("attendance"));
-                Grade.setRed(rs.getInt("red"));
-                Grade.setBlue(rs.getInt("blue"));
-                Grade.setGreen(rs.getInt("green"));
-                Grade.setComment(rs.getString("comment"));
-                Grade.setSeat(rs.getInt("seat"));
-            // 終了処理
-            rs.close();
-            statement.close();
-            
-
-            // Studentオブジェクトを返す
-            return Grade;
-        }catch (SQLException e) {
+            while (rs.next()) {
+                Grade returnSb = new Grade();
+                returnSb.setId(rs.getInt("id"));
+                returnSb.setStudentId(rs.getString("student_id"));
+                returnSb.setLessonId(rs.getInt("lesson_id"));
+                returnSb.setAttendance(rs.getBoolean("attendance"));
+                returnSb.setRed(rs.getInt("red"));
+                returnSb.setBlue(rs.getInt("blue"));
+                returnSb.setGreen(rs.getInt("green"));
+                returnSb.setComment(rs.getString("comment"));
+                returnSb.setSeat(rs.getInt("seat"));
+                List.add(returnSb);
+                System.out.println("リスト追加しましたよ");
+            }
+            return List;
+        } catch (SQLException e) {
 
             // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
             e.printStackTrace();
             return null;
-    
-        } 
-    
+
+        }
+
     }
 
-    public void updateStudentGrade(int red, int blue, int green, String comment, Boolean attendance, int id, Connection connection) {
+    public Grade getStudentGrade(int id, Connection connection) {
+        try {
+            Grade Grade = new Grade();
+            String sql = " select * from grades where id = ?";
+
+            // 最新のID取得
+            PreparedStatement statement = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            rs.first();
+            Grade.setId(rs.getInt("id"));
+            Grade.setStudentId(rs.getString("student_id"));
+            Grade.setLessonId(rs.getInt("lesson_id"));
+            Grade.setAttendance(rs.getBoolean("attendance"));
+            Grade.setRed(rs.getInt("red"));
+            Grade.setBlue(rs.getInt("blue"));
+            Grade.setGreen(rs.getInt("green"));
+            Grade.setComment(rs.getString("comment"));
+            Grade.setSeat(rs.getInt("seat"));
+            // 終了処理
+            rs.close();
+            statement.close();
+
+            // Studentオブジェクトを返す
+            return Grade;
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+
+        }
+
+    }
+
+    public void updateStudentGrade(int red, int blue, int green, String comment, Boolean attendance, int id,
+            Connection connection) {
         String sql = " update grades SET attendance=?,red=?,blue=?,green=?,comment=? where id = ?";
-                // 最新のID取得
-                PreparedStatement stmt;
-                try {
-                    stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-                    stmt.setBoolean(1, attendance);
-                    stmt.setInt(2, red);
-                    stmt.setInt(3, blue);
-                    stmt.setInt(4, green);
-                    stmt.setString(5, comment);
-                    stmt.setInt(6, id);
-                    
-    
-                    stmt.executeUpdate();
-                
-                    stmt.close();
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                // SQLコマンドのクエッションマークに値を、1番目から代入する
-    
+        // 最新のID取得
+        PreparedStatement stmt;
+        try {
+            stmt = connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+            stmt.setBoolean(1, attendance);
+            stmt.setInt(2, red);
+            stmt.setInt(3, blue);
+            stmt.setInt(4, green);
+            stmt.setString(5, comment);
+            stmt.setInt(6, id);
+
+            stmt.executeUpdate();
+
+            stmt.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // SQLコマンドのクエッションマークに値を、1番目から代入する
 
     }
 
     public List<Lessons> searchLessonWithDate(String date, Connection connection) {
         String sql = "select * from lessons where lesson_date = ?";
 
-        
         try {
 
             // SQLコマンド
@@ -627,26 +609,25 @@ public class GradeDAO extends DriverAccessor {
                 lesson.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
                 lesson.setPeriodnum(rs.getInt("period_num"));
                 lesson.setComment(rs.getString("comment"));
-                lesson.setLessonDate(rs.getString("lesson_date"));              
+                lesson.setLessonDate(rs.getString("lesson_date"));
                 List.add(lesson);
                 System.out.println("リスト追加しましたよ");
-                     }
-                     return List;
+            }
+            return List;
 
-    }catch (SQLException e) {
+        } catch (SQLException e) {
 
-        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
-        e.printStackTrace();
-        return null;
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
 
-    } 
+        }
     }
 
     public List<Lessons> searchLessonWithComment(String searchword, Connection connection) {
-        
+
         String sql = "select * from lessons where comment = ?";
 
-        
         try {
 
             // SQLコマンド
@@ -662,22 +643,50 @@ public class GradeDAO extends DriverAccessor {
                 lesson.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
                 lesson.setPeriodnum(rs.getInt("period_num"));
                 lesson.setComment(rs.getString("comment"));
-                lesson.setLessonDate(rs.getString("lesson_date"));              
+                lesson.setLessonDate(rs.getString("lesson_date"));
                 List.add(lesson);
                 System.out.println("検索ヒット");
-                     }
-                     return List;
+            }
+            return List;
 
-    }catch (SQLException e) {
+        } catch (SQLException e) {
 
-        // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
-        e.printStackTrace();
-        return null;
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
 
-    } 
+        }
+    }
+
+    public List<Lessons> getSeatingLessonList(int seating_arrangements, Connection connection) {
+        // 特定の座席配置の授業が存在するかを検索
+        String sql = "select * from lessons where seating_arrangements_id=?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, seating_arrangements);
+            ResultSet rs = statement.executeQuery();
+            List<Lessons> List = new ArrayList<Lessons>();
+            while (rs.next()) {
+                Lessons returnSb = new Lessons();
+                returnSb.setId(rs.getInt("id"));
+                returnSb.setSeating_arrangements_id(rs.getInt("seating_arrangements_id"));
+                returnSb.setLessonDate(rs.getString("lesson_date"));
+                returnSb.setPeriodnum(rs.getInt("period_num"));
+                returnSb.setComment(rs.getString("comment"));
+                returnSb.setUserId(rs.getString("user_id"));
+                List.add(returnSb);
+            }
+            statement.close();
+            rs.close();
+            // Studentオブジェクトを返す
+            return List;
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
+            e.printStackTrace();
+            return null;
+        } finally {
+        }
     }
 }
 
-    // }
-
-
+// }

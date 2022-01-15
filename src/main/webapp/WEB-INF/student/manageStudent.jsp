@@ -64,15 +64,15 @@
                   <input type='submit' name='student_delete' value='削除' disabled class='button_grey' style="color: grey; width:80px; height: 20px;padding: 0; box-shadow: none;">
                   <% }else{ %>
                     <input type='submit' name='student_delete' value='削除' class='button_grey' style="color: red; width:80px; height: 20px;padding: 0;">
-                  <% } i++;%>
+                  <% }%>
                     <input type='hidden' name='delete_hidden' value=<%=s.getStudent_id()%>>
                 </td>
             </form>
         <% }else{ %>
                 <td>　　</td>
                 <td>　　</td>
-        <% } %>
-      </tr><% } %>
+        <% } i++;%>
+      </tr><% }%>
     </table></div><% } %><p align="center">クラスに登録されている児童・生徒は削除出来ません</p>
     
   <!--form action="./GoStudentTop" method="get"-->
