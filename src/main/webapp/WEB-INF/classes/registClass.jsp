@@ -81,8 +81,8 @@ pageEncoding="UTF-8"%>
         <div style="display:inline-flex">
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-            <input type="radio" name="radiobutton" value="number" required checked> <font size="2px">番号</font>
-            <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
+            <input type="radio" name="radiobutton" value="number" id="num" required checked> <font size="2px"><label for="num">番号</label></font>
+            <input type="radio" name="radiobutton" value="name" id="name"> <font size="2px"><label for="name">名前</label></font>
             <input type="hidden" value="regist" name="type">
             <input type="hidden" name="check" value=<%=check%>>
             <button text-align="center" name="search_stu" value="search" class="button" style="width: 70px; height:30px; padding:0px;">検索実行</button>

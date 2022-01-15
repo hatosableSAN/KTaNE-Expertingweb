@@ -110,8 +110,8 @@ pageEncoding="UTF-8"%>
       <div style="display:inline-flex">
         <form action="./SearchStudent" method="post">
             <input type="text" name="stu_search" maxlength="20" minlength="1" pattern="[ぁ-んァ-ヶｦ-ﾟ一-龠a-zA-Z0-9\-\u30FC]+"/>
-            <input type="radio" name="radiobutton" required checked value="number"> <font size="2px">番号</font>
-            <input type="radio" name="radiobutton" value="name"> <font size="2px">名前</font>
+            <input type="radio" name="radiobutton" required checked value="number" id="num"> <font size="2px"><label for="num">番号</label></font>
+            <input type="radio" name="radiobutton" value="name" id="name"> <font size="2px"><label for="name">名前</label></font>
             <input type="hidden" name="ClassId" value="<%=ClassDef.getClass_id()%>">
             <input type="hidden" name="class_user" value="<%=ClassDef.getClass_user()%>">
             <input type="hidden" value="update" name="type">

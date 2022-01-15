@@ -75,7 +75,7 @@ public class SearchStudent extends HttpServlet {
 
             String tourl = null;
             String check_str = request.getParameter("check");
-            int check = Integer.parseInt(check_str);
+            int check = 0;//Integer.parseInt(check_str);
             if(type.equals("stu_search_all")){//一覧表示
 
                 list = service.getStudentForGrade(User.getId());
@@ -91,6 +91,7 @@ public class SearchStudent extends HttpServlet {
                tourl = "/WEB-INF/grade/selectStudent.jsp"; // パスは、webappにいるところから考えないといけない！
             }else  if (stu_info.isEmpty()) { // テキストボックスが空だったら一覧表示
                 if(type.equals("regist")){
+                    check = Integer.parseInt(check_str);
                     list = service.getStudent();
                     stu_classlist = service.getStudent();
                     request.setAttribute("List", list);
@@ -139,6 +140,7 @@ public class SearchStudent extends HttpServlet {
 
                 request.setAttribute("List", list);
                 request.setAttribute("List_all",stu_classlist);
+                check = Integer.parseInt(check_str);
                 request.setAttribute("Check", check);
                 tourl = "/WEB-INF/classes/registClass.jsp"; // パスは、webappにいるところから考えないといけない！
              }else if(type.equals("update")){
