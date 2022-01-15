@@ -16,6 +16,14 @@
         <link rel="stylesheet" href="${pagecontext.request.contextpath}/se21g1/style.css" type="text/css" >
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script type="text/javascript" src="<%=request.getContextPath()%>/css/stop_button.js"></script>
+      <style>
+    .student {
+        width: 900px;                /* 横幅を200pxに指定 */
+        height: 280px;               /* 横幅を200pxに指定 */
+        border: 1px solid #000;      /* わかりやすくボーダーを引く */
+        overflow-y: scroll;          /* 縦方向にスクロール可能にする */
+    }
+    </style>
       </head>
     <body>
       <div class="green">
@@ -28,6 +36,7 @@
     <h3 align="center"><%=filename %></h3>
 
     <form action="./RegistStudentCSVConfirm" method="post">
+    <div class="student">
     <table align="center">
       <tr>
         <th>番号　　　　　　　　　　　　　</th><th>名前　　　　　　　　　　　　　　　　</th><th>性別　　　　　　　　　</th><th>登録者　　　　　　　　　　　　</th></tr>
@@ -48,6 +57,8 @@
                 </tr>
                 <%}%>
     </table>
+    </div>
+    <p align="center">合計：<%=studentList.size()%>人</p>
     <br><br><br>
     <div class="right">
       <input type="submit" value="登録" class="btn" id="btn_right">
