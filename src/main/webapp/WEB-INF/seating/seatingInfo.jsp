@@ -11,7 +11,8 @@ pageEncoding="UTF-8"%>
 <% SeatingArrangements seatingArrangements = (SeatingArrangements)request.getAttribute("SeatingArrangements"); %>
 <% List<Student> StudentList = (ArrayList<Student>) request.getAttribute("StudentList"); %>
 <% ClassDef ClassDef = (ClassDef)request.getAttribute("ClassDef"); %>
-<% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) request.getAttribute("StudentSeatingArrList"); %>
+<% List<StudentSeatingArr> studentSeatingArrList = (ArrayList<StudentSeatingArr>) request.getAttribute("StudentSeatingArrList");
+boolean candelete = (boolean)request.getAttribute("candelete"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -63,11 +64,24 @@ pageEncoding="UTF-8"%>
         </div>
 
         <% if(seatingArrangements.getUserId().equals(User.getId())){ %>
-
-        <form formmethod="POST" method="post">
+        <%-- 評価が登録されているか調べる --%>
+        <% if(candelete){%>
+        <form action="./DeleteSeatingconfirm"  formmethod="POST" method="post">
           <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
-          <input type="submit"  class = "button button_grey" id="btn_left_seat" name="deleteSeating" value="座席配置削除" formaction="./DeleteSeatingconfirm" style="color:red;"/>
-          <input type="submit" class = "button" id="btn_right_seat2" name="updateSeating" value="座席配置変更" formaction="./UpdateSeating"/>　　　</p>
+          <input type="submit"  class = "button button_grey" id="btn_left_seat" name="deleteSeating" value="座席配置削除"style="color:red;"/>
+        </form>
+        <%}else{%>
+        <form action=""  formmethod="POST" method="post">
+          <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
+          <input type="submit"  class = "button button_grey" id="btn_left_seat" name="deleteSeating" value="座席配置削除" style="box-shadow:none;" disabled/>
+        </form>
+        <p align="center">評価の登録されている座席配置は削除できません</p>
+        <%}%>
+
+
+        <form action="./UpdateSeating" method="post">
+          <p align = "right"><input type="hidden" name="SeatingId" value="<%=seatingArrangements.getId() %>">
+          <input type="submit" class = "button" id="btn_right_seat2" name="updateSeating" value="座席配置変更"/>　　　</p>
         </form>
 
         <% } %>
