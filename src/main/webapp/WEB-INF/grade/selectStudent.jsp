@@ -68,7 +68,7 @@ pageEncoding="UTF-8"%>
                         <% } %>
                         </label></td>
                       <td><label><%=s.getStudent_user() %></label></td>
-                      <td><form action="./ShowStudentGrades" method="get">
+                      <td><form action="./ShowStudentGrades" method="post">
                         <input type="hidden" name="studentid" value="<%=s.getStudent_id() %>">
                         <input type="hidden" name="studentname" value="<%=s.getStudent_name() %>">
                         <% if(s.getStudent_gender() == 1){ %>

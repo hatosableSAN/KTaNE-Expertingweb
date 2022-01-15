@@ -36,7 +36,7 @@ public class ShowStudentGrades extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // doPostメソッドから呼び出される(リダイレクトされる)
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
 
@@ -59,7 +59,11 @@ public class ShowStudentGrades extends HttpServlet {
                 LessonDate=service.searchLesson(lessonid).getLessonDate();
                 LessonDateList.add(LessonDate);
             }
-           
+            String Name = (String)request.getParameter("studentname"); 
+            String Gender = (String)request.getParameter("studentgender"); 
+            session.setAttribute("studentid", id);
+            session.setAttribute("studentname", Name);
+            session.setAttribute("studentgender", Gender);
             session.setAttribute("Grade", GradeList);
             session.setAttribute("LessonDateList", LessonDateList);
 
