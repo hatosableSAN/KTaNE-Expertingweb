@@ -55,6 +55,8 @@ pageEncoding="UTF-8"%>
             <%}%>
             <td style="padding-left: 10px;padding-right: 10px;"><form action="./RegistGradeInfo" method="post">
               <input type="hidden" name="id" value=<%=Seating.getId()%>>
+              <input type="hidden" name="startdate" value=<%=Seating.getStartDate()%>>
+              <input type="hidden" name="enddate" value=<%=Seating.getEndDate()%>>
             <input type="submit" value="選択" class="btn"></form></td>
       <% i++;} }%>
     </table>

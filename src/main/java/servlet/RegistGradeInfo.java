@@ -42,8 +42,12 @@ public class RegistGradeInfo extends HttpServlet {
         } else {
             System.out.println("教室風評価登録");
             String idnumber = request.getParameter("id");
+            String startdate = request.getParameter("startdate");
+            String enddate = request.getParameter("enddate");
             int id = Integer.parseInt(idnumber);
             session.setAttribute("Seatnum", idnumber);
+            session.setAttribute("startdate", startdate);
+            session.setAttribute("enddate", enddate);
             SeatingService Service = new SeatingService();
             List<StudentSeatingArr> StudentList = Service.getStudentSeatingArrList(id);
             session.setAttribute("StudentSeatingArrList", StudentList);// ゲットした座席リストをセッションに入れるよ

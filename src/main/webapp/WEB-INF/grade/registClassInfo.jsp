@@ -5,6 +5,8 @@ pageEncoding="UTF-8"%>
 <%@ page import="beans.User" %>
 <%@ page import="beans.SeatingArrangements" %>
 <% User User = (User)session.getAttribute("User"); %>
+<% String startdate = (String)session.getAttribute("startdate"); %>
+<% String enddate = (String)session.getAttribute("enddate"); %>
 <% List<SeatingArrangements> SeatList = (List<SeatingArrangements>)request.getAttribute("SeatList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,9 +25,9 @@ pageEncoding="UTF-8"%>
 
     <form action="./RegistGradeInfoConfirm" method="post">
 <h2 style="text-align: center;">授業日：
-      <input type="date" name="ClassDate" required>
-      <input type="number" name="PeriodNum" required min=0>限  <font color="red">* </h2>
-        <br/><p style="position: absolute;right:300px;">*は必須項目です</font></p></br>
+      <input type="date" name="ClassDate" required value="<%=startdate%>"min=<%=startdate%> max=<%=enddate%>>
+      <input type="number" name="PeriodNum" value=1 required min=0>限  <font color="red">* </h2>
+        <br/><p style="position: absolute;right:350px;">*は必須項目です。座席配置期間外の授業は登録できません。</font></p></br>
 <h2>授業コメント(400文字以内)</h2>
       <textarea class="textarea-grade" rows="40" cols="10" maxlength="400" name="Comment" style="  width:500px;
       height:300px;"></textarea>

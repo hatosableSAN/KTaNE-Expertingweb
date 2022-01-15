@@ -4,6 +4,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="beans.*" %>
 <%@ page import="beans.SeatingArrangements" %>
+<% SeatingArrangements Seat= (SeatingArrangements)session.getAttribute("SeatingArrangements"); %>
 <% Lessons Lesson = (Lessons)session.getAttribute("Lesson"); %>
 
 
@@ -24,13 +25,13 @@ pageEncoding="UTF-8"%>
     変更後の授業日および授業全体のコメントを入力してください。<br>
 
     <form action="./UpdateLessonInfoConfirm" method="post">
-授業日：
-      <input type="date" name="ClassDate" value="<%=Lesson.getLessonDate()%>"required>
-      <input type="number" name="PeriodNum" value ="<%=Lesson.getPeriodnum()%>"min=0 required>限<font color="red">* </h2>
-        <br/><p style="position: absolute;right:300px;">*は必須項目です</p></font>
-授業コメント(400文字以内)
-      <textarea class="textarea-grade" rows="40" cols="10" maxlength="400" name="Comment" style="  width:500px;
-      height:300px;"><%=Lesson.getComment()%></textarea>
+      <h2 style="text-align: center;">授業日：
+        <input type="date" name="ClassDate" required value=<%=Seat.getStartDate()%> min=<%=Seat.getStartDate()%> max=<%=Seat.getEndDate()%>>
+        <input type="number" name="PeriodNum" value=1 required min=0>限  <font color="red">* </h2>
+          <br/><p style="position: absolute;right:350px;">*は必須項目です。座席配置期間外の授業は登録できません。</font></p></br>
+  <h2>授業コメント(400文字以内)</h2>
+        <textarea class="textarea-grade" rows="40" cols="10" maxlength="400" name="Comment" style="  width:500px;
+        height:300px;"></textarea>
 <input type="hidden" value="<%=Lesson.getId()%>" name="Id">
         <input type="submit" class="btn" id="btn_right" value="確認画面へ">
 
