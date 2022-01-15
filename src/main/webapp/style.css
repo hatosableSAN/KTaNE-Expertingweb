@@ -203,7 +203,7 @@ div.right {
 }
 .button_grey:active{
   transform: translate(0,2px);
-  filter:none;
+  box-shadow:none;
   }
 
 .center{
