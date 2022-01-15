@@ -78,8 +78,8 @@ public class registStudentCSV extends HttpServlet {
             // アップロード操作
             Part part = request.getPart("file");
             if (part.getSize() == 0) {// ファイルが送信されなかった場合
-                System.out.println("ファイルが送信されてません");
-                error = "ファイルが送信されてません";
+                System.out.println("ファイルが送信されていません");
+                error = "ファイルが送信されていません";
                 tourl = "/WEB-INF/student/registStudentCSVError.jsp";
                 request.setAttribute("error", error);
                 // RequestDispatcher rd = request
