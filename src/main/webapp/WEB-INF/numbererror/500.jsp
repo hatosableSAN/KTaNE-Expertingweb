@@ -8,7 +8,7 @@
       <h1 style="text-align: center;">500 Internal Server Error</h1>
     
     <p style="text-align: center;"><br><br>サーバー上でエラーが発生しました。<br/><br/>
-      <a href="./Logout" class="btn">ログアウトしてトップページへ</a>
+      <a href="./CheckLogout" class="btn">ログアウトしてトップページへ</a>
       <button onclick=window.history.back(); return false; class="btn">一つ前のページへ戻る</a></button>
     </p>
     <div style="font-size: 50%;color: gray;text-align: center;visibility: hidden;">
