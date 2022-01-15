@@ -82,6 +82,7 @@ public class RegistUser extends HttpServlet {
             // セッションの作成・取得
             HttpSession session = request.getSession();
             session.setAttribute("User", user);
+            request.setAttribute("length", password.length());
             // request.setAttribute("User", user);
             // dispatcher.forward(request, response);
         } else {
