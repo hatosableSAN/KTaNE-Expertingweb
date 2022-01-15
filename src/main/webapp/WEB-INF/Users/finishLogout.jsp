@@ -13,9 +13,10 @@
            </div>
            <h2 align="center">ログアウトしました</h2>
         <br/><br/>
+        <
     <p align="center">
-        <p align="center"><a href="/se21g1/Login" class="backbtn3">ログイン画面へ戻る</a>　　　
-            <a href="/se21g1/" class="backbtn3">スタート画面へ</a>
+        <p align="center"><a href="/se21g1/Login"><button class="backbtn3">ログイン画面へ戻る</button></a>　　　
+            <a href="/se21g1/"><button class="backbtn3">スタート画面へ</button></a>
         </p>
       </p>
     
